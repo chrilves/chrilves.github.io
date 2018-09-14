@@ -382,6 +382,8 @@ Apart from being so much more complicated that the trivial approach, is there so
 - Secondly, algebras (functions `X => F[X]`) and coalgebras (functions `F[X] => X`) operate one level at a time. They enable to treat format `X` as if it was an algebraic data type over operations `F`. Pattern-matching is such a nice feature!
 - Thirdly, you can write generic functions taking any type `X` for which you can provide functions `X => F[X]` and `F[X] => X`. These functions also have higher chances of being correct because there is less space for unexpected behaviour.
 
+If want to dive deeper in this subject, you can look at [Matryoshka](https://github.com/slamdata/matryoshka), read [Functional programming with bananas, lenses, envelopes and barbed wire](https://maartenfokkinga.github.io/utwente/mmf91m.pdf) or any resource on [F-Algebras](https://en.wikipedia.org/wiki/F-algebra) and *recursion schemes*.
+
 ## Solution to exercises
 
 ### `JsLike` instance for `Traverse`
