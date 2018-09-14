@@ -1,5 +1,7 @@
 # JSON to XML: the probably a tiny bit over engineered way
 
+**[The complete code of the article](https://github.com/chrilves/chrilves.github.io/blob/master/articles/json2xml/json2xml.scala). You need  [Cats](https://typelevel.org/cats/) and [Play-Json](https://github.com/playframework/play-json) in order to run it.**
+
 It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.
 
 ## The easy way
