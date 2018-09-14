@@ -1,0 +1,102 @@
+{
+  "films": [
+    {
+      "title": "2001 : A Space Odyssey",
+      "release": {
+        "day": 27,
+        "month": 9,
+        "year": 1968
+      },
+      "genres" : [
+        "Science fiction"
+      ],
+      "actors": [
+        {
+          "lastName": "Dullea",
+          "firstName": "Keir",
+          "role": "Dr. David Bowman"
+        },
+        {
+          "lastName": "Lockwood",
+          "firstName": "Gary",
+          "role": "Dr. Frank Poole"
+        }
+      ],
+      "directors": [
+        {
+          "lastName": "Kubrick",
+          "firstName": "Stanley"
+        }
+      ]
+    },
+    {
+      "title": "Terminator 2 : Judgment Day",
+      "release": {
+        "day": 26,
+        "month": 10,
+        "year": 1991
+      },
+      "genres" : [
+        "Science fiction",
+        "Action"
+      ],
+      "actors": [
+        {
+          "lastName": "Schwarzenegger",
+          "firstName": "Arnold",
+          "role": "T-800"
+        },
+        {
+          "lastName": "Hamilton",
+          "firstName": "Linda",
+          "role": "Sarah Connor"
+        }
+      ],
+      "directors": [
+        {
+          "lastName": "Cameron",
+          "firstName": "James"
+        }
+      ]
+    },
+    {
+      "title": "Sin City",
+      "release": {
+        "day": 1,
+        "month": 6,
+        "year": 2005
+      },
+      "genres" : [
+        "Action",
+        "Thriller",
+        "Police"
+      ],
+      "actors": [
+        {
+          "lastName": "Willis",
+          "firstName": "Bruce",
+          "role": "Hartigan"
+        },
+        {
+          "lastName": "Rourke",
+          "firstName": "Mickey",
+          "role": "Marv"
+        }
+      ],
+      "directors": [
+        {
+          "lastName": "Rodriguez",
+          "firstName": "Robert"
+        },
+        {
+          "lastName": "Miller",
+          "firstName": "Frank"
+        },
+        {
+          "lastName": "Tarantino",
+          "firstName": "Quentin"
+        }
+      ]
+    }
+  ]
+}

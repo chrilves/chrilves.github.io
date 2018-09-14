@@ -476,14 +476,3 @@ def xml2JsLike(f: String => Elem): TagOpt[JsLike[String => Elem]] =
     }
   }
 ```
-
-<!--
-## Splitting
-
-Lets `someRootTag` then `f(someRootElem)` is an `Elem`. In addition, note that every `Elem` that be split into `(String, String => Elem)` by `splitElem`:
-
-```scala
-def splitElem(e: Elem): (String, String => Elem) =
-  (e.label, (s: String) => e.copy(label = s))
-```
--->
