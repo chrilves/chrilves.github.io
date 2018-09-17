@@ -187,11 +187,11 @@ val _5: String => Elem =
 Do you think we can define meaningful functions?
 
 ```scala
-val jsLike2xml: JsLike[Elem => String] => (String => Elem) = ???
+val jsLike2xml: JsLike[String => Elem] => (String => Elem) = ???
 val xml2JsLike: (String => Elem) => JsLike[String => Elem] = ???
 ```
 
-Yes we can ... partialy. We can define `jsLike2xml`:
+Yes we can ... partially. We can define `jsLike2xml`:
 
 ```scala
 val jsLike2xml: JsLike[String => Elem] => (String => Elem) = {

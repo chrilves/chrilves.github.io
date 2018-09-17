@@ -115,9 +115,9 @@ val elem2JsLike: Elem =&gt; JsLike&#91;Elem&#93; = ???
 </code></pre><p>It would certainly be nice, but unfortunately this is not that simple! <code>5</code>, <code>true</code> and <code>null</code> are valid JSON values, So <code>jsLike2Elem&#40;Atom&#40;Number&#40;5&#41;&#41;&#41;</code>, <code>jsLike2Elem&#40;Atom&#40;Bool&#40;true&#41;&#41;&#41;</code> and <code>jsLike2Elem&#40;Atom&#40;Null&#41;&#41;&#41;</code> should be valid XML value! But what should be the root tag of the resulting elements? How to translate <code>5</code> into a valid XML? We know that it would have the form:</p><pre><code class="xml">&lt;someRootTag type=&quot;number&quot;&gt;5&lt;/someRootTag&gt;
 </code></pre><p>But what <code>someRootTag</code> should be? We could pick an arbitrary one, but it would break composability (try it, you'll see!). There's no escape, all XML values need tags but not every JSON value have some! The situation suggest JSON values are closer to "XML values with unknown root tags" <code>&lt;X type=&quot;number&quot;&gt;5&lt;/X&gt;</code> where <code>X</code> as the unknown, i.e. the functional space <code>String =&gt; Elem</code>:</p><pre><code class="scala">val &#95;5: String =&gt; Elem =
   &#40;someRootTag: String&#41; =&gt; &lt;someRootTag type=&quot;number&quot;&gt;5&lt;/someRootTag&gt;
-</code></pre><p>Do you think we can define meaningful functions?</p><pre><code class="scala">val jsLike2xml: JsLike&#91;Elem =&gt; String&#93; =&gt; &#40;String =&gt; Elem&#41; = ???
+</code></pre><p>Do you think we can define meaningful functions?</p><pre><code class="scala">val jsLike2xml: JsLike&#91;String =&gt; Elem&#93; =&gt; &#40;String =&gt; Elem&#41; = ???
 val xml2JsLike: &#40;String =&gt; Elem&#41; =&gt; JsLike&#91;String =&gt; Elem&#93; = ???
-</code></pre><p>Yes we can ... partialy. We can define <code>jsLike2xml</code>:</p><pre><code class="scala">val jsLike2xml: JsLike&#91;String =&gt; Elem&#93; =&gt; &#40;String =&gt; Elem&#41; = {
+</code></pre><p>Yes we can ... partially. We can define <code>jsLike2xml</code>:</p><pre><code class="scala">val jsLike2xml: JsLike&#91;String =&gt; Elem&#93; =&gt; &#40;String =&gt; Elem&#41; = {
   def mkRoot&#40;jsType: String, children: Node&#42;&#41;: String =&gt; Elem =
     &#40;someRootTag: String&#41; =&gt;
       Elem&#40;null,
