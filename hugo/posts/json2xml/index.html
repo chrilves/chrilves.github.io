@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.47.1" />
+    <meta name="description" content="@chrilves&#39; Archives">
+<meta name="author" content="@chrilves">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="/images/favicon.png" type="image/x-icon" />
+    <title>JSON to XML: the probably a tiny bit over engineered way :: @chrilves&#39; Archives</title>
+
+    
+    <link href="/css/nucleus.css?1537280306" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1537280306" rel="stylesheet">
+    <link href="/css/hybrid.css?1537280306" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1537280306" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1537280306" rel="stylesheet">
+    <link href="/css/auto-complete.css?1537280306" rel="stylesheet">
+    <link href="/css/theme.css?1537280306" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1537280306" rel="stylesheet">
+    
+
+    <script src="/js/jquery-2.x.min.js?1537280306"></script>
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/posts/json2xml/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="65mm"
+   height="7mm"
+   viewBox="0 0 96.990127 7.7258329"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="193.2115"
+     inkscape:cy="-34.320002"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1026"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.9716412,-5.0276302)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="8.3895578"
+       y="12.61588"
+       id="text4543"><tspan
+         sodipodi:role="line"
+         id="tspan4541"
+         x="8.3895578"
+         y="12.61588"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum';stroke-width:0.26458332;fill:#ffffff">@chrilves' Archives</tspan></text>
+  </g>
+</svg>
+</a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="text" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-close"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1537280306"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1537280306"></script>
+<script type="text/javascript">
+    
+        var baseurl = '\/';
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1537280306"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/posts/">
+          Posts
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/slimetrail/" title="How to make game in the browser thanks to ScalaJS" class="dd-item ">
+        <a href="/posts/slimetrail/">
+        How to make game in the browser thanks to ScalaJS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/json2xml/" title="JSON to XML: the probably a tiny bit over engineered way" class="dd-item active">
+        <a href="/posts/json2xml/">
+        JSON to XML: the probably a tiny bit over engineered way
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/falgebra_scalaio_2017/" title="F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données" class="dd-item ">
+        <a href="/posts/falgebra_scalaio_2017/">
+        F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/chrilves"><i class='fab fa-fw fa-github'></i> Github</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/chrilves"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/posts/json2xml.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/posts/'>Posts</a> > JSON to XML: the probably a tiny bit over engineered way
+          
+         
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#the-easy-way">The easy way</a></li>
+</ul></li>
+<li><a href="#the-rocket-science-way">The Rocket Science way</a>
+<ul>
+<li><a href="#inviting-co-algebras-to-the-party">Inviting (Co)Algebras to the Party</a>
+<ul>
+<li><a href="#converting-back-and-forth">Converting back and forth</a></li>
+</ul></li>
+<li><a href="#what-s-the-point">What&rsquo;s the point?</a></li>
+<li><a href="#solution-to-exercises">Solution to exercises</a>
+<ul>
+<li><a href="#jslike-instance-for-traverse"><code>JsLike</code> instance for <code>Traverse</code></a></li>
+<li><a href="#xml2jslike"><code>xml2JsLike</code></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>JSON to XML: the probably a tiny bit over engineered way</h1>
+          
+
+        
+
+
+
+
+<p><strong><a href="https://github.com/chrilves/chrilves.github.io/blob/master/articles/json2xml/json2xml.scala">The complete code of the article</a>. You need  <a href="https://typelevel.org/cats/">Cats</a> and <a href="https://github.com/playframework/play-json">Play-Json</a> in order to run it.</strong></p>
+
+<p>It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.</p>
+
+<h2 id="the-easy-way">The easy way</h2>
+
+<p>This translation is actually pretty trivial, it takes essentially 6 lines of simple pattern-matching code in <a href="https://www.scala-lang.org/">Scala</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">import</span> play.api.libs.json._
+<span style="color:#66d9ef">import</span> scala.xml._
+
+<span style="color:#66d9ef">def</span> json2xml<span style="color:#f92672">(</span>json<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsValue</span><span style="color:#f92672">,</span> rootLabel<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">// XML node creation helper
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">def</span> mkElem<span style="color:#f92672">(</span>jsType<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span> children<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Node*</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span> <span style="color:#f92672">=</span>
+    <span style="color:#a6e22e">Elem</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> rootLabel<span style="color:#f92672">,</span>
+         <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">UnprefixedAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">,</span> jsType<span style="color:#f92672">,</span> scala<span style="color:#f92672">.</span>xml<span style="color:#f92672">.</span><span style="color:#a6e22e">Null</span><span style="color:#f92672">),</span>
+         <span style="color:#a6e22e">TopScope</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> children<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">_</span><span style="color:#66d9ef">*</span>
+        <span style="color:#f92672">)</span>
+
+  <span style="color:#75715e">// The real translation
+</span><span style="color:#75715e"></span>  json <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsNull</span> <span style="color:#66d9ef">=&gt;</span>
+      mkElem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;null&#34;</span><span style="color:#f92672">)</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsString</span><span style="color:#f92672">(</span>s<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      mkElem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">PCData</span><span style="color:#f92672">(</span>s<span style="color:#f92672">))</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsNumber</span><span style="color:#f92672">(</span>n<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      mkElem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">Text</span><span style="color:#f92672">(</span>n<span style="color:#f92672">.</span>toString<span style="color:#f92672">))</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsBoolean</span><span style="color:#f92672">(</span>b<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      mkElem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;boolean&#34;</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">Text</span><span style="color:#f92672">(</span>b<span style="color:#f92672">.</span>toString<span style="color:#f92672">))</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsArray</span><span style="color:#f92672">(</span>l<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      mkElem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;array&#34;</span><span style="color:#f92672">,</span> l<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>json2xml<span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">,</span> <span style="color:#e6db74">s&#34;</span><span style="color:#e6db74">${</span>rootLabel<span style="color:#e6db74">}</span><span style="color:#e6db74">Item&#34;</span><span style="color:#f92672">))</span><span style="color:#66d9ef">:_</span><span style="color:#66d9ef">*</span><span style="color:#f92672">)</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsObject</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      mkElem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;object&#34;</span><span style="color:#f92672">,</span> m<span style="color:#f92672">.</span>toList<span style="color:#f92672">.</span>map <span style="color:#f92672">{</span> <span style="color:#66d9ef">case</span> <span style="color:#f92672">(</span>k<span style="color:#f92672">,</span>v<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> json2xml<span style="color:#f92672">(</span>v<span style="color:#f92672">,</span> k<span style="color:#f92672">)</span> <span style="color:#f92672">}</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">_</span><span style="color:#66d9ef">*</span><span style="color:#f92672">)</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>The trickiest part of this example is figuring out how to build XML nodes in <em>Scala</em>. It translates the following JSON:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
+  { <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;2001 : A Space Odyssey&#34;</span>,
+    <span style="color:#f92672">&#34;release&#34;</span>:
+      { <span style="color:#f92672">&#34;day&#34;</span>: <span style="color:#ae81ff">27</span>,
+        <span style="color:#f92672">&#34;month&#34;</span>: <span style="color:#ae81ff">9</span>,
+        <span style="color:#f92672">&#34;year&#34;</span>: <span style="color:#ae81ff">1968</span>
+      },
+    <span style="color:#f92672">&#34;genres&#34;</span> : [ <span style="color:#e6db74">&#34;Science fiction&#34;</span> ],
+    <span style="color:#f92672">&#34;actors&#34;</span>: [
+      { <span style="color:#f92672">&#34;lastName&#34;</span>: <span style="color:#e6db74">&#34;Dullea&#34;</span>,
+        <span style="color:#f92672">&#34;firstName&#34;</span>: <span style="color:#e6db74">&#34;Keir&#34;</span>,
+        <span style="color:#f92672">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;Dr. David Bowman&#34;</span>
+      }
+    ],
+    <span style="color:#f92672">&#34;directors&#34;</span>: [
+      { <span style="color:#f92672">&#34;lastName&#34;</span>: <span style="color:#e6db74">&#34;Kubrick&#34;</span>,
+        <span style="color:#f92672">&#34;firstName&#34;</span>: <span style="color:#e6db74">&#34;Stanley&#34;</span>
+      }
+    ]
+  }
+]</code></pre></div>
+<p>into</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;films</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;array&#34;</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;filmsItem</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;object&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#75715e">&lt;![CDATA[2001 : A Space Odyssey]]&gt;</span><span style="color:#f92672">&lt;/title&gt;</span>
+    <span style="color:#f92672">&lt;release</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;object&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;day</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">&gt;</span>27<span style="color:#f92672">&lt;/day&gt;</span>
+      <span style="color:#f92672">&lt;month</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">&gt;</span>9<span style="color:#f92672">&lt;/month&gt;</span>
+      <span style="color:#f92672">&lt;year</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">&gt;</span>1968<span style="color:#f92672">&lt;/year&gt;</span>
+    <span style="color:#f92672">&lt;/release&gt;</span>
+    <span style="color:#f92672">&lt;genres</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;array&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;genresItem</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#75715e">&lt;![CDATA[Science fiction]]&gt;</span><span style="color:#f92672">&lt;/genresItem&gt;</span>
+    <span style="color:#f92672">&lt;/genres&gt;</span>
+    <span style="color:#f92672">&lt;actors</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;array&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;actorsItem</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;object&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;lastName</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#75715e">&lt;![CDATA[Dullea]]&gt;</span><span style="color:#f92672">&lt;/lastName&gt;</span>
+        <span style="color:#f92672">&lt;firstName</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#75715e">&lt;![CDATA[Keir]]&gt;</span><span style="color:#f92672">&lt;/firstName&gt;</span>
+        <span style="color:#f92672">&lt;role</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#75715e">&lt;![CDATA[Dr. David Bowman]]&gt;</span><span style="color:#f92672">&lt;/role&gt;</span>
+      <span style="color:#f92672">&lt;/actorsItem&gt;</span>
+    <span style="color:#f92672">&lt;/actors&gt;</span>
+    <span style="color:#f92672">&lt;directors</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;array&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;directorsItem</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;object&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;lastName</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#75715e">&lt;![CDATA[Kubrick]]&gt;</span><span style="color:#f92672">&lt;/lastName&gt;</span>
+        <span style="color:#f92672">&lt;firstName</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#75715e">&lt;![CDATA[Stanley]]&gt;</span><span style="color:#f92672">&lt;/firstName&gt;</span>
+      <span style="color:#f92672">&lt;/directorsItem&gt;</span>
+    <span style="color:#f92672">&lt;/directors&gt;</span>
+  <span style="color:#f92672">&lt;/filmsItem&gt;</span>
+<span style="color:#f92672">&lt;/films&gt;</span></code></pre></div>
+<p>Note that, unlike JSON, XML have no notion of booleans, number or null, so we add type information as attribute on each node. This has the benefit of enabling us to convert such XML back to their former JSON form. Also note that, we need <em>CDATA</em> sections to preserve spaces.</p>
+
+<p>Problem solved? Yes! But we can go much much further on this subject&hellip;</p>
+
+<h1 id="the-rocket-science-way">The Rocket Science way</h1>
+
+<p>There much more thing to say about this example, first let&rsquo;s expose some properties of JSON values.</p>
+
+<h2 id="inviting-co-algebras-to-the-party">Inviting (Co)Algebras to the Party</h2>
+
+<p>JSON values can be modelled with an <a href="https://en.wikipedia.org/wiki/Algebraic_data_type">Algebraic Data Type</a> or <em>ADT</em> for short. <a href="https://github.com/playframework/play-json">Play-Json</a> represents them by the type <code>JsValue</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">JsNull</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsNumber</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">BigDecimal</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsBoolean</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsString</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsArray</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsValue</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsObject</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">JsValue</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span></code></pre></div>
+<p>But in order to simplify the presentation, we will use slightly different, but <strong>equivalent</strong>, definition of JSON values:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Atomic</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">Null</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Atomic</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Bool</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Atomic</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Number</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">BigDecimal</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Atomic</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Str</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Atomic</span>
+
+<span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsAtom</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Atomic</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsArray</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsValue</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsObject</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">JsValue</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsValue</span></code></pre></div>
+<p>Like in any Algebraic Data Type, the <strong>constructors</strong> of <code>JsValues</code> can be seen as operations on it. <code>JsAtom</code> informs us that every number, boolean, string and <code>null</code> give rise to a distinct JSON value. <code>JsArray</code> and <code>JsObject</code> tells us that each (qualified) list of JSON values forms a distinct JSON value itself. Considering that JSON values are defined in terms of these operations, and that we want to translate JSON into XML, it would make sense to define them on XML as well. First, let&rsquo;s explicit these operations:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">+R</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Atomic</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Nothing</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Arr</span><span style="color:#f92672">[</span><span style="color:#66d9ef">+R</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">R</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">R</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">[</span><span style="color:#66d9ef">+R</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">R</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">R</span><span style="color:#f92672">]</span></code></pre></div>
+<p>The interesting point here is we can translate back and forth between <code>JsValue</code> and <code>JsLike[JsValue]</code>. These translations are even the inverse of each other, meaning both types are totally equivalent!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> jsLike2JsValue<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsValue</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">JsValue</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>         <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">JsAtom</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>          <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">JsArray</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span>          <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">JsObject</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">val</span> jsValue2JsLike<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsValue</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsValue</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsAtom</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>    <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsArray</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>   <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span>a<span style="color:#f92672">.</span>toList<span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">JsObject</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span>  <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p><code>jsLike2JsValue</code> is called a <code>JsLike</code>-Algebra because it has the form <code>JsLike[X] =&gt; X</code>. It means <code>jsLike2JsValue</code> is a way &ldquo;compute&rdquo; <code>JsLike</code> operation, i.e. it composes values to form new ones. On the opposite, <code>jsValue2JsLike</code> is called a <code>JsLike</code>-CoAlgebra because it has the form <code>X =&gt; JsLike[X]</code>. It is a way to expose how a value is built, i.e. it deconstructs values to expose their structure.</p>
+
+<p>Can we find such functions for XML values? We are looking for two functions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> jsLike2Elem<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Elem</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Elem</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">???</span>
+<span style="color:#66d9ef">val</span> elem2JsLike<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Elem</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">???</span></code></pre></div>
+<p>It would certainly be nice, but unfortunately this is not that simple! <code>5</code>, <code>true</code> and <code>null</code> are valid JSON values, So <code>jsLike2Elem(Atom(Number(5)))</code>, <code>jsLike2Elem(Atom(Bool(true)))</code> and <code>jsLike2Elem(Atom(Null)))</code> should be valid XML value! But what should be the root tag of the resulting elements? How to translate <code>5</code> into a valid XML? We know that it would have the form:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;someRootTag</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">&gt;</span>5<span style="color:#f92672">&lt;/someRootTag&gt;</span></code></pre></div>
+<p>But what <code>someRootTag</code> should be? We could pick an arbitrary one, but it would break composability (try it, you&rsquo;ll see!). There&rsquo;s no escape, all XML values need tags but not every JSON value have some! The situation suggest JSON values are closer to &ldquo;XML values with unknown root tags&rdquo; <code>&lt;X type=&quot;number&quot;&gt;5&lt;/X&gt;</code> where <code>X</code> as the unknown, i.e. the functional space <code>String =&gt; Elem</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> _5<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Elem</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#f92672">(</span>someRootTag<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#f92672">&lt;</span>someRootTag type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">5</span><span style="color:#f92672">&lt;/</span>someRootTag<span style="color:#f92672">&gt;</span></code></pre></div>
+<p>Do you think we can define meaningful functions?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> jsLike2xml<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#f92672">(</span><span style="color:#a6e22e">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Elem</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">???</span>
+<span style="color:#66d9ef">val</span> xml2JsLike<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">???</span></code></pre></div>
+<p>Yes we can &hellip; partially. We can define <code>jsLike2xml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> jsLike2xml<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#f92672">(</span><span style="color:#a6e22e">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Elem</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> mkRoot<span style="color:#f92672">(</span>jsType<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span> children<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Node*</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Elem</span> <span style="color:#66d9ef">=</span>
+    <span style="color:#f92672">(</span>someRootTag<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      <span style="color:#a6e22e">Elem</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span>
+           someRootTag<span style="color:#f92672">,</span>
+           <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">UnprefixedAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">,</span> jsType<span style="color:#f92672">,</span> scala<span style="color:#f92672">.</span>xml<span style="color:#f92672">.</span><span style="color:#a6e22e">Null</span><span style="color:#f92672">),</span>
+           <span style="color:#a6e22e">TopScope</span><span style="color:#f92672">,</span>
+           <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span>
+           children<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">_</span><span style="color:#66d9ef">*</span>
+          <span style="color:#f92672">)</span>
+
+  <span style="color:#f92672">(</span>j<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">=&gt;</span>
+    j <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Null</span><span style="color:#f92672">)</span>   <span style="color:#66d9ef">=&gt;</span>
+        mkRoot<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;null&#34;</span><span style="color:#f92672">)</span>
+
+      <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Str</span><span style="color:#f92672">(</span>s<span style="color:#f92672">))</span> <span style="color:#66d9ef">=&gt;</span>
+        mkRoot<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">PCData</span><span style="color:#f92672">(</span>s<span style="color:#f92672">))</span>
+
+      <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Bool</span><span style="color:#f92672">(</span>b<span style="color:#f92672">))</span> <span style="color:#66d9ef">=&gt;</span>
+        mkRoot<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;boolean&#34;</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">Text</span><span style="color:#f92672">(</span>b<span style="color:#f92672">.</span>toString<span style="color:#f92672">))</span>
+
+      <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Number</span><span style="color:#f92672">(</span>n<span style="color:#f92672">))</span> <span style="color:#66d9ef">=&gt;</span>
+        mkRoot<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">Text</span><span style="color:#f92672">(</span>n<span style="color:#f92672">.</span>toString<span style="color:#f92672">))</span>
+        
+      <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+        <span style="color:#f92672">(</span>root<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#f92672">{</span>
+          mkRoot<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;array&#34;</span><span style="color:#f92672">,</span> a<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;</span><span style="color:#e6db74">${</span>root<span style="color:#e6db74">}</span><span style="color:#e6db74">Item&#34;</span><span style="color:#f92672">))</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">_</span><span style="color:#66d9ef">*</span><span style="color:#f92672">)(</span>root<span style="color:#f92672">)</span>
+        <span style="color:#f92672">}</span>
+
+      <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+        mkRoot<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;object&#34;</span><span style="color:#f92672">,</span> m<span style="color:#f92672">.</span>toList<span style="color:#f92672">.</span>map <span style="color:#f92672">{</span> <span style="color:#66d9ef">case</span> <span style="color:#f92672">(</span>k<span style="color:#f92672">,</span> v<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> v<span style="color:#f92672">(</span>k<span style="color:#f92672">)</span> <span style="color:#f92672">}</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">_</span><span style="color:#66d9ef">*</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>but for <code>xml2JsLike</code>, we&rsquo;re facing two not-that-small issues:</p>
+
+<ul>
+<li>First, unlike<code>jsValue2JsLike</code>, we can not pattern-match on functions. We have no sane way to know that</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  (someRootTag: String) =&gt; <span style="color:#f92672">&lt;someRootTag</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">&gt;</span>5<span style="color:#f92672">&lt;/someRootTag&gt;</span></code></pre></div>
+<p>is built from <code>Atom(Number(5))</code>.</p>
+
+<ul>
+<li>Even if we could pattern-match on functions, <code>jsLike2xml</code> is not surjective, i.e. not every XML element is the result of <code>jsLike2xml(f)</code> for some <code>f</code>. To deal with invalid input, the return type of <code>xml2JsLike</code> can not be <code>JsLike[String =&gt; Elem]</code> but <code>F[JsLike[String =&gt; Elem]]</code> for some functor <code>F</code> able to deal with errors like <code>Option</code>, <code>Either</code>, etc. For simplicity&rsquo;s sake, let&rsquo;s consider <code>F</code> to be <code>Option</code>.</li>
+</ul>
+
+<p>Let&rsquo;s once again take a step back. We want to decompose a function <code>(f: String =&gt; Elem)</code> into an <code>Option[JsLike[String =&gt; Elem]]</code> without pattern-matching it. The only reasonable thing we can do with functions is pass them some arguments:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> xml2JsLike<span style="color:#f92672">(</span>f<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">))</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Option</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Elem</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">]]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#f92672">(</span>someRootTag<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#f92672">...</span> f<span style="color:#f92672">(</span>someRootTag<span style="color:#f92672">)</span> <span style="color:#f92672">...</span></code></pre></div>
+<p>The type <code>String =&gt; Option[A]</code> is actually a monad, known as a <code>ReaderT[Option, String, A]</code>. Which makes <code>xml2JsLike</code> a monadic coalgebra. Let&rsquo;s give it a name:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">import</span> cats.data.ReaderT
+
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">TagOpt</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">ReaderT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Option</span>, <span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">A</span><span style="color:#f92672">]</span></code></pre></div>
+<p>As an exercise try to implement <code>xml2JsLike</code>. *To that end, it may be useful to notice that <code>JsLike</code> is a <code>Traverse</code>, i.e. that an instance of <code>Traverse[JsLike]</code> can be defined. Such an instance defines a function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> `traverse[G[_]: Applicative, A, B](ja: JsLike[A])(f: A =&gt; G[B]): G[JsLike[B]]`</code></pre></div>
+<p>To summarize this part, we have these four functions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> jsLike2JsValue<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsValue</span><span style="color:#f92672">]</span>    <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">JsValue</span>
+<span style="color:#66d9ef">val</span> jsValue2JsLike<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsValue</span>            <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsValue</span><span style="color:#f92672">]</span>
+
+<span style="color:#66d9ef">val</span> jsLike2xml<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#f92672">(</span><span style="color:#a6e22e">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Elem</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">val</span> xml2JsLike<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">)</span>       <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">TagOpt</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]]</span></code></pre></div>
+<p>Now we want to convert <code>JsValue</code> from/into <code>String =&gt; Elem</code>.</p>
+
+<h3 id="converting-back-and-forth">Converting back and forth</h3>
+
+<p>Now that we know how to compose and decompose both JSON and XML values. How do we write converters? For simplify&rsquo;s sake, let&rsquo;s be a bit more abstract. Let <code>A</code> and <code>B</code> be to types (like <code>JsValue</code> and <code>String =&gt; Elem</code>) and <code>F[_]</code> a type constructor (like <code>JsLike</code>) that have the nice property of being a functor (i.e. it has function <code>map: F[A] =&gt; (A =&gt; B) =&gt; F[B]</code>). In addition, let <code>decomposeA: A =&gt; F[A]</code> and <code>recomposeB: F[B] =&gt; B</code> (like <code>jsValue2JsLike</code> and <code>jsLike2xml</code>). We want a function <code>convert: A =&gt; B</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Direct</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">import</span> cats.Functor
+  <span style="color:#66d9ef">import</span> cats.syntax.functor._
+
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">A</span>
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">B</span>
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>
+
+  <span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">val</span> fHasMap<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Functor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">]</span>
+
+  <span style="color:#66d9ef">val</span> decomposeA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span>    <span style="color:#f92672">=&gt;</span> F<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">val</span> recomposeB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> B
+
+  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">def</span> convert<span style="color:#f92672">(</span>a<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">B</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> decomposeA<span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">val</span> fb<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> fa<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>convert<span style="color:#f92672">)</span>
+    recomposeB<span style="color:#f92672">(</span>fb<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">B</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Or in a more compact way:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> hylo<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span>, <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Functor</span><span style="color:#f92672">](</span>decompose<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> F<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> recompose<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> convert<span style="color:#f92672">(</span>a<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">B</span> <span style="color:#f92672">=</span>
+    recompose<span style="color:#f92672">(</span>decompose<span style="color:#f92672">(</span>a<span style="color:#f92672">).</span>map<span style="color:#f92672">(</span>convert<span style="color:#f92672">))</span>
+
+  convert <span style="color:#66d9ef">_</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>And voila, a converter in just 1 lines of code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> json2xml<span style="color:#f92672">(</span>json<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsValue</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Elem</span> <span style="color:#66d9ef">=</span>
+  hylo<span style="color:#f92672">(</span>jsValue2JsLike<span style="color:#f92672">,</span> jsLike2xml<span style="color:#f92672">).</span>apply<span style="color:#f92672">(</span>json<span style="color:#f92672">)</span></code></pre></div>
+<p>The way back is only a bit more involving. This time we require <code>F</code> to be <code>Traverse</code> and the function <code>decomposeA</code> to be of type <code>A =&gt; M[F[A]]</code> for some monad <code>M</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">WayBack</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">A</span>
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">B</span>
+
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">val</span> fHasTraverse<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Traverse</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">]</span>
+
+  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">M</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">val</span> mIsAMonad<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Monad</span><span style="color:#f92672">[</span><span style="color:#66d9ef">M</span><span style="color:#f92672">]</span>
+
+  <span style="color:#66d9ef">val</span> decomposeA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span>    <span style="color:#f92672">=&gt;</span> M<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]]</span>
+  <span style="color:#66d9ef">val</span> recomposeB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> B
+
+  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">def</span> convert<span style="color:#f92672">(</span>a<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">M</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">{</span>
+      fa <span style="color:#66d9ef">&lt;-</span> decomposeA<span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>
+      fb <span style="color:#66d9ef">&lt;-</span> fa<span style="color:#f92672">.</span>traverse<span style="color:#f92672">(</span>convert<span style="color:#f92672">)</span>
+    <span style="color:#f92672">}</span> <span style="color:#66d9ef">yield</span> recomposeB<span style="color:#f92672">(</span>fb<span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Again, in a more compact way:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> hyloish<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span>, <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Traverse</span>, <span style="color:#66d9ef">M</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Monad</span><span style="color:#f92672">](</span>decompose<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> M<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]],</span> recompose<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> M<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> convert<span style="color:#f92672">(</span>a<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">M</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">{</span>
+    fa <span style="color:#66d9ef">&lt;-</span> decompose<span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>
+    fb <span style="color:#66d9ef">&lt;-</span> fa<span style="color:#f92672">.</span>traverse<span style="color:#f92672">(</span>convert<span style="color:#f92672">)</span>
+  <span style="color:#f92672">}</span> <span style="color:#66d9ef">yield</span> recompose<span style="color:#f92672">(</span>fb<span style="color:#f92672">)</span>
+
+  convert <span style="color:#66d9ef">_</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>which gives the way back as the oneliner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> xml2json<span style="color:#f92672">(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Elem</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">TagOpt</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsValue</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+    hyloish<span style="color:#f92672">(</span>xml2JsLike<span style="color:#f92672">,</span> jsLike2JsValue<span style="color:#f92672">).</span>apply<span style="color:#f92672">(</span>f<span style="color:#f92672">)</span></code></pre></div>
+<p>Reorganizing a bit, it leads to the two conversion functions between <code>(String, JsValue)</code> and <code>Elem</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> json2xmlBetter<span style="color:#66d9ef">:</span> <span style="color:#f92672">((</span><span style="color:#66d9ef">String</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">JsValue</span><span style="color:#f92672">))</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Elem</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#f92672">(</span>jsonPlusTag<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">String</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">JsValue</span><span style="color:#f92672">))</span> <span style="color:#66d9ef">=&gt;</span> json2xml<span style="color:#f92672">(</span>jsonPlusTag<span style="color:#f92672">.</span>_2<span style="color:#f92672">)(</span>jsonPlusTag<span style="color:#f92672">.</span>_1<span style="color:#f92672">)</span>
+
+<span style="color:#66d9ef">val</span> xml2jsonBetter<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">TagOpt</span><span style="color:#f92672">[(</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">JsValue</span><span style="color:#f92672">)]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#f92672">(</span>e<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> xml2json<span style="color:#f92672">((</span>s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> e<span style="color:#f92672">.</span>copy<span style="color:#f92672">(</span>label <span style="color:#66d9ef">=</span> s<span style="color:#f92672">)).</span>map<span style="color:#f92672">(</span>e<span style="color:#f92672">.</span>label <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">_</span><span style="color:#f92672">)</span></code></pre></div>
+<h2 id="what-s-the-point">What&rsquo;s the point?</h2>
+
+<p>Apart from being so much more complicated that the trivial approach, is there some benefits? Actually yes.</p>
+
+<ul>
+<li>Firstly, given <code>n</code> formats, there are <code>n²</code> converters. Writing and testing <code>n²</code> functions is a lot of tedious and error-prone work. But if you find some common operations <code>F[_]</code>, you only need <code>2n</code> functions (one <code>X =&gt; F[X]</code> and one <code>F[X] =&gt; X</code> for each format <code>X</code>) to achieve the same goal. Furthermore, each of those functions will be easier to test, which is not to neglect.</li>
+<li>Secondly, algebras (functions <code>X =&gt; F[X]</code>) and coalgebras (functions <code>F[X] =&gt; X</code>) operate one level at a time. They enable to treat format <code>X</code> as if it was an algebraic data type over operations <code>F</code>. Pattern-matching is such a nice feature!</li>
+<li>Thirdly, you can write generic functions taking any type <code>X</code> for which you can provide functions <code>X =&gt; F[X]</code> and <code>F[X] =&gt; X</code>. These functions also have higher chances of being correct because there is less space for unexpected behaviour.</li>
+</ul>
+
+<p>If want to dive deeper in this subject, you can look at <a href="https://github.com/slamdata/matryoshka">Matryoshka</a>, read <a href="https://maartenfokkinga.github.io/utwente/mmf91m.pdf">Functional programming with bananas, lenses, envelopes and barbed wire</a> or any resource on <a href="https://en.wikipedia.org/wiki/F-algebra">F-Algebras</a> and <em>recursion schemes</em>.</p>
+
+<h2 id="solution-to-exercises">Solution to exercises</h2>
+
+<h3 id="jslike-instance-for-traverse"><code>JsLike</code> instance for <code>Traverse</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">val</span> jsLikeInstances<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Traverse</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsLike</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Traverse</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsLike</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">import</span> cats.Eval
+
+    <span style="color:#66d9ef">def</span> traverse<span style="color:#f92672">[</span><span style="color:#66d9ef">G</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>, <span style="color:#66d9ef">A</span>, <span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> G<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])(</span>
+        <span style="color:#66d9ef">implicit</span> G<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Applicative</span><span style="color:#f92672">[</span><span style="color:#66d9ef">G</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">G</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]]</span> <span style="color:#66d9ef">=</span>
+      fa <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> G<span style="color:#f92672">.</span>point<span style="color:#f92672">(</span><span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span>a<span style="color:#f92672">))</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>  <span style="color:#66d9ef">=&gt;</span> a<span style="color:#f92672">.</span>traverse<span style="color:#f92672">[</span><span style="color:#66d9ef">G</span>, <span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>f<span style="color:#f92672">).</span>map<span style="color:#f92672">(</span><span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">))</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+          m<span style="color:#f92672">.</span>toList
+            <span style="color:#f92672">.</span>traverse<span style="color:#f92672">[</span><span style="color:#66d9ef">G</span>, <span style="color:#f92672">(</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">B</span><span style="color:#f92672">)]</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">case</span> <span style="color:#f92672">(</span>s<span style="color:#f92672">,</span> a<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> f<span style="color:#f92672">(</span>a<span style="color:#f92672">).</span>map<span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">_</span><span style="color:#f92672">)</span> <span style="color:#f92672">}</span>
+            <span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>i <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>i<span style="color:#f92672">.</span>toMap<span style="color:#f92672">))</span>
+      <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">def</span> foldLeft<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>, <span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> b<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">B</span><span style="color:#f92672">)(</span>f<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">B</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">B</span> <span style="color:#f92672">=</span>
+      fa <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> b
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>  <span style="color:#66d9ef">=&gt;</span> a<span style="color:#f92672">.</span>foldLeft<span style="color:#f92672">(</span>b<span style="color:#f92672">)(</span>f<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span>  <span style="color:#66d9ef">=&gt;</span> m<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>foldLeft<span style="color:#f92672">(</span>b<span style="color:#f92672">)(</span>f<span style="color:#f92672">)</span>
+      <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">def</span> foldRight<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>, <span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> lb<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Eval</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])(</span>
+        f<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">Eval</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Eval</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Eval</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+      fa <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> lb
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>  <span style="color:#66d9ef">=&gt;</span> a<span style="color:#f92672">.</span>foldRight<span style="color:#f92672">(</span>lb<span style="color:#f92672">)(</span>f<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>m<span style="color:#f92672">)</span>  <span style="color:#66d9ef">=&gt;</span> m<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>foldRight<span style="color:#f92672">(</span>lb<span style="color:#f92672">)(</span>f<span style="color:#f92672">)</span>
+      <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span></code></pre></div>
+<h3 id="xml2jslike"><code>xml2JsLike</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> xml2JsLike<span style="color:#f92672">(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Elem</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">TagOpt</span><span style="color:#f92672">[</span><span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#a6e22e">ReaderT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Option</span>, <span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]]</span> <span style="color:#f92672">{</span> <span style="color:#f92672">(</span>s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+    <span style="color:#66d9ef">val</span> elem<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span> <span style="color:#f92672">=</span> f<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+
+    elem
+      <span style="color:#f92672">.</span>attributes
+      <span style="color:#f92672">.</span>asAttrMap
+      <span style="color:#f92672">.</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">)</span>
+      <span style="color:#f92672">.</span>flatMap<span style="color:#f92672">[</span><span style="color:#66d9ef">JsLike</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Elem</span><span style="color:#f92672">]]</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;null&#34;</span> <span style="color:#66d9ef">=&gt;</span>
+          <span style="color:#a6e22e">Some</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Null</span><span style="color:#f92672">))</span>
+
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;boolean&#34;</span> <span style="color:#66d9ef">=&gt;</span>
+          elem<span style="color:#f92672">.</span>text <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;true&#34;</span>  <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Some</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Bool</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)))</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Some</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Bool</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">)))</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span>       <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">None</span>
+          <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;number&#34;</span> <span style="color:#66d9ef">=&gt;</span>
+          <span style="color:#66d9ef">import</span> scala.util.Try
+
+          <span style="color:#a6e22e">Try</span><span style="color:#f92672">(</span><span style="color:#a6e22e">BigDecimal</span><span style="color:#f92672">(</span>elem<span style="color:#f92672">.</span>text<span style="color:#f92672">))</span>
+            <span style="color:#f92672">.</span>toOption
+            <span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>n <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Number</span><span style="color:#f92672">(</span>n<span style="color:#f92672">)))</span>
+
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#66d9ef">=&gt;</span>
+          <span style="color:#a6e22e">Some</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Atom</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Str</span><span style="color:#f92672">(</span>elem<span style="color:#f92672">.</span>text<span style="color:#f92672">)))</span>
+
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;array&#34;</span> <span style="color:#66d9ef">=&gt;</span>
+          <span style="color:#a6e22e">Some</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Arr</span><span style="color:#f92672">(</span>
+            elem
+              <span style="color:#f92672">.</span>child
+              <span style="color:#f92672">.</span>toList
+              <span style="color:#f92672">.</span>flatMap <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">case</span> e<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">((</span>s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> e<span style="color:#f92672">.</span>copy<span style="color:#f92672">(</span>label <span style="color:#66d9ef">=</span> s<span style="color:#f92672">))</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span>       <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Nil</span>
+              <span style="color:#f92672">}</span>
+          <span style="color:#f92672">))</span>
+
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;object&#34;</span> <span style="color:#66d9ef">=&gt;</span>
+          <span style="color:#a6e22e">Some</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Obj</span><span style="color:#f92672">(</span>
+            elem
+              <span style="color:#f92672">.</span>child
+              <span style="color:#f92672">.</span>toList
+              <span style="color:#f92672">.</span>flatMap <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">case</span> e<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elem</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">(</span>e<span style="color:#f92672">.</span>label <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">((</span>s<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> e<span style="color:#f92672">.</span>copy<span style="color:#f92672">(</span>label <span style="color:#66d9ef">=</span> s<span style="color:#f92672">)))</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span>       <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Nil</span>
+              <span style="color:#f92672">}.</span>toMap
+          <span style="color:#f92672">))</span>
+
+        <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">=&gt;</span>
+          <span style="color:#a6e22e">None</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span></code></pre></div>
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+        
+            <a class="nav nav-prev" href="/posts/slimetrail/" title="How to make game in the browser thanks to ScalaJS"> <i class="fas fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="/posts/falgebra_scalaio_2017/" title="F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
+        
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1537280306"></script>
+    <script src="/js/perfect-scrollbar.min.js?1537280306"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1537280306"></script>
+    <script src="/js/jquery.sticky.js?1537280306"></script>
+    <script src="/js/featherlight.min.js?1537280306"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1537280306"></script>
+    <script src="/js/highlight.pack.js?1537280306"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom.71422.js?1537280306"></script>
+    <script src="/js/learn.js?1537280306"></script>
+    <script src="/js/hugo-learn.js?1537280306"></script>
+
+    <link href="/mermaid/mermaid.css?1537280306" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1537280306"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+
