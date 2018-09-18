@@ -3,38 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/slimetrail/</loc>
+    <loc>/hugo/posts/slimetrail/</loc>
     <lastmod>2018-09-18T15:30:53+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/json2xml/</loc>
+    <loc>/hugo/posts/json2xml/</loc>
     <lastmod>2018-09-18T11:18:27+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/falgebra_scalaio_2017/</loc>
+    <loc>/hugo/posts/falgebra_scalaio_2017/</loc>
     <lastmod>2017-09-18T15:55:26+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/hugo/</loc>
     <lastmod>2018-09-18T15:30:53+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/hugo/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/posts/</loc>
+    <loc>/hugo/posts/</loc>
     <lastmod>2018-09-18T15:30:53+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>/hugo/tags/</loc>
     <priority>0</priority>
   </url>
   

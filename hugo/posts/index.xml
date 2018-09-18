@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on @chrilves&#39; Archives</title>
-    <link>/posts/</link>
+    <link>/hugo/posts/</link>
     <description>Recent content in Posts on @chrilves&#39; Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 18 Sep 2018 15:30:53 +0200</lastBuildDate>
     
-	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/hugo/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How to make game in the browser thanks to ScalaJS</title>
-      <link>/posts/slimetrail/</link>
+      <link>/hugo/posts/slimetrail/</link>
       <pubDate>Tue, 18 Sep 2018 15:30:53 +0200</pubDate>
       
-      <guid>/posts/slimetrail/</guid>
+      <guid>/hugo/posts/slimetrail/</guid>
       <description>A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i will have the chance to present it in october at ScalaIO.
 I will present how to develop a web application in Scala.js. This talk is for Scala developers having a penchant for web development but rebuffed by JavaScript. It goes from ScalaJS basics to the implementation of a naive virtual DOM written in Scala.</description>
     </item>
     
     <item>
       <title>JSON to XML: the probably a tiny bit over engineered way</title>
-      <link>/posts/json2xml/</link>
+      <link>/hugo/posts/json2xml/</link>
       <pubDate>Tue, 18 Sep 2018 11:18:27 +0200</pubDate>
       
-      <guid>/posts/json2xml/</guid>
+      <guid>/hugo/posts/json2xml/</guid>
       <description>The complete code of the article. You need Cats and Play-Json in order to run it.
 It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.</description>
     </item>
     
     <item>
       <title>F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données</title>
-      <link>/posts/falgebra_scalaio_2017/</link>
+      <link>/hugo/posts/falgebra_scalaio_2017/</link>
       <pubDate>Mon, 18 Sep 2017 15:55:26 +0200</pubDate>
       
-      <guid>/posts/falgebra_scalaio_2017/</guid>
+      <guid>/hugo/posts/falgebra_scalaio_2017/</guid>
       <description>I had the chance to present a talk about F-Algebras at ScalaIO 2017. The slides of the presentation are here.</description>
     </item>
     
