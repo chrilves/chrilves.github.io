@@ -1,0 +1,102 @@
+{
+  "films": [
+    {
+      "titre": "2001 : l'odyssée de l'espace",
+      "sortie": {
+        "jour": 27,
+        "mois": 9,
+        "annee": 1968
+      },
+      "genres" : [
+        "Science fiction"
+      ],
+      "acteurs": [
+        {
+          "nom": "Dullea",
+          "prenom": "Keir",
+          "role": "Dr. David Bowman"
+        },
+        {
+          "nom": "Lockwood",
+          "prenom": "Gary",
+          "role": "Dr. Frank Poole"
+        }
+      ],
+      "realisateurs": [
+        {
+          "nom": "Kubrick",
+          "prenom": "Stanley"
+        }
+      ]
+    },
+    {
+      "titre": "Terminator 2 : le Jugement Dernier",
+      "sortie": {
+        "jour": 26,
+        "mois": 10,
+        "annee": 1991
+      },
+      "genres" : [
+        "Science fiction",
+        "Action"
+      ],
+      "acteurs": [
+        {
+          "nom": "Schwarzenegger",
+          "prenom": "Arnold",
+          "role": "T-800"
+        },
+        {
+          "nom": "Hamilton",
+          "prenom": "Linda",
+          "role": "Sarah Connor"
+        }
+      ],
+      "realisateurs": [
+        {
+          "nom": "Cameron",
+          "prenom": "James"
+        }
+      ]
+    },
+    {
+      "titre": "Sin City",
+      "sortie": {
+        "jour": 1,
+        "mois": 6,
+        "annee": 2005
+      },
+      "genres" : [
+        "Action",
+        "Thriller",
+        "Policier"
+      ],
+      "acteurs": [
+        {
+          "nom": "Willis",
+          "prenom": "Bruce",
+          "role": "Hartigan"
+        },
+        {
+          "nom": "Rourke",
+          "prenom": "Mickey",
+          "role": "Marv"
+        }
+      ],
+      "realisateurs": [
+        {
+          "nom": "Rodriguez",
+          "prenom": "Robert"
+        },
+        {
+          "nom": "Miller",
+          "prenom": "Frank"
+        },
+        {
+          "nom": "Tarantino",
+          "prenom": "Quentin"
+        }
+      ]
+    }
+  ]
+}
