@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>reveal-md</title>
+        <link rel="stylesheet" href="./css/reveal.css">
+        <link rel="stylesheet" href="./css/theme/black.css" id="theme">
+        <link rel="stylesheet" href="./css/highlight/zenburn.css">
+        <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print">
+
+    </head>
+    <body>
+
+        <div class="reveal">
+            <div class="slides"><section  data-markdown><script type="text/template"># JSON to XML: the probably a tiny bit over engineered way
+</script></section><section ><section data-markdown><script type="text/template">
+## The easy way: JsValue
+
+```scala
+def json2xml(json: JsValue, rootLabel: String): Elem = {
+  def mkElem(jsType: String, children: Node*): Elem = ???
+
+  json match {
+    case JsNull       => mkElem("null")
+    case JsString(s)  => mkElem("string", PCData(s))
+    case JsNumber(n)  => mkElem("number", Text(n.toString))
+    case JsBoolean(b) => mkElem("boolean", Text(b.toString))
+    case JsArray(l)   =>
+      mkElem("array", l.map(json2xml(_, s"${rootLabel}Item")):_*)
+    case JsObject(m)  =>
+      mkElem("object", m.toList.map { case (k,v) => json2xml(v, k) }: _*)
+  }
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## Example: From Json
+
+```json
+[{"title": "2001 : A Space Odyssey",
+  "release": { "day": 27, "month": 9, "year": 1968 },
+  "genres" : [ "Science fiction" ],
+  "actors": [
+    { "lastName": "Dullea",
+      "firstName": "Keir",
+      "role": "Dr. David Bowman"
+    }
+  ],
+  "directors": [
+    { "lastName": "Kubrick",
+      "firstName": "Stanley"
+    }
+  ]}]
+```
+</script></section><section data-markdown><script type="text/template">
+# Example: To XML
+
+```xml
+<films type="array">
+  <filmsItem type="object">
+    <title type="string"><![CDATA[2001 : A Space Odyssey]]></title>
+    <release type="object">
+      <day type="number">27</day>
+      <month type="number">9</month>
+      <year type="number">1968</year>
+    </release>
+    <genres type="array">
+      <genresItem type="string"><![CDATA[Science fiction]]></genresItem>
+    </genres>
+    <actors type="array">
+      <actorsItem type="object">
+        <lastName type="string"><![CDATA[Dullea]]></lastName>
+        <firstName type="string"><![CDATA[Keir]]></firstName>
+        <role type="string"><![CDATA[Dr. David Bowman]]></role>
+      </actorsItem>
+    </actors>
+    <directors type="array">
+      <directorsItem type="object">
+        <lastName type="string"><![CDATA[Kubrick]]></lastName>
+        <firstName type="string"><![CDATA[Stanley]]></firstName>
+      </directorsItem>
+    </directors>
+  </filmsItem>
+</films>
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+# The Rocket Science way
+
+## Inviting (Co)Algebras to the Party
+</script></section><section data-markdown><script type="text/template">
+# JsValue
+
+```scala
+sealed abstract class Atomic
+final case object Null extends Atomic
+final case class Bool(value: Boolean) extends Atomic
+final case class Number(value: BigDecimal) extends Atomic
+final case class Str(value: String) extends Atomic
+```
+
+```scala
+sealed abstract class JsValue
+final case class JsAtom(value: Atomic) extends JsValue
+final case class JsArray(value: List[JsValue]) extends JsValue
+final case class JsObject(value: Map[String, JsValue]) extends JsValue
+```
+</script></section><section data-markdown><script type="text/template">
+## Operations
+
+```scala
+sealed abstract class JsLike[+R]
+final case class Atom(value: Atomic) extends JsLike[Nothing]
+final case class Arr[+R](value: List[R]) extends JsLike[R]
+final case class Obj[+R](value: Map[String, R]) extends JsLike[R]
+```
+
+- `JsValue` works great with itself!
+
+```scala
+val jsLike2JsValue: JsLike[JsValue] => JsValue = {
+  case Atom(a)         => JsAtom(a)
+  case Arr(a)          => JsArray(a)
+  case Obj(m)          => JsObject(m)
+}
+
+val jsValue2JsLike: JsValue => JsLike[JsValue] = {
+  case JsAtom(a)    => Atom(a)
+  case JsArray(a)   => Arr(a.toList)
+  case JsObject(m)  => Obj(m)
+}
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Can we find this?
+
+```scala
+val jsLike2Elem: JsLike[Elem] => Elem = ???
+val elem2JsLike: Elem => JsLike[Elem] = ???
+```
+
+`5`, `true` and `null`?
+
+```xml
+<someRootTag type="number">5</someRootTag>
+```
+
+Actually
+
+```scala
+val _5: String => Elem =
+  (someRootTag: String) => <someRootTag type="number">5</someRootTag>
+```
+
+Can we have?
+
+```scala
+val jsLike2xml: JsLike[String => Elem] => (String => Elem) = ???
+val xml2JsLike: (String => Elem) => JsLike[String => Elem] = ???
+```
+</script></section><section data-markdown><script type="text/template">
+## Yes... partially:
+
+```scala
+val jsLike2xml: JsLike[String => Elem] => (String => Elem) = {
+  def mkRoot(jsType: String, childs: Node*): String => Elem = ???
+
+  (j: JsLike[String => Elem]) => j match {
+    case Atom(Null)      => mkRoot("null")
+    case Atom(Str(s))    => mkRoot("string", PCData(s))
+    case Atom(Bool(b))   => mkRoot("boolean", Text(b.toString))
+    case Atom(Number(n)) => mkRoot("number", Text(n.toString))
+    case Arr(a) => (root: String) => {
+        mkRoot("array", a.map(_(s"${root}Item")): _*)(root)}
+    case Obj(m) =>
+      mkRoot("object", m.toList.map { case (k, v) => v(k) }: _*)
+  }
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## `xml2JsLike` now?
+
+- How do we know
+
+  ```xml
+  (someTag: String) =>
+      <someTag type="number">5</someTag>
+  ```
+
+  is built from `Atom(Number(5))`?
+
+- `jsLike2xml` is not surjective!
+
+```scala
+def xml2JsLike(f: (String => Elem))
+      : String => Option[JsLike[Elem => String]] =
+  (someTag: String) => ... f(someTag) ...
+
+type TagOpt[A] = ReaderT[Option, String, A]
+
+val xml2JsLike: (String => Elem) => TagOpt[JsLike[String => Elem]]  
+```
+</script></section></section><section  data-markdown><script type="text/template">
+# Part Summary
+
+```scala
+val jsLike2JsValue: JsLike[JsValue]    => JsValue
+val jsValue2JsLike: JsValue            => JsLike[JsValue]
+
+val jsLike2xml: JsLike[String => Elem] => (String => Elem)
+val xml2JsLike: (String => Elem)       => TagOpt[JsLike[String => Elem]]
+```
+</script></section><section ><section data-markdown><script type="text/template">
+## Converting back and forth
+
+```scala
+trait Direct {
+  type A
+  type B
+  type F[_]
+  implicit val fHasMap: Functor[F]
+
+  val decomposeA: A    => F[A]
+  val recomposeB: F[B] => B
+
+  final def convert(a: A): B = {
+    val fa: F[A] = decomposeA(a)
+    val fb: F[B] = fa.map(convert)
+    recomposeB(fb): B
+  }}
+```
+</script></section><section data-markdown><script type="text/template">
+## More compact!
+
+
+```scala
+def hylo[A,B, F[_]: Functor](decompose: A => F[A], recompose: F[B] => B)
+      : A => B = {
+  def convert(a: A): B =
+    recompose(decompose(a).map(convert))
+
+  convert _
+}
+```
+
+```scala
+def json2xml(json: JsValue): String => Elem =
+  hylo(jsValue2JsLike, jsLike2xml).apply(json)
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Converting back and forth
+
+
+```scala
+trait WayBack {
+  type A; type B;
+
+  type F[_]; implicit val fHasTraverse: Traverse[F]
+  type M[_]; implicit val mIsAMonad   : Monad[M]
+
+  val decomposeA: A    => M[F[A]]
+  val recomposeB: F[B] => B
+
+  final def convert(a: A): M[B] =
+    for {
+      fa <- decomposeA(a)
+      fb <- fa.traverse(convert)
+    } yield recomposeB(fb)}
+```
+</script></section><section data-markdown><script type="text/template">
+## More compact
+
+```scala
+def hyloish[A,B, F[_]: Traverse, M[_]: Monad]
+      (decompose: A => M[F[A]], recompose: F[B] => B)
+          : A => M[B] = {
+  def convert(a: A): M[B] =
+    for {
+    fa <- decompose(a)
+    fb <- fa.traverse(convert)
+  } yield recompose(fb)
+
+  convert _
+}
+```
+
+```scala
+def xml2json(f: String => Elem): TagOpt[JsValue] =
+    hyloish(xml2JsLike, jsLike2JsValue).apply(f)
+```
+</script></section></section><section  data-markdown><script type="text/template">
+# Conclusion
+
+```scala
+val json2xmlBetter: ((String, JsValue)) => Elem =
+  (jsonPlusTag: (String, JsValue)) =>
+    json2xml(jsonPlusTag._2)(jsonPlusTag._1)
+
+val xml2jsonBetter: Elem => TagOpt[(String, JsValue)] =
+  (e: Elem) =>
+    xml2json(
+      (s: String) => e.copy(label = s)
+    ).map(e.label -> _)
+```</script></section></div>
+        </div>
+
+        <script src="./lib/js/head.min.js"></script>
+        <script src="./js/reveal.js"></script>
+
+        <script>
+            function extend() {
+              var target = {};
+              for (var i = 0; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) {
+                  if (source.hasOwnProperty(key)) {
+                    target[key] = source[key];
+                  }
+                }
+              }
+              return target;
+            }
+
+            // Optional libraries used to extend on reveal.js
+            var deps = [
+              { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: './plugin/zoom-js/zoom.js', async: true },
+              { src: './plugin/notes/notes.js', async: true },
+              { src: './plugin/math/math.js', async: true }
+            ];
+
+            // default options to init reveal.js
+            var defaultOptions = {
+              controls: true,
+              progress: true,
+              history: true,
+              center: true,
+              transition: 'default', // none/fade/slide/convex/concave/zoom
+              dependencies: deps
+            };
+
+            // options from URL query string
+            var queryOptions = Reveal.getQueryHash() || {};
+
+            var options = {"width":1200,"height":800,"margin":0.08,"minScale":0.5,"maxScale":2};
+            options = extend(defaultOptions, options, queryOptions);
+        </script>
+
+
+        <script>
+            Reveal.initialize(options);
+        </script>
+    </body>
+</html>

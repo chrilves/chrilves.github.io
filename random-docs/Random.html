@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Elm package documentation previewer">
+    <title>Elm Doc Preview</title>
+    <link rel="shortcut icon" size="16x16, 32x32, 48x48, 64x64, 128x128, 256x256" href="https://elm-doc-preview.netlify.com/favicon.ico">
+    <link href="Random_files/elm-doc-preview.css" rel="stylesheet">
+    <script src="Random_files/highlight.js"></script>
+    <script src="Random_files/elm.js"></script>
+  </head>
+  <body><div style="min-width: 100%; min-height: 100%; display: flex; flex-direction: column;"><div class="center" style="flex: 1 1 0%;"><div class="block-list"><h1 class="block-list-title">Random</h1><span class="markdown-block"><div><p> This library helps you generate pseudo-random values.</p>
+<p>It is an implementation of <a href="http://www.pcg-random.org/">Permuted Congruential Generators</a>
+by M. E. O'Neil. It is not cryptographically secure.</p>
+<h1 id="generators">Generators</h1>
+</div></span><div class="docs-block" id="Generator"><div class="docs-header"><div><span class="hljs-keyword">type</span> <a href="https://elm-doc-preview.netlify.com/Random#Generator" style="font-weight: bold;">Generator</a> a</div></div><div class="docs-comment"><div><p> A <code>Generator</code> is a <strong>recipe</strong> for generating random values. For example,
+here is a generator for numbers between 1 and 10 inclusive:</p>
+<pre><code><span class="hljs-import"><span class="hljs-keyword">import</span> Random</span>
+
+<span class="hljs-title">oneToTen</span> : <span class="hljs-type">Random</span>.<span class="hljs-type">Generator</span> <span class="hljs-type">Int</span>
+<span class="hljs-title">oneToTen</span> =
+  <span class="hljs-type">Random</span>.int <span class="hljs-number">1</span> <span class="hljs-number">10</span>
+</code></pre><p>Notice that we are not actually generating any numbers yet! We are describing
+what kind of values we want.</p>
+</div></div></div><span class="markdown-block"><div><h1 id="primitives">Primitives</h1>
+</div></span><div class="docs-block" id="int"><div class="docs-header"><div><a href="https://elm-doc-preview.netlify.com/Random#int" style="font-weight: bold;">int</a> <span>:</span> <span title="Basics.Int">Int</span> -&gt; <span title="Basics.Int">Int</span> -&gt; <a href="https://elm-doc-preview.netlify.com/Random#Generator">Generator</a> <span title="Basics.Int">Int</span></div></div><div class="docs-comment"><div><p> Generate 32-bit integers in a given range.</p>
+<pre><code><span class="hljs-import"><span class="hljs-keyword">import</span> Random</span>
+
+<span class="hljs-title">singleDigit</span> : <span class="hljs-type">Random</span>.<span class="hljs-type">Generator</span> <span class="hljs-type">Int</span>
+<span class="hljs-title">singleDigit</span> =
+    <span class="hljs-type">Random</span>.int <span class="hljs-number">0</span> <span class="hljs-number">9</span>
+
+<span class="hljs-title">closeToZero</span> : <span class="hljs-type">Random</span>.<span class="hljs-type">Generator</span> <span class="hljs-type">Int</span>
+<span class="hljs-title">closeToZero</span> =
+    <span class="hljs-type">Random</span>.int -<span class="hljs-number">5</span> <span class="hljs-number">5</span>
+</code></pre></div></div></div><span class="markdown-block"><div><h1 id="generate-values-manually">Generate Values Manually</h1>
+</div></span><div class="docs-block" id="Seed"><div class="docs-header"><div><span class="hljs-keyword">type</span> <a href="https://elm-doc-preview.netlify.com/Random#Seed" style="font-weight: bold;">Seed</a></div></div><div class="docs-comment"><div><p> Maybe you need to be able to exactly reproduce a sequence of random values?</p>
+<p>In that case, you can work with a <code>Seed</code> of randomness and <a href="#step"><code>step</code></a> it
+forward by hand.</p>
+</div></div></div><div class="docs-block" id="step"><div class="docs-header"><div><a href="https://elm-doc-preview.netlify.com/Random#step" style="font-weight: bold;">step</a> <span>:</span> <a href="https://elm-doc-preview.netlify.com/Random#Generator">Generator</a> a -&gt; <a href="https://elm-doc-preview.netlify.com/Random#Seed">Seed</a> -&gt; ( a, <a href="https://elm-doc-preview.netlify.com/Random#Seed">Seed</a> )</div></div><div class="docs-comment"><div><p> So you need <em>reproducable</em> randomness for some reason.</p>
+<p>This <code>step</code> function lets you use a <code>Generator</code> without commands. It is a
+normal Elm function. Same input, same output! So to get a 3D point you could
+say:</p>
+<pre><code><span class="hljs-import"><span class="hljs-keyword">import</span> Random</span>
+
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-keyword">alias</span> <span class="hljs-type">Point3D</span> = <span class="hljs-container">{ x : <span class="hljs-type">Float</span>, y : <span class="hljs-type">Float</span>, z : <span class="hljs-type">Float</span> }</span></span>
+
+<span class="hljs-title">point3D</span> : <span class="hljs-type">Random</span>.<span class="hljs-type">Seed</span> -&gt; (<span class="hljs-type">Point3D</span>, <span class="hljs-type">Random</span>.<span class="hljs-type">Seed</span>)
+<span class="hljs-title">point3D</span> seed0 =
+  <span class="hljs-keyword">let</span>
+    (x, seed1) = <span class="hljs-type">Random</span>.step (<span class="hljs-type">Random</span>.int <span class="hljs-number">0</span> <span class="hljs-number">100</span>) seed0
+    (y, seed2) = <span class="hljs-type">Random</span>.step (<span class="hljs-type">Random</span>.int <span class="hljs-number">0</span> <span class="hljs-number">100</span>) seed1
+    (z, seed3) = <span class="hljs-type">Random</span>.step (<span class="hljs-type">Random</span>.int <span class="hljs-number">0</span> <span class="hljs-number">100</span>) seed2
+  <span class="hljs-keyword">in</span>
+    ( <span class="hljs-type">Point3D</span> x y z, seed3 )
+</code></pre><p>Notice that we use different seeds on each line! If we instead used <code>seed0</code>
+for everything, the <code>x</code>, <code>y</code>, and <code>z</code> values would always be exactly the same!
+Same input, same output!</p>
+<p>Threading seeds around is not super fun, so if you really need this, it is
+best to build your <code>Generator</code> like normal and then just <code>step</code> it all at
+once at the top of your program.</p>
+</div></div></div><div class="docs-block" id="initialSeed"><div class="docs-header"><div><a href="https://elm-doc-preview.netlify.com/Random#initialSeed" style="font-weight: bold;">initialSeed</a> <span>:</span> <span title="Basics.Int">Int</span> -&gt; <a href="https://elm-doc-preview.netlify.com/Random#Seed">Seed</a></div></div><div class="docs-comment"><div><p> Create a <code>Seed</code> for <em>reproducable</em> randomness.</p>
+<pre><code><span class="hljs-import"><span class="hljs-keyword">import</span> Random</span>
+
+<span class="hljs-title">seed0</span> : <span class="hljs-type">Random</span>.<span class="hljs-type">Seed</span>
+<span class="hljs-title">seed0</span> =
+  <span class="hljs-type">Random</span>.initialSeed <span class="hljs-number">42</span>
+</code></pre><p>If you hard-code your <code>Seed</code> like this, every run will be the same. This can
+be useful if you are testing a game with randomness and want it to be easy to
+reproduce past games.</p>
+<p>In practice, you may want to get the initial seed by (1) sending it to Elm
+through flags or (2) using <code>Time.now</code> to get a number that the user has not
+seen before. (Flags are described on <a href="https://guide.elm-lang.org/interop/javascript.html">this page</a>.)</p>
+</div></div></div></div></div><div class="footer">The code for this site is <a class="grey-link" href="https://github.com/dmy/elm-doc-preview">open source</a> and written in Elm.</div></div>
+  
+
+</body></html>
