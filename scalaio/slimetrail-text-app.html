@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Slimetrail Text App - How to make game in the browser thanks to ScalaJS</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="read-this-first.html"><strong aria-hidden="true">1.</strong> READ THIS FIRST</a></li><li><a href="first-step-web.html"><strong aria-hidden="true">2.</strong> First Steps in the Web</a></li><li><ol class="section"><li><a href="slimetrail.html"><strong aria-hidden="true">2.1.</strong> Slimetrail</a></li><li><a href="play-with-dom.html"><strong aria-hidden="true">2.2.</strong> Playing with the Document Object Model (DOM)</a></li></ol></li><li><a href="scalajs-intro.html"><strong aria-hidden="true">3.</strong> Introduction to ScalaJS</a></li><li><ol class="section"><li><a href="slimetrail-text-app.html" class="active"><strong aria-hidden="true">3.1.</strong> The Slimetrail Text App</a></li><li><a href="inviting-scalajs.html"><strong aria-hidden="true">3.2.</strong> Inviting ScalaJS to the Party</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">How to make game in the browser thanks to ScalaJS</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="slimetrail-text-app.html#the-slimetrail-text-app" id="the-slimetrail-text-app"><h1>The Slimetrail Text App</h1></a>
+<ul>
+<li><strong>Recommended time to spend on this part: 5 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:00am</strong></li>
+</ul>
+<p>A text interface similar to the web one you used to far has been realized. To get it clone the following <a href="https://git-scm.com/">git</a> repository:</p>
+<pre><code class="language-sh">git clone https://github.com/chrilves/slimetrail.scalajs.git -b ScalaIO.2018
+cd slimetrail.scalajs
+sbt text/run
+</code></pre>
+<p>You should see something like this:</p>
+<p><img src="./images/tui.png" alt="Text User Interface" title="Text User Interface" /></p>
+<p>The project is divided into three <em>sbt modules</em>:</p>
+<ul>
+<li><code>text</code> implements the text user interface.</li>
+<li><code>slimetrail</code> implements the game's logic.</li>
+<li><code>toolbox</code> defines various useful things.</li>
+</ul>
+<p><strong>Do not modify any file under the <code>toolbox</code>, <code>slimetrail</code> and <code>text</code> directories!!!</strong></p>
+<p>Note that <code>text</code> does not include any game logic and <code>slimetail</code> does not include any interface code. This strict <strong>isolation</strong> is crucial to make things work.</p>
+<p><strong>Run the following commands to generate the scaladoc for the</strong> <code>text</code>, <code>slimetrail</code> <strong>and</strong> <code>text</code> <strong>projects.</strong></p>
+<ul>
+<li><code>sbt toolbox\doc</code></li>
+<li><code>sbt slimetrail\doc</code></li>
+<li><code>sbt text\doc</code></li>
+</ul>
+<p><strong>Now open the generated documentations in your browser.</strong></p>
+<a class="header" href="slimetrail-text-app.html#the-game-loop" id="the-game-loop"><h2>The Game Loop</h2></a>
+<ul>
+<li><strong>Recommended time to spend on this part: 10 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:10am</strong></li>
+</ul>
+<p>The execution of the game follows a simple and widespread technique:</p>
+<ul>
+<li>A data structure, the <code>GameState</code>, represents the possible states of the game.</li>
+<li>On every user <code>Action</code>, the game <code>update</code> the current state to reflect the changes made by the <code>Action</code>.</li>
+<li>On every state change, the game renders the new state on the screen.</li>
+</ul>
+<p>More generally an application defines a type <code>Model</code> which represents the states the application can take. It also defines a type <code>Msg</code> which represents the events that make the application to transition from the current state to a new one. This new state is computed using the function <code>update</code> based on the current state <code>model</code> and the event <code>message</code>. The <code>view</code> function is responsible of rendering the current state on the screen and producing a <em>message</em> from user inputs.</p>
+<p>All of this is summarized in the following two <code>trait</code>s which represents an application. Take a close look at how the <code>run</code> procedure works.</p>
+<pre><code class="language-scala">trait Application {
+  type Model
+  val initialModel: Model
+
+  type Msg
+
+  def update(message: Msg, model: Model): Model
+}
+
+trait TextApplication extends Application {
+
+  def view(model: Model): Msg
+
+  final def run(): Unit = {
+    @tailrec
+    def loop(model: Model): Unit = {
+      val msg: Msg = view(model)
+      val nextModel: Model = update(msg, model)
+      loop(nextModel)
+    }
+
+    loop(initialModel)
+  }
+}
+</code></pre>
+<p>The <em>Slimetrail</em> application is implemented by the class <code>SlimetrailTextApp</code>. Note that the <code>Model</code> is <code>GameState</code> and events are <code>Action</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="scalajs-intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="inviting-scalajs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="scalajs-intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="inviting-scalajs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
