@@ -153,6 +153,12 @@ addSbtPlugin(&quot;org.scala-js&quot; % &quot;sbt-scalajs&quot; % &quot;0.6.25&q
 <p>We now need to adapt the <code>toolbox</code> and <code>slimetrail</code> project definitions to define these as <em>cross-projects</em>. To do so:</p>
 <ul>
 <li>
+<p><strong>At the beginning of</strong> <code>build.sbt</code> <strong>add these lines:</strong></p>
+<pre><code class="language-scala">// shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
+import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+</code></pre>
+</li>
+<li>
 <p><strong>In the</strong> <code>toolbox</code><strong>, project definition, replace</strong> <code>project</code> <strong>by:</strong></p>
 <pre><code class="language-scala">crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
@@ -208,8 +214,9 @@ lazy val web =
 <p><strong>Create the file</strong> <code>web/src/main/scala/Main.scala</code> <strong>whose content is:</strong></p>
 <pre><code class="language-scala">package slimetrail.web
 
+import org.scalajs.dom._
+import scala.scalajs.js
 import slimetrail._
-import org.scalajs._
 
 /** Tree strucure to represent the DOM */
 sealed trait Html[+A] {
@@ -248,7 +255,7 @@ final class SlimetrailWebApp(size: Int)
 
 object Main {
   def onLoading(a: =&gt; Unit): Unit =
-    dom.document.addEventListener(&quot;DOMContentLoaded&quot;, (_: Event) =&gt; a)
+    document.addEventListener(&quot;DOMContentLoaded&quot;, (_: Event) =&gt; a)
 
   def main(args: Array[String]): Unit =
     onLoading {
