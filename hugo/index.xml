@@ -6,10 +6,22 @@
     <description>Recent content on @chrilves&#39; Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 18 Sep 2018 15:30:53 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 30 Nov 2018 14:13:12 +0100</lastBuildDate>
     
 	<atom:link href="/hugo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Let&#39;s meet the charming `fold` family</title>
+      <link>/hugo/posts/folds/</link>
+      <pubDate>Fri, 30 Nov 2018 14:13:12 +0100</pubDate>
+      
+      <guid>/hugo/posts/folds/</guid>
+      <description>Today we will meet an amazing family: the fold functions!
+The well known foldRight Lists is one of the first data structure every developer/computer scientist meet in her/his journey into programming:
+sealed abstract class List[+A] final case object Nil extends List[Nothing] final case class Cons[+A](head: A, tail: List[A]) extends List[A] It means means values of type List[A] can be of (only) two forms:
+ either Nil or Cons(head, tail) for some values head of type A and tail of type List[A]  For example we can define the following lists:</description>
+    </item>
     
     <item>
       <title>How to make game in the browser thanks to ScalaJS</title>
