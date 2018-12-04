@@ -1,5 +1,5 @@
 ---
-title: "Let's meet the charming `fold` family"
+title: "Let's meet the charming fold family"
 date: 2018-11-30T14:13:12+01:00
 draft: false
 ---
@@ -236,7 +236,57 @@ type T[X] = X =:= Int
 val z:T[Int] = implicitly[Int =:= Int]
 ```
 
-Then `foldEmptyOrSingleton[A,T](z)` gives us, for any value `v:EmptyOrSingleton[A]` a proof that `A =:= Int`.
+Then `foldEmptyOrSingleton[A,T](z)` gives us, for any value `v:EmptyOrSingleton[A]` a proof that `A =:= Int`. Another
+important use case is asserting type equality:
+
+```scala
+sealed abstract class Eq[A,B]
+final case class Refl[X]() extends Eq[X,X]
+```
+
+Any **non-null value** `v:Eq[A,B]` must be a `Refl[X]() : Eq[X,X]` for some `X`, then `Eq[A,B] = Eq[X,X]` proving that
+`A = X = B`. To transform a value of type `Eq[A,B]` into `T[A,B]` we need:
+
+- `Refl[X]()` is essentially a constant of type `Eq[X,X]` for all type `X` (note: *Scala* write this type `[X]Eq[X,X]`).
+  We need a constant `z:T[X,X]` for all type `X` (so the type `[X]T[X,X]`). *Scala* does not support transparent higher-ranked
+  types, we need to emulate them with a `trait`:
+
+```scala
+trait ElimRefl[T[_,_]] {
+  def apply[X]: T[X,X]
+}
+```
+
+Then we could have hoped to be able to operate the transformation like previous section. But given a value `v:Eq[A,B]`,
+convincing *Scala* that `A = B` is a bit tough. Instead we can write the `fold` as a method:
+
+```scala
+sealed abstract class Eq[A,B] {
+  def fold[T[_,_]](z: ElimRefl[T]): T[A,B]
+}
+final case class Refl[X]() extends Eq[X,X] {
+  def fold[T[_,_]](z: ElimRefl[T]): T[X,X] = z[X]
+}
+
+def foldEq[A, B, T[_,_]](z: ElimRefl[T]): Eq[A,B] => T[A,B] =
+  (v:Eq[A,B]) => v.fold[T](z)
+```
+
+Ingenious definition of `T[_,_]` leads to interesting results:
+
+```scala
+trait C[X]
+
+type T1[A,B] = C[A] =:= C[B]
+
+val z1: ElimRefl[T1] =
+  new ElimRefl[T1] {
+    def apply[X]: T1[X,X] = implicitly[C[X] =:= C[X]]
+  }
+
+def transform[A,B]: Eq[A,B] => C[A] =:= C[B] =
+  foldEq[A,B,T1](z1)
+```
 
 ## Existential Quantification
 
@@ -253,18 +303,18 @@ final case class MakeEx[F[_],A](value: A, evidence: F[A]) extends Ex[F] {
 }
 ```
 
-Any value `v:Eq[F]` has to be an instance of `MakeEx[F,A]` for some type `A`. Which means we have a value,
+Any value `v:Ex[F]` has to be an instance of `MakeEx[F,A]` for some type `A`. Which means we have a value,
 `v.value`, of type `A` and an instance of the type-class `F` for `A` (for example an instance of `Monoid[A]`
 with `F[X] = Monoid[X]`).
 
 To transform values of type `Ex[F]` into `T` we need:
 
 - `MakeEx[F[_],?]` being of type `[A](A, F[A]) => Ex[F]` meaning: `For_all_type A, (A, F[A]) => Ex[F]`, we
-  need a function `f` of type `[A](A, F[A]) => T`. Because *Scala* does not support transparent higher ranked
-  types, we need to emulate them with a `trait`:
+  need a function `f` of type `[A](A, F[A]) => T`. *Scala* still does not support transparent higher ranked
+  types, we need to emulate them with another `trait`:
 
 ```scala
-trait Elim[F[_],T] {
+trait ElimMakeEx[F[_],T] {
   def apply[A](value: A, evidence: F[A]): T
 }
 ```
@@ -272,7 +322,7 @@ trait Elim[F[_],T] {
 Then we can operate the transformation:
 
 ```scala
-def foldEx[F[_], T](f: Elim[F, T]): Ex[F] => T = {
+def foldEx[F[_], T](f: ElimMakeEx[F, T]): Ex[F] => T = {
   def transform(v: Ex[F]): T =
     v match {
       case w@MakeEx(value, evidence) => f[w.hidden](value, evidence)

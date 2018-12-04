@@ -9,20 +9,20 @@
 
     <link rel="shortcut icon" href="/hugo/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/hugo/images/favicon.png" type="image/x-icon" />
-    <title>Let&#39;s meet the charming `fold` family :: @chrilves&#39; Archives</title>
+    <title>Let&#39;s meet the charming fold family :: @chrilves&#39; Archives</title>
 
     
-    <link href="/hugo/css/nucleus.css?1543861933" rel="stylesheet">
-    <link href="/hugo/css/fontawesome-all.min.css?1543861933" rel="stylesheet">
-    <link href="/hugo/css/hybrid.css?1543861933" rel="stylesheet">
-    <link href="/hugo/css/featherlight.min.css?1543861933" rel="stylesheet">
-    <link href="/hugo/css/perfect-scrollbar.min.css?1543861933" rel="stylesheet">
-    <link href="/hugo/css/auto-complete.css?1543861933" rel="stylesheet">
-    <link href="/hugo/css/theme.css?1543861933" rel="stylesheet">
-    <link href="/hugo/css/hugo-theme.css?1543861933" rel="stylesheet">
+    <link href="/hugo/css/nucleus.css?1543921050" rel="stylesheet">
+    <link href="/hugo/css/fontawesome-all.min.css?1543921050" rel="stylesheet">
+    <link href="/hugo/css/hybrid.css?1543921050" rel="stylesheet">
+    <link href="/hugo/css/featherlight.min.css?1543921050" rel="stylesheet">
+    <link href="/hugo/css/perfect-scrollbar.min.css?1543921050" rel="stylesheet">
+    <link href="/hugo/css/auto-complete.css?1543921050" rel="stylesheet">
+    <link href="/hugo/css/theme.css?1543921050" rel="stylesheet">
+    <link href="/hugo/css/hugo-theme.css?1543921050" rel="stylesheet">
     
 
-    <script src="/hugo/js/jquery-2.x.min.js?1543861933"></script>
+    <script src="/hugo/js/jquery-2.x.min.js?1543921050"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -118,14 +118,14 @@
     <span data-search-clear=""><i class="fas fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/hugo/js/lunr.min.js?1543861933"></script>
-<script type="text/javascript" src="/hugo/js/auto-complete.js?1543861933"></script>
+<script type="text/javascript" src="/hugo/js/lunr.min.js?1543921050"></script>
+<script type="text/javascript" src="/hugo/js/auto-complete.js?1543921050"></script>
 <script type="text/javascript">
     
         var baseurl = '\/';
     
 </script>
-<script type="text/javascript" src="/hugo/js/search.js?1543861933"></script>
+<script type="text/javascript" src="/hugo/js/search.js?1543921050"></script>
 
     
   </div>
@@ -168,9 +168,9 @@
  
   
     
-      <li data-nav-id="/posts/folds/" title="Let&#39;s meet the charming `fold` family" class="dd-item active">
+      <li data-nav-id="/posts/folds/" title="Let&#39;s meet the charming fold family" class="dd-item active">
         <a href="/hugo/posts/folds/">
-        Let&#39;s meet the charming `fold` family
+        Let&#39;s meet the charming fold family
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -333,7 +333,7 @@
             
           
           
-            <a href='/hugo/'></a> > <a href='/hugo/posts/'>Posts</a> > Let's meet the charming `fold` family
+            <a href='/hugo/'></a> > <a href='/hugo/posts/'>Posts</a> > Let's meet the charming fold family
           
          
           
@@ -371,7 +371,7 @@
         
         <div id="body-inner">
           
-            <h1>Let&#39;s meet the charming `fold` family</h1>
+            <h1>Let&#39;s meet the charming fold family</h1>
           
 
         
@@ -557,8 +557,44 @@ so let <code>T</code> depend on <code>A</code>: we want to transform values of t
 <code>EmptyOrSingleton[A]</code> into <code>T[A]</code>. For example, let&rsquo;s take</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> X <span style="color:#f92672">=:=</span> <span style="color:#a6e22e">Int</span>
 <span style="color:#66d9ef">val</span> z<span style="color:#66d9ef">:</span><span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> implicitly<span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span> <span style="color:#66d9ef">=:=</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span></code></pre></div>
-<p>Then <code>foldEmptyOrSingleton[A,T](z)</code> gives us, for any value <code>v:EmptyOrSingleton[A]</code> a proof that <code>A =:= Int</code>.</p>
+<p>Then <code>foldEmptyOrSingleton[A,T](z)</code> gives us, for any value <code>v:EmptyOrSingleton[A]</code> a proof that <code>A =:= Int</code>. Another
+important use case is asserting type equality:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Refl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">X</span><span style="color:#f92672">]</span></code></pre></div>
+<p>Any <strong>non-null value</strong> <code>v:Eq[A,B]</code> must be a <code>Refl[X]() : Eq[X,X]</code> for some <code>X</code>, then <code>Eq[A,B] = Eq[X,X]</code> proving that
+<code>A = X = B</code>. To transform a value of type <code>Eq[A,B]</code> into <code>T[A,B]</code> we need:</p>
 
+<ul>
+<li><code>Refl[X]()</code> is essentially a constant of type <code>Eq[X,X]</code> for all type <code>X</code> (note: <em>Scala</em> write this type <code>[X]Eq[X,X]</code>).
+We need a constant <code>z:T[X,X]</code> for all type <code>X</code> (so the type <code>[X]T[X,X]</code>). <em>Scala</em> does not support transparent higher-ranked
+types, we need to emulate them with a <code>trait</code>:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">ElimRefl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span>,<span style="color:#66d9ef">_</span><span style="color:#f92672">]]</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> apply<span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">X</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Then we could have hoped to be able to operate the transformation like previous section. But given a value <code>v:Eq[A,B]</code>,
+convincing <em>Scala</em> that <code>A = B</code> is a bit tough. Instead we can write the <code>fold</code> as a method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> fold<span style="color:#f92672">[</span><span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span>,<span style="color:#66d9ef">_</span><span style="color:#f92672">]](</span>z<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ElimRefl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">T</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Refl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">X</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> fold<span style="color:#f92672">[</span><span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span>,<span style="color:#66d9ef">_</span><span style="color:#f92672">]](</span>z<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ElimRefl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">T</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">X</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> z<span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">def</span> foldEq<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>, <span style="color:#66d9ef">B</span>, <span style="color:#66d9ef">T</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span>,<span style="color:#66d9ef">_</span><span style="color:#f92672">]](</span>z<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ElimRefl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">T</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> T<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#f92672">(</span>v<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">=&gt;</span> v<span style="color:#f92672">.</span>fold<span style="color:#f92672">[</span><span style="color:#66d9ef">T</span><span style="color:#f92672">](</span>z<span style="color:#f92672">)</span></code></pre></div>
+<p>Ingenious definition of <code>T[_,_]</code> leads to interesting results:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">C</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span>
+
+<span style="color:#a6e22e">type</span> T1<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> C<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#f92672">=:=</span> C<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
+
+<span style="color:#66d9ef">val</span> z1<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ElimRefl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">T1</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ElimRefl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">T1</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">def</span> apply<span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">T1</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">X</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> implicitly<span style="color:#f92672">[</span><span style="color:#66d9ef">C</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=:=</span> <span style="color:#66d9ef">C</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]]</span>
+  <span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">def</span> transform<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> C<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#f92672">=:=</span> C<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+  foldEq<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span>,<span style="color:#66d9ef">T1</span><span style="color:#f92672">](</span>z1<span style="color:#f92672">)</span></code></pre></div>
 <h2 id="existential-quantification">Existential Quantification</h2>
 
 <p>GADTs not only provide useful type equalities, they also offer existential quantification!</p>
@@ -570,7 +606,7 @@ so let <code>T</code> depend on <code>A</code>: we want to transform values of t
 <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MakeEx</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> evidence<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Ex</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">hidden</span> <span style="color:#f92672">=</span> A
 <span style="color:#f92672">}</span></code></pre></div>
-<p>Any value <code>v:Eq[F]</code> has to be an instance of <code>MakeEx[F,A]</code> for some type <code>A</code>. Which means we have a value,
+<p>Any value <code>v:Ex[F]</code> has to be an instance of <code>MakeEx[F,A]</code> for some type <code>A</code>. Which means we have a value,
 <code>v.value</code>, of type <code>A</code> and an instance of the type-class <code>F</code> for <code>A</code> (for example an instance of <code>Monoid[A]</code>
 with <code>F[X] = Monoid[X]</code>).</p>
 
@@ -578,14 +614,14 @@ with <code>F[X] = Monoid[X]</code>).</p>
 
 <ul>
 <li><code>MakeEx[F[_],?]</code> being of type <code>[A](A, F[A]) =&gt; Ex[F]</code> meaning: <code>For_all_type A, (A, F[A]) =&gt; Ex[F]</code>, we
-need a function <code>f</code> of type <code>[A](A, F[A]) =&gt; T</code>. Because <em>Scala</em> does not support transparent higher ranked
-types, we need to emulate them with a <code>trait</code>:</li>
+need a function <code>f</code> of type <code>[A](A, F[A]) =&gt; T</code>. <em>Scala</em> still does not support transparent higher ranked
+types, we need to emulate them with another <code>trait</code>:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Elim</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">T</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">ElimMakeEx</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">T</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">def</span> apply<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> evidence<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">T</span>
 <span style="color:#f92672">}</span></code></pre></div>
 <p>Then we can operate the transformation:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> foldEx<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>, <span style="color:#66d9ef">T</span><span style="color:#f92672">](</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Elim</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span>, <span style="color:#66d9ef">T</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Ex</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> T <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> foldEx<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>, <span style="color:#66d9ef">T</span><span style="color:#f92672">](</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ElimMakeEx</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span>, <span style="color:#66d9ef">T</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Ex</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> T <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">def</span> transform<span style="color:#f92672">(</span>v<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Ex</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">T</span> <span style="color:#f92672">=</span>
     v <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
       <span style="color:#66d9ef">case</span> w<span style="color:#a6e22e">@MakeEx</span><span style="color:#f92672">(</span>value<span style="color:#f92672">,</span> evidence<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> f<span style="color:#f92672">[</span><span style="color:#66d9ef">w.hidden</span><span style="color:#f92672">](</span>value<span style="color:#f92672">,</span> evidence<span style="color:#f92672">)</span>
@@ -758,20 +794,20 @@ often easier for the <code>Scala</code> type-checker.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/hugo/js/clipboard.min.js?1543861933"></script>
-    <script src="/hugo/js/perfect-scrollbar.min.js?1543861933"></script>
-    <script src="/hugo/js/perfect-scrollbar.jquery.min.js?1543861933"></script>
-    <script src="/hugo/js/jquery.sticky.js?1543861933"></script>
-    <script src="/hugo/js/featherlight.min.js?1543861933"></script>
-    <script src="/hugo/js/html5shiv-printshiv.min.js?1543861933"></script>
-    <script src="/hugo/js/highlight.pack.js?1543861933"></script>
+    <script src="/hugo/js/clipboard.min.js?1543921050"></script>
+    <script src="/hugo/js/perfect-scrollbar.min.js?1543921050"></script>
+    <script src="/hugo/js/perfect-scrollbar.jquery.min.js?1543921050"></script>
+    <script src="/hugo/js/jquery.sticky.js?1543921050"></script>
+    <script src="/hugo/js/featherlight.min.js?1543921050"></script>
+    <script src="/hugo/js/html5shiv-printshiv.min.js?1543921050"></script>
+    <script src="/hugo/js/highlight.pack.js?1543921050"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/hugo/js/modernizr.custom.71422.js?1543861933"></script>
-    <script src="/hugo/js/learn.js?1543861933"></script>
-    <script src="/hugo/js/hugo-learn.js?1543861933"></script>
+    <script src="/hugo/js/modernizr.custom.71422.js?1543921050"></script>
+    <script src="/hugo/js/learn.js?1543921050"></script>
+    <script src="/hugo/js/hugo-learn.js?1543921050"></script>
 
-    <link href="/hugo/mermaid/mermaid.css?1543861933" type="text/css" rel="stylesheet" />
-    <script src="/hugo/mermaid/mermaid.js?1543861933"></script>
+    <link href="/hugo/mermaid/mermaid.css?1543921050" type="text/css" rel="stylesheet" />
+    <script src="/hugo/mermaid/mermaid.js?1543921050"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
