@@ -2,6 +2,17 @@
 title: "Let's meet the charming fold family"
 date: 2018-11-30T14:13:12+01:00
 draft: false
+description: Introduction to catamorphisms on Algebraic Data Types
+keywords:
+  - GADT
+  - Types
+  - Functor
+  - Algebra
+  - CoAlgebra
+  - Recursion
+  - Scheme
+  - Inductive
+  - Category Theory
 ---
 
 Today we will meet an amazing family: the `fold` functions!

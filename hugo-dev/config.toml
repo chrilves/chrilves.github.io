@@ -1,4 +1,5 @@
-baseURL = "/hugo/"
+#baseURL = "/hugo/"
+baseURL = ""
 languageCode = "en-US"
 defaultContentLanguage = "en"
 

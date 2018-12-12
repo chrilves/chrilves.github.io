@@ -2,6 +2,17 @@
 title: "JSON to XML: the probably a tiny bit over engineered way"
 date: 2018-09-18T11:18:27+02:00
 draft: false
+description: Conversion from/to JSON and XML using advanced concepts
+keywords:
+  - JSON
+  - XML
+  - Types
+  - Functor
+  - Algebra
+  - CoAlgebra
+  - Recursion
+  - Scheme
+  - Inductive
 ---
 
 **[The complete code of the article](https://github.com/chrilves/chrilves.github.io/blob/master/articles/json2xml/json2xml.scala). You need  [Cats](https://typelevel.org/cats/) and [Play-Json](https://github.com/playframework/play-json) in order to run it.**
