@@ -1,5 +1,5 @@
-#baseURL = "/hugo/"
-baseURL = ""
+baseURL = "https://chrilves.github.io/hugo"
+#baseURL = ""
 languageCode = "en-US"
 defaultContentLanguage = "en"
 

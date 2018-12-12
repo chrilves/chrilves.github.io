@@ -7,22 +7,22 @@
     <meta name="description" content="@chrilves&#39; Archives">
 <meta name="author" content="@chrilves">
 
-    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
-<link rel="icon" href="/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://chrilves.github.io/hugo/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="https://chrilves.github.io/hugo/images/favicon.png" type="image/x-icon" />
     <title>Posts :: @chrilves&#39; Archives</title>
 
     
-    <link href="/css/nucleus.css?1544439983" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1544439983" rel="stylesheet">
-    <link href="/css/hybrid.css?1544439983" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1544439983" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1544439983" rel="stylesheet">
-    <link href="/css/auto-complete.css?1544439983" rel="stylesheet">
-    <link href="/css/theme.css?1544439983" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1544439983" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/nucleus.css?1544634682" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/fontawesome-all.min.css?1544634682" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/hybrid.css?1544634682" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/featherlight.min.css?1544634682" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/perfect-scrollbar.min.css?1544634682" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/auto-complete.css?1544634682" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/theme.css?1544634682" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/hugo-theme.css?1544634682" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1544439983"></script>
+    <script src="https://chrilves.github.io/hugo/js/jquery-2.x.min.js?1544634682"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
 
   <div id="header-wrapper">
     <div id="header">
-      <a id="logo" href="/">
+      <a id="logo" href="https://chrilves.github.io/hugo/">
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -118,14 +118,14 @@
     <span data-search-clear=""><i class="fas fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1544439983"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1544439983"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/lunr.min.js?1544634682"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/auto-complete.js?1544634682"></script>
 <script type="text/javascript">
     
-        var baseurl = "";
+        var baseurl = "https:\/\/chrilves.github.io\/hugo";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1544439983"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/search.js?1544634682"></script>
 
     
   </div>
@@ -146,7 +146,7 @@
         active
         
         ">
-      <a href="/posts/">
+      <a href="https://chrilves.github.io/hugo/posts/">
           Posts
           
             <i class="fas read-icon"></i>
@@ -169,7 +169,7 @@
   
     
       <li data-nav-id="/posts/folds/" title="Let&#39;s meet the charming fold family" class="dd-item ">
-        <a href="/posts/folds/">
+        <a href="https://chrilves.github.io/hugo/posts/folds/">
         Let&#39;s meet the charming fold family
         <i class="fas fa-check read-icon"></i>
         </a>
@@ -188,7 +188,7 @@
   
     
       <li data-nav-id="/posts/slimetrail/" title="How to make game in the browser thanks to ScalaJS" class="dd-item ">
-        <a href="/posts/slimetrail/">
+        <a href="https://chrilves.github.io/hugo/posts/slimetrail/">
         How to make game in the browser thanks to ScalaJS
         <i class="fas fa-check read-icon"></i>
         </a>
@@ -207,7 +207,7 @@
   
     
       <li data-nav-id="/posts/json2xml/" title="JSON to XML: the probably a tiny bit over engineered way" class="dd-item ">
-        <a href="/posts/json2xml/">
+        <a href="https://chrilves.github.io/hugo/posts/json2xml/">
         JSON to XML: the probably a tiny bit over engineered way
         <i class="fas fa-check read-icon"></i>
         </a>
@@ -226,7 +226,7 @@
   
     
       <li data-nav-id="/posts/falgebra_scalaio_2017/" title="F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données" class="dd-item ">
-        <a href="/posts/falgebra_scalaio_2017/">
+        <a href="https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/">
         F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données
         <i class="fas fa-check read-icon"></i>
         </a>
@@ -341,6 +341,61 @@
 
         
 
+
+
+
+
+	<article class="post">
+  <header>
+    <h2><a href='https://chrilves.github.io/hugo/posts/folds/'> Let&#39;s meet the charming fold family</a> </h2>
+    <div class="post-meta">Fri, Nov 30, 2018 - 1800 Words </div>
+  </header>
+  Today we will meet an amazing family: the fold functions!
+The well known foldRight Lists is one of the first data structure every developer/computer scientist meet in her/his journey into programming:
+sealed abstract class List[+A] final case object Nil extends List[Nothing] final case class Cons[+A](head: A, tail: List[A]) extends List[A] It means means values of type List[A] can be of (only) two forms:
+ either Nil or Cons(head, tail) for some values head of type A and tail of type List[A]  For example we can define the following lists:
+  <footer>
+  <a href='https://chrilves.github.io/hugo/posts/folds/'><nobr>Read more →</nobr></a>
+  </footer>
+</article>
+
+
+	<article class="post">
+  <header>
+    <h2><a href='https://chrilves.github.io/hugo/posts/slimetrail/'> How to make game in the browser thanks to ScalaJS</a> </h2>
+    <div class="post-meta">Tue, Sep 18, 2018 - 200 Words </div>
+  </header>
+  A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i will have the chance to present it in october at ScalaIO.
+I will present how to develop a web application in Scala.js. This talk is for Scala developers having a penchant for web development but rebuffed by JavaScript. It goes from ScalaJS basics to the implementation of a naive virtual DOM written in Scala.
+  <footer>
+  <a href='https://chrilves.github.io/hugo/posts/slimetrail/'><nobr>Read more →</nobr></a>
+  </footer>
+</article>
+
+
+	<article class="post">
+  <header>
+    <h2><a href='https://chrilves.github.io/hugo/posts/json2xml/'> JSON to XML: the probably a tiny bit over engineered way</a> </h2>
+    <div class="post-meta">Tue, Sep 18, 2018 - 2200 Words </div>
+  </header>
+  The complete code of the article. You need Cats and Play-Json in order to run it.
+It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.
+  <footer>
+  <a href='https://chrilves.github.io/hugo/posts/json2xml/'><nobr>Read more →</nobr></a>
+  </footer>
+</article>
+
+
+	<article class="post">
+  <header>
+    <h2><a href='https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/'> F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données</a> </h2>
+    <div class="post-meta">Mon, Sep 18, 2017 - 100 Words </div>
+  </header>
+  I had the chance to present a talk about F-Algebras at ScalaIO 2017. The slides of the presentation are here and the video is there.
+  <footer>
+  <a href='https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/'><nobr>Read more →</nobr></a>
+  </footer>
+</article>
 
 
 
@@ -473,20 +528,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1544439983"></script>
-    <script src="/js/perfect-scrollbar.min.js?1544439983"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1544439983"></script>
-    <script src="/js/jquery.sticky.js?1544439983"></script>
-    <script src="/js/featherlight.min.js?1544439983"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1544439983"></script>
-    <script src="/js/highlight.pack.js?1544439983"></script>
+    <script src="https://chrilves.github.io/hugo/js/clipboard.min.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.min.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.jquery.min.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/jquery.sticky.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/featherlight.min.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/html5shiv-printshiv.min.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/highlight.pack.js?1544634682"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1544439983"></script>
-    <script src="/js/learn.js?1544439983"></script>
-    <script src="/js/hugo-learn.js?1544439983"></script>
+    <script src="https://chrilves.github.io/hugo/js/modernizr.custom.71422.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/learn.js?1544634682"></script>
+    <script src="https://chrilves.github.io/hugo/js/hugo-learn.js?1544634682"></script>
 
-    <link href="/mermaid/mermaid.css?1544439983" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1544439983"></script>
+    <link href="https://chrilves.github.io/hugo/mermaid/mermaid.css?1544634682" type="text/css" rel="stylesheet" />
+    <script src="https://chrilves.github.io/hugo/mermaid/mermaid.js?1544634682"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
