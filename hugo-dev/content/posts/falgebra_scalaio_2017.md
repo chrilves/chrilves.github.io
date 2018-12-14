@@ -14,4 +14,12 @@ keywords:
   - Inductive
 ---
 
-I had the chance to present a talk about *F-Algebras* at [ScalaIO 2017](https://scala.io/2017/talks.html#/#SJO-8794). The slides of the presentation are [here](https://chrilves.github.io/f-algebra-talk) and the [video is there](https://www.youtube.com/watch?v=MfxN6oSLKDU).
+I had the chance to present a talk about *F-Algebras* at [ScalaIO 2017](https://scala.io/2017/talks.html#/#SJO-8794).
+
+# The Video
+
+<iframe width="1024" height="768" src="https://www.youtube.com/embed/MfxN6oSLKDU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+
+# The Slides
+
+<iframe width="1024" height="768" src="https://chrilves.github.io/f-algebra-talk"></iframe>
