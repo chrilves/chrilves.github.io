@@ -6,7 +6,7 @@
     <description>Recent content in Posts on @chrilves&#39; Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 30 Nov 2018 14:13:12 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 17 Dec 2018 14:51:53 +0100</lastBuildDate>
     
 	<atom:link href="https://chrilves.github.io/hugo/posts/index.xml" rel="self" type="application/rss+xml" />
     
@@ -29,7 +29,7 @@ sealed abstract class List[+A] final case object Nil extends List[Nothing] final
       <pubDate>Tue, 18 Sep 2018 15:30:53 +0200</pubDate>
       
       <guid>https://chrilves.github.io/hugo/posts/slimetrail/</guid>
-      <description>A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i will have the chance to present it in october at ScalaIO.
+      <description>A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i will have the chance to present it in October at ScalaIO.
 I will present how to develop a web application in Scala.js. This talk is for Scala developers having a penchant for web development but rebuffed by JavaScript. It goes from ScalaJS basics to the implementation of a naive virtual DOM written in Scala.</description>
     </item>
     
@@ -49,7 +49,8 @@ It happens regularly in software development that we have to connect systems spe
       <pubDate>Mon, 18 Sep 2017 15:55:26 +0200</pubDate>
       
       <guid>https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/</guid>
-      <description>I had the chance to present a talk about F-Algebras at ScalaIO 2017. The slides of the presentation are here and the video is there.</description>
+      <description> I had the chance to present a talk about F-Algebras at ScalaIO 2017.
+The Video  The Slides  </description>
     </item>
     
   </channel>

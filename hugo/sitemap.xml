@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://chrilves.github.io/hugo/posts/</loc>
+    <lastmod>2018-12-17T14:51:53+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chrilves.github.io/hugo/types/3-products/</loc>
+    <lastmod>2018-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chrilves.github.io/hugo/types/</loc>
+    <lastmod>2018-12-16T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chrilves.github.io/hugo/types/1-why/</loc>
+    <lastmod>2018-12-16T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chrilves.github.io/hugo/types/2-enums/</loc>
+    <lastmod>2018-12-16T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chrilves.github.io/hugo/types/4-coproducts/</loc>
+    <lastmod>2018-12-16T00:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chrilves.github.io/hugo/types/5-rectypes/</loc>
+    <lastmod>2018-12-16T00:00:00+05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chrilves.github.io/hugo/posts/folds/</loc>
     <lastmod>2018-11-30T14:13:12+01:00</lastmod>
   </url>
@@ -24,17 +59,11 @@
   
   <url>
     <loc>https://chrilves.github.io/hugo/</loc>
-    <lastmod>2018-11-30T14:13:12+01:00</lastmod>
+    <lastmod>2018-12-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://chrilves.github.io/hugo/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://chrilves.github.io/hugo/posts/</loc>
-    <lastmod>2018-11-30T14:13:12+01:00</lastmod>
     <priority>0</priority>
   </url>
   

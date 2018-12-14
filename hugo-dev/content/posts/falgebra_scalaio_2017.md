@@ -22,4 +22,4 @@ I had the chance to present a talk about *F-Algebras* at [ScalaIO 2017](https://
 
 # The Slides
 
-<iframe width="1024" height="768" src="https://chrilves.github.io/f-algebra-talk"></iframe>
+<iframe width="1024" height="768" src="https://chrilves.github.io/f-algebra-talk/index.html"></iframe>

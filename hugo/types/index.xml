@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>@chrilves&#39; Archives</title>
-    <link>https://chrilves.github.io/hugo/</link>
-    <description>Recent content on @chrilves&#39; Archives</description>
+    <title>Introduction to Types on @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/hugo/types/</link>
+    <description>Recent content in Introduction to Types on @chrilves&#39; Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 16 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Dec 2018 00:00:00 +0100</lastBuildDate>
     
-	<atom:link href="https://chrilves.github.io/hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chrilves.github.io/hugo/types/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -55,48 +55,6 @@
       <guid>https://chrilves.github.io/hugo/types/5-rectypes/</guid>
       <description>We have seen many types but we still don&amp;rsquo;t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.
 A simple example We will take as example an encoding of non-negative integers, also called natural numbers, i.</description>
-    </item>
-    
-    <item>
-      <title>Let&#39;s meet the charming fold family</title>
-      <link>https://chrilves.github.io/hugo/posts/folds/</link>
-      <pubDate>Fri, 30 Nov 2018 14:13:12 +0100</pubDate>
-      
-      <guid>https://chrilves.github.io/hugo/posts/folds/</guid>
-      <description>Today we will meet an amazing family: the fold functions!
-The well known foldRight Lists is one of the first data structure every developer/computer scientist meet in her/his journey into programming:
-sealed abstract class List[+A] final case object Nil extends List[Nothing] final case class Cons[+A](head: A, tail: List[A]) extends List[A] It means means values of type List[A] can be of (only) two forms:
- either Nil or Cons(head, tail) for some values head of type A and tail of type List[A]  For example we can define the following lists:</description>
-    </item>
-    
-    <item>
-      <title>How to make game in the browser thanks to ScalaJS</title>
-      <link>https://chrilves.github.io/hugo/posts/slimetrail/</link>
-      <pubDate>Tue, 18 Sep 2018 15:30:53 +0200</pubDate>
-      
-      <guid>https://chrilves.github.io/hugo/posts/slimetrail/</guid>
-      <description>A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i will have the chance to present it in October at ScalaIO.
-I will present how to develop a web application in Scala.js. This talk is for Scala developers having a penchant for web development but rebuffed by JavaScript. It goes from ScalaJS basics to the implementation of a naive virtual DOM written in Scala.</description>
-    </item>
-    
-    <item>
-      <title>JSON to XML: the probably a tiny bit over engineered way</title>
-      <link>https://chrilves.github.io/hugo/posts/json2xml/</link>
-      <pubDate>Tue, 18 Sep 2018 11:18:27 +0200</pubDate>
-      
-      <guid>https://chrilves.github.io/hugo/posts/json2xml/</guid>
-      <description>The complete code of the article. You need Cats and Play-Json in order to run it.
-It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.</description>
-    </item>
-    
-    <item>
-      <title>F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données</title>
-      <link>https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/</link>
-      <pubDate>Mon, 18 Sep 2017 15:55:26 +0200</pubDate>
-      
-      <guid>https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/</guid>
-      <description> I had the chance to present a talk about F-Algebras at ScalaIO 2017.
-The Video  The Slides  </description>
     </item>
     
   </channel>

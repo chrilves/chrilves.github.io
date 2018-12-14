@@ -1126,3 +1126,7 @@ pre .copy-to-clipboard:hover {
 #searchResults {
     text-align: left;
 }
+
+#body-inner p {
+    text-align: justify;
+}

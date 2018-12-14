@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="https://chrilves.github.io/hugo/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="https://chrilves.github.io/hugo/images/favicon.png" type="image/x-icon" />
-    <title>Posts :: @chrilves&#39; Archives</title>
+    <title>Introduction to Types :: @chrilves&#39; Archives</title>
 
     
     <link href="https://chrilves.github.io/hugo/css/nucleus.css?1545061322" rel="stylesheet">
@@ -23,7 +23,7 @@
     
 
     
-    <link rel="alternate" type="application/rss+xml" href="https://chrilves.github.io/hugo/posts/index.xml" title="@chrilves' Archives" />
+    <link rel="alternate" type="application/rss+xml" href="https://chrilves.github.io/hugo/types/index.xml" title="@chrilves' Archives" />
     <script src="https://chrilves.github.io/hugo/js/jquery-2.x.min.js?1545061322"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/posts/">
+  <body class="" data-url="/types/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -145,8 +145,8 @@
   
     
     <li data-nav-id="/posts/" title="Posts" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="https://chrilves.github.io/hugo/posts/">
@@ -255,8 +255,8 @@
   
     
     <li data-nav-id="/types/" title="Introduction to Types" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="https://chrilves.github.io/hugo/types/">
@@ -436,7 +436,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/posts/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/types/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -456,7 +456,7 @@
                   <span class="links">
                  
                  
-                   Posts 
+                   Introduction to Types 
                  
                   </span>
                 </div>
@@ -475,65 +475,90 @@
         
         <div id="body-inner">
           
-            <h1>Posts</h1>
+            <h1>Introduction to Types</h1>
           
 
         
 
 
+<p><strong>Why using</strong> types? <strong>When</strong> are they useful? <strong>Why</strong> we should <strong>care</strong> about types? <strong>What</strong> are types? These are the questions [this series of posts]/types/ give some answers to.</p>
 
+
+<h2>Episodes</h2>
+<ul>
+	
+		<li><a class="hightlight" href='https://chrilves.github.io/hugo/types/1-why/'>Episode 1 - Why Types?</a></li>
+	
+		<li><a class="hightlight" href='https://chrilves.github.io/hugo/types/2-enums/'>Episode 2 - Enumerations</a></li>
+	
+		<li><a class="hightlight" href='https://chrilves.github.io/hugo/types/3-products/'>Episode 3 - Products</a></li>
+	
+		<li><a class="hightlight" href='https://chrilves.github.io/hugo/types/4-coproducts/'>Episode 4 - CoProducts</a></li>
+	
+		<li><a class="hightlight" href='https://chrilves.github.io/hugo/types/5-rectypes/'>Episode 5 - Recursive Data Types</a></li>
+	
+</ul>
+
+<h2>Summaries</h2>
 
 
 	<article class="post">
   <header>
-    <h2><a href='https://chrilves.github.io/hugo/posts/folds/'> Let&#39;s meet the charming fold family</a> </h2>
-    <div class="post-meta">Fri, Nov 30, 2018 - 1800 Words </div>
+    <h2><a href='https://chrilves.github.io/hugo/types/1-why/'> Episode 1 - Why Types?</a> </h2>
+    <div class="post-meta">Sun, Dec 16, 2018 - 1100 Words </div>
   </header>
-  Today we will meet an amazing family: the fold functions!
-The well known foldRight Lists is one of the first data structure every developer/computer scientist meet in her/his journey into programming:
-sealed abstract class List[+A] final case object Nil extends List[Nothing] final case class Cons[+A](head: A, tail: List[A]) extends List[A] It means means values of type List[A] can be of (only) two forms:
- either Nil or Cons(head, tail) for some values head of type A and tail of type List[A]  For example we can define the following lists:
+  Why using types? When are they useful? Why we should care about types? What are types? These are the questions [this series of posts]/types/ give some answers to. Let&rsquo;s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.
   <footer>
-  <a href='https://chrilves.github.io/hugo/posts/folds/'><nobr>Read more →</nobr></a>
+  <a href='https://chrilves.github.io/hugo/types/1-why/'><nobr>Read more →</nobr></a>
   </footer>
 </article>
 
 
 	<article class="post">
   <header>
-    <h2><a href='https://chrilves.github.io/hugo/posts/slimetrail/'> How to make game in the browser thanks to ScalaJS</a> </h2>
-    <div class="post-meta">Tue, Sep 18, 2018 - 200 Words </div>
+    <h2><a href='https://chrilves.github.io/hugo/types/2-enums/'> Episode 2 - Enumerations</a> </h2>
+    <div class="post-meta">Sun, Dec 16, 2018 - 2100 Words </div>
   </header>
-  A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i will have the chance to present it in October at ScalaIO.
-I will present how to develop a web application in Scala.js. This talk is for Scala developers having a penchant for web development but rebuffed by JavaScript. It goes from ScalaJS basics to the implementation of a naive virtual DOM written in Scala.
+  Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts.
   <footer>
-  <a href='https://chrilves.github.io/hugo/posts/slimetrail/'><nobr>Read more →</nobr></a>
+  <a href='https://chrilves.github.io/hugo/types/2-enums/'><nobr>Read more →</nobr></a>
   </footer>
 </article>
 
 
 	<article class="post">
   <header>
-    <h2><a href='https://chrilves.github.io/hugo/posts/json2xml/'> JSON to XML: the probably a tiny bit over engineered way</a> </h2>
-    <div class="post-meta">Tue, Sep 18, 2018 - 2200 Words </div>
+    <h2><a href='https://chrilves.github.io/hugo/types/3-products/'> Episode 3 - Products</a> </h2>
+    <div class="post-meta">Sun, Dec 16, 2018 - 800 Words </div>
   </header>
-  The complete code of the article. You need Cats and Play-Json in order to run it.
-It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.
+  Products, often called tuples, records or case classes, are a convenient way to bundle values of different types into a single value. The product of n types (with n being 0, 1, 2, etc) A_1, A_2, &hellip;, A_n is precisely the type whose values are formed with exactly one value of each type A_i for 1 ≤ i ≤ n. It is written (A_1, A_2, ..., A_n) in many languages, Product_n[A_1, A_2, .
   <footer>
-  <a href='https://chrilves.github.io/hugo/posts/json2xml/'><nobr>Read more →</nobr></a>
+  <a href='https://chrilves.github.io/hugo/types/3-products/'><nobr>Read more →</nobr></a>
   </footer>
 </article>
 
 
 	<article class="post">
   <header>
-    <h2><a href='https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/'> F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données</a> </h2>
-    <div class="post-meta">Mon, Sep 18, 2017 - 100 Words </div>
+    <h2><a href='https://chrilves.github.io/hugo/types/4-coproducts/'> Episode 4 - CoProducts</a> </h2>
+    <div class="post-meta">Sun, Dec 16, 2018 - 1100 Words </div>
   </header>
-   I had the chance to present a talk about F-Algebras at ScalaIO 2017.
-The Video  The Slides  
+  CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, &hellip;, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i).
   <footer>
-  <a href='https://chrilves.github.io/hugo/posts/falgebra_scalaio_2017/'><nobr>Read more →</nobr></a>
+  <a href='https://chrilves.github.io/hugo/types/4-coproducts/'><nobr>Read more →</nobr></a>
+  </footer>
+</article>
+
+
+	<article class="post">
+  <header>
+    <h2><a href='https://chrilves.github.io/hugo/types/5-rectypes/'> Episode 5 - Recursive Data Types</a> </h2>
+    <div class="post-meta">Sun, Dec 16, 2018 - 2000 Words </div>
+  </header>
+  We have seen many types but we still don&rsquo;t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.
+A simple example We will take as example an encoding of non-negative integers, also called natural numbers, i.
+  <footer>
+  <a href='https://chrilves.github.io/hugo/types/5-rectypes/'><nobr>Read more →</nobr></a>
   </footer>
 </article>
 
@@ -574,20 +599,6 @@ The Video  The Slides
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
                         
                         
                     
@@ -598,9 +609,6 @@ The Video  The Slides
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -650,6 +658,22 @@ The Video  The Slides
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -658,6 +682,7 @@ The Video  The Slides
             
                 
                     
+                    
                 
                 
 
@@ -670,6 +695,9 @@ The Video  The Slides
             
             
                 
+                    
+                        
+                        
                     
                 
                 

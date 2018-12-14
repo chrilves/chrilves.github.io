@@ -23,4 +23,4 @@ The final result can be experimented with at [chrilves.github.io/slimetrail](htt
 
 # The Application
 
-<iframe width="1024" height="768" src="https://chrilves.github.io/slimetrail"></iframe>
+<iframe width="1024" height="768" src="https://chrilves.github.io/slimetrail/index.html"></iframe>
