@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Types"
-date: 2018-12-16T00:00:00+01:00
+date: 2018-12-16T00:00:00+00:00
 draft: false
 section: "types"
 orderByEpisode: true

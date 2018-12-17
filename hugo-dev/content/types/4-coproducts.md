@@ -1,6 +1,6 @@
 ---
 title: "Episode 4 - CoProducts"
-date: 2018-12-16T00:00:00+04:00
+date: 2018-12-16T00:04:00+00:00
 draft: false
 type: "types"
 episode: 4

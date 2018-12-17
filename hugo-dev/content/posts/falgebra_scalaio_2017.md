@@ -20,6 +20,6 @@ I had the chance to present a talk about *F-Algebras* at [ScalaIO 2017](https://
 
 <iframe width="1024" height="768" src="https://www.youtube.com/embed/MfxN6oSLKDU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
 
-# The Slides
+# [The Slides](https://chrilves.github.io/f-algebra-talk/index.html)
 
 <iframe width="1024" height="768" src="https://chrilves.github.io/f-algebra-talk/index.html"></iframe>

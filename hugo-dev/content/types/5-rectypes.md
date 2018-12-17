@@ -1,6 +1,6 @@
 ---
 title: "Episode 5 - Recursive Data Types"
-date: 2018-12-16T00:00:00+05:00
+date: 2018-12-16T00:05:00+00:00
 draft: false
 type: "types"
 episode: 5

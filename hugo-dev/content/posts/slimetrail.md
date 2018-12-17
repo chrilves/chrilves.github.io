@@ -21,6 +21,6 @@ I will present how to develop a web application in Scala.js. This talk is for Sc
 
 The final result can be experimented with at [chrilves.github.io/slimetrail](https://chrilves.github.io/slimetrail). The english material for the ScalaIO workshop are not yet available but the ones for the PSUG workshop, in french are [here](https://github.com/chrilves/slimetrail.scalajs).
 
-# The Application
+# [The Application](https://chrilves.github.io/slimetrail/index.html)
 
 <iframe width="1024" height="768" src="https://chrilves.github.io/slimetrail/index.html"></iframe>

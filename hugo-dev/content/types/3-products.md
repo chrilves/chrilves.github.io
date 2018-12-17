@@ -1,6 +1,6 @@
 ---
 title: "Episode 3 - Products"
-date: 2018-12-16T00:00:00+00:00
+date: 2018-12-16T00:03:00+00:00
 draft: false
 type: "types"
 episode: 3

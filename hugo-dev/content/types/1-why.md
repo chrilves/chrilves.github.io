@@ -1,13 +1,13 @@
 ---
 title: "Episode 1 - Why Types?"
-date: 2018-12-16T00:00:00+02:00
+date: 2018-12-16T00:01:00+00:00
 draft: false
 type: "types"
 episode: 1
 episodeAsString: "first"
 ---
 
-**Why using** types? **When** are they useful? **Why** we should **care** about types? **What** are types? These are the questions [this series of posts]{{< ref "/types" >}} give some answers to. Let's start by realizing a fundamental fact: **types are everywhere**! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. **Types are specification**, discriminating what makes sense from what makes not.
+**Why using** types? **When** are they useful? **Why** we should **care** about types? **What** are types? These are the questions [this series of posts]({{< ref "/types" >}}) give some answers to. Let's start by realizing a fundamental fact: **types are everywhere**! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. **Types are specification**, discriminating what makes sense from what makes not.
 
 ## A real life example
 
