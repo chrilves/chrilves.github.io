@@ -6,10 +6,19 @@
     <description>Recent content on @chrilves&#39; Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 16 Dec 2018 00:05:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Feb 2019 11:09:38 +0100</lastBuildDate>
     
 	<atom:link href="https://chrilves.github.io/hugo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Demystifying GADTs</title>
+      <link>https://chrilves.github.io/hugo/posts/gadts_intro/</link>
+      <pubDate>Wed, 20 Feb 2019 11:09:38 +0100</pubDate>
+      
+      <guid>https://chrilves.github.io/hugo/posts/gadts_intro/</guid>
+      <description>Generalized Algebraic Data Types (GADT) is certainly one of the most feared concept in programming nowadays. Very few mainstream languages support GADTs. The only ones i know which does are Haskell, Scala, OCaml and Haxe. The idea is actually very simple but often presented in complicated ways. In fact, if you&amp;rsquo;re familiar to both basic Object-Oriented-with-Generics and basic functional programming, then you most probably are already familiar with GADTs without even knowing you are.</description>
+    </item>
     
     <item>
       <title>Episode 5 - Recursive Data Types</title>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://chrilves.github.io/hugo/posts/gadts_intro/</loc>
+    <lastmod>2019-02-20T11:09:38+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chrilves.github.io/hugo/posts/</loc>
     <lastmod>2018-12-17T14:51:53+01:00</lastmod>
   </url>
@@ -59,7 +64,7 @@
   
   <url>
     <loc>https://chrilves.github.io/hugo/</loc>
-    <lastmod>2018-12-16T00:05:00+00:00</lastmod>
+    <lastmod>2019-02-20T11:09:38+01:00</lastmod>
   </url>
   
   <url>
