@@ -134,7 +134,7 @@ This is the essence of *Generalized Algebraic Data Types*. It you understand the
 
 ## Functional Programming 101
 
-Functional languages often support a feature called **Algebraic Data Types (ADT)** which is essentially enumerations on steroids. Like enumerations this is a union of a fixed number of cases but unlike enumerations, where each case is a constant, with ADTs cases can have parameters. As an example, i'll take the type of lists whose elements are of type `a`, written `List a` in *Haskell*. It is defined in *Haskell* by:
+Functional languages often support a feature called **Algebraic Data Types (ADT)** which is essentially enumerations on steroids. Like enumerations this is a disjoint union of a fixed number of cases but unlike enumerations, where each case is a constant, ADTs cases can have parameters. As an example, the type of lists whose elements are of type `a`, written `List a` in *Haskell*, is defined:
 
 ```haskell
 data List a = Nil | Cons a (List a)
@@ -174,9 +174,9 @@ sort isLessThan l =
                     (l1, l2) -> merge isLessThan (sort isLessThan l1) (sort isLessThan l2)
 ```
 
-I know there are smarter ways to write it in *Haskell* but this article is not about *Haskell*. The code above could be translated trivially in `OCaml` by replacing `case ... of` by `match ... with`, in *Scala* by `... match { ... }`, etc. This style is valid is probably all languages supporting pattern-matching so it fits our goal.
+I know there are smarter ways to write it in *Haskell* but this article is not about it. The code above could be translated trivially in `OCaml` by replacing `case ... of` by `match ... with`, in *Scala* by `... match { ... }`, etc. This style is valid is probably all languages supporting pattern-matching so it fits our goal.
 
-The `case l of` expressions are pattern-matching. They are a sequence of `pattern | condition -> code`. The code being executed is the right-hand side of the first case for which the value `l` is of the form of its pattern and satisfy the condition. `l` is then said to match this case. For example, the case `Cons x (Cons y tl) -> (case split tl of (l1, l2) -> (Cons x l1, Cons y l2))` states that if `l` is of the form `Cons x (Cons y tl)`, which means that there are three values `x`, `y` and `tl` such that `l == Cons x (Cons y tl)`, then the code executed is its right-hand side `(case split tl of (l1, l2) -> (Cons x l1, Cons y l2))`. One very important condition is that **pattern-matching must be exhaustive**! It means that the sequence of cases must cover all possible value of `l`.
+The `case l of` expressions are pattern-matching. They are a sequence of `pattern | condition -> code`. The code being executed is the right-hand side of the first case for which the value `l` is of the form of its pattern and satisfy the condition. `l` is then said to match this case. For example, the case `Cons x (Cons y tl) -> (case split tl of (l1, l2) -> (Cons x l1, Cons y l2))` states that if `l` is of the form `Cons x (Cons y tl)`, which means that there are three values `x`, `y` and `tl` such that `l == Cons x (Cons y tl)`, then the code executed is `(case split tl of (l1, l2) -> (Cons x l1, Cons y l2))`. One very important condition is that **pattern-matching must be exhaustive**! It means that the sequence of cases must cover all possible value of `l`.
 
 If your understand the previous section, the type `List a` and how pattern-matching works in the example above, then i am very glad to inform you that you already understand GADTs! Well done :)
 
@@ -202,9 +202,9 @@ final case class Nil[A]() extends List[A]
 final case class Cons[A](head: A, tail: List[A]) extends List[A]
 ```
 
-Do you remember the example of the first section `Sequence<A>`? There was three sub-classes of `Sequence<A`: `MyString` which is actually a sub-class of `Sequence<Character>`, `MyBtyte` which is a sub-class of `Sequence<Boolean>` and `MyArray<A extends Number>` which is a sub-class of `Sequence<Number>`. What is the type of their constructors? Some admissible type for them is (in *Scala* notation):
+Do you remember the example of the first section `Sequence<A>`? There was three sub-classes of `Sequence<A`: `MyString` which is actually a sub-class of `Sequence<Character>`, `MyByte` which is a sub-class of `Sequence<Boolean>` and `MyArray<A extends Number>` which is a sub-class of `Sequence<Number>`. What is the type of their constructors? Some admissible type for them is (in *Scala* notation):
 
-```haskell
+```scala
 def MyString             : String   => Sequence[Character]
 def MyByte               : Byte     => Sequence[Boolean]
 def MyArray[A <: Number] : Array[A] => Sequence[Number]
@@ -274,11 +274,11 @@ def guess[A](x : Sequence[A]): Unit =
   }
 ```
 
-As you can see in `getNthElement` must returns a value of type `A` but the case `MyByte` returns a `Boolean`. It means *Scala* is aware that in this case `A` is actually *Boolean*. Likewise in the case `MyString`, *Scala* knowns that the only possible concrete type for `A` is `Character` so it accepts we return one. *Scala* is (most of the time) able to guess, depending on the case, what are the constraints on `A`. This is all the magic behind GADTs: specialized constructors like in *object-oriented-with-generics* programming and closed types (i.e. with a fixed number of cases that we can not extend) on which we can pattern-match like in usual *functional* programming.
+As you can see `getNthElement` must returns a value of type `A` but the case `MyByte` returns a `Boolean`. It means *Scala* is aware that in this case `A` is actually *Boolean*. Likewise in the case `MyString`, *Scala* knowns that the only possible concrete type for `A` is `Character` so it accepts we return one. *Scala* is (most of the time) able to guess, depending on the case, what are the constraints on `A`. This is all the magic behind GADTs: specialized constructors like in *object-oriented-with-generics* programming and closed types (i.e. with a fixed number of cases) on which we can pattern-match like in usual *functional* programming.
 
-How are *GADTs* useful? First of all, there are handy when you have a specialized constructor like in every day life *object-oriented* programming. It makes sense for a byte (resp. string) to be sequence of booleans (resp. characters) but not a sequence of anything. A prolific use of this is writing implicits in Scala as *GADTs*. This way we can pattern-match on the structure of the implicits to derive instances (see [this gist](https://gist.github.com/chrilves/c3db91813cfe693fa708a34f7a27795f) for more details). They are also very useful to encode properties on types. As i said above, not all types `Sequence[A]` have (non-null) values! There is no (non-null) value of type `Sequence[Unit]` or `Sequence[String]` etc but there are values of type `Sequence[Boolean]`, `Sequence[Character]` and `Sequence[Number]`. So if i give you value of type `Sequence[A]`, then you know `A` is either `Boolean`, `Character` or `Number`. If you don't believe me, try to call the function `guess` on a type `A` which neither `Boolean` nor `Character` nor `Number` without using `null`! Let me give you some useful examples.
+How are *GADTs* useful? First of all, there are handy when you have a specialized constructor like in every day life *object-oriented* programming. It makes sense for a byte (resp. string) to be sequence of booleans (resp. characters) but not a sequence of anything. A prolific use of this is writing implicits in Scala as *GADTs*. This way we can pattern-match on the structure of the implicits to derive instances (see [this gist](https://gist.github.com/chrilves/c3db91813cfe693fa708a34f7a27795f) for more details). They are also very useful to encode properties on types. As i said above, not all types `Sequence[A]` have (non-null) values! There is no (non-null) value of type `Sequence[Unit]` or `Sequence[String]` etc but there are values of type `Sequence[Boolean]`, `Sequence[Character]` and `Sequence[Number]`. So if i give you a value of type `Sequence[A]`, then you know `A` is either `Boolean`, `Character` or `Number`. If you don't believe me, try to call the function `guess` on a type `A` which is neither `Boolean` nor `Character` nor `Number` (without using `null`)! Let me give you some useful examples.
 
-The first one is restricting a generic type like in:
+The first one is restricting a generic type like in the code below. The *GADT* `IsIntOrString` forces `A` to be either `String` or `Int` in the function and the case class.
 
 ```scala
 sealed abstract class IsIntOrString[A]
@@ -316,7 +316,7 @@ trait Functor[F[_]] {
 }
 ```
 
-The reason is you can only have a `Set[A]` for types `A` such that you can compare values. As an example consider `A == Int => Int`. The two following functions are arguably equals:
+The reason is you can only have a `Set[A]` for types `A` such that you can compare values. As an example let `A` be `Int => Int`. The two following functions are arguably equal:
 
 ```scala
 val doubleByMult: Int => Int = (x: Int) => 2 * x
@@ -326,7 +326,7 @@ scala> Set(doubleByMult).contains(doubleByPlus)
 res0: Boolean = false
 ```
 
-This is just impossible, in the general case, to know if two functions compute the same thing. I didn't just say we don't know how to do it. It is actually proven that this is impossible. Like no one can and no one could for ever! Have a look at this [List of undecidable problems](https://en.wikipedia.org/wiki/List_of_undecidable_problems) for more information on the subject. Using extensional equality (the one where `f == g` *if and only* `f(x) == g(x)` for all `x`), there is just no implementation of `Set[Int => Int]`. But if `Set` was a functor, it would be trivial using `map` to get a `Set[Int => Int]`:
+This is just impossible, in the general case, to know if two functions compute the same thing. I didn't just say we don't know how to do it. It is actually proven that this is impossible (like no one can, and no one could for ever!). Have a look at this [List of undecidable problems](https://en.wikipedia.org/wiki/List_of_undecidable_problems) for more information on the subject. Using extensional equality (the one where `f == g` *if and only* `f(x) == g(x)` for all `x`), there is just no implementation of `Set[Int => Int]`. But if `Set` was a functor, it would be trivial using `map` to get a `Set[Int => Int]`:
 
 ```scala
 Set[Boolean](true, false).map {
@@ -335,7 +335,7 @@ Set[Boolean](true, false).map {
 }: Set[Int => Int]
 ```
 
-The conclusion is `Set` is not a functor ... in the usual (i.e. *Scal*) category. But it is in for some categories. Let's define a functor as:
+The conclusion is that `Set` is not a functor ... in the usual (i.e. *Scal*) category. But it is in for some categories. The problem with `Functor` is `map` can be applied on any `A` and `B` which is impossible for `Set`. But if we restrict `A` and `B` such that they have interesting properties (like having an `Ordering`), then it works. In the code below, the *GADT* `predicate` is used to restrict on which `A` and `B` `map` can be applied on:
 
 ```scala
 trait GenFunctor[predicate[_],F[_]] {
@@ -343,7 +343,7 @@ trait GenFunctor[predicate[_],F[_]] {
 }
 ```
 
-Then `Set` is a functor with `Ordering` as `predicate`:
+Then `Set` is becomes a functor with `Ordering` as `predicate`:
 
 ```scala
 object SetInstance extends GenFunctor[Ordering, Set] {
@@ -355,7 +355,7 @@ object SetInstance extends GenFunctor[Ordering, Set] {
 }
 ```
 
-Even `String` can be a functor!!!
+Surprisingly even `String` can be a functor (with `A` and `B` being both `Char`)!!!
 
 ```scala
 sealed abstract class IsItChar[A]
@@ -372,7 +372,7 @@ object StringInstance extends GenFunctor[IsItChar, StringK] {
 }
 ```
 
-*GADTs* are an example of *Bushnell's law*. As you can see, they are easy to learn but can be used in very tricky situations which makes them hard to master. They are clearly very helpful in many situations but it seems they are still unfortunately very little used. *Haskell* supports them very well! *Scala*'s support is actually very good but not as good as *Haskell*. *Scala 3* will probably support them as well as *Haslell* since *Dotty*'s support is excellent. The only two other mainstream languages i know supporting them are *OCaml* and *Haxe*. Even if those two have a very good support, their lack of *Higer-Kinded types* forbids the most interesting uses.
+*GADTs* are an example of *Bushnell's law*. As you can see, they are easy to learn but can be used in very tricky situations which makes them hard to master. They are clearly very helpful in many situations but it seems they are still unfortunately very little used. *Haskell* supports them very well! *Scala*'s support is actually very good but not as good as *Haskell*'s. *Scala 3* will probably support them as well as *Haskell* since *Dotty*'s support is excellent. The only two other mainstream languages i know supporting them are *OCaml* and *Haxe*. Even if those two have a very good support, their lack of *Higer-Kinded types* forbids the most interesting uses.
 
 As you probably know, it is possible to define a `fold` functor for every *Algebraic Data Type*. It is also possible to define `fold` functions for every *GADT*. As an exercise, try to define fold functions for the following *GADTs*:
 
