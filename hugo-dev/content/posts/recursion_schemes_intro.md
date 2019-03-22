@@ -50,7 +50,7 @@ $$fact(n) = 1 \times 2 \times 3 \times \cdots \times n$$
 
 To ease the presentation we will take `Int` as the type of *non-negative integers*.
 Obviously in production code negative values should be handled appropriately
-but for simplicity's sake, we will define `fact` as
+but for simplicity's sake, we will define `fact` in *Scala* and in *Haskell* as
 
 ```scala
 def fact(n: Int): Int =
@@ -59,6 +59,13 @@ def fact(n: Int): Int =
     val r = fact(n-1)
     n * r
   }
+```
+
+```haskell
+fact :: Int -> Int
+fact 0 = 1
+fact n = let r = fact (n - 1)
+         in n * r
 ```
 
 Factorial is written here as a recursive function.
@@ -105,6 +112,29 @@ def fact(n: Int): Int =
   }
 ```
 
+```haskell
+{-
+ Part irrelevant to recursion:
+ The real definitions of these variables
+ Have no impact on how fact is calling itself
+-}
+baseCase :: Int
+baseCase  = 1
+
+recCase :: Int -> Int -> Int
+recCase n r = n * r
+ 
+{-
+ Recursion-only part:
+ The only implementation details it contains
+ are about how fact it calling itself
+ -}
+fact :: Int -> Int
+fact 0 = baseCase
+fact n = let r = fact (n-1)
+         in recCase n r
+```
+
 Let me present you another function, also defined on *non-negative* numbers *n*,
 but that computes this time the *sum*  of all numbers between *1* and *n* included:
 
@@ -118,6 +148,14 @@ def sum(n: Int): Int =
     n + r
   }
 ```
+
+```haskell
+sum :: Int -> Int
+sum 0 = 0
+sum n = let r = sum (n - 1)
+        in n + r
+```
+
 
 We can apply the same technique to `sum`: splitting the definition into two parts,
 one containing all but only recursion-relevant code, and the other the rest. It gives:
@@ -142,6 +180,29 @@ def sum(n: Int): Int =
   }
 ```
 
+```haskell
+{-
+ Part irrelevant to recursion:
+ The real definitions of these variables
+ Have no impact on how fact is calling itself
+-}
+baseCase :: Int
+baseCase = 0
+
+recCase :: Int -> Int -> Int
+recCase n r = n + r
+ 
+{-
+ Recursion-only part:
+ The only implementation details it contains
+ are about how fact it calling itself
+ -}
+sum :: Int -> Int
+sum 0 = baseCase
+sum n = let r = sum (n-1)
+        in recCase n r
+```
+
 Do you see how similar the recursion-relevant parts of `sum` and  `fact` are? They are actually identical! It means
 `fact` and `sum` have the same recursion structure. The recursion-irrelevant part differ:
 the constant `baseCase` which is *1* in `fact` but *0* in `sum` and operation `recCase` which is `n * r` in `fact` but
@@ -155,6 +216,13 @@ def commonRecursiveRelevantPart(n: Int): Int =
     val r = commonRecursiveRelevantPart(n-1)
     recCase(n, r)
   }
+```
+
+```haskell
+commonRecursiveRelevantPart :: Int -> Int
+commonRecursiveRelevantPart 0 = baseCase
+commonRecursiveRelevantPart n = let r = commonRecursiveRelevantPart (n-1)
+                                in recCase n r
 ```
 
 Obviously, for this code to be correct, `baseCase` and `recCase` have to be defined. Let's fix this by taking them
@@ -173,11 +241,29 @@ def scheme(baseCase: Int, recCase: (Int, Int) => Int): Int => Int = {
 }
 ```
 
+```haskell
+scheme :: Int -> (Int -> Int -> Int) -> Int -> Int
+scheme baseCase recCase = commonRecursiveRelevantPart
+  where
+    commonRecursiveRelevantPart :: Int -> Int
+    commonRecursiveRelevantPart 0 = baseCase
+    commonRecursiveRelevantPart n = let r = commonRecursiveRelevantPart (n-1)
+                                    in recCase n r
+```
+
 It is then trivial to define both `fact` and `sum` by feeding `scheme` with corresponding definitions for `baseCase` and `recCase`:
 
 ```scala
 def fact: Int => Int = scheme(1, (n: Int, r:Int) => n * r)
 def sum : Int => Int = scheme(0, (n: Int, r:Int) => n + r)
+```
+
+```haskell
+fact :: Int -> Int
+fact = scheme 1 (*)
+
+sum :: Int -> Int
+sum = scheme 0 (+)
 ```
 
 We can now give a first answer to how recursion schemes can be useful. They enable to
@@ -199,6 +285,15 @@ def scheme(baseCase: Int, recCase: (Int, Int) => Int)(n: Int): Int = {
   }
   res
 }
+```
+
+```haskell
+scheme :: Int -> (Int -> Int -> Int) -> Int -> Int
+scheme baseCase recCase n = aux baseCase 1
+  where
+    aux res i = if i <= n
+                then aux (recCase i res) (i + 1)
+                else res
 ```
 
 Note that the scheme is usually simpler to write as it only focuses on recursion, not
@@ -230,6 +325,16 @@ def fib(n: Int): Int =
   }
 ```
 
+```haskell
+fib :: Int -> Int
+fib 0 = 1
+fib 1 = 1
+fib n = r1 + r2
+  where
+    r1 = fib (n - 1)
+    r2 = fib (n - 2)
+```
+
 The function `fib` does not call itself when `n` is *0* or *1* but calls itself twice, on `n-1` and `n-2` otherwise.
 So we can, like `fact` and `sum`, split `fib` into two pieces: one containing only recursion-relevant code and the
 other one the rest. Once again the split is done by taking recursion-irrelevant code out of the function's body.
@@ -259,6 +364,35 @@ def fib(n: Int): Int =
   }
 ```
 
+```haskell
+{-
+ Part irrelevant to recursion:
+ The real definitions of these variables
+ Have no impact on how fact is calling itself
+-}
+baseCase0 :: Int
+baseCase0 = 1
+
+baseCase1 :: Int
+baseCase1 = 1
+
+recCase :: Int -> Int -> Int
+recCase n r = n + r
+
+{-
+ Recursion-only part:
+ The only implementation details it contains
+ are about how fact it calling itself
+ -}
+fib :: Int -> Int
+fib 0 = baseCase0
+fib 1 = baseCase1
+fib n = recCase r1 r2
+  where
+    r1 = fib (n - 1)
+    r2 = fib (n - 2)
+```
+
 Which leads to the recursion scheme:
 
 ```scala
@@ -273,11 +407,28 @@ def scheme(baseCase0: Int, baseCase1: Int, recCase: (Int, Int) => Int)(n: Int): 
   }
 ```
 
+```haskell
+scheme :: Int -> Int -> (Int -> Int -> Int) -> Int -> Int
+scheme baseCase0 baseCase1 recCase = aux
+  where
+    aux 0 = baseCase0
+    aux 1 = baseCase1
+    aux n = r1 + r2
+      where
+        r1 = aux (n - 1)
+        r2 = aux (n - 2)
+```
+
 It is then trivial to define `fib` by giving appropriate definition to `scheme` arguments: `baseCase0`, `baseCase1` and
 `recCase`.
 
 ```scala
 def fib: Int => Int = scheme(1, 1, (r1: Int, r2: Int) => r1 + r2)
+```
+
+```haskell
+fib :: Int -> Int
+fib = scheme 1 1 (+)
 ```
 
 Once again this implementation is not optimal as each call of `fib` can make to 2 recursive calls
@@ -302,6 +453,16 @@ def scheme(baseCase0: Int, baseCase1: Int, recCase: (Int, Int) => Int)(n: Int): 
   }
 ```
 
+```haskell
+scheme :: Int -> Int -> (Int -> Int -> Int) -> Int -> Int
+scheme baseCase0 baseCase1 recCase 0 = baseCase0
+scheme baseCase0 baseCase1 recCase n = aux baseCase0 baseCase1 2
+  where
+    aux b0 b1 i = if i <= n
+                  then aux b1 (recCase b0 b1) (i + 1)
+                  else b1
+```
+
 By now you should get a good grasp on what recursion schemes are. But we have
 only seen a tiny fraction of how useful they are. It's about time to consider
 the real power of `fact`, `sum` and `fib`'s schemes.
@@ -322,6 +483,15 @@ def scheme(baseCase: Int, recCase: (Int, Int) => Int)(n: Int): Int = {
 }
 ```
 
+```haskell
+scheme :: Int -> (Int -> Int -> Int) -> Int -> Int
+scheme baseCase recCase n = aux baseCase 1
+  where
+    aux res i = if i <= n
+                then aux (recCase i res) (i + 1)
+                else res
+```
+
 I have a small exercise for you: find where this code relies on `baseCase` to be an `Int`?
 It's important, take the time to figure it out. The answer is simple: it does not! `baseCase` can actually be
 any of type `A`! We don't even have to modify the code (only the type signature):
@@ -338,11 +508,25 @@ def scheme[A](baseCase: A, recCase: (Int, A) => A)(n: Int): A = {
 }
 ```
 
+```haskell
+scheme :: a -> (Int -> a -> a) -> Int -> a
+scheme baseCase recCase n = aux baseCase 1
+  where
+    aux res i = if i <= n
+                then aux (recCase i res) (i + 1)
+                else res
+```
+
 Not only can we still define `fact` (and `sum`) like above but it makes trivial defining
 the functions like `list` which returns the list of integers between *1* and *n*:
 
 ```scala
 def list: Int => List[Int] = scheme[List[Int]](Nil, (n: Int, r: List[Int]) => n :: r)
+```
+
+```haskell
+list :: Int -> [Int]
+list = scheme [] (:)
 ```
 
 Unsurprisingly `fib`'s recursion scheme can also be generalized without changing a single line of code (only type signature):
@@ -364,6 +548,16 @@ def scheme[A](baseCase0: A, baseCase1: A, recCase: (A, A) => A)(n: Int): A =
   }
 ```
 
+```haskell
+scheme :: a -> a -> (a -> a -> a) -> Int -> a
+scheme baseCase0 baseCase1 recCase 0 = baseCase0
+scheme baseCase0 baseCase1 recCase n = aux baseCase0 baseCase1 2
+  where
+    aux b0 b1 i = if i <= n
+                  then aux b1 (recCase b0 b1) (i + 1)
+                  else b1
+```
+
 While `fact`'s scheme is related to lists, `fib`'s one is related to trees:
 
 ```scala
@@ -377,6 +571,13 @@ def tree: Int => Tree[Boolean] =
     Leaf(true),
     (r1: Tree[Boolean], r2: Tree[Boolean]) => Node(r1,r2)
   )
+```
+
+```haskell
+data Tree a = Leaf a | Node (Tree a) (Tree a)
+
+tree :: Int -> Tree Bool
+tree = scheme (Leaf False) (Leaf True) Node
 ```
 
 I have few real exercises for you this time:
@@ -397,6 +598,10 @@ As we have seen, `fact`'s scheme takes 2 arguments:
 def scheme[A](baseCase: A, recCase: (Int, A) => A): Int => A
 ```
 
+```haskell
+scheme :: a -> (Int -> a -> a) -> Int -> a
+```
+
 While this definition is perfectly ok, we can regroup these argument in any structure that can hold both values like
 a pair, an interface or a trait:
 
@@ -407,6 +612,14 @@ trait FactorialSchemeArguments[A] {
 }
 
 def scheme[A](arguments: FactorialSchemeArguments[A]): Int => A
+```
+
+```haskell
+class FactorialSchemeArguments a where
+  baseCase :: a
+  recCase :: Int -> a -> a
+
+scheme :: FactorialSchemeArguments a => Int -> a
 ```
 
 Note that `scheme` is still the same: it still takes the same two arguments.
@@ -424,6 +637,14 @@ trait AkolovioaAlgebra[A] {
 }
 
 def akolovioaMorphism[A: AkolovioaAlgebra]: Int => A
+```
+
+```haskell
+class AkolovioaAlgebra a where
+  initial :: a
+  action :: Int -> a -> a
+
+akolovioaMorphism :: AkolovioaAlgebra a => Int -> a
 ```
 
 This looks smart, doesn't it? 😉 It is actually very close to a very common structure in

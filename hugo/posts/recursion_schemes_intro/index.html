@@ -12,18 +12,18 @@
     <title>Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/hugo/css/nucleus.css?1553249093" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/fontawesome-all.min.css?1553249093" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/hybrid.css?1553249093" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/featherlight.min.css?1553249093" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/perfect-scrollbar.min.css?1553249093" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/auto-complete.css?1553249093" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/theme.css?1553249093" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/hugo-theme.css?1553249093" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/nucleus.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/fontawesome-all.min.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/hybrid.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/featherlight.min.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/perfect-scrollbar.min.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/auto-complete.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/theme.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/hugo-theme.css?1553253121" rel="stylesheet">
     
 
     
-    <script src="https://chrilves.github.io/hugo/js/jquery-2.x.min.js?1553249093"></script>
+    <script src="https://chrilves.github.io/hugo/js/jquery-2.x.min.js?1553253121"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
     <style type="text/css">
@@ -120,14 +120,14 @@
     <span data-search-clear=""><i class="fas fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/hugo/js/lunr.min.js?1553249093"></script>
-<script type="text/javascript" src="https://chrilves.github.io/hugo/js/auto-complete.js?1553249093"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/lunr.min.js?1553253121"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/auto-complete.js?1553253121"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io\/hugo";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/hugo/js/search.js?1553249093"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/search.js?1553253121"></script>
 
     
   </div>
@@ -573,13 +573,16 @@ product of all numbers between <em>1</em> and <em>n</em> included:</p>
 
 <p>To ease the presentation we will take <code>Int</code> as the type of <em>non-negative integers</em>.
 Obviously in production code negative values should be handled appropriately
-but for simplicity&rsquo;s sake, we will define <code>fact</code> as</p>
+but for simplicity&rsquo;s sake, we will define <code>fact</code> in <em>Scala</em> and in <em>Haskell</em> as</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> fact<span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=</span>
   <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
   <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">val</span> r <span style="color:#66d9ef">=</span> fact<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
     n <span style="color:#f92672">*</span> r
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">fact</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">fact</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">fact</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fact</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+         <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">r</span></code></pre></div>
 <p>Factorial is written here as a recursive function.
 As you probably know, it can also be written as an
 iterative one (using a <code>for</code> or <code>while</code> loop) but the subject of this article is <em>Recursion
@@ -621,7 +624,26 @@ its body:</p>
   <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">val</span> r <span style="color:#66d9ef">=</span> fact<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
     recCase<span style="color:#f92672">(</span>n<span style="color:#f92672">,</span> r<span style="color:#f92672">)</span>
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">{-
+</span><span style="color:#75715e"> Part irrelevant to recursion:
+</span><span style="color:#75715e"> The real definitions of these variables
+</span><span style="color:#75715e"> Have no impact on how fact is calling itself
+</span><span style="color:#75715e">-}</span>
+<span style="color:#a6e22e">baseCase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">baseCase</span>  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+
+<span style="color:#a6e22e">recCase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">r</span>
+ 
+<span style="color:#75715e">{-
+</span><span style="color:#75715e"> Recursion-only part:
+</span><span style="color:#75715e"> The only implementation details it contains
+</span><span style="color:#75715e"> are about how fact it calling itself
+</span><span style="color:#75715e"> -}</span>
+<span style="color:#a6e22e">fact</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">fact</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase</span>
+<span style="color:#a6e22e">fact</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fact</span> (<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+         <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#a6e22e">r</span></code></pre></div>
 <p>Let me present you another function, also defined on <em>non-negative</em> numbers <em>n</em>,
 but that computes this time the <em>sum</em>  of all numbers between <em>1</em> and <em>n</em> included:</p>
 
@@ -631,7 +653,10 @@ but that computes this time the <em>sum</em>  of all numbers between <em>1</em> 
   <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">val</span> r <span style="color:#66d9ef">=</span> sum<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
     n <span style="color:#f92672">+</span> r
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">sum</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">sum</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">sum</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">r</span></code></pre></div>
 <p>We can apply the same technique to <code>sum</code>: splitting the definition into two parts,
 one containing all but only recursion-relevant code, and the other the rest. It gives:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#75715e">/* Part irrelevant to recursion:
@@ -650,7 +675,26 @@ one containing all but only recursion-relevant code, and the other the rest. It 
   <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">val</span> r <span style="color:#66d9ef">=</span> sum<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
     recCase<span style="color:#f92672">(</span>n<span style="color:#f92672">,</span> r<span style="color:#f92672">)</span>
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">{-
+</span><span style="color:#75715e"> Part irrelevant to recursion:
+</span><span style="color:#75715e"> The real definitions of these variables
+</span><span style="color:#75715e"> Have no impact on how fact is calling itself
+</span><span style="color:#75715e">-}</span>
+<span style="color:#a6e22e">baseCase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">baseCase</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+<span style="color:#a6e22e">recCase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">r</span>
+ 
+<span style="color:#75715e">{-
+</span><span style="color:#75715e"> Recursion-only part:
+</span><span style="color:#75715e"> The only implementation details it contains
+</span><span style="color:#75715e"> are about how fact it calling itself
+</span><span style="color:#75715e"> -}</span>
+<span style="color:#a6e22e">sum</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">sum</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase</span>
+<span style="color:#a6e22e">sum</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span> (<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+        <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#a6e22e">r</span></code></pre></div>
 <p>Do you see how similar the recursion-relevant parts of <code>sum</code> and  <code>fact</code> are? They are actually identical! It means
 <code>fact</code> and <code>sum</code> have the same recursion structure. The recursion-irrelevant part differ:
 the constant <code>baseCase</code> which is <em>1</em> in <code>fact</code> but <em>0</em> in <code>sum</code> and operation <code>recCase</code> which is <code>n * r</code> in <code>fact</code> but
@@ -661,7 +705,10 @@ get back the original functions. Look at the common recursive-relevant part:</p>
   <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">val</span> r <span style="color:#66d9ef">=</span> commonRecursiveRelevantPart<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
     recCase<span style="color:#f92672">(</span>n<span style="color:#f92672">,</span> r<span style="color:#f92672">)</span>
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">commonRecursiveRelevantPart</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">commonRecursiveRelevantPart</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase</span>
+<span style="color:#a6e22e">commonRecursiveRelevantPart</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commonRecursiveRelevantPart</span> (<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+                                <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#a6e22e">r</span></code></pre></div>
 <p>Obviously, for this code to be correct, <code>baseCase</code> and <code>recCase</code> have to be defined. Let&rsquo;s fix this by taking them
 as arguments:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> scheme<span style="color:#f92672">(</span>baseCase<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> recCase<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Int</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
@@ -673,10 +720,20 @@ as arguments:</p>
     <span style="color:#f92672">}</span>
   
   commonRecursiveRelevantPart
-<span style="color:#f92672">}</span></code></pre></div>
+<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase</span> <span style="color:#a6e22e">recCase</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commonRecursiveRelevantPart</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">commonRecursiveRelevantPart</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+    <span style="color:#a6e22e">commonRecursiveRelevantPart</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase</span>
+    <span style="color:#a6e22e">commonRecursiveRelevantPart</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commonRecursiveRelevantPart</span> (<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+                                    <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#a6e22e">r</span></code></pre></div>
 <p>It is then trivial to define both <code>fact</code> and <code>sum</code> by feeding <code>scheme</code> with corresponding definitions for <code>baseCase</code> and <code>recCase</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> fact<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> scheme<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> n <span style="color:#f92672">*</span> r<span style="color:#f92672">)</span>
-<span style="color:#66d9ef">def</span> sum <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> scheme<span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> n <span style="color:#f92672">+</span> r<span style="color:#f92672">)</span></code></pre></div>
+<span style="color:#66d9ef">def</span> sum <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> scheme<span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> n <span style="color:#f92672">+</span> r<span style="color:#f92672">)</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">fact</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">fact</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">scheme</span> <span style="color:#ae81ff">1</span> (<span style="color:#f92672">*</span>)
+
+<span style="color:#a6e22e">sum</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">scheme</span> <span style="color:#ae81ff">0</span> (<span style="color:#f92672">+</span>)</code></pre></div>
 <p>We can now give a first answer to how recursion schemes can be useful. They enable to
 to write less code which is both easier and safer. But there is more! Recursive calls, like any
 function calls, consume the stack. If there are too many recursive calls (i.e. when <code>n</code> is to big),
@@ -693,7 +750,12 @@ Fortunately it is enough to only write the recursion scheme once:</p>
     i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
   <span style="color:#f92672">}</span>
   res
-<span style="color:#f92672">}</span></code></pre></div>
+<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">baseCase</span> <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">res</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>
+                <span style="color:#66d9ef">then</span> <span style="color:#a6e22e">aux</span> (<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">i</span> <span style="color:#a6e22e">res</span>) (<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">res</span></code></pre></div>
 <p>Note that the scheme is usually simpler to write as it only focuses on recursion, not
 business logic. Furthermore one scheme may fit many functions thus reducing the complexity
 and bugs in writing business functions. Remember that <code>fact</code> and <code>sum</code> are purposely trivial.
@@ -717,7 +779,13 @@ $$fib(n+2) = fib(n+1) + fib(n)$$</p>
       <span style="color:#66d9ef">val</span> r1 <span style="color:#66d9ef">=</span> fib<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
       <span style="color:#66d9ef">val</span> r2 <span style="color:#66d9ef">=</span> fib<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">)</span>
       r1 <span style="color:#f92672">+</span> r2
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">fib</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">r1</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">r2</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">r1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fib</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+    <span style="color:#a6e22e">r2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fib</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)</code></pre></div>
 <p>The function <code>fib</code> does not call itself when <code>n</code> is <em>0</em> or <em>1</em> but calls itself twice, on <code>n-1</code> and <code>n-2</code> otherwise.
 So we can, like <code>fact</code> and <code>sum</code>, split <code>fib</code> into two pieces: one containing only recursion-relevant code and the
 other one the rest. Once again the split is done by taking recursion-irrelevant code out of the function&rsquo;s body.
@@ -742,7 +810,32 @@ Remember they are many ways to split it up. This one is just one of many sensibl
       <span style="color:#66d9ef">val</span> r1 <span style="color:#66d9ef">=</span> fib<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
       <span style="color:#66d9ef">val</span> r2 <span style="color:#66d9ef">=</span> fib<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">)</span>
       recCase<span style="color:#f92672">(</span>r1<span style="color:#f92672">,</span> r2<span style="color:#f92672">)</span>
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">{-
+</span><span style="color:#75715e"> Part irrelevant to recursion:
+</span><span style="color:#75715e"> The real definitions of these variables
+</span><span style="color:#75715e"> Have no impact on how fact is calling itself
+</span><span style="color:#75715e">-}</span>
+<span style="color:#a6e22e">baseCase0</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">baseCase0</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+
+<span style="color:#a6e22e">baseCase1</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">baseCase1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+
+<span style="color:#a6e22e">recCase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">r</span>
+
+<span style="color:#75715e">{-
+</span><span style="color:#75715e"> Recursion-only part:
+</span><span style="color:#75715e"> The only implementation details it contains
+</span><span style="color:#75715e"> are about how fact it calling itself
+</span><span style="color:#75715e"> -}</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase0</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase1</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">r1</span> <span style="color:#a6e22e">r2</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">r1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fib</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+    <span style="color:#a6e22e">r2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fib</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)</code></pre></div>
 <p>Which leads to the recursion scheme:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> scheme<span style="color:#f92672">(</span>baseCase0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> baseCase1<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> recCase<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Int</span><span style="color:#f92672">)(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=</span>
   n <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
@@ -752,10 +845,19 @@ Remember they are many ways to split it up. This one is just one of many sensibl
       <span style="color:#66d9ef">val</span> r1 <span style="color:#66d9ef">=</span> fib<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span>
       <span style="color:#66d9ef">val</span> r2 <span style="color:#66d9ef">=</span> fib<span style="color:#f92672">(</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">)</span>
       recCase<span style="color:#f92672">(</span>r1<span style="color:#f92672">,</span> r2<span style="color:#f92672">)</span>
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase0</span> <span style="color:#a6e22e">baseCase1</span> <span style="color:#a6e22e">recCase</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase0</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase1</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">r1</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">r2</span>
+      <span style="color:#66d9ef">where</span>
+        <span style="color:#a6e22e">r1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        <span style="color:#a6e22e">r2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)</code></pre></div>
 <p>It is then trivial to define <code>fib</code> by giving appropriate definition to <code>scheme</code> arguments: <code>baseCase0</code>, <code>baseCase1</code> and
 <code>recCase</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> fib<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> scheme<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>r1<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> r1 <span style="color:#f92672">+</span> r2<span style="color:#f92672">)</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> fib<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> scheme<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>r1<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> r1 <span style="color:#f92672">+</span> r2<span style="color:#f92672">)</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">fib</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">fib</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">scheme</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> (<span style="color:#f92672">+</span>)</code></pre></div>
 <p>Once again this implementation is not optimal as each call of <code>fib</code> can make to 2 recursive calls
 which leads to an exponential time complexity. While computing <code>fib(5)</code> is fast, computing <code>fib(1000)</code> may
 take much longer. As you already probably guessed, writing the recursion scheme as an iterative loop, which
@@ -773,7 +875,13 @@ sadly makes it more intricate, solves the problem:</p>
       i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
     <span style="color:#f92672">}</span>
     b1
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase0</span> <span style="color:#a6e22e">baseCase1</span> <span style="color:#a6e22e">recCase</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase0</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase0</span> <span style="color:#a6e22e">baseCase1</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">baseCase0</span> <span style="color:#a6e22e">baseCase1</span> <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">b0</span> <span style="color:#a6e22e">b1</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>
+                  <span style="color:#66d9ef">then</span> <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">b1</span> (<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">b0</span> <span style="color:#a6e22e">b1</span>) (<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                  <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">b1</span></code></pre></div>
 <p>By now you should get a good grasp on what recursion schemes are. But we have
 only seen a tiny fraction of how useful they are. It&rsquo;s about time to consider
 the real power of <code>fact</code>, <code>sum</code> and <code>fib</code>&rsquo;s schemes.</p>
@@ -789,7 +897,12 @@ the real power of <code>fact</code>, <code>sum</code> and <code>fib</code>&rsquo
     i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
   <span style="color:#f92672">}</span>
   res
-<span style="color:#f92672">}</span></code></pre></div>
+<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">baseCase</span> <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">res</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>
+                <span style="color:#66d9ef">then</span> <span style="color:#a6e22e">aux</span> (<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">i</span> <span style="color:#a6e22e">res</span>) (<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">res</span></code></pre></div>
 <p>I have a small exercise for you: find where this code relies on <code>baseCase</code> to be an <code>Int</code>?
 It&rsquo;s important, take the time to figure it out. The answer is simple: it does not! <code>baseCase</code> can actually be
 any of type <code>A</code>! We don&rsquo;t even have to modify the code (only the type signature):</p>
@@ -801,10 +914,16 @@ any of type <code>A</code>! We don&rsquo;t even have to modify the code (only th
     i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
   <span style="color:#f92672">}</span>
   res
-<span style="color:#f92672">}</span></code></pre></div>
+<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">baseCase</span> <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">res</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>
+                <span style="color:#66d9ef">then</span> <span style="color:#a6e22e">aux</span> (<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">i</span> <span style="color:#a6e22e">res</span>) (<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">res</span></code></pre></div>
 <p>Not only can we still define <code>fact</code> (and <code>sum</code>) like above but it makes trivial defining
 the functions like <code>list</code> which returns the list of integers between <em>1</em> and <em>n</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> list<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> scheme<span style="color:#f92672">[</span><span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]](</span><span style="color:#a6e22e">Nil</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">=&gt;</span> n <span style="color:#66d9ef">:</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">r</span><span style="color:#f92672">)</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> list<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> scheme<span style="color:#f92672">[</span><span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]](</span><span style="color:#a6e22e">Nil</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">=&gt;</span> n <span style="color:#66d9ef">:</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">r</span><span style="color:#f92672">)</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">list</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> [<span style="color:#66d9ef">Int</span>]
+<span style="color:#a6e22e">list</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">scheme</span> <span style="color:#66d9ef">[]</span> (<span style="color:#66d9ef">:</span>)</code></pre></div>
 <p>Unsurprisingly <code>fib</code>&rsquo;s recursion scheme can also be generalized without changing a single line of code (only type signature):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> scheme<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>baseCase0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> baseCase1<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> recCase<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> A<span style="color:#f92672">)(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span>
   <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> baseCase0
@@ -819,7 +938,13 @@ the functions like <code>list</code> which returns the list of integers between 
       i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
     <span style="color:#f92672">}</span>
     b1
-  <span style="color:#f92672">}</span></code></pre></div>
+  <span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase0</span> <span style="color:#a6e22e">baseCase1</span> <span style="color:#a6e22e">recCase</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase0</span>
+<span style="color:#a6e22e">scheme</span> <span style="color:#a6e22e">baseCase0</span> <span style="color:#a6e22e">baseCase1</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">baseCase0</span> <span style="color:#a6e22e">baseCase1</span> <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">b0</span> <span style="color:#a6e22e">b1</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>
+                  <span style="color:#66d9ef">then</span> <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">b1</span> (<span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">b0</span> <span style="color:#a6e22e">b1</span>) (<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                  <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">b1</span></code></pre></div>
 <p>While <code>fact</code>&rsquo;s scheme is related to lists, <code>fib</code>&rsquo;s one is related to trees:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tree</span><span style="color:#f92672">[</span><span style="color:#66d9ef">+A</span><span style="color:#f92672">]</span>
 <span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Leaf</span><span style="color:#f92672">[</span><span style="color:#66d9ef">+A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Tree</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
@@ -830,7 +955,10 @@ the functions like <code>list</code> which returns the list of integers between 
     <span style="color:#a6e22e">Leaf</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">),</span>
     <span style="color:#a6e22e">Leaf</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">),</span>
     <span style="color:#f92672">(</span>r1<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Tree</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Boolean</span><span style="color:#f92672">],</span> r2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Tree</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Boolean</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Node</span><span style="color:#f92672">(</span>r1<span style="color:#f92672">,</span>r2<span style="color:#f92672">)</span>
-  <span style="color:#f92672">)</span></code></pre></div>
+  <span style="color:#f92672">)</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Tree</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Leaf</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Node</span> (<span style="color:#66d9ef">Tree</span> <span style="color:#a6e22e">a</span>) (<span style="color:#66d9ef">Tree</span> <span style="color:#a6e22e">a</span>)
+
+<span style="color:#a6e22e">tree</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Tree</span> <span style="color:#66d9ef">Bool</span>
+<span style="color:#a6e22e">tree</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">scheme</span> (<span style="color:#66d9ef">Leaf</span> <span style="color:#66d9ef">False</span>) (<span style="color:#66d9ef">Leaf</span> <span style="color:#66d9ef">True</span>) <span style="color:#66d9ef">Node</span></code></pre></div>
 <p>I have few real exercises for you this time:</p>
 
 <ul>
@@ -846,7 +974,7 @@ preparation time may seem the easier part but if you did not prepare well enough
 <h2 id="yeah-buzzwords">Yeah! Buzzwords!</h2>
 
 <p>As we have seen, <code>fact</code>&rsquo;s scheme takes 2 arguments:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> scheme<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>baseCase<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> recCase<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> A<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> A</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> scheme<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>baseCase<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> recCase<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> A<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> A</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span></code></pre></div>
 <p>While this definition is perfectly ok, we can regroup these argument in any structure that can hold both values like
 a pair, an interface or a trait:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">FactorialSchemeArguments</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
@@ -854,7 +982,11 @@ a pair, an interface or a trait:</p>
   <span style="color:#66d9ef">def</span> recCase<span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span>
 <span style="color:#f92672">}</span>
 
-<span style="color:#66d9ef">def</span> scheme<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>arguments<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">FactorialSchemeArguments</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> A</code></pre></div>
+<span style="color:#66d9ef">def</span> scheme<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>arguments<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">FactorialSchemeArguments</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> A</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">class</span> <span style="color:#66d9ef">FactorialSchemeArguments</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">where</span>
+  <span style="color:#a6e22e">baseCase</span> <span style="color:#f92672">::</span> <span style="color:#a6e22e">a</span>
+  <span style="color:#a6e22e">recCase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span>
+
+<span style="color:#a6e22e">scheme</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">FactorialSchemeArguments</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span></code></pre></div>
 <p>Note that <code>scheme</code> is still the same: it still takes the same two arguments.
 But even if the code didn&rsquo;t change, this transformation makes us see <code>scheme</code>
 from a different perspective. It shows <code>scheme</code> as a functions transforming
@@ -867,7 +999,11 @@ it in literature, i just coined the term) and the scheme an <em>akolovioaMorphis
   <span style="color:#66d9ef">def</span> action<span style="color:#f92672">(</span>n<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">,</span> r<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span>
 <span style="color:#f92672">}</span>
 
-<span style="color:#66d9ef">def</span> akolovioaMorphism<span style="color:#f92672">[</span><span style="color:#66d9ef">A:</span> <span style="color:#66d9ef">AkolovioaAlgebra</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> A</code></pre></div>
+<span style="color:#66d9ef">def</span> akolovioaMorphism<span style="color:#f92672">[</span><span style="color:#66d9ef">A:</span> <span style="color:#66d9ef">AkolovioaAlgebra</span><span style="color:#f92672">]</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> A</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">class</span> <span style="color:#66d9ef">AkolovioaAlgebra</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">where</span>
+  <span style="color:#a6e22e">initial</span> <span style="color:#f92672">::</span> <span style="color:#a6e22e">a</span>
+  <span style="color:#a6e22e">action</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span>
+
+<span style="color:#a6e22e">akolovioaMorphism</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">AkolovioaAlgebra</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">a</span></code></pre></div>
 <p>This looks smart, doesn&rsquo;t it? 😉 It is actually very close to a very common structure in
 programming! <em>Will you find which one?</em> Obviously the same can be done for <em>fibonacci</em>&rsquo;s scheme.
 <em>As an exercise, apply this technique to fibonacci&rsquo;s scheme and give them pretty names.</em></p>
@@ -1147,20 +1283,20 @@ real examples have.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/hugo/js/clipboard.min.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.min.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.jquery.min.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/jquery.sticky.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/featherlight.min.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/html5shiv-printshiv.min.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/highlight.pack.js?1553249093"></script>
+    <script src="https://chrilves.github.io/hugo/js/clipboard.min.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.min.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.jquery.min.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/jquery.sticky.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/featherlight.min.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/html5shiv-printshiv.min.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/highlight.pack.js?1553253121"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/hugo/js/modernizr.custom.71422.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/learn.js?1553249093"></script>
-    <script src="https://chrilves.github.io/hugo/js/hugo-learn.js?1553249093"></script>
+    <script src="https://chrilves.github.io/hugo/js/modernizr.custom.71422.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/learn.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/hugo-learn.js?1553253121"></script>
 
-    <link href="https://chrilves.github.io/hugo/mermaid/mermaid.css?1553249093" type="text/css" rel="stylesheet" />
-    <script src="https://chrilves.github.io/hugo/mermaid/mermaid.js?1553249093"></script>
+    <link href="https://chrilves.github.io/hugo/mermaid/mermaid.css?1553253121" type="text/css" rel="stylesheet" />
+    <script src="https://chrilves.github.io/hugo/mermaid/mermaid.js?1553253121"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
