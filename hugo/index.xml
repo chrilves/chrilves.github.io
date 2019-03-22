@@ -17,7 +17,8 @@
       <pubDate>Fri, 22 Mar 2019 10:00:00 +0100</pubDate>
       
       <guid>https://chrilves.github.io/hugo/posts/recursion_schemes_intro/</guid>
-      <description>Recursion schemes are said to be a tough subject. Articles and presentations often flood the audience with lots of names such as Algebra, CoAlgebra, catamorphisms, anamorhpisms, hylomorphism, etc. Is knowing all these concepts required to understand recursion schemes? I have good news for you: it isn&amp;rsquo;t! All you need, to see what recursion schemes are and why there are useful, can be presented with just a single basic function, often taught as an introduction to programming: factorial.</description>
+      <description>I&amp;rsquo;ll be giving a talk on Thursday the 28th of march 2019 at the 96th Paris Scala User Group session on about this.
+Recursion schemes are said to be a tough subject. Articles and presentations often flood the audience with lots of names such as Algebra, CoAlgebra, catamorphisms, anamorhpisms, hylomorphism, etc. Is knowing all these concepts required to understand recursion schemes? I have good news for you: it isn&amp;rsquo;t! All you need, to see what recursion schemes are and why there are useful, can be presented with just a single basic function, often taught as an introduction to programming: factorial.</description>
     </item>
     
     <item>

@@ -12,18 +12,18 @@
     <title>Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/hugo/css/nucleus.css?1553253121" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/fontawesome-all.min.css?1553253121" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/hybrid.css?1553253121" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/featherlight.min.css?1553253121" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/perfect-scrollbar.min.css?1553253121" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/auto-complete.css?1553253121" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/theme.css?1553253121" rel="stylesheet">
-    <link href="https://chrilves.github.io/hugo/css/hugo-theme.css?1553253121" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/nucleus.css?1553287025" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/fontawesome-all.min.css?1553287025" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/hybrid.css?1553287025" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/featherlight.min.css?1553287025" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/perfect-scrollbar.min.css?1553287025" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/auto-complete.css?1553287025" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/theme.css?1553287025" rel="stylesheet">
+    <link href="https://chrilves.github.io/hugo/css/hugo-theme.css?1553287025" rel="stylesheet">
     
 
     
-    <script src="https://chrilves.github.io/hugo/js/jquery-2.x.min.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/jquery-2.x.min.js?1553287025"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
     <style type="text/css">
@@ -120,14 +120,14 @@
     <span data-search-clear=""><i class="fas fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/hugo/js/lunr.min.js?1553253121"></script>
-<script type="text/javascript" src="https://chrilves.github.io/hugo/js/auto-complete.js?1553253121"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/lunr.min.js?1553287025"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/auto-complete.js?1553287025"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io\/hugo";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/hugo/js/search.js?1553253121"></script>
+<script type="text/javascript" src="https://chrilves.github.io/hugo/js/search.js?1553287025"></script>
 
     
   </div>
@@ -532,6 +532,8 @@
 
 
 
+<p><em>I&rsquo;ll be giving a talk on Thursday the 28th of march 2019 at the <a href="https://www.meetup.com/fr-FR/Paris-Scala-User-Group-PSUG/events/259498147/">96th Paris Scala User Group</a> session on about this.</em></p>
+
 <p>Recursion schemes are said to be a tough subject. Articles and presentations often
 flood the audience with lots of names such as <em>Algebra</em>, <em>CoAlgebra</em>, <em>catamorphisms</em>,
 <em>anamorhpisms</em>, <em>hylomorphism</em>, etc. Is knowing all these concepts required to understand
@@ -850,7 +852,7 @@ Remember they are many ways to split it up. This one is just one of many sensibl
   <span style="color:#66d9ef">where</span>
     <span style="color:#a6e22e">aux</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase0</span>
     <span style="color:#a6e22e">aux</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseCase1</span>
-    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">r1</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">r2</span>
+    <span style="color:#a6e22e">aux</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">recCase</span> <span style="color:#a6e22e">r1</span> <span style="color:#a6e22e">r2</span>
       <span style="color:#66d9ef">where</span>
         <span style="color:#a6e22e">r1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
         <span style="color:#a6e22e">r2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aux</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)</code></pre></div>
@@ -1283,20 +1285,20 @@ real examples have.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/hugo/js/clipboard.min.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.min.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.jquery.min.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/jquery.sticky.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/featherlight.min.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/html5shiv-printshiv.min.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/highlight.pack.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/clipboard.min.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.min.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/perfect-scrollbar.jquery.min.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/jquery.sticky.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/featherlight.min.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/html5shiv-printshiv.min.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/highlight.pack.js?1553287025"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/hugo/js/modernizr.custom.71422.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/learn.js?1553253121"></script>
-    <script src="https://chrilves.github.io/hugo/js/hugo-learn.js?1553253121"></script>
+    <script src="https://chrilves.github.io/hugo/js/modernizr.custom.71422.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/learn.js?1553287025"></script>
+    <script src="https://chrilves.github.io/hugo/js/hugo-learn.js?1553287025"></script>
 
-    <link href="https://chrilves.github.io/hugo/mermaid/mermaid.css?1553253121" type="text/css" rel="stylesheet" />
-    <script src="https://chrilves.github.io/hugo/mermaid/mermaid.js?1553253121"></script>
+    <link href="https://chrilves.github.io/hugo/mermaid/mermaid.css?1553287025" type="text/css" rel="stylesheet" />
+    <script src="https://chrilves.github.io/hugo/mermaid/mermaid.js?1553287025"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -9,6 +9,8 @@ keywords:
   - F-Algebra
 ---
 
+*I'll be giving a talk on Thursday the 28th of march 2019 at the [96th Paris Scala User Group](https://www.meetup.com/fr-FR/Paris-Scala-User-Group-PSUG/events/259498147/) session on about this.*
+
 Recursion schemes are said to be a tough subject. Articles and presentations often
 flood the audience with lots of names such as *Algebra*, *CoAlgebra*, *catamorphisms*,
 *anamorhpisms*, *hylomorphism*, etc. Is knowing all these concepts required to understand
@@ -413,7 +415,7 @@ scheme baseCase0 baseCase1 recCase = aux
   where
     aux 0 = baseCase0
     aux 1 = baseCase1
-    aux n = r1 + r2
+    aux n = recCase r1 r2
       where
         r1 = aux (n - 1)
         r2 = aux (n - 2)
