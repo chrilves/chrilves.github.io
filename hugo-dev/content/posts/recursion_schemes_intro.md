@@ -520,7 +520,7 @@ scheme baseCase recCase n = aux baseCase 1
 ```
 
 Not only can we still define `fact` (and `sum`) like above but it makes trivial defining
-the functions like `list` which returns the list of integers between *1* and *n*:
+the functions like `list` which returns the list of integers between *n* and *1*:
 
 ```scala
 def list: Int => List[Int] = scheme[List[Int]](Nil, (n: Int, r: List[Int]) => n :: r)
