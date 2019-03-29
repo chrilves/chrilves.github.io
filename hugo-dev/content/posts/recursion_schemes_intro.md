@@ -398,15 +398,19 @@ fib n = recCase r1 r2
 Which leads to the recursion scheme:
 
 ```scala
-def scheme(baseCase0: Int, baseCase1: Int, recCase: (Int, Int) => Int)(n: Int): Int =
-  n match {
-    case 0 => baseCase0
-    case 1 => baseCase1
-    case n =>
-      val r1 = fib(n-1)
-      val r2 = fib(n-2)
-      recCase(r1, r2)
-  }
+def scheme(baseCase0: Int, baseCase1: Int, recCase: (Int, Int) => Int): Int => Int = {
+  def commonRecursiveRelevantPart(n: Int): Int =
+    n match {
+      case 0 => baseCase0
+      case 1 => baseCase1
+      case n =>
+        val r1 = commonRecursiveRelevantPart(n - 1)
+        val r2 = commonRecursiveRelevantPart(n - 2)
+        recCase(r1, r2)
+    }
+
+  commonRecursiveRelevantPart
+}
 ```
 
 ```haskell
@@ -415,7 +419,7 @@ scheme baseCase0 baseCase1 recCase = aux
   where
     aux 0 = baseCase0
     aux 1 = baseCase1
-    aux n = recCase r1 r2
+    aux n = r1 + r2
       where
         r1 = aux (n - 1)
         r2 = aux (n - 2)
