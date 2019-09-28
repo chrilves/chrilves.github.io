@@ -1,5 +1,5 @@
 ---
-title: "Gadts_by_use_cases"
+title: "Gadts By Use Cases"
 date: 2019-09-26T11:58:02+02:00
 draft: true
 description: 
@@ -75,12 +75,16 @@ class OneTypeForEvery[A]
 
 ## How many values?
 
+Considering the following type:
+
 ```scala
 final abstract class NoValueForThisType
 ```
 
 1. Try to create a value belonging to the type `NoValueForThisType`?
 2. How many values belong to `NoValueForThisType`?
+
+Let's take another example:
 
 ```scala
 sealed trait ExactlyOneValue
@@ -188,10 +192,13 @@ some *case class* (possible none too!). In the following parts we will explore s
 
 # Easy Useful Use Cases: Relations on Types
 
-One easy but very useful use of *GADTs* is expressing relations about types such that:
+One easy but very useful benefit of *GADTs* is expressing relations about types such that:
 
 - Is type `A` equal to type `B`?
 - Is type `A` a sub-type of `B`?
+
+Note that, by definition, a type `A` is always considered a sub-type of itself (i.e. `A <: A`),
+very much like an integer `x` is also considered lesser-than-or-equal to itself `x ≤ x`.
 
 ## Use Case: Witnessing Type Equality
 
@@ -202,7 +209,7 @@ final case class Evidence[X]() extends EqT[X,X]
 
 1. Try to find a value of type `EqT[Int, Int]`
 2. Try to find a value of type `EqT[String, Int]`
-3. Given to (unknown) types `A` and `B`.
+3. Given two (unknown) types `A` and `B`.
    What can you conclude if i give you a value of type `EqT[A,B]`?
 
 In production, it is convenient to define the following equivalent code:
@@ -231,7 +238,10 @@ etc. More generally, for any `F[_]`, `F[A]` is also the same type as `F[B]`.
 ## Use Case: Witnessing Sub Typing
 
 1. Create the type `SubTypeOf[A,B]` (and all that is necessary) such that:
-   > There exists a value of type `SubType[A,B]` **if and only if** `A` is a sub-type of `B` (i.e. `A <: B`).
+
+    > There exists a value of type `SubType[A,B]` **if and only if** `A` is a sub-type of `B` (i.e. `A <: B`).
+
+    Remember that, by definition, a type `A` is always considered a sub-type of itself (i.e. `A <: A`).
 
 ## Use Case: Avoiding annoying *scalac* error messages about bounds not respected
 
@@ -243,7 +253,7 @@ class Vegetable extends Food
 class Fruit extends Food
 ```
 
-and then the class representing animals eating food of type `A` (i.e. `Vegetable`, `Fuit`, etc):
+and then the class representing animals eating food of type `A` (i.e. `Vegetable`, `Fruit`, etc):
 
 ```scala
 class AnimalEating[A <: Food]
@@ -251,7 +261,7 @@ class AnimalEating[A <: Food]
 val elephant : AnimalEating[Vegetable] = new AnimalEating[Vegetable]
 ```
 
-Let's define a like there are so many in *Functional Programming* and apply it to `elephant`:
+Let's define a function like there are so many in *Functional Programming* and apply it to `elephant`:
 
 ```scala
 def dummy[F[_],A](fa: F[A]): Unit = ()
@@ -274,7 +284,7 @@ scala> dummy(elephant)
 The problem is that, when we defined `class AnimalEating[A <: Food]`,
 we gave the restriction that `A <: Food`. So *Scala*, like *Java*,
 forbids us to give `AnimalEating` anything but a sub-type of `Food`
-(or `Food` itself):
+(including `Food` itself):
 
 ```scala
 scala> type T1 = AnimalEating[Int]
@@ -285,11 +295,12 @@ scala> type T2 = AnimalEating[Food]
 defined type alias T2
 ```
 
-We face a dilemma. To use the function `dummy`, that we really want to use because it's a very nice function,
+We face a dilemma: to use the function `dummy`, that we really want to use because it's a very nice function,
 we need to remove the constraint `A <: Food` from the definition of `class AnimalEating[A <: Food]`.
 But we still want to say that animals eat food, not integers, boolean or strings!
 
 1. How can you adapt the definition `class AnimalEating[A]` so that:
+
     > There exists a value of type `AnimalEating[A]` **if and only if** `A` is a sub-type of `Food` (i.e. `A <: Food`).
 
 # More Advanced Use Cases
@@ -303,6 +314,8 @@ no implementation):
 ```scala
 trait EffectSig {
   def echo[A](value: A): A
+  def randomInt() : Int
+  def ignore[A](value: A): Unit
 }
 ```
 
@@ -312,6 +325,8 @@ is useful to switch between implementations easily :
 ```scala
 object EffectImpl extends EffectSig {
   def echo[A](value: A): A = value
+  def randomInt() : Int = scala.util.Random.nextInt()
+  def ignore[A](value: A): Unit = ()
 }
 ```
 
@@ -320,6 +335,8 @@ Another equivalent way to define effects is via:
 ```scala
 sealed trait Effect[A]
 final case class Echo[A](value: A) extends Effect[A]
+final case class RandomInt() extends Effect[Int]
+final case class Ignore[A](value: A) extends Effect[Unit]
 ```
 
 Once again this is a declaration with no implementation! Once again implementations
@@ -329,6 +346,8 @@ can be written elsewhere and there can also be many of them:
 def runEffect[A](effect: Effect[A]): A =
   effect match {
     case Echo(value) => value
+    case RandomInt() => scala.util.Random.nextInt()
+    case Ignore(_) => ()
   }
 ```
 
@@ -357,18 +376,22 @@ object EffectImpl extends EffectSig {
 1. Write the **GADT** `Effect[A]` representing the trait `EffectSig`.
 2. Write the function `run[A](effect: Effect[A]): A` implementing the effect like `EffectImpl` does.
 
-The type `Effect[A]` declare interesting effects (`CurrentTimeMillis`, `PrintLn` and `Mesure`) but,
-to be useful we want `Effect` to support the following methods:
+The *GADT* `Effect[A]` declare interesting effects (`CurrentTimeMillis`, `PrintLn` and `Mesure`) but,
+to be useful we want it to support the following operations:
 
 - `def pure[A](value: A): Effect[A]`
 - `def flatMap[X,A](fa: Effect[X], f: X => Effect[A]): Effect[A]`
 
-3. Add two constructors to the definition of the *GADT* `Effect` encoding these operations.
-4. Adapt the function `run` to handle these two constructors.
-5. Add the two following methods to trait `Effect[A]`:
+3. Add two *case classes*, `Pure` and `FlatMap`, to the definition of the *GADT* `Effect[A]` encoding these operations.
+4. Adapt the function `run` to handle these two new cases.
+5. Add the two following methods to trait `Effect[A]` to get:
 
-    - `final def flatMap[B](f: A => Effect[B]): Effect[B] = <give the correct body>`
-    - `final def map[B](f: A => B): Effect[B] = flatMap[B]((a:A) => pure(f(a)))`
+    ```scala
+    sealed trait Effect[A] {
+      final def flatMap[B](f: A => Effect[B]): Effect[B] = FlatMap(this, f)
+      final def map[B](f: A => B): Effect[B] = flatMap[B]((a:A) => Pure(f(a)))
+    }
+    ```
 
     And run the follwing code to see if it works:
 
@@ -399,7 +422,7 @@ val oneTrueToto : HCons[Int, HCons[Boolean, HCons[String, HNil]]] =
 ```
 
 As you can see, there is nothing special about it. We want to define orderings on heterogeneous lists.
-An ordering is a way to say to compare two values (**of the same type!**): they can be equal or one may
+An ordering is a way to compare two values (**of the same type!**): they can be equal or one may
 be lesser than the other. In *Scala* we can define the trait `Order`:
 
 ```scala
@@ -540,8 +563,8 @@ object HListOrder {
 ```
 
 Note that these implicit definitions are boilerplate. Their only purpose is passing arguments
-to their corresponding constructor: `hnilOrder` to `HListOrder` (O arguments) and `hconsOrder` to
-`HConsOrder` (2 arguments).
+to their corresponding constructor (i.e. `case class` or `case object`):
+`hnilOrder` to `HListOrder` (O arguments) and `hconsOrder` to `HConsOrder` (2 arguments).
 
 2. Write the function `def lex[A: HListOrder] : Order[A]` that compute the lexicographic ordering from a value of type `HListOrder[A]]`.
 3. Write the function `def revLex[A: HListOrder] : Order[A]` that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]]`.
@@ -591,7 +614,8 @@ implicit object OptionFunctor extends Functor[Option] {
 2. Write an instance of `Functor[DBValue]`.
 
 A *Generalized Functor* is very much like a regular `Functor` but
-the `map` function can be restricted to only some types `A` and `B`:
+the `map` function do not apply to any type `A` and `B` but is restricted
+to the only types `A` and `B` satisfying some condition:
 
 ```scala
 trait GenFunctor[P[_],F[_]] {
@@ -612,4 +636,4 @@ implicit object TreeSetFunctor extends GenFunctor[Ordering, TreeSet] {
 }
 ```
 
-3. Write an instance of `GenFunctor[DBType, DBValue]`.
+3. Write an instance of `GenFunctor[DBType, DBValue]`r
