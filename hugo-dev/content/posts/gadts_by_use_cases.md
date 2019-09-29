@@ -2,7 +2,7 @@
 title: "Gadts By Use Cases"
 date: 2019-09-26T11:58:02+02:00
 draft: true
-description: 
+description:
 keywords:
   - GATD
   - GADTs
@@ -55,7 +55,7 @@ scala> 5 : String
 
 ## How many types?
 
-Let's now create some types and some of their values (when possible!). 
+Let's now create some types and some of their values (when possible!).
 
 ```scala
 class OneType
@@ -65,7 +65,7 @@ class OneType
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       As the name suggests, `class OneType` defines only one type which is the *class* `OneType`.
     </details>
 
@@ -79,9 +79,9 @@ class OneTypeForEvery[A]
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       As the name suggests, every concrete type `A` give rise to a distinct type `OneTypeForEvery[A]`.
-      
+
       For example, a list of integers is neither a list of booleans, nor a list of strings,
       nor a list of functions, nor ... It means the types `List[Int]`, `List[Boolean]`,
       `List[Int => Int]`, etc are all distinct types.
@@ -113,14 +113,14 @@ final abstract class NoValueForThisType
    How many values belong to `NoValueForThisType`?
 
     <details>
-      <summary>*Hint (click to expand)*</summary>  
+      <summary>*Hint (click to expand)*</summary>
       - What is a `final` class? How does it differ from a normal non-final class?
       - What is an `abstract` class? How does it differ from a concrete class?
     </details>
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       The class `NoValueForThisType` is declared `abstract`. It is then forbidden to create an
       instance of this class:
 
@@ -154,7 +154,7 @@ case object TheOnlyValue extends ExactlyOneValue
 
     <details>
       <summary>*Solution (click to expand)*</summary>
- 
+
       By definition, `TheOnlyValue` is a value of type `ExactlyOneValue`.
     </details>
 
@@ -184,7 +184,7 @@ case object AValue extends ATrait[Char]
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       By definition, `AValue` is a value of type `ATrait[Char]`.
     </details>
 
@@ -192,7 +192,7 @@ case object AValue extends ATrait[Char]
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       There is no way to have an instance of type `ATrait[Int]`.
       There is actually no way to have an instance of type `ATrait[B]` for `B ≠ Char`
       because the only possible value is `AValue` which is of type `ATrait[Char]`.
@@ -202,7 +202,7 @@ case object AValue extends ATrait[Char]
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       The only possible value is `AValue` which is of type `ATrait[Char]` so `B = Char`.
     </details>
 
@@ -226,7 +226,7 @@ case object AValue extends ATrait[Char]
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       The pattern-matching is exhaustive because the only possible actual value for `ev` is `AValue`.
       Furthermore `AValue` is of type `ATrait[Char]` which means `v : ATrait[Char]` because `v == AValue`.
       So `A = Char` and `x : Char`.
@@ -236,7 +236,7 @@ case object AValue extends ATrait[Char]
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       ```scala
       scala> f[Char]('w', AValue)
       res0: Char = w
@@ -308,7 +308,7 @@ val loggerStdout : UnknownLogger = LogWith[Unit]((), (logs: Unit, message: Strin
 ```
 
 Note that these three loggers all have the same type (i.e. `UnknownLogger`) but they stores
-the logs using different types `X` (`String`, `List[String]` and `Unit`). 
+the logs using different types `X` (`String`, `List[String]` and `Unit`).
 
 - Let `v` be a value of type `UnknownLogger`. Clearly `v` has to be an instance of type
    `LogWith[X]` for some type `X`. What do you know about `X`? Why is it useful to
@@ -440,7 +440,7 @@ final case class Evidence[X]() extends EqT[X,X]
     <details>
       <summary>*Solution (click to expand)*</summary>
 
-      If i give you a value `v : EqT[A,B]`, then you know that `v` is an instance of 
+      If i give you a value `v : EqT[A,B]`, then you know that `v` is an instance of
       `Evidence[X]` for some type `X` because the class `Evidence` is the only concrete
       sub-class of the sealed trait `EqT`. Actually `Evidence[X]` is a sub-type of
       `EqT[X,X]`. Thus `v : EqT[X,X]`. Types `EqT[A,B]` and `EqT[X,X]` have no value in
@@ -467,8 +467,33 @@ If `A` and `B` are actually the same type, then `List[A]` is also the
 same type as `List[B]`, `Option[A]` is also the same type as `Option[B]`,
 etc. More generally, for any `F[_]`, `F[A]` is also the same type as `F[B]`.
 
-- Write the function `toF[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]`.
-- Using the function `toF` above, write the function `toScalaEq[A,B](eqT: EqT[A,B]): A =:= B`.
+- Write the function `def toF[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      ```scala
+      def toF[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B] =
+        eqT match {
+          case _ : EqT.Evidence[x] => fa
+        }
+      ```
+
+    </details>
+
+- Using the function `toF` above, write the function `def toScalaEq[A,B](eqT: EqT[A,B]): A =:= B`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      ```scala
+      def toScalaEq[A,B](eqT: EqT[A,B]): A =:= B = {
+        type F[X] = A =:= X
+        toF[F,A,B](eqT)(implicitly[A =:= A])
+      }
+      ```
+
+    </details>
 
 ## Use Case: Witnessing Sub Typing
 
@@ -477,6 +502,29 @@ etc. More generally, for any `F[_]`, `F[A]` is also the same type as `F[B]`.
     > There exists a value of type `SubType[A,B]` **if and only if** `A` is a sub-type of `B` (i.e. `A <: B`).
 
     Remember that, by definition, a type `A` is always considered a sub-type of itself (i.e. `A <: A`).
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      ```scala
+      sealed trait SubTypeOf[A,B]
+      final case class Evidence[A <: B, B]() extends SubTypeOf[A,B]
+      ```
+
+      or the more production-ready:
+
+      ```scala
+      sealed trait SubTypeOf[A,B]
+      object SubTypeOf {
+        final case class Evidence[A <: B, B]() extends SubTypeOf[A,B]
+
+        implicit def evidence[A <: B, B]: SubTypeOf[A,B] = Evidence[A,B]()
+
+        def apply[A,B](implicit ev: SubTypeOf[A,B]): ev.type = ev
+      }
+      ```
+
+    </details>
 
 ## Use Case: Avoiding annoying *scalac* error messages about bounds not respected
 
@@ -516,6 +564,15 @@ scala> dummy(elephant)
 
 - Why does *scalac* complains?
 
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    The function `dummy` requires its argument `F` to accept any type
+    as argument so that we can write `F[A]` for any type `A`. On the contrary,
+    `AnimalEating` requires its argument to be a sub-type of `Food`.
+    Thus `AnimalEating` can not be used as `dummy`'s argument `F`.
+    </details>
+
 The problem is that, when we defined `class AnimalEating[A <: Food]`,
 we gave the restriction that `A <: Food`. So *Scala*, like *Java*,
 forbids us to give `AnimalEating` anything but a sub-type of `Food`
@@ -537,6 +594,31 @@ But we still want to say that animals eat food, not integers, boolean or strings
 - How can you adapt the definition `class AnimalEating[A]` so that:
 
     > There exists a value of type `AnimalEating[A]` **if and only if** `A` is a sub-type of `Food` (i.e. `A <: Food`).
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    class AnimalEating[A](implicit ev : SubTypeOf[A, Food])
+
+    val elephant : AnimalEating[Vegetable] = new AnimalEating[Vegetable]
+    ```
+
+    Now we can apply the `dummy` function on `elephant`:
+
+    ```scala
+    scala> dummy(elephant)
+    ```
+
+    And there is still no animal eating integers:
+
+    ```scala
+    scala> new AnimalEating[Int]
+           ^
+           error: could not find implicit value for parameter ev: SubTypeOf[Int,Food]
+    ```
+
+    </details>
 
 # Standard Use Cases
 
@@ -596,8 +678,12 @@ trait EffectSig {
 }
 
 object EffectImpl extends EffectSig {
-  def currentTimeMillis: Long = System.currentTimeMillis()
-  def printLn(msg: String): Unit = println(msg)
+  def currentTimeMillis: Long =
+    System.currentTimeMillis()
+
+  def printLn(msg: String): Unit =
+    println(msg)
+
   def mesure[X,A](fun: X => A, arg: X): A = {
     val t0 = System.currentTimeMillis()
     val r  = fun(arg)
@@ -609,16 +695,100 @@ object EffectImpl extends EffectSig {
 ```
 
 - Write the **GADT** `Effect[A]` representing the trait `EffectSig`.
-- Write the function `run[A](effect: Effect[A]): A` implementing the effect like `EffectImpl` does.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    sealed trait Effect[A]
+    final case object CurrentTimeMillis extends Effect[Long]
+    final case class  PrintLn(msg: String) extends Effect[Unit]
+    final case class  Mesure[X,A](fun: X => A, arg: X) extends Effect[A]
+    ```
+
+    </details>
+
+- Write the function `def run[A](effect: Effect[A]): A` implementing the effect like `EffectImpl` does.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    def run[A](effect: Effect[A]): A =
+      effect match {
+        case CurrentTimeMillis =>
+          System.currentTimeMillis()
+
+        case PrintLn(msg) =>
+          println(msg)
+
+        case Mesure(fun, arg) =>
+          val t0 = System.currentTimeMillis()
+          val r  = fun(arg)
+          val t1 = System.currentTimeMillis()
+          println(s"Took ${t1 - t0} milli-seconds")
+          r
+      }
+    ```
+
+    </details>
+
 
 The *GADT* `Effect[A]` declare interesting effects (`CurrentTimeMillis`, `PrintLn` and `Mesure`) but,
 to be useful we want it to support the following operations:
 
 - `def pure[A](value: A): Effect[A]`
-- `def flatMap[X,A](fa: Effect[X], f: X => Effect[A]): Effect[A]`
+- `def flatMap[X,A](fx: Effect[X], f: X => Effect[A]): Effect[A]`
 
 - Add two *case classes*, `Pure` and `FlatMap`, to the definition of the *GADT* `Effect[A]` encoding these operations.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    sealed trait Effect[A]
+    final case object CurrentTimeMillis extends Effect[Long]
+    final case class  PrintLn(msg: String) extends Effect[Unit]
+    final case class  Mesure[X,A](fun: X => A, arg: X) extends Effect[A]
+    final case class  Pure[A](value: A) extends Effect[A]
+    final case class  FlatMap[X,A](fx: Effect[X], f: X => Effect[A]) extends Effect[A]
+    ```
+
+    </details>
+
 - Adapt the function `run` to handle these two new cases.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    def run[A](effect: Effect[A]): A =
+      effect match {
+        case CurrentTimeMillis =>
+          System.currentTimeMillis()
+
+        case PrintLn(msg) =>
+          println(msg)
+
+        case Mesure(fun, arg) =>
+          val t0 = System.currentTimeMillis()
+          val r  = fun(arg)
+          val t1 = System.currentTimeMillis()
+          println(s"Took ${t1 - t0} milli-seconds")
+          r
+
+        case Pure(a) =>
+          a
+
+        case FlatMap(fx, f) =>
+          val x  = run(fx)
+          val fa : Effect[A] = f(x)
+          run(fa)
+      }
+    ```
+
+    </details>
+
 - Add the two following methods to trait `Effect[A]` to get:
 
     ```scala
@@ -640,171 +810,61 @@ to be useful we want it to support the following operations:
     run(effect1)
     ```
 
-## Use Case: Simplifying Implicits
-
-Heterogeneous lists are lists whose element can be of different types. They are usually defined in *Scala*
-almost like normal lists:
-
-```scala
-final case class HNil() // The empty list
-final case class HCons[Head,Tail](head: Head, tail: Tail) // The `head :: tail` operation
-
-val empty : HNil =
-  HNil()
-
-val oneTrueToto : HCons[Int, HCons[Boolean, HCons[String, HNil]]] =
-  HCons(1, HCons(true, HCons("toto", HNil())))
-```
-
-As you can see, there is nothing special about it. We want to define orderings on heterogeneous lists.
-An ordering is a way to compare two values (**of the same type!**): they can be equal or one may
-be lesser than the other. In *Scala* we can define the trait `Order`:
-
-```scala
-trait Order[A] {
-  // true if and only if a1 < a2
-  def lesserThan(a1: A, a2: A): Boolean
-
-  // a1 and a2 are equal if and only if none of them is lesser than the other.
-  final def areEqual(a1: A, a2: A): Boolean = !lesserThan(a1, a2) && !lesserThan(a2, a1)
-
-  // a1 > a2 are if and only if a2 < a1
-  final def greaterThan(a1: A, a2: A): Boolean = lesserThan(a2, a1)
-
-  final def lesserThanOrEqual(a1: A, a2: A): Boolean = !lesserThan(a2, a1)
-
-  final def greaterThanOrEqual(a1: A, a2: A): Boolean = !lesserThan(a1, a2)
-}
-
-object Order {
-  def apply[A](implicit ev: Order[A]): ev.type = ev
-
-  def make[A](lg_ : (A,A) => Boolean): Order[A] =
-    new Order[A] {
-      def lesserThan(a1: A, a2: A): Boolean = lg_(a1,a2)
-    }
-}
-
-implicit val orderInt    = Order.make[Int](_ < _)
-implicit val orderString = Order.make[String](_ < _)
-```
-
-Remember that we will only compare lists of the same type:
-
-- Lists of type `HNil` will only be compared to lists of type `HNil`.
-- Lists of type `HCons[H,T]` will only be compared to lists of type `HCons[H,T]`.
-
-Comparing lists of type `HNil` is trivial because there is only one value
-of type `HNil`: the empty list `HNil()`. We want to define several orderings
-on heterogeneous lists:
-
-- The lexicographic ordering (i.e. dictionary order: from left to right)
-
-    > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `h1 < h2` *or* (`h1 == h2` *and* `t1 < t2` *by lexicographic ordering*).
-    
-    ```scala
-    sealed trait Lex[A] {
-      val order : Order[A]
-    }
-
-    object Lex {
-      def apply[A](implicit ev: Lex[A]): ev.type = ev
-
-      implicit val lexHNil: Lex[HNil] =
-        new Lex[HNil] {
-          val order = Order.make[HNil]((_,_) => false)
-        }
-
-      implicit def lexHCons[Head,Tail](implicit
-          orderHead: Order[Head],
-          lexTail: Lex[Tail]
-        ): Lex[HCons[Head, Tail]] =
-        new Lex[HCons[Head, Tail]] {
-          val orderTail: Order[Tail] = lexTail.order
-
-          val order = Order.make[HCons[Head, Tail]] {
-            case (HCons(h1,t1), HCons(h2,t2)) =>
-              orderHead.lesserThan(h1,h2) || (orderHead.areEqual(h1,h2) && orderTail.lesserThan(t1,t2))
-          }
-        }
-    }
-    ```
-
-- The reverse-lexicographic ordering which is the reverse version of the lexicographic
-  ordering (i.e. from right to left)
-
-    > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `t1 < t2` *by reverse-lexicographic ordering or* (`t1 == t2` *and* `h1 < h2`).
+    <details>
+      <summary>*Solution (click to expand)*</summary>
 
     ```scala
-    sealed trait RevLex[A] {
-      val order : Order[A]
+    sealed trait Effect[A] {
+      final def flatMap[B](f: A => Effect[B]): Effect[B] = FlatMap(this, f)
+      final def map[B](f: A => B): Effect[B] = flatMap[B]((a:A) => Pure(f(a)))
     }
+    final case object CurrentTimeMillis extends Effect[Long]
+    final case class  PrintLn(msg: String) extends Effect[Unit]
+    final case class  Mesure[X,A](fun: X => A, arg: X) extends Effect[A]
+    final case class  Pure[A](value: A) extends Effect[A]
+    final case class  FlatMap[X,A](fx: Effect[X], f: X => Effect[A]) extends Effect[A]
 
-    object RevLex {
-      def apply[A](implicit ev: RevLex[A]): ev.type = ev
+    def run[A](effect: Effect[A]): A =
+      effect match {
+        case CurrentTimeMillis =>
+          System.currentTimeMillis()
 
-      implicit val revLexHNil: Lex[HNil] =
-        new Lex[HNil] {
-          val order = Order.make[HNil]((_,_) => false)
-        }
+        case PrintLn(msg) =>
+          println(msg)
 
-      implicit def revLexHCons[Head,Tail](implicit
-          orderHead: Order[Head],
-          revLexTail: Lex[Tail]
-        ): RevLex[HCons[Head, Tail]] =
-        new RevLex[HCons[Head, Tail]] {
-          val orderTail: Order[Tail] = revLexTail.order
+        case Mesure(fun, arg) =>
+          val t0 = System.currentTimeMillis()
+          val r  = fun(arg)
+          val t1 = System.currentTimeMillis()
+          println(s"Took ${t1 - t0} milli-seconds")
+          r
 
-          val order = Order.make[HCons[Head, Tail]] {
-            case (HCons(h1,t1), HCons(h2,t2)) =>
-              orderTail.lesserThan(t1,t2) || (orderTail.areEqual(t1,t2) && orderHead.lesserThan(h1,h2))
-          }
-        }
-    }
+        case Pure(a) =>
+          a
+
+        case FlatMap(fx, f) =>
+          val x  = run(fx)
+          val fa : Effect[A] = f(x)
+          run(fa)
+      }
+
+    val effect1: Effect[Unit] =
+      for {
+        t0 <- CurrentTimeMillis
+        _  <- PrintLn(s"The current time is $t0")
+      } yield ()
     ```
 
-- The `Alternate` ordering is defined by:
+    When we run `run(effect1)`:
 
-    > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `h1 < h2` *or* (`h1 == h2` *and* `t1 > t2` *by alternate ordering*).
+    ```scala
+    scala> run(effect1)
+    The current time is 1569773175010
+    ```
 
-    Just like what was done for `Lex` and `RevLex`, implement the `Alternate` ordering.
-    
+    </details>
 
-There are lots of ways to define a valid ordering on heterogeneous lists! Defining type-classes like `Lex`, `RevLex` and `Alternate` for every ordering we want to implement is clunky and messy. We can do much better than that ... with a *GADT* ;)
-
-```scala
-sealed trait HListOrder[A]
-object HListOrder {
-  final case object HNilOrder extends HListOrder[HNil]
-
-  final case class HConsOrder[Head,Tail](
-      orderHead: Order[Head],
-      hlistOrderTail: HListOrder[Tail]
-    ) extends HListOrder[HCons[Head,Tail]]
-
-  // Implicit definitions
-
-  implicit val hnilOrder : HListOrder[HNil] =
-    HNilOrder
-
-  implicit def hconsOrder[Head,Tail](implicit
-      orderHead: Order[Head],
-      hlistOrderTail: HListOrder[Tail]
-    ): HListOrder[HCons[Head,Tail]] =
-    HConsOrder(orderHead, hlistOrderTail)
-
-  def apply[A](implicit ev: HListOrder[A]): ev.type = ev
-}
-```
-
-Note that these implicit definitions are boilerplate. Their only purpose is passing arguments
-to their corresponding constructor (i.e. `case class` or `case object`):
-`hnilOrder` to `HListOrder` (O arguments) and `hconsOrder` to `HConsOrder` (2 arguments).
-
-- Write the function `def lex[A: HListOrder] : Order[A]` that compute the lexicographic ordering from a value of type `HListOrder[A]]`.
-- Write the function `def revLex[A: HListOrder] : Order[A]` that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]]`.
-
-# A More Advanced Use Case:<br/>Ensuring types are supported by the Database
+## Use Case: Ensuring types are supported by the Database
 
 In this section we consider the use case of manipulating data that came from a database.
 Our database **only** supports the following types:
@@ -952,6 +1012,248 @@ object TreeSetFunctor extends GenFunctor[Ordering, TreeSet] {
       def map[A,B](fa: DBValue[A])(f: A => B)(implicit evA: DBType[A], evB: DBType[B]): DBValue[B] =
         DBValue[B](f(fa.value))(evB)
     }
+    ```
+
+    </details>
+
+## Use Case: Simplifying Implicits
+
+Heterogeneous lists are lists whose element can be of different types. They are usually defined in *Scala*
+almost like normal lists:
+
+```scala
+final case class HNil() // The empty list
+final case class HCons[Head,Tail](head: Head, tail: Tail) // The `head :: tail` operation
+
+val empty : HNil =
+  HNil()
+
+val oneTrueToto : HCons[Int, HCons[Boolean, HCons[String, HNil]]] =
+  HCons(1, HCons(true, HCons("toto", HNil())))
+```
+
+As you can see, there is nothing special about it. We want to define orderings on heterogeneous lists.
+An ordering is a way to compare two values (**of the same type!**): they can be equal or one may
+be lesser than the other. In *Scala* we can define the trait `Order`:
+
+```scala
+trait Order[A] {
+  // true if and only if a1 < a2
+  def lesserThan(a1: A, a2: A): Boolean
+
+  // a1 and a2 are equal if and only if none of them is lesser than the other.
+  final def areEqual(a1: A, a2: A): Boolean = !lesserThan(a1, a2) && !lesserThan(a2, a1)
+
+  // a1 > a2 are if and only if a2 < a1
+  final def greaterThan(a1: A, a2: A): Boolean = lesserThan(a2, a1)
+
+  final def lesserThanOrEqual(a1: A, a2: A): Boolean = !lesserThan(a2, a1)
+
+  final def greaterThanOrEqual(a1: A, a2: A): Boolean = !lesserThan(a1, a2)
+}
+
+object Order {
+  def apply[A](implicit ev: Order[A]): ev.type = ev
+
+  def make[A](lg_ : (A,A) => Boolean): Order[A] =
+    new Order[A] {
+      def lesserThan(a1: A, a2: A): Boolean = lg_(a1,a2)
+    }
+}
+
+implicit val orderInt    = Order.make[Int](_ < _)
+implicit val orderString = Order.make[String](_ < _)
+```
+
+Remember that we will only compare lists of the same type:
+
+- Lists of type `HNil` will only be compared to lists of type `HNil`.
+- Lists of type `HCons[H,T]` will only be compared to lists of type `HCons[H,T]`.
+
+Comparing lists of type `HNil` is trivial because there is only one value
+of type `HNil`: the empty list `HNil()`. We want to define several orderings
+on heterogeneous lists:
+
+- The lexicographic ordering (i.e. dictionary order: from left to right)
+
+    > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `h1 < h2` *or* (`h1 == h2` *and* `t1 < t2` *by lexicographic ordering*).
+
+    ```scala
+    sealed trait Lex[A] {
+      val order : Order[A]
+    }
+
+    object Lex {
+      def apply[A](implicit ev: Lex[A]): ev.type = ev
+
+      implicit val lexHNil: Lex[HNil] =
+        new Lex[HNil] {
+          val order = Order.make[HNil]((_,_) => false)
+        }
+
+      implicit def lexHCons[Head,Tail](implicit
+          orderHead: Order[Head],
+          lexTail: Lex[Tail]
+        ): Lex[HCons[Head, Tail]] =
+        new Lex[HCons[Head, Tail]] {
+          val orderTail: Order[Tail] = lexTail.order
+
+          val order = Order.make[HCons[Head, Tail]] {
+            case (HCons(h1,t1), HCons(h2,t2)) =>
+              orderHead.lesserThan(h1,h2) || (orderHead.areEqual(h1,h2) && orderTail.lesserThan(t1,t2))
+          }
+        }
+    }
+    ```
+
+- The reverse-lexicographic ordering which is the reverse version of the lexicographic
+  ordering (i.e. from right to left)
+
+    > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `t1 < t2` *by reverse-lexicographic ordering or* (`t1 == t2` *and* `h1 < h2`).
+
+    ```scala
+    sealed trait RevLex[A] {
+      val order : Order[A]
+    }
+
+    object RevLex {
+      def apply[A](implicit ev: RevLex[A]): ev.type = ev
+
+      implicit val revLexHNil: Lex[HNil] =
+        new Lex[HNil] {
+          val order = Order.make[HNil]((_,_) => false)
+        }
+
+      implicit def revLexHCons[Head,Tail](implicit
+          orderHead: Order[Head],
+          revLexTail: Lex[Tail]
+        ): RevLex[HCons[Head, Tail]] =
+        new RevLex[HCons[Head, Tail]] {
+          val orderTail: Order[Tail] = revLexTail.order
+
+          val order = Order.make[HCons[Head, Tail]] {
+            case (HCons(h1,t1), HCons(h2,t2)) =>
+              orderTail.lesserThan(t1,t2) || (orderTail.areEqual(t1,t2) && orderHead.lesserThan(h1,h2))
+          }
+        }
+    }
+    ```
+
+- The `Alternate` ordering is defined by:
+
+    > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `h1 < h2` *or* (`h1 == h2` *and* `t1 > t2` *by alternate ordering*).
+
+    Just like what was done for `Lex` and `RevLex`, implement the `Alternate` ordering.
+
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    sealed trait Alternate[A] {
+      val order : Order[A]
+    }
+
+    object Alternate {
+      def apply[A](implicit ev: Alternate[A]): ev.type = ev
+
+      implicit val alternateHNil: Alternate[HNil] =
+        new Alternate[HNil] {
+          val order = Order.make[HNil]((_,_) => false)
+        }
+
+      implicit def alternateHCons[Head,Tail](implicit
+          orderHead: Order[Head],
+          alternateTail: Alternate[Tail]
+        ): Alternate[HCons[Head, Tail]] =
+        new Alternate[HCons[Head, Tail]] {
+          val orderTail: Order[Tail] = alternateTail.order
+
+          val order = Order.make[HCons[Head, Tail]] {
+            case (HCons(h1,t1), HCons(h2,t2)) =>
+              orderHead.lesserThan(h1,h2) || (orderHead.areEqual(h1,h2) && orderTail.greaterThan(t1,t2))
+          }
+        }
+    }
+    ```
+
+    </details>
+
+There are lots of ways to define a valid ordering on heterogeneous lists! Defining type-classes like `Lex`, `RevLex` and `Alternate` for every ordering we want to implement is clunky and messy. We can do much better than that ... with a *GADT* ;)
+
+```scala
+sealed trait HListOrder[A]
+object HListOrder {
+  final case object HNilOrder extends HListOrder[HNil]
+
+  final case class HConsOrder[Head,Tail](
+      orderHead: Order[Head],
+      hlistOrderTail: HListOrder[Tail]
+    ) extends HListOrder[HCons[Head,Tail]]
+
+  // Implicit definitions
+
+  implicit val hnilOrder : HListOrder[HNil] =
+    HNilOrder
+
+  implicit def hconsOrder[Head,Tail](implicit
+      orderHead: Order[Head],
+      hlistOrderTail: HListOrder[Tail]
+    ): HListOrder[HCons[Head,Tail]] =
+    HConsOrder(orderHead, hlistOrderTail)
+
+  def apply[A](implicit ev: HListOrder[A]): ev.type = ev
+}
+```
+
+Note that these implicit definitions are boilerplate. Their only purpose is passing arguments
+to their corresponding constructor (i.e. `case class` or `case object`):
+`hnilOrder` to `HListOrder` (O arguments) and `hconsOrder` to `HConsOrder` (2 arguments).
+
+- Write the function `def lex[A](implicit v : HListOrder[A]): Order[A]` that compute the lexicographic ordering from a value of type `HListOrder[A]`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    def lex[A](implicit v : HListOrder[A]): Order[A] =
+      v match {
+        case HListOrder.HNilOrder =>
+          Order.make[HNil]((_,_) => false)
+
+        case hc : HListOrder.HConsOrder[head,tail] =>
+          val orderHead: Order[head] = hc.orderHead
+          val orderTail: Order[tail] = lex(hc.hlistOrderTail)
+
+          Order.make[HCons[head, tail]] {
+            case (HCons(h1,t1), HCons(h2,t2)) =>
+              orderHead.lesserThan(h1,h2) || (orderHead.areEqual(h1,h2) && orderTail.lesserThan(t1,t2))
+          }
+      }
+    ```
+
+    </details>
+
+- Write the function `def revLex[A](implicit v : HListOrder[A]): Order[A]` that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    def revLex[A](implicit v : HListOrder[A]): Order[A] =
+      v match {
+        case HListOrder.HNilOrder =>
+          Order.make[HNil]((_,_) => false)
+
+        case hc : HListOrder.HConsOrder[head,tail] =>
+          val orderHead: Order[head] = hc.orderHead
+          val orderTail: Order[tail] = revLex(hc.hlistOrderTail)
+
+          Order.make[HCons[head, tail]] {
+            case (HCons(h1,t1), HCons(h2,t2)) =>
+              orderTail.lesserThan(t1,t2) || (orderTail.areEqual(t1,t2) && orderHead.lesserThan(h1,h2))
+          }
+      }
     ```
 
     </details>
