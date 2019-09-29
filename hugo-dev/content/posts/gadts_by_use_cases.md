@@ -14,7 +14,7 @@ keywords:
   - Free Monad
 ---
 
-## Assumptions
+### Assumptions
 
 **In this presentation we will assume that:**
 
@@ -61,7 +61,7 @@ Let's now create some types and some of their values (when possible!).
 class OneType
 ```
 
-- How many types does the line `class OneType` defines?
+- **Question 1:** How many types does the line `class OneType` defines?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -75,7 +75,7 @@ Let's now consider:
 class OneTypeForEvery[A]
 ```
 
-- How many types does the line `class OneTypeForEvery[A]` defines?
+- **Question 2:** How many types does the line `class OneTypeForEvery[A]` defines?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -91,7 +91,7 @@ class OneTypeForEvery[A]
       there is an infinity of sorts of lists.
     </details>
 
-- Give a value that belongs to both `OneTypeForEvery[Int]` and `OneTypeForEvery[Boolean]`.
+- **Question 3:** Give a value that belongs to both `OneTypeForEvery[Int]` and `OneTypeForEvery[Boolean]`.
 
     **Remember that `null` does not exist!**
 
@@ -109,7 +109,7 @@ Considering the following type:
 final abstract class NoValueForThisType
 ```
 
-- Give a value belonging to the type `NoValueForThisType`?
+- **Question 1:** Give a value belonging to the type `NoValueForThisType`?
    How many values belong to `NoValueForThisType`?
 
     <details>
@@ -150,7 +150,7 @@ sealed trait ExactlyOneValue
 case object TheOnlyValue extends ExactlyOneValue
 ```
 
-- Give a value belonging to the type `ExactlyOneValue`?
+- **Question 2:** Give a value belonging to the type `ExactlyOneValue`?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -158,7 +158,7 @@ case object TheOnlyValue extends ExactlyOneValue
       By definition, `TheOnlyValue` is a value of type `ExactlyOneValue`.
     </details>
 
-- How many values belong to `ExactlyOneValue`?
+- **Question 3:** How many values belong to `ExactlyOneValue`?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -180,7 +180,7 @@ sealed trait ATrait[A]
 case object AValue extends ATrait[Char]
 ```
 
-- Give a value of type `ATrait[Char]`.
+- **Question 1:** Give a value of type `ATrait[Char]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -188,7 +188,7 @@ case object AValue extends ATrait[Char]
       By definition, `AValue` is a value of type `ATrait[Char]`.
     </details>
 
-- Give a value of type `ATrait[Int]`.
+- **Question 2:** Give a value of type `ATrait[Int]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -198,7 +198,7 @@ case object AValue extends ATrait[Char]
       because the only possible value is `AValue` which is of type `ATrait[Char]`.
     </details>
 
-- What can you conclude about a type `B` if you have a value of type `ATrait[B]`?
+- **Question 3:** What can you conclude about a type `B` if you have a value of type `ATrait[B]`?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -206,14 +206,14 @@ case object AValue extends ATrait[Char]
       The only possible value is `AValue` which is of type `ATrait[Char]` so `B = Char`.
     </details>
 
-- In the *REPL*, enter the following code
+- **Question 4:** In the *REPL*, enter the following code
 
     ```scala
     def f[A](x: A, ev: ATrait[A]): Char =
       x
     ```
 
-- Now try pattern matching on `ev: ATrait[A]`
+- **Question 5:** Now try pattern matching on `ev: ATrait[A]`
 
     ```scala
     def f[A](x: A, ev: ATrait[A]): Char =
@@ -232,7 +232,7 @@ case object AValue extends ATrait[Char]
       So `A = Char` and `x : Char`.
     </details>
 
-- Call `f` with `x = 'w' : Char`.
+- **Question 6:** Call `f` with `x = 'w' : Char`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -243,7 +243,7 @@ case object AValue extends ATrait[Char]
       ```
     </details>
 
-- Call `f` with `x =  5 : Int`.
+- **Question 7:** Call `f` with `x =  5 : Int`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -310,9 +310,9 @@ val loggerStdout : UnknownLogger = LogWith[Unit]((), (logs: Unit, message: Strin
 Note that these three loggers all have the same type (i.e. `UnknownLogger`) but they stores
 the logs using different types `X` (`String`, `List[String]` and `Unit`).
 
-- Let `v` be a value of type `UnknownLogger`. Clearly `v` has to be an instance of type
-   `LogWith[X]` for some type `X`. What do you know about `X`? Why is it useful to
-   ignore what `X` is?
+- **Question 1:** Let `v` be a value of type `UnknownLogger`.
+   Clearly `v` has to be an instance of type `LogWith[X]` for some type `X`.
+   What do you know about `X`? Why is it useful to ignore what `X` is?
 
     **Remember we refuse to use runtime reflection!**
 
@@ -330,7 +330,7 @@ the logs using different types `X` (`String`, `List[String]` and `Unit`).
 
     </details>
 
-- Write the function `def log(message: String, v: UnknownLogger): UnknownLogger` that use `v.appendMessage` to append `message` to `v.logs`
+- **Question 2:** Write the function `def log(message: String, v: UnknownLogger): UnknownLogger` that use `v.appendMessage` to append `message` to `v.logs`
    and returns a new `UnknownLogger` containing the new logs.
 
     <details>
@@ -345,7 +345,7 @@ the logs using different types `X` (`String`, `List[String]` and `Unit`).
 
     </details>
 
-- Execute `log("Hello World", loggerStr)` and `log("Hello World", loggerList)` and `log("Hello World", loggerStdout)`
+- **Question 3:** Execute `log("Hello World", loggerStr)` and `log("Hello World", loggerList)` and `log("Hello World", loggerStdout)`
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -410,7 +410,7 @@ sealed trait EqT[A,B]
 final case class Evidence[X]() extends EqT[X,X]
 ```
 
-- Give a value of type `EqT[Int, Int]`
+- **Question 1:** Give a value of type `EqT[Int, Int]`
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -422,7 +422,7 @@ final case class Evidence[X]() extends EqT[X,X]
 
     </details>
 
-- Give a value of type `EqT[String, Int]`
+- **Question 2:** Give a value of type `EqT[String, Int]`
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -434,7 +434,7 @@ final case class Evidence[X]() extends EqT[X,X]
 
     </details>
 
-- Given two (unknown) types `A` and `B`.
+- **Question 3:** Given two (unknown) types `A` and `B`.
    What can you conclude if i give you a value of type `EqT[A,B]`?
 
     <details>
@@ -467,7 +467,7 @@ If `A` and `B` are actually the same type, then `List[A]` is also the
 same type as `List[B]`, `Option[A]` is also the same type as `Option[B]`,
 etc. More generally, for any `F[_]`, `F[A]` is also the same type as `F[B]`.
 
-- Write the function `def toF[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]`.
+- **Question 1:** Write the function `def toF[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -481,7 +481,7 @@ etc. More generally, for any `F[_]`, `F[A]` is also the same type as `F[B]`.
 
     </details>
 
-- Using the function `toF` above, write the function `def toScalaEq[A,B](eqT: EqT[A,B]): A =:= B`.
+- **Question 2:** Using the function `toF` above, write the function `def toScalaEq[A,B](eqT: EqT[A,B]): A =:= B`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -497,7 +497,7 @@ etc. More generally, for any `F[_]`, `F[A]` is also the same type as `F[B]`.
 
 ## Use Case: Witnessing Sub Typing
 
-- Create the type `SubTypeOf[A,B]` (and all that is necessary) such that:
+- **Question 1:** Create the type `SubTypeOf[A,B]` (and all that is necessary) such that:
 
     > There exists a value of type `SubType[A,B]` **if and only if** `A` is a sub-type of `B` (i.e. `A <: B`).
 
@@ -562,7 +562,7 @@ scala> dummy(elephant)
         required: F[A]
 ```
 
-- Why does *scalac* complains?
+- **Question 1:** Why does *scalac* complains?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -591,7 +591,7 @@ We face a dilemma: to use the function `dummy`, that we really want to use becau
 we need to remove the constraint `A <: Food` from the definition of `class AnimalEating[A <: Food]`.
 But we still want to say that animals eat food, not integers, boolean or strings!
 
-- How can you adapt the definition `class AnimalEating[A]` so that:
+- **Question 2:** How can you adapt the definition `class AnimalEating[A]` so that:
 
     > There exists a value of type `AnimalEating[A]` **if and only if** `A` is a sub-type of `Food` (i.e. `A <: Food`).
 
@@ -620,7 +620,7 @@ But we still want to say that animals eat food, not integers, boolean or strings
 
     </details>
 
-# Standard Use Cases
+# More Advanced Use Cases
 
 ## Use Case: Effects!
 
@@ -694,7 +694,7 @@ object EffectImpl extends EffectSig {
 }
 ```
 
-- Write the **GADT** `Effect[A]` representing the trait `EffectSig`.
+- **Question 1:** Write the **GADT** `Effect[A]` representing the trait `EffectSig`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -708,7 +708,7 @@ object EffectImpl extends EffectSig {
 
     </details>
 
-- Write the function `def run[A](effect: Effect[A]): A` implementing the effect like `EffectImpl` does.
+- **Question 2:** Write the function `def run[A](effect: Effect[A]): A` implementing the effect like `EffectImpl` does.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -740,7 +740,7 @@ to be useful we want it to support the following operations:
 - `def pure[A](value: A): Effect[A]`
 - `def flatMap[X,A](fx: Effect[X], f: X => Effect[A]): Effect[A]`
 
-- Add two *case classes*, `Pure` and `FlatMap`, to the definition of the *GADT* `Effect[A]` encoding these operations.
+- **Question 3:** Add two *case classes*, `Pure` and `FlatMap`, to the definition of the *GADT* `Effect[A]` encoding these operations.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -756,7 +756,7 @@ to be useful we want it to support the following operations:
 
     </details>
 
-- Adapt the function `run` to handle these two new cases.
+- **Question 4:** Adapt the function `run` to handle these two new cases.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -789,7 +789,7 @@ to be useful we want it to support the following operations:
 
     </details>
 
-- Add the two following methods to trait `Effect[A]` to get:
+- **Question 5:** Add the two following methods to trait `Effect[A]` to get:
 
     ```scala
     sealed trait Effect[A] {
@@ -877,7 +877,7 @@ Our database **only** supports the following types:
   an abstract class! We want to hide what is the actual concrete class of the number,
   i.e. it should be impossible to know the actual class of the number, just that it is a `java.lang.Number`.
 
-- Define the type `DBType[A]` such that:
+- **Question 1:** Define the type `DBType[A]` such that:
 
     > There exists a value of type `DBType[A]` **if and only if** `A` is a type supported by the database.
 
@@ -945,7 +945,7 @@ implicit object OptionFunctor extends Functor[Option] {
 }
 ```
 
-- Write an instance of `Functor[DBValue]`.
+- **Question 2:** Write an instance of `Functor[DBValue]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -1002,7 +1002,7 @@ object TreeSetFunctor extends GenFunctor[Ordering, TreeSet] {
 }
 ```
 
-- Write an instance of `GenFunctor[DBType, DBValue]`r
+- **Question 3:** Write an instance of `GenFunctor[DBType, DBValue]`r
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -1074,7 +1074,7 @@ Comparing lists of type `HNil` is trivial because there is only one value
 of type `HNil`: the empty list `HNil()`. We want to define several orderings
 on heterogeneous lists:
 
-- The lexicographic ordering (i.e. dictionary order: from left to right)
+- **Question 1:** The lexicographic ordering (i.e. dictionary order: from left to right)
 
     > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `h1 < h2` *or* (`h1 == h2` *and* `t1 < t2` *by lexicographic ordering*).
 
@@ -1106,8 +1106,8 @@ on heterogeneous lists:
     }
     ```
 
-- The reverse-lexicographic ordering which is the reverse version of the lexicographic
-  ordering (i.e. from right to left)
+- **Question 2:** The reverse-lexicographic ordering which is the reverse version
+  of the lexicographic ordering (i.e. from right to left)
 
     > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `t1 < t2` *by reverse-lexicographic ordering or* (`t1 == t2` *and* `h1 < h2`).
 
@@ -1139,7 +1139,7 @@ on heterogeneous lists:
     }
     ```
 
-- The `Alternate` ordering is defined by:
+- **Question 3:** The `Alternate` ordering is defined by:
 
     > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `h1 < h2` *or* (`h1 == h2` *and* `t1 > t2` *by alternate ordering*).
 
@@ -1210,7 +1210,8 @@ Note that these implicit definitions are boilerplate. Their only purpose is pass
 to their corresponding constructor (i.e. `case class` or `case object`):
 `hnilOrder` to `HListOrder` (O arguments) and `hconsOrder` to `HConsOrder` (2 arguments).
 
-- Write the function `def lex[A](implicit v : HListOrder[A]): Order[A]` that compute the lexicographic ordering from a value of type `HListOrder[A]`.
+- **Question 4:** Write the function `def lex[A](implicit v : HListOrder[A]): Order[A]`
+  that compute the lexicographic ordering from a value of type `HListOrder[A]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -1234,7 +1235,8 @@ to their corresponding constructor (i.e. `case class` or `case object`):
 
     </details>
 
-- Write the function `def revLex[A](implicit v : HListOrder[A]): Order[A]` that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]`.
+- **Question 5:** Write the function `def revLex[A](implicit v : HListOrder[A]): Order[A]`
+  that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
