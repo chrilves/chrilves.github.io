@@ -63,6 +63,12 @@ class OneType
 
 1. How many types does the line `class OneType` defines?
 
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      As the name suggests, `class OneType` defines only one type which is the *class* `OneType`.
+    </details>
+
 Let's now consider:
 
 ```scala
@@ -70,8 +76,30 @@ class OneTypeForEvery[A]
 ```
 
 2. How many types does the line `class OneTypeForEvery[A]` defines?
-3. Try to create a value that belongs to both `OneTypeForEvery[Int]` and `OneTypeForEvery[Boolean]`.
-   *Remember that `null` does not exist!*
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      As the name suggests, every concrete type `A` give rise to a distinct type `OneTypeForEvery[A]`.
+      
+      For example, a list of integers is neither a list of booleans, nor a list of strings,
+      nor a list of functions, nor ... It means the types `List[Int]`, `List[Boolean]`,
+      `List[Int => Int]`, etc are all distinct types.
+
+      The line `class OneTypeForEvery[A]` defines a type **for every concrete type** `A`. There
+      is an infnity of types `A`, so an infinity of types `OneTypeForEvery[A]`. Very much list
+      there is an infinity of sorts of lists.
+    </details>
+
+3. Give a value that belongs to both `OneTypeForEvery[Int]` and `OneTypeForEvery[Boolean]`.
+
+    **Remember that `null` does not exist!**
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      This is actually impossible. Every concrete type `A` give rise a distinct type `OneTypeForEvery[A]`
+      that have no values in common with others types `OneTypeForEvery[B]` for `B ≠ A`.
+    </details>
 
 ## How many values?
 
@@ -81,8 +109,39 @@ Considering the following type:
 final abstract class NoValueForThisType
 ```
 
-1. Try to create a value belonging to the type `NoValueForThisType`?
-2. How many values belong to `NoValueForThisType`?
+1. Give a value belonging to the type `NoValueForThisType`?
+   How many values belong to `NoValueForThisType`?
+
+    <details>
+      <summary>*Hint (click to expand)*</summary>  
+      - What is a `final` class? How does it differ from a normal non-final class?
+      - What is an `abstract` class? How does it differ from a concrete class?
+    </details>
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      The class `NoValueForThisType` is declared `abstract`. It is then forbidden to create an
+      instance of this class:
+
+      ```scala
+      scala> new NoValueForThisType
+             ^
+             error: class NoValueForThisType is abstract; cannot be instantiated
+      ```
+
+      The only way to create an instance of an abstract class is creating a concrete sub-class.
+      But the keyword `final` forbids creating such sub-classes:
+
+      ```scala
+      scala> class ConcreateSubClass extends NoValueForThisType
+                                             ^
+             error: illegal inheritance from final class NoValueForThisType
+      ```
+
+      There is no way to create an instance of `NoValueForThisType`.
+    </details>
+
 
 Let's take another example:
 
@@ -91,8 +150,24 @@ sealed trait ExactlyOneValue
 case object TheOnlyValue extends ExactlyOneValue
 ```
 
-3. Try to create a value belonging to the type `ExactlyOneValue`?
-4. How many values belong to `ExactlyOneValue`?
+2. Give a value belonging to the type `ExactlyOneValue`?
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      By definition, `TheOnlyValue` is a value of type `ExactlyOneValue`.
+    </details>
+
+3. How many values belong to `ExactlyOneValue`?
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      Just like above, `ExactlyOneValue` being a `trait` is *abstract*. Being `sealed`,
+      extending it outside of its defining file is forbidden.
+      So `TheOnlyValue` is the only value of type `ExactlyOneValue`.
+    </details>
+
 
 # First Contact
 
@@ -105,9 +180,32 @@ sealed trait ATrait[A]
 case object AValue extends ATrait[Char]
 ```
 
-1. Try to find a value of type `ATrait[Char]`.
-2. Try to find a value of type `ATrait[Int]`.
+1. Give a value of type `ATrait[Char]`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      By definition, `AValue` is a value of type `ATrait[Char]`.
+    </details>
+
+2. Give a value of type `ATrait[Int]`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      There is no way to have an instance of type `ATrait[Int]`.
+      There is actually no way to have an instance of type `ATrait[B]` for `B ≠ Char`
+      because the only possible value is `AValue` which is of type `ATrait[Char]`.
+    </details>
+
 3. What can you conclude about a type `B` if you have a value of type `ATrait[B]`?
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      The only possible value is `AValue` which is of type `ATrait[Char]` so `B = Char`.
+    </details>
+
 4. In the *REPL*, enter the following code
 
     ```scala
@@ -126,8 +224,41 @@ case object AValue extends ATrait[Char]
 
     Is the pattern-matching exhaustive?
 
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      The pattern-matching is exhaustive because the only possible actual value for `ev` is `AValue`.
+      Furthermore `AValue` is of type `ATrait[Char]` which means `v : ATrait[Char]` because `v == AValue`.
+      So `A = Char` and `x : Char`.
+    </details>
+
 6. Call `f` with `x = 'w' : Char`.
-7. Call `f` with `x =  5  : Int`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+      
+      ```scala
+      scala> f[Char]('w', AValue)
+      res0: Char = w
+      ```
+    </details>
+
+7. Call `f` with `x =  5 : Int`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      This is impossible because it would require to give a value `ev : ATrait[Int]` which does not exist!
+
+      ```scala
+      scala> f[Int](5, AValue)
+                       ^
+             error: type mismatch;
+               found   : AValue.type
+               required: ATrait[Int]
+      ```
+
+    </details>
 
 Using all the nice syntactic features of *Scala*, the production-ready version of the code above is:
 
@@ -145,24 +276,97 @@ def f[A: IsChar](x: A): Char =
   }
 ```
 
-## Use-Case: The only thing i know it that it exists.
+## Use-Case: The only thing i know is it exists.
+
+What would you do if you wanted your codebase to log messages, but you want to be sure your
+codebase do not rely on any implementation details of the logger so that you can change its
+implementation without risking breaking the codebase?
+
+Take the following logger type `UnknownLogger`:
 
 ```scala
-sealed trait CanGetAnIntFrom
-final case class TheValueAndGetter[X](
-    theValue : X,
-    theGetter: X => Int
-  ) extends CanGetAnIntFrom
+sealed trait UnknownLogger
+final case class LogWith[X](logs : X, appendMessage: (X, String) => X) extends UnknownLogger
 ```
 
-1. Define a value `v1 : CanGetAnIntFrom` with `Char` as `X` and `_.toInt` as `theGetter`.
-1. Define a value `v2 : CanGetAnIntFrom` with `String` as `X` and `_.length` as `theGetter`.
-2. Write the function `get(v: CanGetAnIntFrom): Int` that apply the getter on the value.
-4. Run `get(v1)` and `get(v2)`.
-5. Let `v` be a value of type `CanGetAnIntFrom`. Clearly `v` has to be an instance of type
-   `TheValueAndGetter[X]` for some type `X`. What can you say about `X`?
+The first logger we will create stores the logs in a `String`:
 
-A real-life example would be:
+```scala
+val loggerStr : UnknownLogger = LogWith[String]("", (logs: String, message: String) => logs ++ message)
+```
+
+The second logger stores them in a `List[String]`:
+
+```scala
+val loggerList : UnknownLogger = LogWith[List[String]](Nil, (logs: List[String], message: String) => message :: logs)
+```
+
+The third logger directly print the messages to the standard output:
+
+```scala
+val loggerStdout : UnknownLogger = LogWith[Unit]((), (logs: Unit, message: String) => println(message))
+```
+
+Note that these three loggers all have the same type (i.e. `UnknownLogger`) but they stores
+the logs using different types `X` (`String`, `List[String]` and `Unit`). 
+
+
+1. Let `v` be a value of type `UnknownLogger`. Clearly `v` has to be an instance of type
+   `LogWith[X]` for some type `X`. What do you know about `X`? Why is it useful to
+   ignore what `X` is?
+
+    **Remember we refuse to use runtime reflection!**
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    We know almost nothing about `X`. The only thing we know is there exists at least one value (`v.logs`) of type `X`.
+    Appart from that `X` can be any type.
+
+    Not knowing which type `X` really is very useful to garantee that the code that will use `v : UnknownLogger` will not
+    rely on the nature of `X`. If the code knew `X` was `String` for example, it could perform some operations we want to forbid like
+    reversing the list, taking only the nth first characters, etc. By hiding the real type `X`, we force our codebase to
+    not depend on what `X` is but to use the provided `v.appendMessage`. So changing the real implementation of the logger
+    won't break any code.
+
+    </details>
+
+2. Write the function `def log(message: String, v: UnknownLogger): UnknownLogger` that use `v.appendMessage` to append `message` to `v.logs`
+   and returns a new `UnknownLogger` containing the new logs.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      ```scala
+      def log(message: String, v: UnknownLogger): UnknownLogger =
+        v match {
+          case vx : LogWith[x] => LogWith[x](vx.appendMessage(vx.logs, message), vx.appendMessage)
+        }
+      ```
+
+    </details>
+
+3. Execute `log("Hello World", loggerStr)` and `log("Hello World", loggerList)` and `log("Hello World", loggerStdout)`
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      ```scala
+      scala> log("Hello World", loggerStr)
+      res0: UnknownLogger = LogWith(Hello World,$$Lambda$988/1455466014@421ead7e)
+
+      scala> log("Hello World", loggerList)
+      res1: UnknownLogger = LogWith(List(Hello World),$$Lambda$989/1705282731@655621fd)
+
+      scala> log("Hello World", loggerStdout)
+      Hello World
+      res2: UnknownLogger = LogWith((),$$Lambda$990/1835105031@340c57e0)
+      ```
+
+    </details>
+
+
+Another real-life example would be:
 
 ```scala
 trait Writer[A] {
@@ -190,7 +394,7 @@ object Serializable {
 some *case class* (possible none too!). In the following parts we will explore some major use cases of
 *GATDs*
 
-# Easy Useful Use Cases: Relations on Types
+# Easy Useful Use Cases:<br/>Relations on Types
 
 One easy but very useful benefit of *GADTs* is expressing relations about types such that:
 
@@ -207,10 +411,43 @@ sealed trait EqT[A,B]
 final case class Evidence[X]() extends EqT[X,X]
 ```
 
-1. Try to find a value of type `EqT[Int, Int]`
-2. Try to find a value of type `EqT[String, Int]`
+1. Give a value of type `EqT[Int, Int]`
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      ```scala
+      scala> Evidence[Int]() : EqT[Int, Int]
+      res0: EqT[Int,Int] = Evidence()
+      ```
+
+    </details>
+
+2. Give a value of type `EqT[String, Int]`
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      The class `Evidence` is the only concrete sub-class of trait `EqT` and we cannot
+      create another one because `EqT` is `sealed`. So any value `v : EqT[A,B]` has to be
+      an instance of `Evidence[X]` for some type `X`, which is of type `EqT[X,X]`.
+      Thus there is no way to get a value of type `EqT[String, Int]`
+
+    </details>
+
 3. Given two (unknown) types `A` and `B`.
    What can you conclude if i give you a value of type `EqT[A,B]`?
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      If i give you a value `v : EqT[A,B]`, then you know that `v` is an instance of 
+      `Evidence[X]` for some type `X` because the class `Evidence` is the only concrete
+      sub-class of the sealed trait `EqT`. Actually `Evidence[X]` is a sub-type of
+      `EqT[X,X]`. Thus `v : EqT[X,X]`. Types `EqT[A,B]` and `EqT[X,X]` have no value in
+      common if `A ≠ X` or `B ≠ X`, so `A = X` and `B = X`. Thus `A = B`.
+
+    </details>
 
 In production, it is convenient to define the following equivalent code:
 
@@ -225,7 +462,7 @@ object EqT {
 }
 ```
 
-### Use Case: Conversions between Equal Types
+## Use Case: Conversions between Equal Types
 
 If `A` and `B` are actually the same type, then `List[A]` is also the
 same type as `List[B]`, `Option[A]` is also the same type as `Option[B]`,
@@ -303,7 +540,7 @@ But we still want to say that animals eat food, not integers, boolean or strings
 
     > There exists a value of type `AnimalEating[A]` **if and only if** `A` is a sub-type of `Food` (i.e. `A <: Food`).
 
-# More Advanced Use Cases
+# Standard Use Cases
 
 ## Use Case: Effects!
 
@@ -569,7 +806,7 @@ to their corresponding constructor (i.e. `case class` or `case object`):
 2. Write the function `def lex[A: HListOrder] : Order[A]` that compute the lexicographic ordering from a value of type `HListOrder[A]]`.
 3. Write the function `def revLex[A: HListOrder] : Order[A]` that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]]`.
 
-# A More Advanced Use Case: Ensuring types are supported by the Database
+# A More Advanced Use Case:<br/>Ensuring types are supported by the Database
 
 In this section we consider the use case of manipulating data that came from a database.
 Our database **only** supports the following types:
