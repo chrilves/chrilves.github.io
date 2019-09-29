@@ -61,7 +61,7 @@ Let's now create some types and some of their values (when possible!).
 class OneType
 ```
 
-1. How many types does the line `class OneType` defines?
+- How many types does the line `class OneType` defines?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -75,7 +75,7 @@ Let's now consider:
 class OneTypeForEvery[A]
 ```
 
-2. How many types does the line `class OneTypeForEvery[A]` defines?
+- How many types does the line `class OneTypeForEvery[A]` defines?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -91,7 +91,7 @@ class OneTypeForEvery[A]
       there is an infinity of sorts of lists.
     </details>
 
-3. Give a value that belongs to both `OneTypeForEvery[Int]` and `OneTypeForEvery[Boolean]`.
+- Give a value that belongs to both `OneTypeForEvery[Int]` and `OneTypeForEvery[Boolean]`.
 
     **Remember that `null` does not exist!**
 
@@ -109,7 +109,7 @@ Considering the following type:
 final abstract class NoValueForThisType
 ```
 
-1. Give a value belonging to the type `NoValueForThisType`?
+- Give a value belonging to the type `NoValueForThisType`?
    How many values belong to `NoValueForThisType`?
 
     <details>
@@ -150,19 +150,19 @@ sealed trait ExactlyOneValue
 case object TheOnlyValue extends ExactlyOneValue
 ```
 
-2. Give a value belonging to the type `ExactlyOneValue`?
+- Give a value belonging to the type `ExactlyOneValue`?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+ 
       By definition, `TheOnlyValue` is a value of type `ExactlyOneValue`.
     </details>
 
-3. How many values belong to `ExactlyOneValue`?
+- How many values belong to `ExactlyOneValue`?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
-      
+
       Just like above, `ExactlyOneValue` being a `trait` is *abstract*. Being `sealed`,
       extending it outside of its defining file is forbidden.
       So `TheOnlyValue` is the only value of type `ExactlyOneValue`.
@@ -180,7 +180,7 @@ sealed trait ATrait[A]
 case object AValue extends ATrait[Char]
 ```
 
-1. Give a value of type `ATrait[Char]`.
+- Give a value of type `ATrait[Char]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -188,7 +188,7 @@ case object AValue extends ATrait[Char]
       By definition, `AValue` is a value of type `ATrait[Char]`.
     </details>
 
-2. Give a value of type `ATrait[Int]`.
+- Give a value of type `ATrait[Int]`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -198,7 +198,7 @@ case object AValue extends ATrait[Char]
       because the only possible value is `AValue` which is of type `ATrait[Char]`.
     </details>
 
-3. What can you conclude about a type `B` if you have a value of type `ATrait[B]`?
+- What can you conclude about a type `B` if you have a value of type `ATrait[B]`?
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -206,14 +206,14 @@ case object AValue extends ATrait[Char]
       The only possible value is `AValue` which is of type `ATrait[Char]` so `B = Char`.
     </details>
 
-4. In the *REPL*, enter the following code
+- In the *REPL*, enter the following code
 
     ```scala
     def f[A](x: A, ev: ATrait[A]): Char =
       x
     ```
 
-5. Now try pattern matching on `ev: ATrait[A]`
+- Now try pattern matching on `ev: ATrait[A]`
 
     ```scala
     def f[A](x: A, ev: ATrait[A]): Char =
@@ -232,7 +232,7 @@ case object AValue extends ATrait[Char]
       So `A = Char` and `x : Char`.
     </details>
 
-6. Call `f` with `x = 'w' : Char`.
+- Call `f` with `x = 'w' : Char`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -243,7 +243,7 @@ case object AValue extends ATrait[Char]
       ```
     </details>
 
-7. Call `f` with `x =  5 : Int`.
+- Call `f` with `x =  5 : Int`.
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -310,8 +310,7 @@ val loggerStdout : UnknownLogger = LogWith[Unit]((), (logs: Unit, message: Strin
 Note that these three loggers all have the same type (i.e. `UnknownLogger`) but they stores
 the logs using different types `X` (`String`, `List[String]` and `Unit`). 
 
-
-1. Let `v` be a value of type `UnknownLogger`. Clearly `v` has to be an instance of type
+- Let `v` be a value of type `UnknownLogger`. Clearly `v` has to be an instance of type
    `LogWith[X]` for some type `X`. What do you know about `X`? Why is it useful to
    ignore what `X` is?
 
@@ -331,7 +330,7 @@ the logs using different types `X` (`String`, `List[String]` and `Unit`).
 
     </details>
 
-2. Write the function `def log(message: String, v: UnknownLogger): UnknownLogger` that use `v.appendMessage` to append `message` to `v.logs`
+- Write the function `def log(message: String, v: UnknownLogger): UnknownLogger` that use `v.appendMessage` to append `message` to `v.logs`
    and returns a new `UnknownLogger` containing the new logs.
 
     <details>
@@ -346,7 +345,7 @@ the logs using different types `X` (`String`, `List[String]` and `Unit`).
 
     </details>
 
-3. Execute `log("Hello World", loggerStr)` and `log("Hello World", loggerList)` and `log("Hello World", loggerStdout)`
+- Execute `log("Hello World", loggerStr)` and `log("Hello World", loggerList)` and `log("Hello World", loggerStdout)`
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -411,7 +410,7 @@ sealed trait EqT[A,B]
 final case class Evidence[X]() extends EqT[X,X]
 ```
 
-1. Give a value of type `EqT[Int, Int]`
+- Give a value of type `EqT[Int, Int]`
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -423,7 +422,7 @@ final case class Evidence[X]() extends EqT[X,X]
 
     </details>
 
-2. Give a value of type `EqT[String, Int]`
+- Give a value of type `EqT[String, Int]`
 
     <details>
       <summary>*Solution (click to expand)*</summary>
@@ -435,7 +434,7 @@ final case class Evidence[X]() extends EqT[X,X]
 
     </details>
 
-3. Given two (unknown) types `A` and `B`.
+- Given two (unknown) types `A` and `B`.
    What can you conclude if i give you a value of type `EqT[A,B]`?
 
     <details>
@@ -468,13 +467,12 @@ If `A` and `B` are actually the same type, then `List[A]` is also the
 same type as `List[B]`, `Option[A]` is also the same type as `Option[B]`,
 etc. More generally, for any `F[_]`, `F[A]` is also the same type as `F[B]`.
 
-1. Write the function `toF[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]`.
-2. Using the function `toF` above, write the function `toScalaEq[A,B](eqT: EqT[A,B]): A =:= B`.
-
+- Write the function `toF[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]`.
+- Using the function `toF` above, write the function `toScalaEq[A,B](eqT: EqT[A,B]): A =:= B`.
 
 ## Use Case: Witnessing Sub Typing
 
-1. Create the type `SubTypeOf[A,B]` (and all that is necessary) such that:
+- Create the type `SubTypeOf[A,B]` (and all that is necessary) such that:
 
     > There exists a value of type `SubType[A,B]` **if and only if** `A` is a sub-type of `B` (i.e. `A <: B`).
 
@@ -516,7 +514,7 @@ scala> dummy(elephant)
         required: F[A]
 ```
 
-1. Why does *scalac* complains?
+- Why does *scalac* complains?
 
 The problem is that, when we defined `class AnimalEating[A <: Food]`,
 we gave the restriction that `A <: Food`. So *Scala*, like *Java*,
@@ -536,7 +534,7 @@ We face a dilemma: to use the function `dummy`, that we really want to use becau
 we need to remove the constraint `A <: Food` from the definition of `class AnimalEating[A <: Food]`.
 But we still want to say that animals eat food, not integers, boolean or strings!
 
-1. How can you adapt the definition `class AnimalEating[A]` so that:
+- How can you adapt the definition `class AnimalEating[A]` so that:
 
     > There exists a value of type `AnimalEating[A]` **if and only if** `A` is a sub-type of `Food` (i.e. `A <: Food`).
 
@@ -610,8 +608,8 @@ object EffectImpl extends EffectSig {
 }
 ```
 
-1. Write the **GADT** `Effect[A]` representing the trait `EffectSig`.
-2. Write the function `run[A](effect: Effect[A]): A` implementing the effect like `EffectImpl` does.
+- Write the **GADT** `Effect[A]` representing the trait `EffectSig`.
+- Write the function `run[A](effect: Effect[A]): A` implementing the effect like `EffectImpl` does.
 
 The *GADT* `Effect[A]` declare interesting effects (`CurrentTimeMillis`, `PrintLn` and `Mesure`) but,
 to be useful we want it to support the following operations:
@@ -619,9 +617,9 @@ to be useful we want it to support the following operations:
 - `def pure[A](value: A): Effect[A]`
 - `def flatMap[X,A](fa: Effect[X], f: X => Effect[A]): Effect[A]`
 
-3. Add two *case classes*, `Pure` and `FlatMap`, to the definition of the *GADT* `Effect[A]` encoding these operations.
-4. Adapt the function `run` to handle these two new cases.
-5. Add the two following methods to trait `Effect[A]` to get:
+- Add two *case classes*, `Pure` and `FlatMap`, to the definition of the *GADT* `Effect[A]` encoding these operations.
+- Adapt the function `run` to handle these two new cases.
+- Add the two following methods to trait `Effect[A]` to get:
 
     ```scala
     sealed trait Effect[A] {
@@ -765,7 +763,7 @@ on heterogeneous lists:
     }
     ```
 
-1. The `Alternate` ordering is defined by:
+- The `Alternate` ordering is defined by:
 
     > `HCons(h1,t1) < HCons(h2,t2)` **if and only if** `h1 < h2` *or* (`h1 == h2` *and* `t1 > t2` *by alternate ordering*).
 
@@ -803,8 +801,8 @@ Note that these implicit definitions are boilerplate. Their only purpose is pass
 to their corresponding constructor (i.e. `case class` or `case object`):
 `hnilOrder` to `HListOrder` (O arguments) and `hconsOrder` to `HConsOrder` (2 arguments).
 
-2. Write the function `def lex[A: HListOrder] : Order[A]` that compute the lexicographic ordering from a value of type `HListOrder[A]]`.
-3. Write the function `def revLex[A: HListOrder] : Order[A]` that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]]`.
+- Write the function `def lex[A: HListOrder] : Order[A]` that compute the lexicographic ordering from a value of type `HListOrder[A]]`.
+- Write the function `def revLex[A: HListOrder] : Order[A]` that compute the reverse-lexicographic ordering from a value of type `HListOrder[A]]`.
 
 # A More Advanced Use Case:<br/>Ensuring types are supported by the Database
 
@@ -813,12 +811,51 @@ Our database **only** supports the following types:
 
 - `String`
 - `(A,B)` where `A` and `B` are also types supported by the database.
-- Any **unkown** sub-type of [java.lang.Number](https://docs.oracle.com/javase/7/docs/api/java/lang/Number.html).
-    It should be impossible to know which sub-type of `Number` is used, only that an unknown sub-type of `Number` was.
+- A number of type [java.lang.Number](https://docs.oracle.com/javase/7/docs/api/java/lang/Number.html).
 
-1. Define the type `DBType[A]` such that:
+  Note that [java.lang.Number](https://docs.oracle.com/javase/7/docs/api/java/lang/Number.html) is
+  an abstract class! We want to hide what is the actual concrete class of the number,
+  i.e. it should be impossible to know the actual class of the number, just that it is a `java.lang.Number`.
+
+- Define the type `DBType[A]` such that:
 
     > There exists a value of type `DBType[A]` **if and only if** `A` is a type supported by the database.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      The simple version is:
+
+      ```scala
+      sealed trait DBType[A]
+      final case object DBString extends DBType[String]
+      final case class DBPair[A,B](first: DBType[A], second: DBType[B]) extends DBType[(A,B)]
+      final case class DBNumber[X <: java.lang.Number]() extends DBType[Number]
+      ```
+
+      The production-ready version is:
+
+      ```scala
+      sealed trait DBType[A]
+      object DBType {
+        final case object DBString extends DBType[String]
+        final case class DBPair[A,B](first: DBType[A], second: DBType[B]) extends DBType[(A,B)]
+        final case class DBNumber[X <: java.lang.Number]() extends DBType[java.lang.Number]
+
+        implicit val dbString : DBType[String] =
+          DBString
+
+        implicit def dbPair[A,B](implicit first: DBType[A], second: DBType[B]): DBType[(A,B)] =
+          DBPair(first, second)
+
+        implicit val dbNumber : DBType[java.lang.Number] =
+          DBNumber[java.lang.Number]()
+
+        def apply[A](implicit ev: DBType[A]): ev.type = ev
+      }
+      ```
+
+    </details>
 
 Using `DBType`, we can pair a value of type `A` with a value of type `DBType[A]` which provides an evidence
 that the type `A` is supported by the database:
@@ -848,7 +885,39 @@ implicit object OptionFunctor extends Functor[Option] {
 }
 ```
 
-2. Write an instance of `Functor[DBValue]`.
+- Write an instance of `Functor[DBValue]`.
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+      We actually can not! If we try to compile the following code:
+
+      ```scala
+      object DBValueFunctor extends Functor[DBValue] {
+        def map[A,B](fa: DBValue[A])(f: A => B): DBValue[B] =
+          DBValue[B](f(fa.value))
+      }
+      ```
+
+      *Scala* complains: `could not find implicit value for parameter dbType: DBType[B]`. Indeed, booleans
+      are not a supported type by the database: they are neither strings, nor number, not pairs. But if we
+      could write a `Functor` instance for `DBValue` (i.e. if we could write a `map` function for `DBValue`),
+      then we could write:
+
+      ```scala
+      val dbValueString  : DBValue[String]  = DBValue("A")
+      val dbValueBoolean : DBValue[Boolean] = dbValueString.map(_ => true)
+      val dbTypeBoooean  : DBType[Boolean]  = dbValueBoolean.dbType
+      ```
+
+      We would get a value (`dbTypeBoooean`) of type `DBType[Boolean]` which would mean that the type
+      `Boolean` is supported by the database. But it is not! And by definition:
+
+      > There exists a value of type `DBType[A]` **if and only if** `A` is a type supported by the database.
+
+      So it is impossible to have a value of type `DBType[Boolean]` and thus it is impossible to write a
+      function `map` for `DBValue`. So there is no way to write a `Functor` instance for `DBValue`.
+    </details>
 
 A *Generalized Functor* is very much like a regular `Functor` but
 the `map` function do not apply to any type `A` and `B` but is restricted
@@ -867,10 +936,22 @@ But if we restrict `map` to only types `B` having an ordering, then we can write
 
 ```scala
 import scala.collection.immutable._
-implicit object TreeSetFunctor extends GenFunctor[Ordering, TreeSet] {
+object TreeSetFunctor extends GenFunctor[Ordering, TreeSet] {
   def map[A,B](fa: TreeSet[A])(f: A => B)(implicit evA: Ordering[A], evB: Ordering[B]): TreeSet[B] =
     TreeSet.empty[B](evB) ++ fa.toSeq.map(f)
 }
 ```
 
-3. Write an instance of `GenFunctor[DBType, DBValue]`r
+- Write an instance of `GenFunctor[DBType, DBValue]`r
+
+    <details>
+      <summary>*Solution (click to expand)*</summary>
+
+    ```scala
+    object DBValueGenFunctor extends GenFunctor[DBType, DBValue] {
+      def map[A,B](fa: DBValue[A])(f: A => B)(implicit evA: DBType[A], evB: DBType[B]): DBValue[B] =
+        DBValue[B](f(fa.value))(evB)
+    }
+    ```
+
+    </details>
