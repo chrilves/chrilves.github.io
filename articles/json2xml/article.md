@@ -1,1 +1,0 @@
-../../hugo-dev/content/posts/json2xml.md
