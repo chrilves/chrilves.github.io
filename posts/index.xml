@@ -17,8 +17,8 @@
       <pubDate>Fri, 22 Mar 2019 10:00:00 +0100</pubDate>
       
       <guid>https://chrilves.github.io/posts/recursion_schemes_intro/</guid>
-      <description>I&amp;rsquo;ll be giving a talk on Thursday the 28th of march 2019 at the 96th Paris Scala User Group session on about this.
-Recursion schemes are said to be a tough subject. Articles and presentations often flood the audience with lots of names such as Algebra, CoAlgebra, catamorphisms, anamorhpisms, hylomorphism, etc. Is knowing all these concepts required to understand recursion schemes? I have good news for you: it isn&amp;rsquo;t! All you need, to see what recursion schemes are and why there are useful, can be presented with just a single basic function, often taught as an introduction to programming: factorial.</description>
+      <description>I gave a talk on Thursday the 28th of march 2019 at the 96th Paris Scala User Group session on about this. The slides are here.
+Recursion schemes are said to be a tough subject. Articles and presentations often flood the audience with lots of names such as Algebra, CoAlgebra, catamorphisms, anamorhpisms, hylomorphism, etc. Is knowing all these concepts required to understand recursion schemes? I have good news for you: it isn&amp;rsquo;t!</description>
     </item>
     
     <item>
@@ -48,7 +48,7 @@ sealed abstract class List[+A] final case object Nil extends List[Nothing] final
       <pubDate>Tue, 18 Sep 2018 15:30:53 +0200</pubDate>
       
       <guid>https://chrilves.github.io/posts/slimetrail/</guid>
-      <description>A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i will have the chance to present it in October at ScalaIO.
+      <description>A few month ago, the Paris Scala User Group kindly invited me present a workshop introducing [Scala.js(https://www.scala-js.org/). Even better, i had the chance to present it at ScalaIO 2018. The workshop materials are here.
 I will present how to develop a web application in Scala.js. This talk is for Scala developers having a penchant for web development but rebuffed by JavaScript. It goes from ScalaJS basics to the implementation of a naive virtual DOM written in Scala.</description>
     </item>
     
@@ -59,6 +59,7 @@ I will present how to develop a web application in Scala.js. This talk is for Sc
       
       <guid>https://chrilves.github.io/posts/json2xml/</guid>
       <description>The complete code of the article. You need Cats and Play-Json in order to run it.
+The Slides are here
 It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.</description>
     </item>
     
