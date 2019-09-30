@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Inviting ScalaJS to the Party - How to make game in the browser thanks to ScalaJS</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="read-this-first.html"><strong aria-hidden="true">1.</strong> READ THIS FIRST</a></li><li><a href="first-step-web.html"><strong aria-hidden="true">2.</strong> First Steps in the Web</a></li><li><ol class="section"><li><a href="slimetrail.html"><strong aria-hidden="true">2.1.</strong> Slimetrail</a></li><li><a href="play-with-dom.html"><strong aria-hidden="true">2.2.</strong> Playing with the Document Object Model (DOM)</a></li></ol></li><li><a href="scalajs-intro.html"><strong aria-hidden="true">3.</strong> Introduction to ScalaJS</a></li><li><ol class="section"><li><a href="slimetrail-text-app.html"><strong aria-hidden="true">3.1.</strong> The Slimetrail Text App</a></li><li><a href="inviting-scalajs.html" class="active"><strong aria-hidden="true">3.2.</strong> Inviting ScalaJS to the Party</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">How to make game in the browser thanks to ScalaJS</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#inviting-scalajs-to-the-party" id="inviting-scalajs-to-the-party">Inviting ScalaJS to the Party</a></h1>
+<p>For now <em>Slimetrail</em> is a plain old <em>JVM-only</em> project. We need to make it able to produce both <em>JVM</em> and <em>JavaScript</em> outputs: it will become a <strong>cross-project</strong>.</p>
+<h2><a class="header" href="#cross-projectization" id="cross-projectization">Cross-projectization</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 5 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:15am</strong></li>
+</ul>
+<p><strong>Add the following lines to</strong> <code>project/plugins.sbt</code> <strong>.</strong></p>
+<pre><code class="language-scala">// ScalaJS
+addSbtPlugin(&quot;org.portable-scala&quot; % &quot;sbt-scalajs-crossproject&quot; % &quot;0.6.0&quot;)
+addSbtPlugin(&quot;org.scala-js&quot; % &quot;sbt-scalajs&quot; % &quot;0.6.25&quot;)
+</code></pre>
+<p>A large amount of <em>Scala</em> libraries are available both as <em>JVM</em> and <em>ScalaJS</em> artifacts. So will we! The <em>Text UI</em> needs the <code>toolbox</code> and <code>slimetrail</code> to be compiled for the <em>JVM</em> while the <em>Web UI</em> needs them to be compiled in <code>JavaScript</code>. <em>Cross-projects</em> can define <code>libraryDependencies</code> using <code>%%%</code> instead of <code>%%</code> to ensure the correct artifacts are fetched.</p>
+<p><strong>In</strong> <code>build.sbt</code><strong>, replace any</strong> <code>%%</code> <strong>in</strong> <code>commonSettings</code> <strong>by</strong> <code>%%%</code> <strong>.</strong></p>
+<p>We now need to adapt the <code>toolbox</code> and <code>slimetrail</code> project definitions to define these as <em>cross-projects</em>. To do so:</p>
+<ul>
+<li>
+<p><strong>At the beginning of</strong> <code>build.sbt</code> <strong>add these lines:</strong></p>
+<pre><code class="language-scala">// shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
+import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+</code></pre>
+</li>
+<li>
+<p><strong>In the</strong> <code>toolbox</code><strong>, project definition, replace</strong> <code>project</code> <strong>by:</strong></p>
+<pre><code class="language-scala">crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+</code></pre>
+</li>
+<li>
+<p><strong>After the</strong> <code>toolbox</code><strong>, project definition, add:</strong></p>
+<pre><code class="language-scala">lazy val toolboxJS = toolbox.js
+lazy val toolboxJVM = toolbox.jvm
+</code></pre>
+</li>
+<li>
+<p><strong>In the</strong> <code>slimetrail</code><strong>, project definition, replace</strong> <code>project</code> <strong>by:</strong></p>
+<pre><code class="language-scala">crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+</code></pre>
+</li>
+<li>
+<p><strong>After the</strong> <code>slimetrail</code><strong>, project definition, add:</strong></p>
+<pre><code class="language-scala">lazy val slimetrailJS = slimetrail.js
+lazy val slimetrailJVM = slimetrail.jvm
+</code></pre>
+</li>
+<li>
+<p><strong>In the</strong> <code>text</code><strong>, project definition, replace</strong> <code>slimetrail</code> <strong>by</strong> <code>slimetrailJVM</code> <strong>.</strong></p>
+</li>
+</ul>
+<p><code>toolbox</code> and <code>slimetrail</code> projects now exists in two flavors each:</p>
+<ul>
+<li><code>toolboxJVM</code> and <code>slimetrailJVM</code> are <em>JVM</em> projects.</li>
+<li><code>toolboxJS</code> and <code>slimetrailJS</code> are <em>ScalaJS</em> projects.</li>
+</ul>
+<p><strong>Run</strong> <code>sbt text/run</code> <strong>to ensure everything is still working fine.</strong></p>
+<h2><a class="header" href="#setting-up-the-web-ui" id="setting-up-the-web-ui">Setting up the Web UI</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 5 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:20am</strong></li>
+</ul>
+<p><strong>Add the new project definition for the Web UI:</strong></p>
+<pre><code class="language-scala">// Web Interface
+lazy val web =
+  project
+    .in(file(&quot;web&quot;))
+    .enablePlugins(ScalaJSPlugin)
+    .settings(commonSettings: _*)
+    .settings(
+      name := &quot;slimetrail-web&quot;,
+      libraryDependencies += &quot;org.scala-js&quot; %%% &quot;scalajs-dom&quot; % &quot;0.9.6&quot;,
+      scalaJSUseMainModuleInitializer := true
+    )
+    .dependsOn(slimetrailJS)
+</code></pre>
+<p><strong>Create the file</strong> <code>web/src/main/scala/Main.scala</code> <strong>whose content is:</strong></p>
+<pre><code class="language-scala">package slimetrail.web
+
+import org.scalajs.dom._
+import scala.scalajs.js
+import slimetrail._
+
+/** Tree strucure to represent the DOM */
+sealed trait Html[+A] {
+  final def render: Node =
+    ??? // Replace by actual code
+
+  final def map[B](f: A =&gt; B): Html[B] =
+    ??? // Replace by actual code
+}
+final case class ATextNode(value: String) extends Html[Nothing]
+final case class AnElement[+A](
+    namespace: String,
+    tag: String,
+    attributes: Map[(Option[String], String), String],
+    eventListeners: List[(String, js.Function1[_ &lt;: Event, A])],
+    children: List[Html[A]]
+  ) extends Html[A]
+
+/** Generic Web Application */
+trait WebApplication extends Application {
+
+  def view(model: Model): Html[Msg]
+
+  final def run(initialNode: Node): Unit =
+    ??? // Replace by actual code
+}
+
+/** The Slimetrail Web Application */
+final class SlimetrailWebApp(size: Int)
+    extends SlimetrailApp(size)
+    with WebApplication {
+
+  def view(m: GameState): Html[Msg] =
+    ??? // Replace by actual code
+}
+
+object Main {
+  def onLoading(a: =&gt; Unit): Unit =
+    document.addEventListener(&quot;DOMContentLoaded&quot;, (_: Event) =&gt; a)
+
+  def main(args: Array[String]): Unit =
+    onLoading {
+      new SlimetrailWebApp(10)
+        .run(document.getElementById(&quot;scalajs-controlled-node&quot;))
+    }
+}
+</code></pre>
+<p>The <code>WebApplication</code> trait is the exact <em>Web</em> counterpart of the <code>TextApplication</code> trait. The <code>view</code> method of <code>WebApplication</code>, just like in <code>TextApplication</code>, takes the current state of the application (<code>GameState</code> for <em>Slimetrail</em>) as input and produce events (<code>Action</code> for <em>Slimetrail</em>) that will be sent to <code>update</code> in order to compute the new state of the application and so on.</p>
+<p>The two differences with <code>TextApplication</code> are:</p>
+<ul>
+<li>the <em>Web UI</em> needs to render some <em>HTML/SVG/CSS</em> in a browser page via the <strong>DOM</strong> instead of lines of text in a terminal console.</li>
+<li>the <em>Web UI</em> needs to produce user <code>Action</code> from <a href="https://developer.mozilla.org/en-US/docs/Web/Events">DOM Events</a> instead of reading lines from the keyboard.</li>
+</ul>
+<p>To produce the <em>JavaScript</em> you have two options:</p>
+<ul>
+<li><code>sbt web/fastOptJS</code> will compile the <code>web</code> project into a <code>JavaScript</code> file at <code>web/target/scala-2.12/slimetrail-web-fastopt.js</code> fast but without much optimizations.</li>
+<li><code>sbt web/fullOptJS</code> will compile the <code>web</code> project into an optimized <code>JavaScript</code> file at <code>web/target/scala-2.12/slimetrail-web-opt.js</code>.</li>
+</ul>
+<p>Run <code>bin/genHtml.sh</code> to produce both <code>fast.html</code> and <code>full.html</code> which run the application using the corresponding <em>JavaScript</em> file.</p>
+<h2><a class="header" href="#implementing-the-web-ui" id="implementing-the-web-ui">Implementing the Web UI</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 1 hour and 40 minutes</strong></li>
+<li><strong>Recommended finishing before: 12:00am</strong></li>
+</ul>
+<p>Using the <a href="https://www.scala-js.org/api/scalajs-library/latest/#scala.scalajs.js.package">ScalaJS library scaladoc</a> and <a href="https://www.scala-js.org/api/scalajs-dom/0.9.5/#org.scalajs.dom.package">ScalaJS DOM scaladoc</a> you can now finish the <em>Web UI</em> by implementing the following functions:</p>
+<ul>
+<li>
+<p><strong>(Optional) Implements</strong> <code>Html.map</code> <strong>.</strong></p>
+<p>It applies the function <code>f</code> on any value of type <code>A</code>.</p>
+</li>
+<li>
+<p><strong>Implements</strong> <code>Html.render</code> <strong>.</strong></p>
+<p>It creates a new <a href="https://www.scala-js.org/api/scalajs-dom/0.9.5/#org.scalajs.dom.raw.Node">Node</a> corresponding to this <em>HTML/SVG</em> tree using the <em>DOM</em>.</p>
+</li>
+<li>
+<p><strong>Implements</strong> <code>WebApplication.run</code> <strong>.</strong></p>
+<p>It runs a <em>Web Application</em> by replacing the <code>initialNode</code> by the rendering of the current state of the application.</p>
+</li>
+<li>
+<p><strong>Implements</strong> <code>SlimetrailWebApp.view</code> <strong>.</strong></p>
+<p>It renders the current state of the <em>Slimetrail</em> application as an <code>Html[Action]</code> tree.</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="slimetrail-text-app.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="slimetrail-text-app.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

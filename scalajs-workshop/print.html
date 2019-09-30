@@ -1,0 +1,691 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>How to make game in the browser thanks to ScalaJS</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="read-this-first.html"><strong aria-hidden="true">1.</strong> READ THIS FIRST</a></li><li><a href="first-step-web.html"><strong aria-hidden="true">2.</strong> First Steps in the Web</a></li><li><ol class="section"><li><a href="slimetrail.html"><strong aria-hidden="true">2.1.</strong> Slimetrail</a></li><li><a href="play-with-dom.html"><strong aria-hidden="true">2.2.</strong> Playing with the Document Object Model (DOM)</a></li></ol></li><li><a href="scalajs-intro.html"><strong aria-hidden="true">3.</strong> Introduction to ScalaJS</a></li><li><ol class="section"><li><a href="slimetrail-text-app.html"><strong aria-hidden="true">3.1.</strong> The Slimetrail Text App</a></li><li><a href="inviting-scalajs.html"><strong aria-hidden="true">3.2.</strong> Inviting ScalaJS to the Party</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">How to make game in the browser thanks to ScalaJS</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#read-this-first" id="read-this-first">READ THIS FIRST</a></h1>
+<p><strong>This session has been designed as a linear journey in which you are expected to follow each step as closely as possible. However, i will not force you to do so. You are free to enjoy this session the way you want. But if you decide to move apart from the marked path, you will be on your own! I will concentrate my efforts towards the ones following the session the way it is intended to.</strong></p>
+<p><strong>Have fun!</strong></p>
+<h1><a class="header" href="#first-steps-in-the-web" id="first-steps-in-the-web">First Steps in the Web</a></h1>
+<p>Before diving into <em>Scaja.JS</em>, you <strong>need</strong> to get used to some of the <em>Web</em> basics. This section is dedicated to make you <strong>practice</strong> <em>HTML</em>, <em>CSS</em>, <em>SVG</em> and even <em>JavaScript</em>.</p>
+<h1><a class="header" href="#slimetrail" id="slimetrail">Slimetrail</a></h1>
+<ul>
+<li><strong>Recommended time to spend on this part: 5 minutes</strong></li>
+<li><strong>Recommended finishing before: 9:05am</strong></li>
+</ul>
+<p><em>Slimetrail</em> is a <strong>two-players</strong> <strong>turn-based</strong> board game. At the beginning of the game the board looks like this:</p>
+<p><img src="./images/board0.svg" alt="Initial board" title="Initial board" /></p>
+<p>The red cell in the centre of the board is call the <strong>stone</strong>. Players, at their turn, move the stone to an adjacent cell. The goal of the <strong>green player</strong> is to put the stone in the top-most cell (the <strong>green cell</strong>) while the goal of the <strong>yellow player</strong> is to put the stone in the bottom-most cell (the <strong>yellow cell</strong>). The <strong>Allowed moves</strong> are indicated by a drawing cells in light green on first-player's turn and light yellow on second-player's one. The first player to reach his/her goal wins the game. Green player plays first.</p>
+<p><strong>Visit <a href="https://chrilves.github.io/slimetrail">chrilves.github.io/slimetrail</a> and take 5 minutes to play the game to get used to it.</strong></p>
+<h1><a class="header" href="#playing-with-the-document-object-model-dom" id="playing-with-the-document-object-model-dom">Playing with the Document Object Model (DOM)</a></h1>
+<p>It is time to meet the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">DOM</a>. First open the page <a href="https://chrilves.github.io/slimetrail">chrilves.github.io/slimetrail</a> on which you played in the last section. Then <strong>open the development tools</strong>. In <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>, you can do so by opening the <code>Web Developer -&gt; Toggle Tools</code> menu item. You should see something like this:</p>
+<p><img src="./images/webtools.png" alt="Web developer tools" title="Web Developer Tools" /></p>
+<p>The bottom half of the screen is <a href="https://developer.mozilla.org/en-US/docs/Tools">the Web Developer Tools</a>.</p>
+<h2><a class="header" href="#the-inspector-panel" id="the-inspector-panel">The <strong>Inspector</strong> panel</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 10 minutes</strong></li>
+<li><strong>Recommended finishing before: 9:15am</strong></li>
+</ul>
+<p>The <strong>inspector</strong> shows you the <em>HTLM/CSS/SVG</em> code of the page <strong>in real time</strong>. <em>JavaScript</em> code can modify the <em>HTLM/CSS/SVG</em> code of the page through an <em>API</em> (Application Programming Interface) known as the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">Document Object Model</a> or <strong>DOM</strong> for short.</p>
+<ul>
+<li><strong>Play the game and watch the code of the page being modified as you play.</strong></li>
+<li><strong>Write down 10 modifications of the tree you noticed.</strong></li>
+</ul>
+<p>Within the <em>inspector</em> you can explore the structure of the document, but also modify it and even copying it.</p>
+<ul>
+<li><strong>Select the</strong> <code>&lt;svg ...&gt;</code> <strong>tag, then right-click and select</strong> <code>Copy -&gt; Outer HTML</code> <strong>like this:</strong></li>
+</ul>
+<p><img src="./images/copyouter.png" alt="Copy Outer HTML" title="Copy Outer HTML" /></p>
+<ul>
+<li><strong>Paste it any text editor you like</strong>.</li>
+</ul>
+<p>During this session, use the <em>inspector</em> <strong>often</strong> either to inspect a working example like the one at <a href="https://chrilves.github.io/slimetrail">chrilves.github.io/slimetrail</a>, or as a <em>REPL</em> by writing down <em>HTML/CSS/SVG</em> or as a debugger.</p>
+<h2><a class="header" href="#the-console-panel" id="the-console-panel">The <strong>console</strong> panel</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 30 minutes</strong></li>
+<li><strong>Recommended finishing before: 9:45am</strong></li>
+</ul>
+<p>The <strong>console</strong> panel is a <em>JavaScript</em> <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>. Enter the following <em>JavaScript</em> code and watch the effects on the page:</p>
+<pre><code class="language-js">let x = &quot;Welcome &quot;;
+x;
+</code></pre>
+<pre><code class="language-js">x = x + &quot;to the console&quot;;
+</code></pre>
+<pre><code class="language-js">console.log(x);
+</code></pre>
+<pre><code class="language-js">document.body
+        .appendChild(document.createTextNode(&quot;Hello&quot;));
+</code></pre>
+<p>The structure of the page, exposed in the <strong>inspector</strong> panel, is (more or less) an <strong>XML tree</strong> made of <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node">Node</a>. There are different kind of nodes such
+as <a href="https://developer.mozilla.org/en-US/docs/Web/API/Text">Text</a> nodes which are leaves representing some text or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a> nodes which represent an <em>HTML</em> or <em>SVG</em> tag such as <code>div</code>, <code>span</code>, <code>body</code>, <code>svg</code> and many others. As you can see in the inspector <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a> nodes can have sub-nodes that are called children and <strong>key/value</strong> pairs attached to them called <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attributes">Attributes</a>. We will only use <code>Text</code> and <code>Element</code> nodes in this session.</p>
+<p>One of the most important concept is the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document">document</a>, it represents the page. You can access it simply with <code>document</code>. It provides many of the main functions we will use:</p>
+<ul>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById">document.getElementById</a> get an <code>Element</code> node by its <code>id</code> attribute.</p>
+<p><strong>Try the following code in the console. Observe the result and find the node in the inspector:</strong></p>
+<pre><code class="language-js">let rules = document.getElementById(&quot;rules&quot;);
+rules;
+</code></pre>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">document.createTextNode</a> creates a <code>Text</code> node but does not attach it to the page yet!</p>
+<p><strong>Try the following code in the console. Observe the result and try to find it in the inspector:</strong></p>
+<pre><code class="language-js">let mytextnode = document.createTextNode(&quot;I am a text node&quot;);
+mytextnode;
+</code></pre>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild">element.appendChild</a> add a node to the children of the element.</p>
+<p><strong>Try the following code in the console. What change do you see on the page? Find the</strong> <code>mytextnode</code> <strong>in the inspector:</strong></p>
+<pre><code class="language-js">rules.appendChild(mytextnode);
+</code></pre>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">element.replaceChild</a> replace a node that is a child of the element by another node.</p>
+<p><strong>Try this in the console:</strong></p>
+<pre><code class="language-js">let mynewtextnode = document.createTextNode(&quot;I am the new text node&quot;);
+rules.replaceChild(mynewtextnode, mytextnode);
+</code></pre>
+<p><strong>Observe the effect on the page. Using the inspector, notice what happend.</strong></p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS">document.createElementNS</a> creates a new <code>Element</code> node but does not attach it to the page yet. Note that this function requires an argument called the <strong>namespace</strong>. A tag may have several meaning depending on the context, how does the browser know how to interpret it? Take a <code>address</code> tag for example, is it a postal address? Or an email address maybe? To avoid ambiguity, we can make clear what is the meaning of a tag by defining its <strong>namespace</strong>. We will use two namespaces in this session:</p>
+<ul>
+<li>The <em>HTML</em> namespace tells the browser the node is to be interpreted as an <em>HTML</em> node. Its value is <code>&quot;http://www.w3.org/1999/xhtml&quot;</code>.</li>
+<li>The <em>SVG</em> namespace tells the browser the node is to be interpreted as an <em>SVG</em> node. Its value is <code>&quot;http://www.w3.org/2000/svg&quot;</code>.</li>
+</ul>
+<p>Using the <em>HTML</em> namespace for a <em>SVG</em> node will result in the browser treating it as an <em>HTML</em> node and thus misbehaving. <strong>Be very careful about that, always give the correct namespace.</strong></p>
+<p><strong>Try the following code in the console. Add the element to the page and observe the result in the inspector:</strong></p>
+<pre><code class="language-js">let myhtmlelement =
+      document.createElementNS(&quot;http://www.w3.org/1999/xhtml&quot;, &quot;h1&quot;);
+myhtmlelement;
+</code></pre>
+<p><strong>Try the following code in the console. Add the element to the page and observe the result in the inspector:</strong></p>
+<pre><code class="language-js"> let mysvgelement =
+      document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;polygon&quot;);
+ mysvgelement;
+</code></pre>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttributeNS">element.setAttributeNS</a> set an attribute on the <code>element</code>. Attributes can also have a <em>namespace</em> but unlike <em>elements</em> it is optional.</p>
+<p><strong>Try the following code in the console. Observe the effects on</strong> <code>myhtmlelement</code> <strong>in the inspector.</strong></p>
+<pre><code class="language-js">myhtmlelement.setAttributeNS(
+        undefined,
+        &quot;akey&quot;,
+        &quot;avalue&quot;);
+myhtmlelement;
+</code></pre>
+<pre><code class="language-js">myhtmlelement.setAttributeNS(
+        undefined,
+        &quot;akey&quot;,
+        &quot;newvalue&quot;);
+myhtmlelement;
+</code></pre>
+<pre><code class="language-js">myhtmlelement.setAttributeNS(
+      &quot;http://www.w3.org/1999/xlink&quot;,
+      &quot;xlink&quot;,
+      &quot;anothervalue&quot;);
+myhtmlelement;
+</code></pre>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode">Node.parentNode</a> returns the parent node if it exists.</p>
+<p><strong>Try the following code in the console. Find the parent node in the inspector.</strong></p>
+<pre><code class="language-js">let rulesParent = rules.parentNode;
+rulesParent;
+</code></pre>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">Node.addEventListener</a> attach a reaction to an event on this node.</p>
+<p><strong>Try the following code in the console. Then click on the page to observe the result.</strong></p>
+<pre><code class="language-js">function reaction1(event) {
+  alert(&quot;Event received and reaction triggered!&quot;);
+}
+document.body.addEventListener(&quot;click&quot;, reaction1);
+</code></pre>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation">Event.stopPropagation</a> prevents further propagation of the current event in the <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">capturing and bubbling phases</a>.</p>
+<pre><code class="language-js">function reaction2(event) {
+  event.stopPropagation();
+  alert(&quot;Event received, reaction triggered but no further propagation!&quot;);
+}
+document.body.addEventListener(&quot;click&quot;, reaction2);
+</code></pre>
+</li>
+<li>
+<p>By default, <em>JavaScript</em> code in a page can be executed before the page is fully loaded. Code that need the page to be fully loaded can set themselves as an event listener on <code>document</code> for the <a href="https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded">DOMContentLoaded</a> event.</p>
+<pre><code class="language-js">function reaction3(event) {
+  alert(&quot;I will be executed when the page is fully loaded&quot;);
+}
+document.addEventListener(&quot;DOMContentLoaded&quot;, reaction3);
+</code></pre>
+</li>
+</ul>
+<p>These are the few functions you need to use to create or modify the page structure from <em>JavaScript</em>.</p>
+<h2><a class="header" href="#real-life-application" id="real-life-application">Real-Life Application</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 10 minutes</strong></li>
+<li><strong>Recommended finishing before: 9:55am</strong></li>
+</ul>
+<p>It is about time to apply all this knowledge into a real-life example. To do so, create a new file named <code>example.html</code> whose content is:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    /* Place here the code that create the svg tree
+       and add it to the page so that the image is
+       displayed by the browser.
+    */
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>Write within the</strong> <code>&lt;script ...&gt;</code> <strong>tag above the <em>JavaScript</em> code to create the following complete <em>Element</em> and append it to the</strong> <code>&lt;body&gt;</code> <strong>node so that the browser displays the image.</strong> This example is taken from the book <a href="http://shop.oreilly.com/product/0636920032335.do">SVG Essentials</a>.</p>
+<pre><code class="language-html">&lt;svg width=&quot;140&quot;
+     height=&quot;170&quot;
+     xmlns=&quot;http://www.w3.org/2000/svg&quot;
+     xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+
+  &lt;title&gt;Cat&lt;/title&gt;
+  &lt;desc&gt;Stick Figure of a Cat&lt;/desc&gt;
+  
+  &lt;circle cx=&quot;70&quot; cy=&quot;95&quot; r=&quot;50&quot; style=&quot;stroke: black; fill: none;&quot;&gt;&lt;/circle&gt;
+  &lt;circle cx=&quot;55&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
+  &lt;circle cx=&quot;85&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
+  
+  &lt;g id=&quot;whiskers&quot;&gt;
+    &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;85&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
+    &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;105&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
+  &lt;/g&gt;
+
+  &lt;use xlink:href=&quot;#whiskers&quot; transform=&quot;scale(-1 1) translate(-140 0)&quot;&gt;&lt;/use&gt;
+  
+  &lt;polyline points=&quot;108 62, 90 10, 70 45, 50, 10, 32, 62&quot;
+            style=&quot;stroke: black; fill: none;&quot;&gt;
+  &lt;/polyline&gt;
+
+  &lt;polyline points=&quot;35 110, 45 120, 95 120, 105, 110&quot;
+            style=&quot;stroke: black; fill: none;&quot;&gt;
+  &lt;/polyline&gt;
+&lt;/svg&gt;
+</code></pre>
+<p>Open the page in the browser, the inspector should be similar to:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    /* Your Javascript code to create the following
+       svg element should be here
+    */
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;svg width=&quot;140&quot;
+         height=&quot;170&quot;
+         xmlns=&quot;http://www.w3.org/2000/svg&quot;
+         xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+
+      &lt;title&gt;Cat&lt;/title&gt;
+      &lt;desc&gt;Stick Figure of a Cat&lt;/desc&gt;
+
+      &lt;circle cx=&quot;70&quot; cy=&quot;95&quot; r=&quot;50&quot; style=&quot;stroke: black; fill: none;&quot;&gt;&lt;/circle&gt;
+      &lt;circle cx=&quot;55&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
+      &lt;circle cx=&quot;85&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
+
+      &lt;g id=&quot;whiskers&quot;&gt;
+        &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;85&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
+        &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;105&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
+      &lt;/g&gt;
+
+      &lt;use xlink:href=&quot;#whiskers&quot; transform=&quot;scale(-1 1) translate(-140 0)&quot;&gt;&lt;/use&gt;
+
+      &lt;polyline points=&quot;108 62, 90 10, 70 45, 50, 10, 32, 62&quot;
+                style=&quot;stroke: black; fill: none;&quot;&gt;
+      &lt;/polyline&gt;
+
+      &lt;polyline points=&quot;35 110, 45 120, 95 120, 105, 110&quot;
+                style=&quot;stroke: black; fill: none;&quot;&gt;
+      &lt;/polyline&gt;
+    &lt;/svg&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h1><a class="header" href="#introduction-to-scalajs" id="introduction-to-scalajs">Introduction to ScalaJS</a></h1>
+<p><strong>Do not start this section until you completed the last one!</strong></p>
+<h1><a class="header" href="#the-slimetrail-text-app" id="the-slimetrail-text-app">The Slimetrail Text App</a></h1>
+<ul>
+<li><strong>Recommended time to spend on this part: 5 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:00am</strong></li>
+</ul>
+<p>A text interface similar to the web one you used to far has been realized. To get it clone the following <a href="https://git-scm.com/">git</a> repository:</p>
+<pre><code class="language-sh">git clone https://github.com/chrilves/slimetrail.scalajs.git -b ScalaIO.2018
+cd slimetrail.scalajs
+sbt text/run
+</code></pre>
+<p>You should see something like this:</p>
+<p><img src="./images/tui.png" alt="Text User Interface" title="Text User Interface" /></p>
+<p>The project is divided into three <em>sbt modules</em>:</p>
+<ul>
+<li><code>text</code> implements the text user interface.</li>
+<li><code>slimetrail</code> implements the game's logic.</li>
+<li><code>toolbox</code> defines various useful things.</li>
+</ul>
+<p><strong>Do not modify any file under the <code>toolbox</code>, <code>slimetrail</code> and <code>text</code> directories!!!</strong></p>
+<p>Note that <code>text</code> does not include any game logic and <code>slimetail</code> does not include any interface code. This strict <strong>isolation</strong> is crucial to make things work.</p>
+<p><strong>Run the following commands to generate the scaladoc for the</strong> <code>text</code>, <code>slimetrail</code> <strong>and</strong> <code>text</code> <strong>projects.</strong></p>
+<ul>
+<li><code>sbt toolbox\doc</code></li>
+<li><code>sbt slimetrail\doc</code></li>
+<li><code>sbt text\doc</code></li>
+</ul>
+<p><strong>Now open the generated documentations in your browser.</strong></p>
+<h2><a class="header" href="#the-game-loop" id="the-game-loop">The Game Loop</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 10 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:10am</strong></li>
+</ul>
+<p>The execution of the game follows a simple and widespread technique:</p>
+<ul>
+<li>A data structure, the <code>GameState</code>, represents the possible states of the game.</li>
+<li>On every user <code>Action</code>, the game <code>update</code> the current state to reflect the changes made by the <code>Action</code>.</li>
+<li>On every state change, the game renders the new state on the screen.</li>
+</ul>
+<p>More generally an application defines a type <code>Model</code> which represents the states the application can take. It also defines a type <code>Msg</code> which represents the events that make the application to transition from the current state to a new one. This new state is computed using the function <code>update</code> based on the current state <code>model</code> and the event <code>message</code>. The <code>view</code> function is responsible of rendering the current state on the screen and producing a <em>message</em> from user inputs.</p>
+<p>All of this is summarized in the following two <code>trait</code>s which represents an application. Take a close look at how the <code>run</code> procedure works.</p>
+<pre><code class="language-scala">trait Application {
+  type Model
+  val initialModel: Model
+
+  type Msg
+
+  def update(message: Msg, model: Model): Model
+}
+
+trait TextApplication extends Application {
+
+  def view(model: Model): Msg
+
+  final def run(): Unit = {
+    @tailrec
+    def loop(model: Model): Unit = {
+      val msg: Msg = view(model)
+      val nextModel: Model = update(msg, model)
+      loop(nextModel)
+    }
+
+    loop(initialModel)
+  }
+}
+</code></pre>
+<p>The <em>Slimetrail</em> application is implemented by the class <code>SlimetrailTextApp</code>. Note that the <code>Model</code> is <code>GameState</code> and events are <code>Action</code>.</p>
+<h1><a class="header" href="#inviting-scalajs-to-the-party" id="inviting-scalajs-to-the-party">Inviting ScalaJS to the Party</a></h1>
+<p>For now <em>Slimetrail</em> is a plain old <em>JVM-only</em> project. We need to make it able to produce both <em>JVM</em> and <em>JavaScript</em> outputs: it will become a <strong>cross-project</strong>.</p>
+<h2><a class="header" href="#cross-projectization" id="cross-projectization">Cross-projectization</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 5 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:15am</strong></li>
+</ul>
+<p><strong>Add the following lines to</strong> <code>project/plugins.sbt</code> <strong>.</strong></p>
+<pre><code class="language-scala">// ScalaJS
+addSbtPlugin(&quot;org.portable-scala&quot; % &quot;sbt-scalajs-crossproject&quot; % &quot;0.6.0&quot;)
+addSbtPlugin(&quot;org.scala-js&quot; % &quot;sbt-scalajs&quot; % &quot;0.6.25&quot;)
+</code></pre>
+<p>A large amount of <em>Scala</em> libraries are available both as <em>JVM</em> and <em>ScalaJS</em> artifacts. So will we! The <em>Text UI</em> needs the <code>toolbox</code> and <code>slimetrail</code> to be compiled for the <em>JVM</em> while the <em>Web UI</em> needs them to be compiled in <code>JavaScript</code>. <em>Cross-projects</em> can define <code>libraryDependencies</code> using <code>%%%</code> instead of <code>%%</code> to ensure the correct artifacts are fetched.</p>
+<p><strong>In</strong> <code>build.sbt</code><strong>, replace any</strong> <code>%%</code> <strong>in</strong> <code>commonSettings</code> <strong>by</strong> <code>%%%</code> <strong>.</strong></p>
+<p>We now need to adapt the <code>toolbox</code> and <code>slimetrail</code> project definitions to define these as <em>cross-projects</em>. To do so:</p>
+<ul>
+<li>
+<p><strong>At the beginning of</strong> <code>build.sbt</code> <strong>add these lines:</strong></p>
+<pre><code class="language-scala">// shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
+import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+</code></pre>
+</li>
+<li>
+<p><strong>In the</strong> <code>toolbox</code><strong>, project definition, replace</strong> <code>project</code> <strong>by:</strong></p>
+<pre><code class="language-scala">crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+</code></pre>
+</li>
+<li>
+<p><strong>After the</strong> <code>toolbox</code><strong>, project definition, add:</strong></p>
+<pre><code class="language-scala">lazy val toolboxJS = toolbox.js
+lazy val toolboxJVM = toolbox.jvm
+</code></pre>
+</li>
+<li>
+<p><strong>In the</strong> <code>slimetrail</code><strong>, project definition, replace</strong> <code>project</code> <strong>by:</strong></p>
+<pre><code class="language-scala">crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+</code></pre>
+</li>
+<li>
+<p><strong>After the</strong> <code>slimetrail</code><strong>, project definition, add:</strong></p>
+<pre><code class="language-scala">lazy val slimetrailJS = slimetrail.js
+lazy val slimetrailJVM = slimetrail.jvm
+</code></pre>
+</li>
+<li>
+<p><strong>In the</strong> <code>text</code><strong>, project definition, replace</strong> <code>slimetrail</code> <strong>by</strong> <code>slimetrailJVM</code> <strong>.</strong></p>
+</li>
+</ul>
+<p><code>toolbox</code> and <code>slimetrail</code> projects now exists in two flavors each:</p>
+<ul>
+<li><code>toolboxJVM</code> and <code>slimetrailJVM</code> are <em>JVM</em> projects.</li>
+<li><code>toolboxJS</code> and <code>slimetrailJS</code> are <em>ScalaJS</em> projects.</li>
+</ul>
+<p><strong>Run</strong> <code>sbt text/run</code> <strong>to ensure everything is still working fine.</strong></p>
+<h2><a class="header" href="#setting-up-the-web-ui" id="setting-up-the-web-ui">Setting up the Web UI</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 5 minutes</strong></li>
+<li><strong>Recommended finishing before: 10:20am</strong></li>
+</ul>
+<p><strong>Add the new project definition for the Web UI:</strong></p>
+<pre><code class="language-scala">// Web Interface
+lazy val web =
+  project
+    .in(file(&quot;web&quot;))
+    .enablePlugins(ScalaJSPlugin)
+    .settings(commonSettings: _*)
+    .settings(
+      name := &quot;slimetrail-web&quot;,
+      libraryDependencies += &quot;org.scala-js&quot; %%% &quot;scalajs-dom&quot; % &quot;0.9.6&quot;,
+      scalaJSUseMainModuleInitializer := true
+    )
+    .dependsOn(slimetrailJS)
+</code></pre>
+<p><strong>Create the file</strong> <code>web/src/main/scala/Main.scala</code> <strong>whose content is:</strong></p>
+<pre><code class="language-scala">package slimetrail.web
+
+import org.scalajs.dom._
+import scala.scalajs.js
+import slimetrail._
+
+/** Tree strucure to represent the DOM */
+sealed trait Html[+A] {
+  final def render: Node =
+    ??? // Replace by actual code
+
+  final def map[B](f: A =&gt; B): Html[B] =
+    ??? // Replace by actual code
+}
+final case class ATextNode(value: String) extends Html[Nothing]
+final case class AnElement[+A](
+    namespace: String,
+    tag: String,
+    attributes: Map[(Option[String], String), String],
+    eventListeners: List[(String, js.Function1[_ &lt;: Event, A])],
+    children: List[Html[A]]
+  ) extends Html[A]
+
+/** Generic Web Application */
+trait WebApplication extends Application {
+
+  def view(model: Model): Html[Msg]
+
+  final def run(initialNode: Node): Unit =
+    ??? // Replace by actual code
+}
+
+/** The Slimetrail Web Application */
+final class SlimetrailWebApp(size: Int)
+    extends SlimetrailApp(size)
+    with WebApplication {
+
+  def view(m: GameState): Html[Msg] =
+    ??? // Replace by actual code
+}
+
+object Main {
+  def onLoading(a: =&gt; Unit): Unit =
+    document.addEventListener(&quot;DOMContentLoaded&quot;, (_: Event) =&gt; a)
+
+  def main(args: Array[String]): Unit =
+    onLoading {
+      new SlimetrailWebApp(10)
+        .run(document.getElementById(&quot;scalajs-controlled-node&quot;))
+    }
+}
+</code></pre>
+<p>The <code>WebApplication</code> trait is the exact <em>Web</em> counterpart of the <code>TextApplication</code> trait. The <code>view</code> method of <code>WebApplication</code>, just like in <code>TextApplication</code>, takes the current state of the application (<code>GameState</code> for <em>Slimetrail</em>) as input and produce events (<code>Action</code> for <em>Slimetrail</em>) that will be sent to <code>update</code> in order to compute the new state of the application and so on.</p>
+<p>The two differences with <code>TextApplication</code> are:</p>
+<ul>
+<li>the <em>Web UI</em> needs to render some <em>HTML/SVG/CSS</em> in a browser page via the <strong>DOM</strong> instead of lines of text in a terminal console.</li>
+<li>the <em>Web UI</em> needs to produce user <code>Action</code> from <a href="https://developer.mozilla.org/en-US/docs/Web/Events">DOM Events</a> instead of reading lines from the keyboard.</li>
+</ul>
+<p>To produce the <em>JavaScript</em> you have two options:</p>
+<ul>
+<li><code>sbt web/fastOptJS</code> will compile the <code>web</code> project into a <code>JavaScript</code> file at <code>web/target/scala-2.12/slimetrail-web-fastopt.js</code> fast but without much optimizations.</li>
+<li><code>sbt web/fullOptJS</code> will compile the <code>web</code> project into an optimized <code>JavaScript</code> file at <code>web/target/scala-2.12/slimetrail-web-opt.js</code>.</li>
+</ul>
+<p>Run <code>bin/genHtml.sh</code> to produce both <code>fast.html</code> and <code>full.html</code> which run the application using the corresponding <em>JavaScript</em> file.</p>
+<h2><a class="header" href="#implementing-the-web-ui" id="implementing-the-web-ui">Implementing the Web UI</a></h2>
+<ul>
+<li><strong>Recommended time to spend on this part: 1 hour and 40 minutes</strong></li>
+<li><strong>Recommended finishing before: 12:00am</strong></li>
+</ul>
+<p>Using the <a href="https://www.scala-js.org/api/scalajs-library/latest/#scala.scalajs.js.package">ScalaJS library scaladoc</a> and <a href="https://www.scala-js.org/api/scalajs-dom/0.9.5/#org.scalajs.dom.package">ScalaJS DOM scaladoc</a> you can now finish the <em>Web UI</em> by implementing the following functions:</p>
+<ul>
+<li>
+<p><strong>(Optional) Implements</strong> <code>Html.map</code> <strong>.</strong></p>
+<p>It applies the function <code>f</code> on any value of type <code>A</code>.</p>
+</li>
+<li>
+<p><strong>Implements</strong> <code>Html.render</code> <strong>.</strong></p>
+<p>It creates a new <a href="https://www.scala-js.org/api/scalajs-dom/0.9.5/#org.scalajs.dom.raw.Node">Node</a> corresponding to this <em>HTML/SVG</em> tree using the <em>DOM</em>.</p>
+</li>
+<li>
+<p><strong>Implements</strong> <code>WebApplication.run</code> <strong>.</strong></p>
+<p>It runs a <em>Web Application</em> by replacing the <code>initialNode</code> by the rendering of the current state of the application.</p>
+</li>
+<li>
+<p><strong>Implements</strong> <code>SlimetrailWebApp.view</code> <strong>.</strong></p>
+<p>It renders the current state of the <em>Slimetrail</em> application as an <code>Html[Action]</code> tree.</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

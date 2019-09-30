@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.58.0" />
+    <meta name="description" content="@chrilves&#39; Archives">
+<meta name="author" content="@chrilves">
+
+    <link rel="icon" href="https://chrilves.github.io/images/favicon.png" type="image/png">
+
+    <title>Episode 1 - Why Types? :: @chrilves&#39; Archives</title>
+
+    
+    <link href="https://chrilves.github.io/css/nucleus.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1569881780" rel="stylesheet">
+    
+
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1569881780"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/types/1-why/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://chrilves.github.io/">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="65mm"
+   height="7mm"
+   viewBox="0 0 96.990127 7.7258329"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="193.2115"
+     inkscape:cy="-34.320002"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1026"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.9716412,-5.0276302)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="8.3895578"
+       y="12.61588"
+       id="text4543"><tspan
+         sodipodi:role="line"
+         id="tspan4541"
+         x="8.3895578"
+         y="12.61588"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum';stroke-width:0.26458332;fill:#ffffff">@chrilves' Archives</tspan></text>
+  </g>
+</svg>
+</a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1569881780"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1569881780"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/chrilves.github.io";
+    
+</script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1569881780"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://chrilves.github.io/posts/">
+          Posts
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/recursion_schemes_intro/" title="Recursion Schemes: the high-school introduction" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/recursion_schemes_intro/">
+        Recursion Schemes: the high-school introduction
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/gadts_intro/" title="Demystifying GADTs" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/gadts_intro/">
+        Demystifying GADTs
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/folds/" title="Let&#39;s meet the charming fold family" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/folds/">
+        Let&#39;s meet the charming fold family
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/slimetrail/" title="How to make game in the browser thanks to ScalaJS" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/slimetrail/">
+        How to make game in the browser thanks to ScalaJS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/json2xml/" title="JSON to XML: the probably a tiny bit over engineered way" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/json2xml/">
+        JSON to XML: the probably a tiny bit over engineered way
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/falgebra_scalaio_2017/" title="F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/falgebra_scalaio_2017/">
+        F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/types/" title="Introduction to Types" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://chrilves.github.io/types/">
+          Introduction to Types
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/1-why/" title="Episode 1 - Why Types?" class="dd-item active">
+        <a href="https://chrilves.github.io/types/1-why/">
+        Episode 1 - Why Types?
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/2-enums/" title="Episode 2 - Enumerations" class="dd-item ">
+        <a href="https://chrilves.github.io/types/2-enums/">
+        Episode 2 - Enumerations
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/3-products/" title="Episode 3 - Products" class="dd-item ">
+        <a href="https://chrilves.github.io/types/3-products/">
+        Episode 3 - Products
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/4-coproducts/" title="Episode 4 - CoProducts" class="dd-item ">
+        <a href="https://chrilves.github.io/types/4-coproducts/">
+        Episode 4 - CoProducts
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/5-rectypes/" title="Episode 5 - Recursive Data Types" class="dd-item ">
+        <a href="https://chrilves.github.io/types/5-rectypes/">
+        Episode 5 - Recursive Data Types
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/chrilves"><i class='fab fa-fw fa-github'></i> Github</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/chrilves"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/types/1-why.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                   Episode 1 - Why Types? 
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#a-real-life-example">A real life example</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#next-episode-hahahugoshortcode-s1-hbhb"><a href="HAHAHUGOSHORTCODE-s1-HBHB">Next Episode</a></a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Episode 1 - Why Types?
+            </h1>
+          
+
+        
+
+
+
+<p>This is the <strong>first episode</strong>
+   of the <a class="hightlight" href=https://chrilves.github.io/types/>series about types</a>.
+   
+</p>
+
+
+
+<p><strong>Why using</strong> types? <strong>When</strong> are they useful? <strong>Why</strong> we should <strong>care</strong> about types? <strong>What</strong> are types? These are the questions <a href="https://chrilves.github.io/types/">this series of posts</a> give some answers to. Let&rsquo;s start by realizing a fundamental fact: <strong>types are everywhere</strong>! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. <strong>Types are specification</strong>, discriminating what makes sense from what makes not.</p>
+
+<h2 id="a-real-life-example">A real life example</h2>
+
+<p>They can be simple like the well known <em>strings</em>, <em>integers</em>, <em>booleans</em>, <em>lists</em>, <em>chars</em> and <em>floating-point numbers</em>. But these six are far from covering the whole picture. Take as an example, a business application about finding the best deal amount a list of prices expressed in various currencies. To do so it would need currency conversion rates. Which data structure would you use to store these rates? One euro (<code>EUR</code>) worths when i write these lines <em>1.13</em> dollars (<code>USD</code>) which i could represent as the triple <code>(&quot;EUR&quot;, 1.13 ,&quot;USD&quot;)</code>. To store many rates, using a list is straightforward:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">scala<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">val</span> rates <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">(</span> <span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EUR&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1.13</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;USD&#34;</span><span style="color:#f92672">),</span> <span style="color:#f92672">(</span><span style="color:#e6db74">&#34;GBP&#34;</span><span style="color:#f92672">,</span>  <span style="color:#ae81ff">142.79</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;JPY&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">)</span>
+rates<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[(</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">Double</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">)]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">((</span><span style="color:#a6e22e">EUR</span><span style="color:#f92672">,</span><span style="color:#ae81ff">1.13</span><span style="color:#f92672">,</span><span style="color:#a6e22e">USD</span><span style="color:#f92672">),</span> <span style="color:#f92672">(</span><span style="color:#a6e22e">GBP</span><span style="color:#f92672">,</span><span style="color:#ae81ff">142.79</span><span style="color:#f92672">,</span><span style="color:#a6e22e">JPY</span><span style="color:#f92672">))</span></code></pre></div>
+<p>Are you sure the type <code>(String, Double, String)</code> is a faithful representation for rates? Among all the possible values of this type is <code>(&quot;EUR&quot;, -3.0, &quot;USD&quot;)</code> meaning when you give one euro, you have to <em>pay</em> three dollars more to get nothing. This is silly, currency trading don&rsquo;t work that way. Another problematic value is <code>(&quot;EUR&quot;, 0, &quot;USD&quot;)</code>. What is the point in exchanging one euro for nothing? Using <code>Double</code> to encode rates is wrong as not all <em>floating point number</em> makes a valid rate, only those <em>strictly positive</em>! A faithful representation of rates is the type <code>r:Double{r &gt; 0}</code> which is the types of value <code>r:Double</code> such that <code>r &gt; 0</code>. Such types are called <a href="https://en.wikipedia.org/wiki/Refinement_type">refinement types</a> and used heavily in <a href="https://www.fstar-lang.org/">F*</a>.</p>
+
+<p>We&rsquo;re not done yet! Are you sure <code>String</code> is faithful representation of currencies? The empty string <code>&quot;&quot;</code> is not a currency, neither are <code>&quot;⛱&quot;</code>, <code>&quot;⛏&quot;</code>, etc but they are all valid strings. Assuming <code>currencies:Set[String]</code> is the set of all valid currency names, the type of currencies would be <code>cur:String{currencies.contains(cur)}</code> if it was expressible in <em>Scala</em>. But it is in <a href="https://www.fstar-lang.org/">F*</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#66d9ef">open</span> FStar.<span style="color:#a6e22e">Set</span>
+
+<span style="color:#66d9ef">val</span> currencies<span style="color:#f92672">:</span> set <span style="color:#66d9ef">string</span>
+<span style="color:#66d9ef">let</span> currencies <span style="color:#f92672">=</span> Set.as_set <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;EUR&#34;</span><span style="color:#f92672">;</span> <span style="color:#e6db74">&#34;USD&#34;</span><span style="color:#f92672">;</span> <span style="color:#e6db74">&#34;JPY&#34;</span><span style="color:#f92672">]</span>
+
+<span style="color:#66d9ef">type</span> currency <span style="color:#f92672">=</span> cur<span style="color:#f92672">:</span><span style="color:#66d9ef">string</span><span style="color:#f92672">{</span>Set.mem cur currencies<span style="color:#f92672">}</span></code></pre></div>
+<p>For the rest of this section, we will assume <em>Scala</em> has refinement types so that we can write:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Rate</span> <span style="color:#f92672">=</span> r<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Double</span><span style="color:#f92672">{</span><span style="color:#66d9ef">r</span> <span style="color:#66d9ef">&gt;</span> <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">val</span> <span style="color:#66d9ef">currencies:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#a6e22e">Set</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EUR&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;USD&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;JPY&#34;</span><span style="color:#f92672">)</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Currency</span> <span style="color:#f92672">=</span> cur<span style="color:#66d9ef">:</span><span style="color:#66d9ef">String</span><span style="color:#f92672">{</span><span style="color:#66d9ef">currencies.contains</span><span style="color:#f92672">(</span><span style="color:#66d9ef">cur</span><span style="color:#f92672">)}</span></code></pre></div>
+<p>We&rsquo;re still not done yet as the type <code>(Currency, Rate, Currency)</code> still does not faithfully encode a conversion rate: <code>(&quot;EUR&quot;, 2.0, &quot;EUR&quot;)</code> is a value of this type but one euro can not worth two euros, this would not make sense! We could define the type <code>Rate</code> such that the only possible value is <code>1.0</code> when there is the same currency on both sides, but for simplicity&rsquo;s sake and without loss of generality, we will just forbid converting into the same currency. Once again, in a version of <em>Scala</em> with <em>refinement and dependent types</em>, conversion rates would be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConvRate</span><span style="color:#f92672">(</span>
+  from<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Currency</span><span style="color:#f92672">,</span>
+  rate<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Rate</span><span style="color:#f92672">,</span>
+  to<span style="color:#66d9ef">:</span><span style="color:#66d9ef">Currency</span><span style="color:#f92672">{</span><span style="color:#66d9ef">from</span> <span style="color:#66d9ef">!=</span> <span style="color:#66d9ef">to</span><span style="color:#f92672">}</span>
+<span style="color:#f92672">)</span></code></pre></div>
+<p>We&rsquo;re almost there! Now every value of <code>ConvRate</code> makes sense from a business perspective: currencies <code>from</code> and <code>to</code> are valid distinct currencies and <code>rate</code> is a strictly positive exchange rate. Does the type <code>List[ConvRate]</code> faithfully represents a valid set of conversion rates? Values like <code>List(ConvRate(&quot;EUR&quot;, 2.0, &quot;USD&quot;), ConvRate(&quot;EUR&quot;, 1.13, &quot;USB&quot;))</code>, where there are several distinct rates for the same conversion, do not make sense. Likewise, there is a relation between a conversion rate and its opposite direction. If one euros worth <code>1.13</code> dollars, then one dollar worths <code>0.88</code> euros. Values like <code>List(ConvRate(&quot;EUR&quot;, 1.13, &quot;USD&quot;), ConvRate(&quot;USD&quot;, 2.0, &quot;EUR&quot;))</code> do not respect this rule, so are invalid business values. To be sure values do respect these <strong>business rules</strong> we can use the data structure <a href="https://www.scala-lang.org/api/2.12.4/scala/collection/immutable/Map.html">Map</a> and only allow one side of the conversion (<code>from &lt; to</code>) in the type <code>ConversionRates</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> currencies<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
+  <span style="color:#a6e22e">Set</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EUR&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;USD&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;JPY&#34;</span><span style="color:#f92672">)</span>
+
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Conversion</span><span style="color:#f92672">(</span>
+  from<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">{</span><span style="color:#66d9ef">currencies.contains</span><span style="color:#f92672">(</span><span style="color:#66d9ef">from</span><span style="color:#f92672">)},</span>
+  to<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">{</span><span style="color:#66d9ef">currencies.contains</span><span style="color:#f92672">(</span><span style="color:#66d9ef">to</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">&amp;&amp;</span> <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">&lt;</span> <span style="color:#66d9ef">to</span> <span style="color:#f92672">}</span>
+<span style="color:#f92672">)</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">ConversionRates</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Conversion</span>, <span style="color:#66d9ef">rate:Double</span><span style="color:#f92672">{</span><span style="color:#66d9ef">rate</span> <span style="color:#66d9ef">&gt;</span> <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#f92672">}]</span></code></pre></div>
+<p>The type <code>ConversionRates</code> is certainly more complex than <code>List[(String, Double, String)]</code> but we gained several major benefits:</p>
+
+<ul>
+<li>every piece of code taking <code>ConversionRates</code> <strong>values</strong> as input is sure they <strong>respect business rules</strong>.</li>
+<li>every piece of code outputting <code>ConversionRates</code> values is <strong>guaranteed to respect business rules</strong>.</li>
+<li><strong>division by zero is impossible!</strong>
+
+<ul>
+<li>no need to check!</li>
+<li>no risk of exceptions!</li>
+<li>no need to write tests!</li>
+<li>no need to test the tests!</li>
+</ul></li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>You may think you are such an excellent developer than all of this is useless because you would never define a negative rate or an empty string currency. But how could you be sure that the previous developers on the project were as perfect as you? Have you written the thousands of tests required to reach the same level of confidence types provide? Will you be happy refactoring those thousands of test every time the specification change? Are you sure you know perfectly every one of the millions ones of the project? Even the one you never had to work with?</p>
+
+<p>If we were as good as we think we are, there would not be null pointer exceptions, segfaults, exploits, undefined-is-not-a-function, <code>java.util.NoSuchElementException: None.get</code> and all the other so common bugs and vulnerabilities we see far too often! Software are complex beasts, made usually by many people, some who leave, some who join. Relying of people being perfect (perfect knowledge, perfect understanding, perfect execution) is not realistic.</p>
+
+<p>You can see type systems as powerful linters whose job is to check your code. Types get more and more complex as business rules do from simple properties to <a href="https://homotopytypetheory.org/book/">heavy mathematical theorems</a>.</p>
+
+<p><strong>Types are specification</strong>, so in an ideal world a program well-typed would be, by definition, a program without bugs. If you still find bugs in your application, it either means you need to tighten your types to fit the specification or your language&rsquo;s type-system is not expressive enough to encode the specification.</p>
+
+<h2 id="next-episode-hahahugoshortcode-s1-hbhb"><a href="https://chrilves.github.io/types/2-enums/">Next Episode</a></h2>
+
+<p>In the <a href="https://chrilves.github.io/types/2-enums/">next episode</a>, we will see enumerations like you probably have never seen them before.</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1569881780"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1569881780"></script>
+
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1569881780" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1569881780"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

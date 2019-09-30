@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.58.0" />
+    <meta name="description" content="Introduction to catamorphisms on Algebraic Data Types">
+<meta name="author" content="@chrilves">
+
+    <link rel="icon" href="https://chrilves.github.io/images/favicon.png" type="image/png">
+
+    <title>Demystifying GADTs :: @chrilves&#39; Archives</title>
+
+    
+    <link href="https://chrilves.github.io/css/nucleus.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1569881780" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1569881780" rel="stylesheet">
+    
+
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1569881780"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/posts/gadts_intro/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://chrilves.github.io/">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="65mm"
+   height="7mm"
+   viewBox="0 0 96.990127 7.7258329"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="193.2115"
+     inkscape:cy="-34.320002"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1026"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.9716412,-5.0276302)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="8.3895578"
+       y="12.61588"
+       id="text4543"><tspan
+         sodipodi:role="line"
+         id="tspan4541"
+         x="8.3895578"
+         y="12.61588"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum';stroke-width:0.26458332;fill:#ffffff">@chrilves' Archives</tspan></text>
+  </g>
+</svg>
+</a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1569881780"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1569881780"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/chrilves.github.io";
+    
+</script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1569881780"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://chrilves.github.io/posts/">
+          Posts
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/recursion_schemes_intro/" title="Recursion Schemes: the high-school introduction" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/recursion_schemes_intro/">
+        Recursion Schemes: the high-school introduction
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/gadts_intro/" title="Demystifying GADTs" class="dd-item active">
+        <a href="https://chrilves.github.io/posts/gadts_intro/">
+        Demystifying GADTs
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/folds/" title="Let&#39;s meet the charming fold family" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/folds/">
+        Let&#39;s meet the charming fold family
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/slimetrail/" title="How to make game in the browser thanks to ScalaJS" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/slimetrail/">
+        How to make game in the browser thanks to ScalaJS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/json2xml/" title="JSON to XML: the probably a tiny bit over engineered way" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/json2xml/">
+        JSON to XML: the probably a tiny bit over engineered way
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/falgebra_scalaio_2017/" title="F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/falgebra_scalaio_2017/">
+        F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/types/" title="Introduction to Types" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://chrilves.github.io/types/">
+          Introduction to Types
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/1-why/" title="Episode 1 - Why Types?" class="dd-item ">
+        <a href="https://chrilves.github.io/types/1-why/">
+        Episode 1 - Why Types?
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/2-enums/" title="Episode 2 - Enumerations" class="dd-item ">
+        <a href="https://chrilves.github.io/types/2-enums/">
+        Episode 2 - Enumerations
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/3-products/" title="Episode 3 - Products" class="dd-item ">
+        <a href="https://chrilves.github.io/types/3-products/">
+        Episode 3 - Products
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/4-coproducts/" title="Episode 4 - CoProducts" class="dd-item ">
+        <a href="https://chrilves.github.io/types/4-coproducts/">
+        Episode 4 - CoProducts
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/types/5-rectypes/" title="Episode 5 - Recursive Data Types" class="dd-item ">
+        <a href="https://chrilves.github.io/types/5-rectypes/">
+        Episode 5 - Recursive Data Types
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/chrilves"><i class='fab fa-fw fa-github'></i> Github</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://twitter.com/chrilves"><i class='fab fa-fw fa-twitter'></i> Twitter</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/posts/gadts_intro.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                   Demystifying GADTs 
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#object-oriented-programming-101">Object-Oriented Programming 101</a></li>
+<li><a href="#functional-programming-101">Functional Programming 101</a></li>
+<li><a href="#summing-up">Summing up!</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Demystifying GADTs
+            </h1>
+          
+
+        
+
+
+
+
+
+<p><strong>Generalized Algebraic Data Types (GADT)</strong> is certainly one of the most feared concept in programming nowadays. Very few mainstream languages support GADTs. The only ones i know which does are <a href="https://www.haskell.org/ghc">Haskell</a>, <a href="https://www.scala-lang.org">Scala</a>, <a href="https://ocaml.org/index.fr.html">OCaml</a> and <a href="https://haxe.org">Haxe</a>. The idea is actually very simple but often presented in complicated ways. In fact, if you&rsquo;re familiar to both basic <em>Object-Oriented-with-Generics</em> and basic <em>functional</em> programming, then you most probably are already familiar with GADTs without even knowing you are. But if GADTs are so simple, why so many people feel terrified by them? Well GADTs rely on two fundamental ideas, one of them is known by every <em>Object-Oriented-with-Generics</em> programmer while the other is known by every <em>functional</em> programmer. The problem is most people make the huge mistake of opposing them even though they are complementary. So before diving into GADTs, let me remind you of these elementary notions from <em>Object-Oriented</em> and <em>functional</em> programming.</p>
+
+<h2 id="object-oriented-programming-101">Object-Oriented Programming 101</h2>
+
+<p>Let&rsquo;s start by some plain old <a href="https://openjdk.java.net">Java</a> (the examples works in probably all Object-Oriented language which supports generics). We want to define an <em>abstract class</em> for sequences:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">&lt;</span>A<span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">abstract</span> <span style="color:#a6e22e">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">length</span>();
+  <span style="color:#66d9ef">abstract</span> <span style="color:#a6e22e">public</span> A   <span style="color:#a6e22e">getNthElement</span>(<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">nth</span>);
+}</code></pre></div>
+<p>In <em>Java</em> it would be better to define <code>Sequence&lt;A&gt;</code> as an interface but i want this example to be as simple as possible. Would you be surprised if told you a <code>String</code> is a sequence of characters ? ;) As i said, GADTs rely on very basic programming knowledge.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> MyString <span style="color:#a6e22e">extends</span> Sequence<span style="color:#f92672">&lt;</span>Character<span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">String</span> str;
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyString</span>(String <span style="color:#a6e22e">s</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> s;
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">int</span> length() {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">length</span>();
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Character</span> getNthElement(<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">nth</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">charAt</span>(nth);
+  }
+}</code></pre></div>
+<p>Likewise, <code>byte</code>s are sequences of 8 bits (we represent a bit by a <code>Boolean</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyByte</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">byte</span> bte;
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyByte</span>(<span style="color:#66d9ef">byte</span> <span style="color:#a6e22e">x</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">bte</span> <span style="color:#f92672">=</span> x;
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">int</span> length() {
+    <span style="color:#66d9ef">return</span> 8;
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Boolean</span> getNthElement(<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">nth</span>) {
+    <span style="color:#66d9ef">if</span> (nth <span style="color:#f92672">&gt;=</span> 0 <span style="color:#f92672">&amp;&amp;</span> nth <span style="color:#f92672">&lt;=</span> 7)
+      <span style="color:#66d9ef">return</span> ((bte <span style="color:#f92672">&gt;&gt;&gt;</span> nth <span style="color:#f92672">&amp;</span> 1) <span style="color:#f92672">==</span> 1);
+    <span style="color:#66d9ef">else</span>
+      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> java.<span style="color:#a6e22e">lang</span>.<span style="color:#a6e22e">IndexOutOfBoundsException</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+  }
+}</code></pre></div>
+<p>Have you noticed how <code>MyByte</code> and <code>MyString</code> declares themselves being respectively a sequence of booleans (<code>Sequence&lt;Boolean&gt;</code>) and a sequence of characters (<code>Sequence&lt;Character&gt;</code>) but not sequences of <code>A</code> (<code>Sequence&lt;A&gt;</code>) for any type <code>A</code>? Let&rsquo;s try to make it work for any type <code>A</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyByte</span><span style="color:#f92672">&lt;</span>A<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">extends</span> Sequence<span style="color:#f92672">&lt;</span>A<span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">byte</span> bte;
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyByte</span>(<span style="color:#66d9ef">byte</span> <span style="color:#a6e22e">x</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">bte</span> <span style="color:#f92672">=</span> x;
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">int</span> length() {
+    <span style="color:#f92672">???</span>
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">A</span> getNthElement(<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">nth</span>) {
+    <span style="color:#f92672">???</span>
+  }
+}</code></pre></div>
+<p>How would you write the methods <code>length</code> and <code>getNthElement</code>? Do you really imagine what would be a <code>MyByte&lt;Graphics2D&gt;</code>? It just doesn&rsquo;t make any sense at all. You could argue that a string is also a sequence of <code>byte</code> and a byte a sequence of one byte. Indeed this relation is not unique, but it does not change the fact that it works for only a small selection of type <code>A</code> and not every one! We can go even deeper in <em>Object-Oriented Programming</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">&lt;</span>A <span style="color:#a6e22e">extends</span> Number<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">extends</span> Sequence<span style="color:#f92672">&lt;</span>Number<span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">A</span>[] array;
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyArray</span>(A[] <span style="color:#a6e22e">a</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">array</span> <span style="color:#f92672">=</span> a;
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">int</span> length() {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">length</span>;
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Number</span> getNthElement(<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">nth</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">array</span>[nth];
+  }
+}</code></pre></div>
+<p>Note how the generics <code>A</code>, which is required to be a sub-class of <code>Number</code>, is present as argument of <code>MyArray</code> but not in <code>extends Sequence&lt;Number&gt;</code>. Now what do you think about this code? Do you think it can be wrong?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">static</span> <span style="color:#f92672">&lt;</span>A<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">void</span> guess(Sequence<span style="color:#f92672">&lt;</span>A<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">x</span>) {
+  <span style="color:#66d9ef">if</span> (x <span style="color:#a6e22e">instanceof</span> MyByte) {
+    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;I guess A is actually Boolean, let&#39;s check!&#34;</span>);
+    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(((Sequence<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span>)x).<span style="color:#a6e22e">getNthElement</span>(0).<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getName</span>());
+  } <span style="color:#66d9ef">else</span>
+  <span style="color:#66d9ef">if</span> (x <span style="color:#a6e22e">instanceof</span> MyString) {
+    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;I guess A is actually Character&#34;</span>);
+    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(((Sequence<span style="color:#f92672">&lt;</span>Character<span style="color:#f92672">&gt;</span>)x).<span style="color:#a6e22e">getNthElement</span>(0).<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getName</span>());
+  } <span style="color:#66d9ef">else</span>
+  <span style="color:#66d9ef">if</span> (x <span style="color:#a6e22e">instanceof</span> MyArray<span style="color:#f92672">&lt;?&gt;</span>) {
+    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;I guess A is a sub-class of Number but i can not guess which one&#34;</span>);
+    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(((Sequence<span style="color:#f92672">&lt;?&gt;</span>) x).<span style="color:#a6e22e">getNthElement</span>(0).<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getName</span>());
+  }
+  <span style="color:#66d9ef">else</span>
+   System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;I don&#39;t know what A is&#34;</span>);
+}</code></pre></div>
+<ul>
+<li>If <code>x</code> is an instance of <code>MyByte</code>, which is a sub-class of <code>Sequence&lt;Boolean&gt;</code>, then by trivial inheritance <code>x</code> is also an instance of <code>Sequence&lt;Boolean&gt;</code>. In this case <code>A</code> is forced to be <code>Boolean</code>.</li>
+<li>If <code>x</code> is an instance of <code>MyString</code>, which is a sub-class of <code>Sequence&lt;Character&gt;</code>, then again by trivial inheritance <code>x</code> is also an instance of <code>Sequence&lt;Character&gt;</code> . In this case <code>A</code> has to be <code>Character</code>.</li>
+<li>If <code>x</code> is an instance of <code>MyArray&lt;A&gt;</code> for some type <code>A</code>, which is a sub-class of <code>Sequence&lt;Number&gt;</code>, then once again by trivial inheritance <code>x</code> is an instance of <code>Sequence&lt;Number&gt;</code>. In this case we know <code>A</code> is a sub-class of <code>Number</code> but we don&rsquo;t know which one.</li>
+</ul>
+
+<p>This is the essence of <em>Generalized Algebraic Data Types</em>. It you understand the code above, then you understand how <em>GADTs</em> work. As you see this is very basic <em>Oriented-Object with Generics</em>. You can find lots of examples of this kind in almost every Java/C#/etc project (search for the <code>instanceof</code> keyword).</p>
+
+<h2 id="functional-programming-101">Functional Programming 101</h2>
+
+<p>Functional languages often support a feature called <strong>Algebraic Data Types (ADT)</strong> which is essentially enumerations on steroids. Like enumerations this is a disjoint union of a fixed number of cases but unlike enumerations, where each case is a constant, ADTs cases can have parameters. As an example, the type of lists whose elements are of type <code>a</code>, written <code>List a</code> in <em>Haskell</em>, is defined:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">List</span> a <span style="color:#f92672">=</span> <span style="color:#66d9ef">Nil</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Cons</span> a (<span style="color:#66d9ef">List</span> a)</code></pre></div>
+<p>It means any value of type <code>List a</code> belong to <strong>exactly</strong> one of the following cases:</p>
+
+<ul>
+<li>either the value is the constant <code>Nil</code> which represents the empty list.</li>
+<li>or the value is <code>Cons hd tl</code> which represent the list whose first element is <code>hd</code> (of type <code>a</code>) and whose tail is <code>tl</code> (of type <code>List a</code>).</li>
+</ul>
+
+<p>The list <code>[1,2,3,4]</code> is encoded by <code>Cons 1 (Cons 2 (Cons 3 (Cons 4 Nil)))</code>. Where <em>ADTs</em> really shine is pattern-matching which is a very powerful and flexible <code>switch</code> (as i said above, <em>ADTs</em> are enumerations on steroids). <em>ADTs</em> being made of a fixed number of distinct cases, pattern-matching enable to inspect values and perform computations based on a case by case analysis of the form of the value. Here is how to implement the merge sort algorithm on this type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">split</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">List</span> a <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">List</span> a, <span style="color:#66d9ef">List</span> a)
+<span style="color:#a6e22e">split</span> l <span style="color:#f92672">=</span>
+  <span style="color:#66d9ef">case</span> l <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Cons</span> x (<span style="color:#66d9ef">Cons</span> y tl) <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">case</span> split tl <span style="color:#66d9ef">of</span>
+                              (l1, l2) <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Cons</span> x l1, <span style="color:#66d9ef">Cons</span> y l2)
+                          )
+    <span style="color:#66d9ef">Cons</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">Nil</span>         <span style="color:#f92672">-&gt;</span> (l  , <span style="color:#66d9ef">Nil</span>)
+    <span style="color:#66d9ef">Nil</span>                <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Nil</span>, <span style="color:#66d9ef">Nil</span>)
+
+<span style="color:#a6e22e">merge</span> <span style="color:#f92672">::</span> (a <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Bool</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">List</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">List</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">List</span> a
+<span style="color:#a6e22e">merge</span> isLessThan l1 l2 <span style="color:#f92672">=</span>
+  <span style="color:#66d9ef">case</span> (l1, l2) <span style="color:#66d9ef">of</span>
+    (<span style="color:#66d9ef">_</span>           , <span style="color:#66d9ef">Nil</span>         ) <span style="color:#f92672">-&gt;</span> l1
+    (<span style="color:#66d9ef">Nil</span>         , <span style="color:#66d9ef">_</span>           ) <span style="color:#f92672">-&gt;</span> l2
+    (<span style="color:#66d9ef">Cons</span> hd1 tl1, <span style="color:#66d9ef">Cons</span> hd2 <span style="color:#66d9ef">_</span>  ) <span style="color:#f92672">|</span> hd1 `isLessThan` hd2 <span style="color:#f92672">-&gt;</span>  <span style="color:#66d9ef">Cons</span> hd1 (merge isLessThan tl1 l2)
+    (<span style="color:#66d9ef">_</span>           , <span style="color:#66d9ef">Cons</span> hd2 tl2)                        <span style="color:#f92672">-&gt;</span>  <span style="color:#66d9ef">Cons</span> hd2 (merge isLessThan l1 tl2)
+
+<span style="color:#a6e22e">sort</span> <span style="color:#f92672">::</span> (a <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Bool</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">List</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">List</span> a
+<span style="color:#a6e22e">sort</span> isLessThan l <span style="color:#f92672">=</span>
+  <span style="color:#66d9ef">case</span> l <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nil</span>        <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Nil</span>
+    <span style="color:#66d9ef">Cons</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">Nil</span> <span style="color:#f92672">-&gt;</span> l
+    <span style="color:#66d9ef">_</span>          <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">case</span> split l <span style="color:#66d9ef">of</span>
+                    (l1, l2) <span style="color:#f92672">-&gt;</span> merge isLessThan (sort isLessThan l1) (sort isLessThan l2)</code></pre></div>
+<p>I know there are smarter ways to write it in <em>Haskell</em> but this article is not about it. The code above could be translated trivially in <code>OCaml</code> by replacing <code>case ... of</code> by <code>match ... with</code>, in <em>Scala</em> by <code>... match { ... }</code>, etc. This style is valid is probably all languages supporting pattern-matching so it fits our goal.</p>
+
+<p>The <code>case l of</code> expressions are pattern-matching. They are a sequence of <code>pattern | condition -&gt; code</code>. The code being executed is the right-hand side of the first case for which the value <code>l</code> is of the form of its pattern and satisfy the condition. <code>l</code> is then said to match this case. For example, the case <code>Cons x (Cons y tl) -&gt; (case split tl of (l1, l2) -&gt; (Cons x l1, Cons y l2))</code> states that if <code>l</code> is of the form <code>Cons x (Cons y tl)</code>, which means that there are three values <code>x</code>, <code>y</code> and <code>tl</code> such that <code>l == Cons x (Cons y tl)</code>, then the code executed is <code>(case split tl of (l1, l2) -&gt; (Cons x l1, Cons y l2))</code>. One very important condition is that <strong>pattern-matching must be exhaustive</strong>! It means that the sequence of cases must cover all possible value of <code>l</code>.</p>
+
+<p>If your understand the previous section, the type <code>List a</code> and how pattern-matching works in the example above, then i am very glad to inform you that you already understand GADTs! Well done :)</p>
+
+<h2 id="summing-up">Summing up!</h2>
+
+<p>In this section i assume previous sections are ok for you. If you do not understand previous examples, don&rsquo;t go further but go back to the basics of <em>generics</em> and <em>pattern-matching</em>. Likewise, if you find what follows complicated, go back to the basics <em>generics</em> and <em>pattern-matching</em>. There is no shame in doing so! Difficulties in understanding advanced notion is often the reflect of a lack of understanding in the ones they rely upon. As i said, there is no shame in it, if you think programming paradigms are &ldquo;simple&rdquo; then write a compiler ;)</p>
+
+<p>It&rsquo;s about time to sum up everything. First, note that <code>List a</code> is not one single type. Each type <code>a</code> actually gives rise to a distinct type <code>List a</code>. For example <code>List Int</code>, <code>List String</code>, <code>List (List Bool)</code>, etc are all distinct types. Indeed the list <code>Cons 1 Nil</code> is neither a list of strings nor of booleans! For each type <code>a</code>, the type <code>List a</code> have two constructors: the constant <code>Nil</code> and the function <code>Cons :: a -&gt; List a -&gt; List a</code> which builds a <code>List a</code> from a value of type <code>a</code> and other <code>List a</code>.</p>
+
+<p>There is another equivalent way to define <code>List a</code> in <em>Haskell</em> which makes the nature of the constructor more apparent:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">List</span> a <span style="color:#66d9ef">where</span>
+  <span style="color:#66d9ef">Nil</span>  <span style="color:#f92672">::</span> <span style="color:#66d9ef">List</span> a
+  <span style="color:#66d9ef">Cons</span> <span style="color:#f92672">::</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">List</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">List</span> a</code></pre></div>
+<p>Indeed, for each type <code>a</code>, <code>Nil</code> is constant of type <code>List a</code> while <code>Cons</code> is a function of type <code>a -&gt; List a -&gt; List a</code>. Note that it is actually very close to the way to define it in <em>Scala</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Nil</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cons</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>head<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> tail<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span></code></pre></div>
+<p>Do you remember the example of the first section <code>Sequence&lt;A&gt;</code>? There was three sub-classes of <code>Sequence&lt;A</code>: <code>MyString</code> which is actually a sub-class of <code>Sequence&lt;Character&gt;</code>, <code>MyByte</code> which is a sub-class of <code>Sequence&lt;Boolean&gt;</code> and <code>MyArray&lt;A extends Number&gt;</code> which is a sub-class of <code>Sequence&lt;Number&gt;</code>. What is the type of their constructors? Some admissible type for them is (in <em>Scala</em> notation):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">MyString</span>             <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Character</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">MyByte</span>               <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Byte</span>     <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Boolean</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span> <span style="color:#66d9ef">&lt;:</span> <span style="color:#66d9ef">Number</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Number</span><span style="color:#f92672">]</span></code></pre></div>
+<p>From this, this is trivial to write:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyString</span><span style="color:#f92672">(</span>str<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span>                 <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Character</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyByte</span><span style="color:#f92672">(</span>bte<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Byte</span><span style="color:#f92672">)</span>                     <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Boolean</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span> <span style="color:#66d9ef">&lt;:</span> <span style="color:#66d9ef">Number</span><span style="color:#f92672">](</span>array<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Array</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Number</span><span style="color:#f92672">]</span></code></pre></div>
+<p>or in <em>Haskell</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Number</span> <span style="color:#66d9ef">where</span>
+  <span style="color:#66d9ef">MkNum</span> <span style="color:#f92672">::</span> forall a<span style="color:#f92672">.</span> <span style="color:#66d9ef">Num</span> a <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">Number</span>
+
+<span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Sequence</span> a <span style="color:#66d9ef">where</span>
+  <span style="color:#66d9ef">MyString</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Sequence</span> <span style="color:#66d9ef">Char</span>
+  <span style="color:#66d9ef">MyByte</span>   <span style="color:#f92672">::</span> <span style="color:#66d9ef">Word8</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Sequence</span> <span style="color:#66d9ef">Bool</span>
+  <span style="color:#66d9ef">MyArray</span>  <span style="color:#f92672">::</span> forall a<span style="color:#f92672">.</span> <span style="color:#66d9ef">Num</span> a <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">List</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Sequence</span> <span style="color:#66d9ef">Number</span></code></pre></div>
+<p><code>Sequence</code> is a <em>GADT</em>. What makes it different from <code>List</code> above? For <strong>any type <code>a</code></strong>, values of type <code>List a</code> are build using the two constructors <code>Nil</code> and <code>Cons</code>. Note that it does not depend on what <code>a</code> is. Values of type <code>List Int</code> are build using the exact same constructors than <code>List Bool</code>, <code>List String</code>, <code>List (List Char)</code>, etc. <code>Sequence</code> have three constructors <code>MyString</code>, <code>MyByte</code> and <code>MyArray</code>. But values of type <code>Sequence[Character]</code> can only be built by the constructor <code>MyString</code> while values of type <code>Sequence[Boolean]</code> can only be built by the constructor <code>MyByte</code> and values of type <code>Sequence[Number]</code> can only be built by the constructor <code>MyArray</code>. What about values of type <code>Sequence[Unit]</code> or <code>Sequence[String]</code>, etc? There is simply no constructor to build values of these types, so <em>there is no values of these types</em>!</p>
+
+<p>We can rewrite the methods on <code>Sequence</code> and the <code>guess</code> function to use patten-matching:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> length<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>x<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=</span>
+  x <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyByte</span><span style="color:#f92672">(</span><span style="color:#66d9ef">_</span><span style="color:#f92672">)</span>     <span style="color:#66d9ef">=&gt;</span> <span style="color:#ae81ff">8</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyString</span><span style="color:#f92672">(</span>str<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> str<span style="color:#f92672">.</span>length
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">)</span>  <span style="color:#66d9ef">=&gt;</span> arr<span style="color:#f92672">.</span>size
+  <span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">def</span> getNthElement<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>x<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> nth<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span>
+  x <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyByte</span><span style="color:#f92672">(</span>bte<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#75715e">// So A is actually Boolean
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nth <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> nth <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">)</span>
+        <span style="color:#f92672">(</span>bte <span style="color:#f92672">&gt;&gt;&gt;</span> nth <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+      <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> java<span style="color:#f92672">.</span>lang<span style="color:#f92672">.</span><span style="color:#a6e22e">IndexOutOfBoundsException</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">)</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyString</span><span style="color:#f92672">(</span>str<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#75715e">// So A is actually Character
+</span><span style="color:#75715e"></span>      str<span style="color:#f92672">.</span>charAt<span style="color:#f92672">(</span>nth<span style="color:#f92672">)</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">(</span>array<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#75715e">// So A is actually a sub-class of Number
+</span><span style="color:#75715e"></span>      array<span style="color:#f92672">(</span>nth<span style="color:#f92672">)</span>
+  <span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">def</span> guess<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>x <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Sequence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span> <span style="color:#f92672">=</span>
+  x <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyByte</span><span style="color:#f92672">(</span>bte<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I guess A is actually Boolean, let&#39;s check!&#34;</span><span style="color:#f92672">)</span>
+      println<span style="color:#f92672">(</span>getNthElement<span style="color:#f92672">(</span>x<span style="color:#f92672">,</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">).</span>getClass<span style="color:#f92672">.</span>getName<span style="color:#f92672">)</span>
+
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyString</span><span style="color:#f92672">(</span>str<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I guess A is actually Character&#34;</span><span style="color:#f92672">)</span>
+      println<span style="color:#f92672">(</span>getNthElement<span style="color:#f92672">(</span>x<span style="color:#f92672">,</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">).</span>getClass<span style="color:#f92672">.</span>getName<span style="color:#f92672">)</span>
+  
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">(</span>array<span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span>
+      println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I guess A is a sub-class of Number but i can not guess which one&#34;</span><span style="color:#f92672">)</span>
+      println<span style="color:#f92672">(</span>getNthElement<span style="color:#f92672">(</span>x<span style="color:#f92672">,</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">).</span>getClass<span style="color:#f92672">.</span>getName<span style="color:#f92672">)</span>
+  <span style="color:#f92672">}</span></code></pre></div>
+<p>As you can see <code>getNthElement</code> must returns a value of type <code>A</code> but the case <code>MyByte</code> returns a <code>Boolean</code>. It means <em>Scala</em> is aware that in this case <code>A</code> is actually <em>Boolean</em>. Likewise in the case <code>MyString</code>, <em>Scala</em> knowns that the only possible concrete type for <code>A</code> is <code>Character</code> so it accepts we return one. <em>Scala</em> is (most of the time) able to guess, depending on the case, what are the constraints on <code>A</code>. This is all the magic behind GADTs: specialized constructors like in <em>object-oriented-with-generics</em> programming and closed types (i.e. with a fixed number of cases) on which we can pattern-match like in usual <em>functional</em> programming.</p>
+
+<p>How are <em>GADTs</em> useful? First of all, there are handy when you have a specialized constructor like in every day life <em>object-oriented</em> programming. It makes sense for a byte (resp. string) to be sequence of booleans (resp. characters) but not a sequence of anything. A prolific use of this is writing implicits in Scala as <em>GADTs</em>. This way we can pattern-match on the structure of the implicits to derive instances (see <a href="https://gist.github.com/chrilves/c3db91813cfe693fa708a34f7a27795f">this gist</a> for more details). They are also very useful to encode properties on types. As i said above, not all types <code>Sequence[A]</code> have (non-null) values! There is no (non-null) value of type <code>Sequence[Unit]</code> or <code>Sequence[String]</code> etc but there are values of type <code>Sequence[Boolean]</code>, <code>Sequence[Character]</code> and <code>Sequence[Number]</code>. So if i give you a value of type <code>Sequence[A]</code>, then you know <code>A</code> is either <code>Boolean</code>, <code>Character</code> or <code>Number</code>. If you don&rsquo;t believe me, try to call the function <code>guess</code> on a type <code>A</code> which is neither <code>Boolean</code> nor <code>Character</code> nor <code>Number</code> (without using <code>null</code>)! Let me give you some useful examples.</p>
+
+<p>The first one is restricting a generic type like in the code below. The <em>GADT</em> <code>IsIntOrString</code> forces <code>A</code> to be either <code>String</code> or <code>Int</code> in the function and the case class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IsIntOrString</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">implicit</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">IsInt</span>    <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">IsIntOrString</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">IsString</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">IsIntOrString</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span>
+
+<span style="color:#66d9ef">def</span> canOnlyBeCalledOnIntOrString<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>a<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> ev<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">IsIntOrString</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span>
+  ev <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">IsInt</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#75715e">// A is Int
+</span><span style="color:#75715e"></span>      a <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">IsString</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#75715e">// A is String
+</span><span style="color:#75715e"></span>      a<span style="color:#f92672">.</span>reverse
+  <span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AStringOrAnIntButNothingElse</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">val</span> proof <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">IsIntOrString</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span></code></pre></div>
+<p>Another handy use is encoding effects:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">UserId</span>
+<span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">User</span>
+
+<span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BusinessEffect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GetUser</span><span style="color:#f92672">(</span>userId<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UserId</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BusinessEffect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">User</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SetUser</span><span style="color:#f92672">(</span>user<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">User</span><span style="color:#f92672">)</span>     <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BusinessEffect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">UserId</span><span style="color:#f92672">]</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DelUser</span><span style="color:#f92672">(</span>userId<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UserId</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BusinessEffect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Unit</span><span style="color:#f92672">]</span></code></pre></div>
+<p>Have you ever heard that <code>Set</code> is not a functor? With the usual definition of a functor, indeed <code>Set</code> is not one.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Functor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]]</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>The reason is you can only have a <code>Set[A]</code> for types <code>A</code> such that you can compare values. As an example let <code>A</code> be <code>Int =&gt; Int</code>. The two following functions are arguably equal:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> doubleByMult<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">(</span>x<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> x
+<span style="color:#66d9ef">val</span> doubleByPlus<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Int</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">(</span>x<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> x <span style="color:#f92672">+</span> x
+
+scala<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Set</span><span style="color:#f92672">(</span>doubleByMult<span style="color:#f92672">).</span>contains<span style="color:#f92672">(</span>doubleByPlus<span style="color:#f92672">)</span>
+res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span></code></pre></div>
+<p>This is just impossible, in the general case, to know if two functions compute the same thing. I didn&rsquo;t just say we don&rsquo;t know how to do it. It is actually proven that this is impossible (like no one can, and no one could for ever!). Have a look at this <a href="https://en.wikipedia.org/wiki/List_of_undecidable_problems">List of undecidable problems</a> for more information on the subject. Using extensional equality (the one where <code>f == g</code> <em>if and only</em> <code>f(x) == g(x)</code> for all <code>x</code>), there is just no implementation of <code>Set[Int =&gt; Int]</code>. But if <code>Set</code> was a functor, it would be trivial using <code>map</code> to get a <code>Set[Int =&gt; Int]</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#a6e22e">Set</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Boolean</span><span style="color:#f92672">](</span><span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">).</span>map <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">true</span>  <span style="color:#66d9ef">=&gt;</span> doubleByMult
+  <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">false</span> <span style="color:#66d9ef">=&gt;</span> doubleByPlus
+<span style="color:#f92672">}</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span></code></pre></div>
+<p>The conclusion is that <code>Set</code> is not a functor &hellip; in the usual (i.e. <em>Scal</em>) category. But it is in for some categories. The problem with <code>Functor</code> is <code>map</code> can be applied on any <code>A</code> and <code>B</code> which is impossible for <code>Set</code>. But if we restrict <code>A</code> and <code>B</code> such that they have interesting properties (like having an <code>Ordering</code>), then it works. In the code below, the <em>GADT</em> <code>predicate</code> is used to restrict on which <code>A</code> and <code>B</code> <code>map</code> can be applied on:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">GenFunctor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">predicate</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]]</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> proofA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">predicate</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> proofB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">predicate</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Then <code>Set</code> is becomes a functor with <code>Ordering</code> as <code>predicate</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">SetInstance</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">GenFunctor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Ordering</span>, <span style="color:#66d9ef">Set</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> orderingA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Ordering</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> orderingB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Ordering</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>  <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">val</span> set <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">TreeSet</span><span style="color:#f92672">.</span>newBuilder<span style="color:#f92672">(</span>orderingB<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>a <span style="color:#66d9ef">&lt;-</span> fa<span style="color:#f92672">)</span> set <span style="color:#f92672">+=</span> f<span style="color:#f92672">(</span>a<span style="color:#f92672">)</span>
+    set<span style="color:#f92672">.</span>result
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Surprisingly even <code>String</code> can be a functor (with <code>A</code> and <code>B</code> being both <code>Char</code>)!!!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IsItChar</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">implicit</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">YesItIsChar</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">IsItChar</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Char</span><span style="color:#f92672">]</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">StringK</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">String</span>
+
+<span style="color:#66d9ef">object</span> <span style="color:#a6e22e">StringInstance</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">GenFunctor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">IsItChar</span>, <span style="color:#66d9ef">StringK</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> proofA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">IsItChar</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> proofB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">IsItChar</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=</span>
+    <span style="color:#f92672">(</span>proofA<span style="color:#f92672">,</span> proofB<span style="color:#f92672">)</span> <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">(</span><span style="color:#a6e22e">YesItIsChar</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">YesItIsChar</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#75715e">// A and B are both Char!
+</span><span style="color:#75715e"></span>        fa<span style="color:#f92672">.</span>toList<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>f<span style="color:#f92672">).</span>mkString
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p><em>GADTs</em> are an example of <em>Bushnell&rsquo;s law</em>. As you can see, they are easy to learn but can be used in very tricky situations which makes them hard to master. They are clearly very helpful in many situations but it seems they are still unfortunately very little used. <em>Haskell</em> supports them very well! <em>Scala</em>&rsquo;s support is actually very good but not as good as <em>Haskell</em>&rsquo;s. <em>Scala 3</em> will probably support them as well as <em>Haskell</em> since <em>Dotty</em>&rsquo;s support is excellent. The only two other mainstream languages i know supporting them are <em>OCaml</em> and <em>Haxe</em>. Even if those two have a very good support, their lack of <em>Higer-Kinded types</em> forbids the most interesting uses.</p>
+
+<p>As you probably know, it is possible to define a <code>fold</code> functor for every <em>Algebraic Data Type</em>. It is also possible to define <code>fold</code> functions for every <em>GADT</em>. As an exercise, try to define fold functions for the following <em>GADTs</em>:</p>
+
+<ul>
+<li><p>This <em>GADT</em> encode the equality between two types <code>A</code> and <code>B</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
+<span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Refl</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Eq</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">]</span></code></pre></div></li>
+
+<li><p>This <em>GADT</em> represent an unknown type for which we have an instance of a type-class:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Ex</span><span style="color:#f92672">[</span><span style="color:#66d9ef">TypeClass</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]]</span>
+<span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MakeEx</span><span style="color:#f92672">[</span><span style="color:#66d9ef">TypeClass</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span><span style="color:#66d9ef">A</span><span style="color:#f92672">,</span> instance<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">TypeClass</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Ex</span><span style="color:#f92672">[</span><span style="color:#66d9ef">TypeClass</span><span style="color:#f92672">]</span></code></pre></div></li>
+</ul>
+
+<p>You&rsquo;ll find how to define such <code>fold</code> functions <a href="https://chrilves.github.io/posts/folds/">here</a>. Have fun and spread the love of <em>GADTs</em> everywhere :)</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1569881780"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1569881780"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1569881780"></script>
+
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1569881780" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1569881780"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
