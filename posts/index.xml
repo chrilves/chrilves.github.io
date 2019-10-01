@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Proving Primality in Scala</title>
+      <link>https://chrilves.github.io/posts/prime/</link>
+      <pubDate>Tue, 01 Oct 2019 10:42:39 +0100</pubDate>
+      
+      <guid>https://chrilves.github.io/posts/prime/</guid>
+      <description>Today we will explore the Curry–Howard correspondence. Our mission is writing, in Scala&amp;rsquo;s type system, the property on natural number of being prime. Wikipedia defines it by:
+ A natural number (1, 2, 3, 4, 5, 6, etc.) is called a prime number (or a prime) if it is greater than 1 and cannot be written as a product of two natural numbers that are both smaller than it.</description>
+    </item>
+    
+    <item>
       <title>Recursion Schemes: the high-school introduction</title>
       <link>https://chrilves.github.io/posts/recursion_schemes_intro/</link>
       <pubDate>Fri, 22 Mar 2019 10:00:00 +0100</pubDate>
