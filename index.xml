@@ -17,7 +17,7 @@
       <pubDate>Tue, 01 Oct 2019 10:42:39 +0100</pubDate>
       
       <guid>https://chrilves.github.io/posts/prime/</guid>
-      <description>Today we will explore the Curry–Howard correspondence. Our mission is writing, in Scala&amp;rsquo;s type system, the property on natural number of being prime. Wikipedia defines it by:
+      <description>The Scala source code is at github.com/chrilves/gadt.scala. The Haxe source code is at github.com/chrilves/Gadts.hx. The Web Application is here.  Today we will explore the Curry–Howard correspondence. Our mission is writing, in Scala&amp;rsquo;s type system, the property on natural number of being prime. Wikipedia defines it by:
  A natural number (1, 2, 3, 4, 5, 6, etc.) is called a prime number (or a prime) if it is greater than 1 and cannot be written as a product of two natural numbers that are both smaller than it.</description>
     </item>
     
