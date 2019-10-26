@@ -12,18 +12,18 @@
     <title>GADTs By Use Cases :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1572061509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1572061509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1572098449" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1572098449" rel="stylesheet">
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1572061509"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1572098449"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
     <style>
@@ -120,14 +120,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1572061509"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1572061509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1572098449"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1572098449"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1572061509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1572098449"></script>
 
     
   </div>
@@ -610,13 +610,13 @@ it via short examples and practical use cases.</p>
 of the most valuable use cases. They are the real big powerful use cases.
 But do not go there unprepared! This is the last part for a reason:
 they rely massively on lessons you will learn in the previous parts.
-Start <a href="#first-contact">First Contact</a>, it will show
+Start by <a href="#first-contact">First Contact</a>, it will show
 you, via the simplest examples, the core ideas. Its goal is to open your
 mind to ways of using types and data you may have never imagined possible.
 Then go to
 <a href="#easy-useful-use-cases-relations-on-types">Easy Useful Use Cases: Relations on Types</a>,
 for the first real-life challenge.
-Then you are ready for <a href="#more-advanced-use-cases">More Advanced Use Cases</a>.</p>
+Then, you are ready for <a href="#more-advanced-use-cases">More Advanced Use Cases</a>.</p>
 
 <p>Be sure to <strong>read <a href="#readme">README</a></strong>, it contains precious tips to ease your
 journey.</p>
@@ -649,7 +649,10 @@ you can easily start one from the command-line by executing <code>scala</code>:<
 <span style="color:#a6e22e">Type</span> in expressions <span style="color:#66d9ef">for</span> evaluation<span style="color:#f92672">.</span> <span style="color:#a6e22e">Or</span> <span style="color:#66d9ef">try</span> <span style="color:#66d9ef">:</span><span style="color:#66d9ef">help.</span>
 
 <span style="color:#66d9ef">scala&gt;</span></code></pre></div>
-<p>If you don&rsquo;t have <em>Scala</em> installed, you can use the <em>online-REPL</em>
+<p>Remember that the <em>R.E.P.L</em> command <code>:paste</code> allows to paste code
+and <code>:reset</code> cleans the environment.</p>
+
+<p>If you don&rsquo;t have <em>Scala</em> installed, <strong>you can use</strong> the <em>online-REPL</em>
 <a href="https://scastie.scala-lang.org/">https://scastie.scala-lang.org/</a> .</p>
 
 <h2 id="stretching">Stretching</h2>
@@ -662,7 +665,7 @@ about values and types.</p>
 <p><strong>Values</strong> are <em>actual piece of data your program manipulates</em>
 like the integer <code>5</code>, the boolean <code>true</code>, the string <code>&quot;Hello World!&quot;</code>,
 the function <code>(x: Double) =&gt; x / 7.5</code>, the list <code>List(1,2,3)</code>, etc.
-We often like to classify values into groups. These groups are called
+It is convenient to classify values into groups. These groups are called
 <strong>types</strong>. For example:</p>
 
 <ul>
@@ -696,8 +699,9 @@ it most probably does not :</p>
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
-<p>As the name suggests, <code>class OneType</code> defines only one type which is named <code>OneType</code>.
-</details></p></li>
+<p>As the name suggests, <code>class OneType</code> defines only one type which is named <code>OneType</code>.</p>
+
+<p></details></p></li>
 </ul>
 
 <p>Let&rsquo;s now consider:</p>
@@ -708,25 +712,33 @@ it most probably does not :</p>
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
-<p>As the name suggests, every concrete type <code>A</code> give rise to a distinct type <code>OneTypeForEvery[A]</code>.</p>
+<p>As the name suggests, every concrete type <code>A</code> gives
+rise to a distinct type <code>OneTypeForEvery[A]</code>.</p>
 
-<p>For example, a list of integers is neither a list of booleans, nor a list of strings,
-  nor a list of functions, nor &hellip; It means the types <code>List[Int]</code>, <code>List[Boolean]</code>,
-  <code>List[Int =&gt; Int]</code>, etc are all distinct types.</p>
+<p>For example, a list of integers is neither a list of booleans,
+nor a list of strings, nor a list of functions, nor &hellip;
+It means the types <code>List[Int]</code>, <code>List[Boolean]</code>,
+<code>List[Int =&gt; Int]</code>, etc are all distinct types.</p>
 
-<p>The line <code>class OneTypeForEvery[A]</code> defines a <strong>distinct type for every concrete type</strong> <code>A</code>. There
-  is an infnity of concrete types <code>A</code>, so an infinity of distinct types <code>OneTypeForEvery[A]</code>.
-</details></p></li>
+<p>The line <code>class OneTypeForEvery[A]</code> defines a
+<strong>distinct type for every concrete type</strong> <code>A</code>. There
+is an infnity of concrete types <code>A</code>, so an infinity of distinct types
+<code>OneTypeForEvery[A]</code>.</p>
 
-<li><p><strong>Question 3:</strong> Give a value that belongs to both <code>OneTypeForEvery[Int]</code> and <code>OneTypeForEvery[Boolean]</code>.</p>
+<p></details></p></li>
+
+<li><p><strong>Question 3:</strong> Give a value that belongs to both <code>OneTypeForEvery[Int]</code>
+and <code>OneTypeForEvery[Boolean]</code>.</p>
 
 <p><strong>Remember that <code>null</code> does not exist!</strong></p>
 
 <p><details>
-  <summary><em>Solution (click to expand)</em></summary>
-  This is actually impossible. Every concrete type <code>A</code> give rise a distinct type <code>OneTypeForEvery[A]</code>
-  that have no values in common with others types <code>OneTypeForEvery[B]</code> for <code>B ≠ A</code>.
-</details></p></li>
+  <summary><em>Solution (click to expand)</em></summary></p>
+
+<p>This is actually impossible. Every concrete type <code>A</code> give rise a distinct type <code>OneTypeForEvery[A]</code>
+that have no values in common with others types <code>OneTypeForEvery[B]</code> for <code>B ≠ A</code>.</p>
+
+<p></details></p></li>
 </ul>
 
 <h3 id="how-many-values">How many values?</h3>
@@ -738,29 +750,31 @@ it most probably does not :</p>
 How many values belong to <code>NoValueForThisType</code>?</p>
 
 <p><details>
-  <summary><em>Hint (click to expand)</em></summary></p>
+<summary><em>Hint (click to expand)</em></summary></p>
 
 <ul>
 <li>What is a <code>final</code> class? How does it differ from a normal non-final class?</li>
-<li>What is an <code>abstract</code> class? How does it differ from a concrete class?
-</details></li>
+<li>What is an <code>abstract</code> class? How does it differ from a concrete class?</li>
 </ul>
+
+<p></details></p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
 <p>The class <code>NoValueForThisType</code> is declared <code>abstract</code>. It is then forbidden to create
-  a direct instance of this class:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">  scala<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">NoValueForThisType</span>
-         <span style="color:#f92672">^</span>
-         error<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">class</span> <span style="color:#66d9ef">NoValueForThisType</span> <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">abstract</span><span style="color:#f92672">;</span> cannot be instantiated</code></pre></div>
+a direct instance of this class:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">scala<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">NoValueForThisType</span>
+        <span style="color:#f92672">^</span>
+        error<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">class</span> <span style="color:#66d9ef">NoValueForThisType</span> <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">abstract</span><span style="color:#f92672">;</span> cannot be instantiated</code></pre></div>
 <p>The only way to create an instance of an abstract class is creating a concrete sub-class.
-  But the keyword <code>final</code> forbids creating such sub-classes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">  scala<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConcreteSubClass</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">NoValueForThisType</span>
-                                         <span style="color:#f92672">^</span>
-         error<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">illegal</span> <span style="color:#66d9ef">inheritance</span> <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#66d9ef">NoValueForThisType</span></code></pre></div>
-<p>There is no way to create an instance of <code>NoValueForThisType</code>.
-</details></p></li>
+But the keyword <code>final</code> forbids creating such sub-classes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">scala<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConcreteSubClass</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">NoValueForThisType</span>
+                                        <span style="color:#f92672">^</span>
+        error<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">illegal</span> <span style="color:#66d9ef">inheritance</span> <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#66d9ef">NoValueForThisType</span></code></pre></div>
+<p>There is no way to create an instance of <code>NoValueForThisType</code>.</p>
+
+<p></details></p></li>
 </ul>
 
 <p>Let&rsquo;s take another example:</p>
@@ -772,8 +786,9 @@ How many values belong to <code>NoValueForThisType</code>?</p>
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
-<p>By definition, <code>TheOnlyValue</code> is a value of type <code>ExactlyOneValue</code>.
-</details></p></li>
+<p>By definition, <code>TheOnlyValue</code> is a value of type <code>ExactlyOneValue</code>.</p>
+
+<p></details></p></li>
 
 <li><p><strong>Question 3:</strong> How many values belong to <code>ExactlyOneValue</code>?</p>
 
@@ -781,9 +796,10 @@ How many values belong to <code>NoValueForThisType</code>?</p>
   <summary><em>Solution (click to expand)</em></summary></p>
 
 <p>Just like above, <code>ExactlyOneValue</code>, being a <code>trait</code>, is <em>abstract</em>. Being <code>sealed</code>,
-  extending it outside of its defining file is forbidden.
-  So <code>TheOnlyValue</code> is the only value of type <code>ExactlyOneValue</code>.
-</details></p></li>
+extending it outside of its defining file is forbidden.
+So <code>TheOnlyValue</code> is the only value of type <code>ExactlyOneValue</code>.</p>
+
+<p></details></p></li>
 </ul>
 
 <h2 id="first-contact">First Contact</h2>
@@ -803,8 +819,9 @@ examples to illustrate each of these ideas.</p>
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
-<p>By definition, <code>AValue</code> is a value of type <code>ATrait[Char]</code>.
-</details></p></li>
+<p>By definition, <code>AValue</code> is a value of type <code>ATrait[Char]</code>.</p>
+
+<p></details></p></li>
 
 <li><p><strong>Question 2:</strong> Give a value of type <code>ATrait[Double]</code>.</p>
 
@@ -812,9 +829,10 @@ examples to illustrate each of these ideas.</p>
   <summary><em>Solution (click to expand)</em></summary></p>
 
 <p>There is no way to have an instance of type <code>ATrait[Double]</code>.
-  There is actually no way to have an instance of type <code>ATrait[B]</code> for <code>B ≠ Char</code>
-  because the only possible value is <code>AValue</code> which is of type <code>ATrait[Char]</code>.
-</details></p></li>
+There is actually no way to have an instance of type <code>ATrait[B]</code> for <code>B ≠ Char</code>,
+because the only possible value is <code>AValue</code> which is of type <code>ATrait[Char]</code>.</p>
+
+<p></details></p></li>
 
 <li><p><strong>Question 3:</strong> What can you conclude about a type <code>A</code> if you have a value
 <code>ev</code> of type <code>ATrait[A]</code> (i.e. <code>ev: ATrait[A]</code>)?</p>
@@ -836,15 +854,16 @@ Furthermore <code>AValue</code> is of type <code>ATrait[Char]</code> so <code>A 
   ev <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">AValue</span> <span style="color:#66d9ef">=&gt;</span> x
   <span style="color:#f92672">}</span></code></pre></div>
-<p>Is the pattern-matching exhaustive?</p>
+<p>Is the pattern matching exhaustive?</p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
-<p>The pattern-matching is exhaustive because the only possible actual
-  value for <code>ev</code> is <code>AValue</code>. Furthermore <code>AValue</code> is of type <code>ATrait[Char]</code>
-  which means <code>ev : ATrait[Char]</code> because <code>ev == AValue</code>. So <code>A = Char</code> and <code>x : Char</code>.
-</details></p></li>
+<p>The pattern matching is exhaustive because the only possible actual
+value for <code>ev</code> is <code>AValue</code>. Furthermore <code>AValue</code> is of type <code>ATrait[Char]</code>
+which means <code>ev : ATrait[Char]</code> because <code>ev == AValue</code>. So <code>A = Char</code> and <code>x : Char</code>.</p>
+
+<p></details></p></li>
 
 <li><p><strong>Question 6:</strong> Call <code>f</code> with <code>x = 'w' : Char</code>.</p>
 
@@ -860,7 +879,7 @@ res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Char</span>
   <summary><em>Solution (click to expand)</em></summary></p>
 
 <p>This is impossible because it would require to give a value
-<code>ev : ATrait[Double]</code> which does not exist!</p>
+<code>ev : ATrait[Double]</code>, which does not exist!</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">scala<span style="color:#f92672">&gt;</span> f<span style="color:#f92672">[</span><span style="color:#66d9ef">Double</span><span style="color:#f92672">](</span><span style="color:#ae81ff">5</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">AValue</span><span style="color:#f92672">)</span>
                     <span style="color:#f92672">^</span>
           error<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">mismatch</span><span style="color:#f92672">;</span>
@@ -890,7 +909,7 @@ res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Char</span>
 <h3 id="use-case-the-only-thing-i-know-is-it-exists">Use Case: The only thing I know is it exists</h3>
 
 <p>What would you do if you wanted your codebase to log messages, but you want to be sure your
-codebase do not rely on any implementation details of the logger so that you can change its
+codebase do not rely on any implementation details of the logger, so that you can change its
 implementation without risking breaking the codebase?</p>
 
 <p>Take the following logger type <code>UnknownLogger</code>:</p>
@@ -902,7 +921,7 @@ implementation without risking breaking the codebase?</p>
 <p>The second logger stores them in a <code>List[String]</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> loggerList <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogger</span> <span style="color:#f92672">=</span>
   <span style="color:#a6e22e">LogWith</span><span style="color:#f92672">[</span><span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]](</span><span style="color:#a6e22e">Nil</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>logs<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">],</span> message<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> message <span style="color:#66d9ef">:</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">logs</span><span style="color:#f92672">)</span></code></pre></div>
-<p>The third logger directly print the messages to the standard output:</p>
+<p>The third logger directly prints the messages to the standard output:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> loggerStdout <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogger</span> <span style="color:#f92672">=</span>
   <span style="color:#a6e22e">LogWith</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Unit</span><span style="color:#f92672">]((),</span> <span style="color:#f92672">(</span>logs<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Unit</span><span style="color:#f92672">,</span> message<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> println<span style="color:#f92672">(</span>message<span style="color:#f92672">))</span></code></pre></div>
 <p>Note that these three loggers all have the same type (i.e. <code>UnknownLogger</code>) but they store
@@ -913,7 +932,7 @@ the logs using different types <code>X</code> (<code>String</code>, <code>List[S
 Clearly <code>v</code> has to be an instance of the class <code>LogWith[X]</code> for some type <code>X</code>.
 What can you say about the type <code>X</code>? Can you figure out which type <code>X</code> actually is?</p>
 
-<p><strong>Remember we refuse to use runtime-reflection!</strong> (i.e. <code>isInstanceOf</code>, <code>getClass</code>, etc)</p>
+<p><strong>Remember that we refuse to use runtime-reflection!</strong> (i.e. <code>isInstanceOf</code>, <code>getClass</code>, etc)</p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
@@ -922,7 +941,7 @@ What can you say about the type <code>X</code>? Can you figure out which type <c
 one value (<code>v.logs</code>) of type <code>X</code>. Appart from that, <code>X</code> can be any type.</p>
 
 <p>Not knowing which type is actually <code>X</code> is very useful to guarantee that the code that will
-use <code>v : UnknownLogger</code> will not rely on the nature of <code>X</code>. If the code knew <code>X</code> was
+use <code>v : UnknownLogger</code> will never rely on the nature of <code>X</code>. If the code knew <code>X</code> was
 <code>String</code> for example, it could perform some operations we want to forbid like reversing
 the list, taking only the <em>nth</em> first characters, etc. By hiding the real type <code>X</code>, we force
 our codebase to not depend on what <code>X</code> is but to use the provided <code>v.appendMessage</code>.
@@ -934,8 +953,8 @@ So changing the real implementation of the logger won&rsquo;t break any code.</p
 that uses <code>v.appendMessage</code> to append <code>message</code> to <code>v.logs</code>
 and returns a new <code>UnknownLogger</code> containing the new logs.</p>
 
-<p>Remember that in <em>Scala</em>, the following pattern (i.e. <code>ac : AClass[t]</code>) is allowed
-in <code>match/case</code> expressions:</p>
+<p>Remember that in <em>Scala</em>, the pattern <code>case ac : AClass[t] =&gt;</code> (see below)
+is allowed in <code>match/case</code> in replacement of the pattern <code>case AClass(v) =&gt;</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AClass</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span>
 
 <span style="color:#66d9ef">def</span> f<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>v<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">AClass</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span>
@@ -979,7 +998,8 @@ res2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogg
 <p><details>
   <summary><strong>Remark for people fluent in <em>Scala</em></strong> <em>(click to expand)</em> </summary></p>
 
-<p>Once again, using all the nice features of <em>Scala</em>, the production-ready version of the code above is:</p>
+<p>Once again, using all the nice features of <em>Scala</em>,
+the production-ready version of the code above is:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">UnknownLogger</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">LogsType</span>
   <span style="color:#66d9ef">val</span> logs <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">LogsType</span>
@@ -1007,7 +1027,7 @@ In the following parts we will explore some major use cases of <em>GADTs</em></p
 
 <h2 id="easy-useful-use-cases-relations-on-types">Easy Useful Use Cases: Relations on Types</h2>
 
-<p>One easy but very useful benefit of <em>GADTs</em> is expressing relations about types such that:</p>
+<p>One easy, but very useful, benefit of <em>GADTs</em> is expressing relations about types such that:</p>
 
 <ul>
 <li>Is type <code>A</code> equal to type <code>B</code>?</li>
@@ -1035,9 +1055,9 @@ res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><
   <summary><em>Solution (click to expand)</em></summary></p>
 
 <p>The class <code>Evidence</code> is the only concrete sub-class of trait <code>EqT</code> and we cannot
-  create another one because <code>EqT</code> is <code>sealed</code>. So any value <code>v : EqT[A,B]</code> has to be
-  an instance of <code>Evidence[X]</code> for some type <code>X</code>, which is of type <code>EqT[X,X]</code>.
-  Thus there is no way to get a value of type <code>EqT[String, Int]</code>.</p>
+create another one because <code>EqT</code> is <code>sealed</code>. So any value <code>v : EqT[A,B]</code> has to be
+an instance of <code>Evidence[X]</code> for some type <code>X</code>, which is of type <code>EqT[X,X]</code>.
+Thus there is no way to get a value of type <code>EqT[String, Int]</code>.</p>
 
 <p></details></p></li>
 
@@ -1048,10 +1068,10 @@ What can you conclude if I give you a value of type <code>EqT[A,B]</code>?</p>
   <summary><em>Solution (click to expand)</em></summary></p>
 
 <p>If I give you a value <code>v : EqT[A,B]</code>, then you know that <code>v</code> is an instance of
-  <code>Evidence[X]</code> for some type <code>X</code> because the class <code>Evidence</code> is the only concrete
-  sub-class of the sealed trait <code>EqT</code>. Actually <code>Evidence[X]</code> is a sub-type of
-  <code>EqT[X,X]</code>. Thus <code>v : EqT[X,X]</code>. Types <code>EqT[A,B]</code> and <code>EqT[X,X]</code> have no value in
-  common if <code>A ≠ X</code> or <code>B ≠ X</code>, so <code>A = X</code> and <code>B = X</code>. Thus <code>A = B</code>.</p>
+<code>Evidence[X]</code> for some (unknown) type <code>X</code> because the class <code>Evidence</code> is the only concrete
+sub-class of the sealed trait <code>EqT</code>. Actually <code>Evidence[X]</code> is a sub-type of
+<code>EqT[X,X]</code>. Thus <code>v : EqT[X,X]</code>. Types <code>EqT[A,B]</code> and <code>EqT[X,X]</code> have no value in
+common if <code>A ≠ X</code> or <code>B ≠ X</code>, so <code>A = X</code> and <code>B = X</code>. Thus <code>A = B</code>.</p>
 
 <p></details></p></li>
 </ul>
@@ -1059,7 +1079,7 @@ What can you conclude if I give you a value of type <code>EqT[A,B]</code>?</p>
 <p><details>
   <summary><strong>Remark for people fluent in <em>Scala</em></strong> <em>(click to expand)</em> </summary></p>
 
-<p>In production, it is convenient to define the following equivalent code:</p>
+<p>In production, it is convenient to write the following equivalent code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
 <span style="color:#a6e22e">object</span> <span style="color:#a6e22e">EqT</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Evidence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">X</span><span style="color:#f92672">]</span>
@@ -1164,8 +1184,9 @@ write the function <code>def fromScalaEq[A,B](scala: A =:= B): EqT[A,B]</code>.<
 
 <h3 id="use-case-witnessing-sub-typing">Use Case: Witnessing Sub Typing</h3>
 
-<p>In this section, we want to create types <code>SubTypeOf[A,B]</code> whose values prove that the type <code>A</code> is
-a sub-type of <code>B</code> (i.e. <code>A &lt;: B</code>). A similar <em>but different</em> class already exists in the <em>Scala</em> library.
+<p>In this section, we want to create types <code>SubTypeOf[A,B]</code> whose values prove
+that the type <code>A</code> is a sub-type of <code>B</code> (i.e. <code>A &lt;: B</code>).
+A similar <em>but different</em> class already exists in the <em>Scala</em> library.
 It is named <code>&lt;:&lt;[A,B]</code>, which is often written <code>A &lt;:&lt; B</code>. Its
 <a href="https://www.scala-lang.org/api/current/scala/$less$colon$less.html">documentation is here</a>.
 Because this section is about implementing a variant of this class,
@@ -1192,7 +1213,7 @@ create the trait <code>SubTypeOf[A,B]</code> (and all that is necessary) such th
 <p><details>
   <summary><strong>Remark for people fluent in <em>Scala</em></strong> <em>(click to expand)</em> </summary></p>
 
-<p>In production, it is convenient to define the following equivalent code:</p>
+<p>In production, it is convenient to write the following equivalent code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">SubTypeOf</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
 <span style="color:#a6e22e">object</span> <span style="color:#a6e22e">SubTypeOf</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Evidence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span> <span style="color:#66d9ef">&lt;:</span> <span style="color:#66d9ef">B</span>, <span style="color:#66d9ef">B</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">SubTypeOf</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
@@ -1220,7 +1241,7 @@ We start by defining the <code>Food</code> type and some of its subtypes:</p>
 <span style="color:#a6e22e">val</span> elephant <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">AnimalEating</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Vegetable</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
   <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AnimalEating</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Vegetable</span><span style="color:#f92672">]</span></code></pre></div>
 <p>Let&rsquo;s define a function like there are so many in
-<em>Functional Programming</em> and apply it to <code>elephant</code>:</p>
+<em>Functional Programming</em>, and apply it to <code>elephant</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">def</span> dummy<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Ok!&#34;</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">scala<span style="color:#f92672">&gt;</span> dummy<span style="color:#f92672">[</span><span style="color:#66d9ef">List</span>, <span style="color:#66d9ef">Int</span><span style="color:#f92672">](</span><span style="color:#a6e22e">List</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">))</span>
 res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ok</span><span style="color:#f92672">!</span>
 
@@ -1241,11 +1262,13 @@ scala<span style="color:#f92672">&gt;</span> dummy<span style="color:#f92672">[<
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
-<p>The function <code>dummy</code> requires its argument <code>F</code> to accept any type
+<p>The function <code>dummy</code> requires its argument <code>F</code>, which is a type constructor
+like <code>List</code>, <code>Option</code>, <code>Future</code>, etc,  to accept any type
 as argument so that we can write <code>F[A]</code> for any type <code>A</code>. On the contrary,
 <code>AnimalEating</code> requires its argument to be a sub-type of <code>Food</code>.
-Thus <code>AnimalEating</code> can not be used as <code>dummy</code>&rsquo;s argument <code>F</code>.
-</details></p></li>
+Thus <code>AnimalEating</code> can not be used as <code>dummy</code>&rsquo;s argument <code>F</code>.</p>
+
+<p></details></p></li>
 </ul>
 
 <p>The problem is that, when we defined <code>class AnimalEating[A &lt;: Food]</code>,
@@ -1261,7 +1284,7 @@ scala<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">type</s
 defined <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">alias</span> <span style="color:#66d9ef">T2</span></code></pre></div>
 <p>We face a dilemma: to use the function <code>dummy</code>, that we really want
 to use because it&rsquo;s a very nice function, we need to remove the
-constraint <code>A &lt;: Food</code> from the definition of <code>class AnimalEating[A &lt;: Food]</code>.
+constraint <code>A &lt;: Food</code> from the definition <code>class AnimalEating[A &lt;: Food]</code>.
 But we still want to say that animals eat food, not integers,
 boolean or strings!</p>
 
@@ -1277,8 +1300,8 @@ res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</spa
 <em>then</em> it is <strong>impossible</strong> to create an instance of <code>AnimalEating[A]</code>.</p></li>
 
 <li><p>The class <code>AnimalEating</code> <strong>must</strong> remain an open class
-(i.e. not sealed)! It should be possible for anyone, anywhen,
-to create freely sub-classes of <code>AnimalEating</code>. Obviously those
+(i.e. neither sealed nor final)! It should be possible for anyone, anywhen,
+to create, freely, sub-classes of <code>AnimalEating</code>. Obviously those
 sub-classes must satisfy the constraints above.</p></li>
 </ul>
 
@@ -1355,15 +1378,15 @@ When <code>chartType</code> is <code>PieChart</code>, the function assumes, via
 And when <code>chartType</code> is <code>XYChart</code>, it assumes that <code>data</code> is actually
 of type <code>XYData</code>.</p>
 
-<p>The problem is these assumptions rely on the users and/or developers
-to always make sure they are doing things right. But nothing stops
-someone to call <code>draw</code> on a <code>PieChart</code> with <code>XYData</code> (or the opposite),
-crashing the system miserably at runtime!</p>
+<p>The problem is that these assumptions rely on the hypothesis that
+users and developers will always make sure they are calling <code>draw</code> on
+the right data type. But nothing stops someone to call <code>draw</code> on a
+<code>PieChart</code> with <code>XYData</code> (or the opposite), crashing the system miserably at runtime!</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">scala<span style="color:#f92672">&gt;</span> draw<span style="color:#f92672">(</span><span style="color:#a6e22e">PieChart</span><span style="color:#f92672">)(</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">XYData</span><span style="color:#f92672">)</span>
 java<span style="color:#f92672">.</span>lang<span style="color:#f92672">.</span><span style="color:#a6e22e">ClassCastException</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">XYData</span> <span style="color:#66d9ef">cannot</span> <span style="color:#66d9ef">be</span> <span style="color:#66d9ef">cast</span> <span style="color:#66d9ef">to</span> <span style="color:#66d9ef">PieData</span>
   at <span style="color:#f92672">.</span>draw<span style="color:#f92672">(&lt;</span>pastie<span style="color:#66d9ef">&gt;:</span><span style="color:#ae81ff">11</span><span style="color:#f92672">)</span>
   <span style="color:#f92672">...</span> <span style="color:#ae81ff">28</span> elided</code></pre></div>
-<p>As developers we know mistakes do happen! We want a way to prevent
+<p>As developers, we know mistakes do happen! We want a way to prevent
 theses annoying bugs to happen in production! We want to enforce at
 compile-time that only these two scenarii are possible:</p>
 
@@ -1383,13 +1406,14 @@ the argument <code>data</code> can only be of type <code>XYData</code>.</li>
 <li><p>Any scenario other than the two above will make the compilation fail
 on a type error.</p></li>
 
-<li><p><code>ChartType</code> must still be a <code>sealed trait</code>. It is now allowed to have <em>type parameters</em> (i.e. <em>generics</em>).</p></li>
+<li><p><code>ChartType</code> must still be a <code>sealed trait</code>.
+It is now allowed to have <em>type parameters</em> (i.e. <em>generics</em>).</p></li>
 
-<li><p><code>PieChart</code> and <code>XYChar</code> must still be two <code>case object</code>
-and they should still extends <code>ChartType</code>.</p></li>
+<li><p><code>PieChart</code> and <code>XYChar</code> must still be two <code>case object</code>.
+They should still extends <code>ChartType</code>.</p></li>
 
-<li><p><code>ChartType</code>, <code>PieChart</code> and <code>XYChar</code> declarations must have <em>no body</em> at all (i.e. there should be no
-brackets <code>{ ... }</code> in their declaration).</p></li>
+<li><p><code>ChartType</code>, <code>PieChart</code> and <code>XYChar</code> declarations must have <em>no body</em> at all
+(i.e. there should be no brackets <code>{ ... }</code> in their declaration).</p></li>
 </ul>
 
 <p><details>
@@ -1429,7 +1453,7 @@ brackets <code>{ ... }</code> in their declaration).</p></li>
 <p></details></p></li>
 </ul>
 
-<p>You can now sleep well knowing that your production will not
+<p>You can now sleep well knowing your production will not
 crash because of some bad inputs here 😉</p>
 
 <h2 id="more-advanced-use-cases">More Advanced Use Cases</h2>
@@ -1443,16 +1467,16 @@ which is widely used in every popular <em>IO</em> monads or algebraic effects.
 Do not worry if you do not know what they are, the section will clarifies it.
 The <a href="#use-case-ensuring-types-are-supported-by-the-database">second one</a>
 is about enforcing properties. This point is illustrated
-by a real-life use-case of enabling functional programming techniques
-but only on certain types (in the example, types supported by our
-fictional database).
+by the real-life use-case of enabling functional programming techniques
+support constructions that only work for a limited set of types
+(in the example, types supported by our fictional database).
 The <a href="#use-case-simplifying-implicits">third one</a> is about simplifying
 the creation of implicits.</p>
 
 <h3 id="use-case-effects">Use Case: Effects!</h3>
 
 <p>What we call an effect is sometimes just an interface declaring some functions with
-no implementation. For example we can define the trait below. Note that <em>none</em> of its function
+no implementation. For example we can define the trait below. Note that <em>none</em> of its functions
 has an implementation.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">ExampleEffectSig</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">def</span> echo<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span>
@@ -1503,9 +1527,9 @@ can be written elsewhere and there can also be many of them:</p>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 <ul>
-<li><p><strong>Question 1:</strong> Just like <code>ExampleEffect</code> is the equivalent of <code>ExampleEffectSig</code> using a <code>sealed trait</code>
-with some <code>final case class</code> and <code>case object</code>, write the equivalent of <code>EffectSig</code> in the same way.
-Call this trait <code>Effect</code>.</p>
+<li><p><strong>Question 1:</strong> <code>ExampleEffect</code> is the equivalent of <code>ExampleEffectSig</code>,
+but using a <code>sealed trait</code> with some <code>final case class</code> and <code>case object</code>.
+Write the equivalent of <code>EffectSig</code> in the same way. Call this trait <code>Effect</code>.</p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
@@ -1515,8 +1539,9 @@ Call this trait <code>Effect</code>.</p>
 <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">Mesure</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>fun<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span> <span style="color:#f92672">=&gt;</span> A<span style="color:#f92672">,</span> arg<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span></code></pre></div>
 <p></details></p></li>
 
-<li><p><strong>Question 2:</strong> Write the function <code>def run[A](effect: Effect[A]): A</code> that mimics the implementation of
-<code>EffectImpl</code> just like <code>runExampleEffect</code> mimics <code>ExampleEffectImpl</code>.</p>
+<li><p><strong>Question 2:</strong> Write the function <code>def run[A](effect: Effect[A]): A</code>
+that mimics the implementation of <code>EffectImpl</code>
+just like <code>runExampleEffect</code> mimics <code>ExampleEffectImpl</code>.</p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
@@ -1538,7 +1563,7 @@ Call this trait <code>Effect</code>.</p>
 <p></details></p></li>
 </ul>
 
-<p>The type <code>Effect[A]</code> declare interesting effects (<code>CurrentTimeMillis</code>,
+<p>The type <code>Effect[A]</code> declares interesting effects (<code>CurrentTimeMillis</code>,
 <code>PrintLn</code> and <code>Mesure</code>) but to be really useful, we need to be able
 to chain effects! To do so, we want to have these two functions:</p>
 
@@ -1548,7 +1573,7 @@ to chain effects! To do so, we want to have these two functions:</p>
 </ul>
 
 <p>Once again we do not care yet about the implementation. Presently all
-we want is declaring these two operations just like we declared <code>CurrentTimeMillis</code>,
+we want is declaring these two operations, just like we declared <code>CurrentTimeMillis</code>,
 <code>PrintLn</code> and <code>Mesure</code>.</p>
 
 <ul>
@@ -1657,9 +1682,9 @@ run<span style="color:#f92672">(</span>effect1<span style="color:#f92672">)</spa
 <p>Congratulations! You just wrote your first <em>IO</em> monad! There
 is a lot of scientific words to name the <code>sealed trait Effect[A]</code>:
 you can call it an <em>algebraic effect</em>, a <em>free monad</em>, an <em>IO</em>, etc.
-But in the end, it is just a plain simple <code>sealed trait</code> where
-we just declared some <code>final case class</code> and <code>case object</code> to
-represent the functions we wanted to have without providing
+But in the end, it is just a plain simple <code>sealed trait</code> with
+some <code>final case class</code> and <code>case object</code> that
+represent the functions we wanted to have, without providing
 their implementation (<code>CurrentTimeMillis</code>, <code>PrintLn</code>, <code>Mesure</code>,
 <code>Pure</code> and <code>FlatMap</code>). You can call them <em>virtual methods</em> if you
 like. <strong>What really matters is that we isolated the declaration of
@@ -1686,10 +1711,10 @@ This is all this section is about.</p>
 <li><code>(A,B)</code> where <code>A</code> and <code>B</code> are also types supported by the database.</li>
 </ol>
 
-<p>It means that the values stores by the database (in tables, key/value pairs, etc) <strong>must</strong>
+<p>It means that the values stored by the database (in tables, key/value pairs, etc) <strong>must</strong>
 follow the rules above. It can store <code>&quot;Hello World&quot;</code> because it is a <code>String</code> which is
 a supported type by rule <em>1</em>. Likewise, it can store <code>5.2</code> because it is a <code>Double</code>,
-but it can <em>not</em> store <code>5</code> because it is an <code>Int</code>. It can store <code>(&quot;Hello World&quot;, 5.2)</code>
+but it can <em>not</em> store <code>5 : Int</code> because it is an <code>Int</code>. It can store <code>(&quot;Hello World&quot;, 5.2)</code>
 thanks to rule <em>3</em> and also <code>((&quot;Hello World&quot;, 5.2) , 8.9)</code> once again by rule <em>3</em>.</p>
 
 <ul>
@@ -1703,7 +1728,7 @@ is a type supported by the database.</p>
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
 
-<p>The simple version is:</p>
+<p>Transposing the rules above in code, we get:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 <span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">DBString</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span>
 <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">DBDouble</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Double</span><span style="color:#f92672">]</span>
@@ -1734,19 +1759,20 @@ is a type supported by the database.</p>
 <p></details></p></li>
 </ul>
 
-<p>Using <code>DBType</code>, we can pair a value of type <code>A</code> with a value of type <code>DBType[A]</code> which provides an evidence
-that the type <code>A</code> is supported by the database:</p>
+<p>Using <code>DBType</code>, we can pair a value of type <code>A</code> with a value of type <code>DBType[A]</code>,
+which provides an evidence that the type <code>A</code> is supported by the database:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">val</span> dbType<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span></code></pre></div>
 <p>Note that the parameter <code>dbType</code> does not need to be implicit! All that matters is that
 to create a value of type <code>DBValue[A]</code>, we need to provide a value of type <code>DBType[A]</code>
 which forces <code>A</code> to be a supported type.</p>
 
-<p>A functor is, approximately, a type constructor <code>F[_]</code> like <code>List</code>, <code>Option</code>, <code>DBValue</code>, &hellip;
+<p>A functor is, approximately, a type constructor <code>F</code> like <code>List</code>, <code>Option</code>, <code>DBValue</code>, &hellip;
 for which you can write an instance of the trait</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Functor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]]</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
 <span style="color:#f92672">}</span></code></pre></div>
-<p>where <code>map(fa)(f)</code> applies the function <code>f</code> to any value of type <code>A</code> contained in <code>fa</code>. For example:</p>
+<p>where <code>map(fa)(f)</code> applies the function <code>f</code> to any value of type <code>A</code> contained in <code>fa</code>.
+For example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">implicit</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">OptionFunctor</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Functor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Option</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Option</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Option</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
     fa <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
@@ -1765,16 +1791,18 @@ for which you can write an instance of the trait</p>
   <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
     <span style="color:#a6e22e">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>f<span style="color:#f92672">(</span>fa<span style="color:#f92672">.</span>value<span style="color:#f92672">))</span>
 <span style="color:#f92672">}</span></code></pre></div>
-<p><em>Scala</em> complains: <code>could not find implicit value for parameter dbType: DBType[B]</code>. Indeed, booleans
-are not a supported type by the database: they are neither strings, nor doubles, not pairs. But if we
-could write a <code>Functor</code> instance for <code>DBValue</code> (i.e. if we could write a <code>map</code> function for <code>DBValue</code>),
+<p><em>Scala</em> complains: <code>could not find implicit value for parameter dbType: DBType[B]</code>.
+Indeed, booleans are not a supported type by the database: they are neither strings,
+nor doubles, not pairs.
+But if we could write a <code>Functor</code> instance for <code>DBValue</code>
+(i.e. if we could write a <code>map</code> function for <code>DBValue</code>),
 then we could write:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">val</span> dbValueString  <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span>  <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">DBValue</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">)(</span><span style="color:#a6e22e">DBString</span><span style="color:#f92672">)</span>
 <span style="color:#66d9ef">val</span> dbValueBoolean <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Boolean</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> dbValueString<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span><span style="color:#66d9ef">_</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">)</span>
 <span style="color:#66d9ef">val</span> dbTypeBoolean  <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Boolean</span><span style="color:#f92672">]</span>  <span style="color:#66d9ef">=</span> dbValueBoolean<span style="color:#f92672">.</span>dbType</code></pre></div>
-<p>We would get a value (<code>dbTypeBoolean</code>) of type <code>DBType[Boolean]</code>
+<p>We would get a value (<code>dbTypeBoolean</code>) of type <code>DBType[Boolean]</code>,
 which would mean that the type <code>Boolean</code> is supported by the database.
-But it is not! And by definition:</p>
+But it is not! Furthermore, by definition:</p>
 
 <blockquote>
 <p>There exists a value of type <code>DBType[A]</code> <strong>if and only if</strong>
@@ -1788,23 +1816,24 @@ So there is no way to write a <code>Functor</code> instance for <code>DBValue</c
 <p></details></p></li>
 </ul>
 
-<p>A <em>Generalized Functor</em> is very much like a regular <code>Functor</code> but
-the <code>map</code> function do not apply to any type <code>A</code> and <code>B</code> but is restricted
-to the only types <code>A</code> and <code>B</code> satisfying some condition:</p>
+<p>A <em>Generalized Functor</em> is very much like a regular <code>Functor</code>.
+But whereas the <code>map</code> function of functors have to work for <strong>every</strong>
+types <code>A</code> and <code>B</code>, the <code>map</code> function of <em>generalized functor</em>
+can be narrowed to only operate on a limited set of types <code>A</code> and <code>B</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">GenFunctor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">P</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]]</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> evA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">P</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> evB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">P</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
 <span style="color:#f92672">}</span></code></pre></div>
 <p>For example <code>Set</code> (more precisely <code>TreeSet</code>) is not a functor!
 Indeed there is no way to write a function <code>map</code> that works for
-any type <code>B</code> (because <code>B</code> need to have an ordering). But if we restrict
-<code>map</code> to only types <code>B</code> having an ordering, then we can write it.</p>
+any type <code>B</code> (because <code>B</code> need to have an ordering). But if we narrow
+<code>map</code> to the only types <code>B</code> having an ordering, we can write it.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">import</span> scala.collection.immutable._
 <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">TreeSetFunctor</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">GenFunctor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Ordering</span>, <span style="color:#66d9ef">TreeSet</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">TreeSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> evA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Ordering</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> evB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Ordering</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">TreeSet</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
     <span style="color:#a6e22e">TreeSet</span><span style="color:#f92672">.</span>empty<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>evB<span style="color:#f92672">)</span> <span style="color:#f92672">++</span> fa<span style="color:#f92672">.</span>toSeq<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>f<span style="color:#f92672">)</span>
 <span style="color:#f92672">}</span></code></pre></div>
 <ul>
-<li><p><strong>Question 3:</strong> Write an instance of <code>GenFunctor[DBType, DBValue]</code>r</p>
+<li><p><strong>Question 3:</strong> Write an instance of <code>GenFunctor[DBType, DBValue]</code>.</p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
@@ -1815,9 +1844,9 @@ any type <code>B</code> (because <code>B</code> need to have an ordering). But i
 <p></details></p></li>
 </ul>
 
-<p>What we have done to <code>Functor</code> can be done for many data-structures and patterns. We can often
-limit the types on which a data-structure or a type-class can operate by adding an extra parameter
-like <code>ev : DBType[A]</code> to constructors and methods.</p>
+<p>What we have done to <code>Functor</code> can be done for many data-structures and patterns.
+We can often limit the types on which a data-structure or a type-class can operate
+by adding an extra parameter like <code>ev : DBType[A]</code> to constructors and methods.</p>
 
 <h3 id="use-case-simplifying-implicits">Use Case: Simplifying Implicits</h3>
 
@@ -1875,8 +1904,8 @@ than the other. In <em>Scala</em> we can define the trait <code>Order</code>:</p
 </ul>
 
 <p>Comparing lists of type <code>HNil</code> is trivial because there is only one value
-of type <code>HNil</code> (the empty list <code>HNil()</code>) but there are many ways of comparing
-lists of type <code>HCons[H,T]</code>.
+of type <code>HNil</code> (the empty list <code>HNil()</code>).
+But there are many ways of comparing lists of type <code>HCons[H,T]</code>.
 Here are two possible orderings (there exists many more!):</p>
 
 <ul>
@@ -1912,8 +1941,8 @@ Here are two possible orderings (there exists many more!):</p>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div></li>
 
-<li><p>The <em>reverse-lexicographic</em> ordering which is the reverse version
-of the lexicographic ordering (i.e. from right to left)</p>
+<li><p>The <em>reverse-lexicographic</em> ordering, which is the reverse version
+of the lexicographic ordering, (i.e. from right to left)</p>
 
 <blockquote>
 <p><code>HCons(h1,t1) &lt; HCons(h2,t2)</code> <strong>if and only if</strong>
@@ -1990,7 +2019,7 @@ implement the <code>Alternate</code> ordering.</p>
 </ul>
 
 <p>There are lots of ways to define a valid ordering on heterogeneous lists!
-Defining type-classes like <code>Lex</code>, <code>RevLex</code> and <code>Alternate</code> for every ordering
+Defining type classes like <code>Lex</code>, <code>RevLex</code> and <code>Alternate</code> for every ordering
 we want to implement is clunky and messy. We can do much better than that &hellip;
 with a <em>GADT</em> 😉</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">HListOrder</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
@@ -2022,7 +2051,7 @@ to <code>HConsOrder</code> (2 arguments).</p>
 
 <ul>
 <li><p><strong>Question 2:</strong> Write the function <code>def lex[A](implicit v : HListOrder[A]): Order[A]</code>
-that compute the lexicographic ordering from a value of type <code>HListOrder[A]</code>.</p>
+that computes the lexicographic ordering from a value of type <code>HListOrder[A]</code>.</p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
@@ -2043,7 +2072,7 @@ that compute the lexicographic ordering from a value of type <code>HListOrder[A]
 <p></details></p></li>
 
 <li><p><strong>Question 3:</strong> Write the function <code>def revLex[A](implicit v : HListOrder[A]): Order[A]</code>
-that compute the reverse-lexicographic ordering from a value of type <code>HListOrder[A]</code>.</p>
+that computes the reverse-lexicographic ordering from a value of type <code>HListOrder[A]</code>.</p>
 
 <p><details>
   <summary><em>Solution (click to expand)</em></summary></p>
@@ -2077,7 +2106,7 @@ functions, you can use all you can code in building the instance <code>Order[A]<
 of the complexity you may have experienced comes to
 the fact that reasoning about values and types is almost
 never taught in programming courses.
-What you consider simple now (web apis, streaming, databases, etc)
+What you consider simple now (web APIs, Streaming, Databases, etc)
 would probably terrifies your younger self when you
 were introduced for the first time to &ldquo;Hello World!&rdquo;.
 You probably did not learn all you know in programming
@@ -2381,19 +2410,19 @@ interesting, then take the time to understand the techniques.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1572061509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1572061509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1572061509"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1572061509"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1572061509"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1572061509"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1572098450"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1572098450"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1572098450"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1572098450"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1572098450"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1572098450"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1572061509"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1572061509"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1572061509"></script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1572098450"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1572098450"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1572098450"></script>
 
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1572061509" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1572061509"></script>
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1572098450" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1572098450"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
