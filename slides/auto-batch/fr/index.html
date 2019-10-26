@@ -34,16 +34,16 @@ https://github.com/chrilves/slides/auto_batch
 </script></section><section data-markdown><script type="text/template">
 ## Le Contexte: La Logistique
 
-<video width="90%" src="assets/common/lehavre.mp4" autoplay loop="true" playsinline controls muted></video>
+<video width="90%" src="../assets/common/lehavre.mp4" autoplay loop="true" playsinline controls muted></video>
 </script></section></section><section ><section data-markdown><script type="text/template">
 ## Le Probleme
 
-<img src="assets/common/citymapper1.png" alt="1" style="width: 400px; boder: none; boder-width :0px"/>
-<img src="assets/common/citymapper2.png" alt="2" style="width: 400px; boder: none; boder-width :0px"/>
+<img src="../assets/common/citymapper1.png" alt="1" style="width: 400px; boder: none; boder-width :0px"/>
+<img src="../assets/common/citymapper2.png" alt="2" style="width: 400px; boder: none; boder-width :0px"/>
 </script></section><section data-markdown><script type="text/template">
 ### Le Domaine
 
-<img src="assets/common/citymapper2.png" alt="2" style="width: 400px; boder:none; boder-width:0px; float:left;"/>
+<img src="../assets/common/citymapper2.png" alt="2" style="width: 400px; boder:none; boder-width:0px; float:left;"/>
 
 - **Un tronçon =**
   - Une ligne de Métro, Bus, Tram, etc.
@@ -152,7 +152,7 @@ private case class SendRequest(request: Req) extends AutoBatchT[Resp]
 </script></section><section data-markdown><script type="text/template">
 ### Astuce: Smart Constructors!
 
-<img src="assets/common/smart.webp" alt="2" style="width: 350px; boder:none; boder-width:0px; "/>
+<img src="../assets/common/smart.webp" alt="2" style="width: 350px; boder:none; boder-width:0px; "/>
 
 ```scala
 @inline def ap[A, B](ff: AutoBatchT[A => B])(fa: AutoBatchT[A]): AutoBatchT[B] =
@@ -164,15 +164,15 @@ private case class SendRequest(request: Req) extends AutoBatchT[Resp]
 </script></section></section><section ><section data-markdown><script type="text/template">
 ## Livré en Prod! C'est la fête!
 
-<img src="assets/common/party.webp" alt="2" style="width: 800px; boder:none; boder-width:0px;"/>
+<img src="../assets/common/party.webp" alt="2" style="width: 800px; boder:none; boder-width:0px;"/>
 </script></section><section data-markdown><script type="text/template">
 # Profilage
 
-<img src="assets/fr/timeouts.png" alt="2" style="width: 800px; boder:none; boder-width:0px;"/>
+<img src="../assets/fr/timeouts.png" alt="2" style="width: 800px; boder:none; boder-width:0px;"/>
 </script></section><section data-markdown><script type="text/template">
 # VisualVM
 
-<img src="assets/common/visualvm.png" alt="2" style="width: 1000px; boder:none; boder-width:0px;"/>
+<img src="../assets/common/visualvm.png" alt="2" style="width: 1000px; boder:none; boder-width:0px;"/>
 </script></section></section><section ><section data-markdown><script type="text/template">
 # Enfin tout fonctionne! On est sauvé!
 
@@ -181,7 +181,7 @@ private case class SendRequest(request: Req) extends AutoBatchT[Resp]
 
 ### The Big Bad Stack-Overflow
 
-<img src="assets/common/your_app_in_production.png" alt="2" style="width: 1000px; boder:none; boder-width:0px;"/>
+<img src="../assets/common/your_app_in_production.png" alt="2" style="width: 1000px; boder:none; boder-width:0px;"/>
 
 <!-- https://i.pinimg.com/originals/97/ad/b7/97adb7d58520952938bf0d02d72d997a.jpg -->
 <small>Image originelle de <a href="https://www.pinterest.fr/7marye7/">Mary Locke</a><small>
@@ -235,7 +235,7 @@ scala> fcps(100000)(r => r)
 </script></section><section data-markdown><script type="text/template">
 #### The Big Bad Stack-Overflow *Strikes Back*
 
-<img src="assets/common/your_app_in_production.png" alt="2" style="width: 1000px; boder:none; boder-width:0px;"/>
+<img src="../assets/common/your_app_in_production.png" alt="2" style="width: 1000px; boder:none; boder-width:0px;"/>
 </script></section><section data-markdown><script type="text/template">
 ### `@tailrec` nous a trahi!!!
 
@@ -321,7 +321,7 @@ final case class Flat1[X, C, D](k: Cont[C, D])
 </script></section><section data-markdown><script type="text/template">
 ### Return of the J.E.D.I.¹
 
-<img src="assets/common/your_app_in_production.png" alt="2" style="width: 800px; boder:none; boder-width:0px;"/>
+<img src="../assets/common/your_app_in_production.png" alt="2" style="width: 800px; boder:none; boder-width:0px;"/>
 
 **(¹)** : *J.E.D.I.* = Java Exception Devilishly Irritating!
 </script></section><section data-markdown><script type="text/template">
@@ -361,7 +361,7 @@ def f[X](px: P[X]): G[X] =
 ## Transformation N°3:
 ### Les Trampolines
 
-<img src="assets/common/orly.jpg" alt="1" style="width: 400px; boder: none; boder-width :0px;"/>
+<img src="../assets/common/orly.jpg" alt="1" style="width: 400px; boder: none; boder-width :0px;"/>
 </script></section><section data-markdown><script type="text/template">
 ### Récursion Mutuelle
 
@@ -440,7 +440,7 @@ Après:
 
 `scalac -Ygen-asmp <dir>`
 </script></section><section data-markdown><script type="text/template">
-<img src="assets/common/asmp.png" alt="1" style="height:760px; boder: none; boder-width :0px"/>
+<img src="../assets/common/asmp.png" alt="1" style="height:760px; boder: none; boder-width :0px"/>
 
 </script></section></section><section  data-markdown><script type="text/template">
 # Merci pour vôtre attention
