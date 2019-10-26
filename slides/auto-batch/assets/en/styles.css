@@ -1,0 +1,222 @@
+.abs-slide {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 40px;
+  background-color: beige;
+  
+  display:block;  
+  position:fixed;
+  top:0%; left:0%; width:100%; height:100%;
+}
+
+.abs-slide strong {
+  font-weight: bold;
+}
+
+.abs-slide em {
+  font-style: italic;
+}
+
+.abs-slide pre {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+.abs-slide code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 80%;
+}
+
+.abs-slide blockquote {
+  font-style: italic;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: lightgray;
+}
+
+.abs-slide small {
+  font-size: small;
+}
+
+.abs-main p {
+  text-align: center;
+}
+
+.abs-slide p {
+  margin-top: 1%;
+  margin-bottom: 1%; 
+}
+
+.abs-slide .bigp p {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.abs-title, .abs-sub-title {
+  font-weight: bold;
+  text-align: center;
+  text-shadow: -2px 2px 3px #999999;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.abs-title {
+  font-size: 250%;
+  color: brown;
+}
+
+.abs-sub-title {
+  font-size: 180%;
+  color: darkblue;
+}
+
+.abs-main .abs-title {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.abs-main .abs-sub-title {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+
+.abs-slide ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  margin-left: 3%;
+}
+
+.abs-slide ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 5%;
+}
+
+.abs-slide li {
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
+}
+
+.abs-content, .abs-content-flex {
+  padding-top: 0.5%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.abs-content-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.abs-content-left {
+  margin-right: 2%;
+  width: 50%;
+}
+
+.abs-content-right {
+  margin-left: 2%;
+  width: 50%;
+}
+
+
+.asmp {
+  font-size: 50%;
+}
+
+.abs-corner-image {
+  width: 30%;
+  display: block;
+  position: fixed;
+  bottom: 7%;
+  right: 10%;
+}
+
+.abs-page-number {
+  font-style: italic;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}
+
+#videolehavre {
+  height: 80%;
+  display: block;
+  margin: auto;
+}
+
+#mindblow {
+  width: 30%;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#smart { }
+
+#apiwehave {
+  width: 30%;
+  margin-top: 0%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#enterprise {
+  width: 40%;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#abstraction {
+  width: 30%;
+  display: block;
+  margin: auto;
+}
+
+#partytime {
+  width: 60%;
+  display: block;
+  margin: auto;
+}
+
+#sherlock {
+  width: 40%;
+  display: block;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#visualvm {
+  width: 70%;
+  display: block;
+  margin: auto;
+}
+
+#bigbadstackoverflow {
+  width: 70%;
+  display: block;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#janewayohno {
+  
+}
+
+#trampoline { }
+
+#janewaynonono { }
+
+#crusherwins { }
+
+#datalaugh {
+  right: 7%;
+  bottom: 7%;
+}
