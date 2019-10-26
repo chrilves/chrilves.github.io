@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.58.0" />
-    <meta name="description" content="@chrilves&#39; Archives">
+    <meta name="description" content="ScalaIO 2019 Talk - GATD - GADTs - Generalized Algebraic Data Types - ADT - Algebraic Data Types - Functional Programming - Interface - Free Monad">
 <meta name="author" content="@chrilves">
 
     <link rel="icon" href="https://chrilves.github.io/images/favicon.png" type="image/png">
 
-    <title>Introduction to Types :: @chrilves&#39; Archives</title>
+    <title>10 Tips for Fast Stack-safe Functional code: the Automatic-Batching experience :: @chrilves&#39; Archives</title>
 
     
     <link href="https://chrilves.github.io/css/nucleus.css?1572061108" rel="stylesheet">
@@ -24,7 +24,6 @@
     
 
     <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1572061108"></script>
-    <link rel="alternate" type="application/rss+xml" href="https://chrilves.github.io/types/index.xml" title="@chrilves' Archives" />
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
     <style>
@@ -35,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/types/">
+  <body class="" data-url="/posts/auto_batch/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -145,7 +144,7 @@
   
     
     <li data-nav-id="/posts/" title="Posts" class="dd-item 
-        
+        parent
         
         
         ">
@@ -190,7 +189,7 @@
  
   
     
-      <li data-nav-id="/posts/auto_batch/" title="10 Tips for Fast Stack-safe Functional code: the Automatic-Batching experience" class="dd-item ">
+      <li data-nav-id="/posts/auto_batch/" title="10 Tips for Fast Stack-safe Functional code: the Automatic-Batching experience" class="dd-item active">
         <a href="https://chrilves.github.io/posts/auto_batch/">
         10 Tips for Fast Stack-safe Functional code: the Automatic-Batching experience
         <i class="fas fa-check read-icon"></i>
@@ -350,8 +349,8 @@
   
     
     <li data-nav-id="/types/" title="Introduction to Types" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="https://chrilves.github.io/types/">
@@ -531,7 +530,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/types/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/posts/auto_batch.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -551,14 +550,30 @@
                   <span class="links">
                  
                  
-                   Introduction to Types 
+                   10 Tips for Fast Stack-safe Functional code: the Automatic-Batching experience 
                  
                   </span>
                 </div>
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#tip-1">Tip  1:</a></li>
+<li><a href="#tip-2">Tip  2:</a></li>
+<li><a href="#tip-3">Tip  3:</a></li>
+<li><a href="#tip-4">Tip  4:</a></li>
+<li><a href="#tip-5">Tip  5:</a></li>
+<li><a href="#tip-6">Tip  6:</a></li>
+<li><a href="#tip-7">Tip  7:</a></li>
+<li><a href="#tip-8">Tip  8:</a></li>
+<li><a href="#tip-9">Tip  9:</a></li>
+<li><a href="#tip-10">Tip 10:</a></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -574,7 +589,7 @@
           
             <h1>
               
-              Introduction to Types
+              10 Tips for Fast Stack-safe Functional code: the Automatic-Batching experience
             </h1>
           
 
@@ -582,87 +597,27 @@
 
 
 
-<p><strong>Why using</strong> types? <strong>When</strong> are they useful? <strong>Why</strong> we should <strong>care</strong> about types? <strong>What</strong> are types? These are the questions [this series of posts]/types/ give some answers to.</p>
 
 
-<h2>Episodes</h2>
-<ul>
-	
-		<li><a class="hightlight" href='https://chrilves.github.io/types/1-why/'>Episode 1 - Why Types?</a></li>
-	
-		<li><a class="hightlight" href='https://chrilves.github.io/types/2-enums/'>Episode 2 - Enumerations</a></li>
-	
-		<li><a class="hightlight" href='https://chrilves.github.io/types/3-products/'>Episode 3 - Products</a></li>
-	
-		<li><a class="hightlight" href='https://chrilves.github.io/types/4-coproducts/'>Episode 4 - CoProducts</a></li>
-	
-		<li><a class="hightlight" href='https://chrilves.github.io/types/5-rectypes/'>Episode 5 - Recursive Data Types</a></li>
-	
-</ul>
+<h2 id="tip-1">Tip  1:</h2>
 
-<h2>Summaries</h2>
+<h2 id="tip-2">Tip  2:</h2>
 
+<h2 id="tip-3">Tip  3:</h2>
 
-	<article class="post">
-  <header>
-    <h2><a href='https://chrilves.github.io/types/1-why/'> Episode 1 - Why Types?</a> </h2>
-    <div class="post-meta">Sun, Dec 16, 2018 - 1100 Words </div>
-  </header>
-  Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let&rsquo;s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.
-  <footer>
-  <a href='https://chrilves.github.io/types/1-why/'><nobr>Read more →</nobr></a>
-  </footer>
-</article>
+<h2 id="tip-4">Tip  4:</h2>
 
+<h2 id="tip-5">Tip  5:</h2>
 
-	<article class="post">
-  <header>
-    <h2><a href='https://chrilves.github.io/types/2-enums/'> Episode 2 - Enumerations</a> </h2>
-    <div class="post-meta">Sun, Dec 16, 2018 - 2100 Words </div>
-  </header>
-  Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts.
-  <footer>
-  <a href='https://chrilves.github.io/types/2-enums/'><nobr>Read more →</nobr></a>
-  </footer>
-</article>
+<h2 id="tip-6">Tip  6:</h2>
 
+<h2 id="tip-7">Tip  7:</h2>
 
-	<article class="post">
-  <header>
-    <h2><a href='https://chrilves.github.io/types/3-products/'> Episode 3 - Products</a> </h2>
-    <div class="post-meta">Sun, Dec 16, 2018 - 800 Words </div>
-  </header>
-  Products, often called tuples, records or case classes, are a convenient way to bundle values of different types into a single value. The product of n types (with n being 0, 1, 2, etc) A_1, A_2, &hellip;, A_n is precisely the type whose values are formed with exactly one value of each type A_i for 1 ≤ i ≤ n. It is written (A_1, A_2, ..., A_n) in many languages, Product_n[A_1, A_2, .
-  <footer>
-  <a href='https://chrilves.github.io/types/3-products/'><nobr>Read more →</nobr></a>
-  </footer>
-</article>
+<h2 id="tip-8">Tip  8:</h2>
 
+<h2 id="tip-9">Tip  9:</h2>
 
-	<article class="post">
-  <header>
-    <h2><a href='https://chrilves.github.io/types/4-coproducts/'> Episode 4 - CoProducts</a> </h2>
-    <div class="post-meta">Sun, Dec 16, 2018 - 1100 Words </div>
-  </header>
-  CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, &hellip;, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i).
-  <footer>
-  <a href='https://chrilves.github.io/types/4-coproducts/'><nobr>Read more →</nobr></a>
-  </footer>
-</article>
-
-
-	<article class="post">
-  <header>
-    <h2><a href='https://chrilves.github.io/types/5-rectypes/'> Episode 5 - Recursive Data Types</a> </h2>
-    <div class="post-meta">Sun, Dec 16, 2018 - 2000 Words </div>
-  </header>
-  We have seen many types but we still don&rsquo;t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.
-A simple example We will take as example an encoding of non-negative integers, also called natural numbers, i.
-  <footer>
-  <a href='https://chrilves.github.io/types/5-rectypes/'><nobr>Read more →</nobr></a>
-  </footer>
-</article>
-
+<h2 id="tip-10">Tip 10:</h2>
 
 
 <footer class=" footline" >
@@ -700,8 +655,6 @@ A simple example We will take as example an encoding of non-negative integers, a
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -715,6 +668,45 @@ A simple example We will take as example an encoding of non-negative integers, a
             
             
                 
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -823,19 +815,6 @@ A simple example We will take as example an encoding of non-negative integers, a
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -852,33 +831,10 @@ A simple example We will take as example an encoding of non-negative integers, a
                     
 
                     
-            
-        
-                    
-            
-        
-                    
                         
             
             
                 
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 

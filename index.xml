@@ -6,10 +6,29 @@
     <description>Recent content on @chrilves&#39; Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 01 Oct 2019 10:42:39 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 05:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://chrilves.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GADTs By Use Cases</title>
+      <link>https://chrilves.github.io/posts/gadts_by_use_cases/</link>
+      <pubDate>Sat, 26 Oct 2019 05:00:00 +0200</pubDate>
+      
+      <guid>https://chrilves.github.io/posts/gadts_by_use_cases/</guid>
+      <description>Welcome. This session will introduce you to a very powerful tool in programming. Whereas most introduction start by presenting its theoretical foundations in a very formal way, we chose to present it via short examples and practical use cases.
+This workshop is made of three parts. The last one presents three of the most valuable use cases. They are the real big powerful use cases. But do not go there unprepared!</description>
+    </item>
+    
+    <item>
+      <title>10 Tips for Fast Stack-safe Functional code: the Automatic-Batching experience</title>
+      <link>https://chrilves.github.io/posts/auto_batch/</link>
+      <pubDate>Tue, 01 Oct 2019 19:50:47 +0200</pubDate>
+      
+      <guid>https://chrilves.github.io/posts/auto_batch/</guid>
+      <description> Tip 1: Tip 2: Tip 3: Tip 4: Tip 5: Tip 6: Tip 7: Tip 8: Tip 9: Tip 10: </description>
+    </item>
     
     <item>
       <title>Proving Primality with GADTs</title>
