@@ -1,0 +1,49 @@
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 40px;
+  background-color: beige;
+  display:block;  
+  position:fixed;
+  top:0%; left:0%; width:100%; height:100%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+
+small {
+  font-size: small;
+}
+
+p {
+  text-align: center;
+}
+
+h1, h2 {
+  font-weight: bold;
+  text-align: center;
+  text-shadow: -2px 2px 3px #999999;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+h1 {
+  font-size: 250%;
+  color: brown;
+}
+
+h2 {
+  font-size: 180%;
+  color: darkblue;
+}
+
+img {
+  display: block;
+  width: 40%;
+  margin: auto;
+}
