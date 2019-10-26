@@ -15,7 +15,6 @@ em {
   font-style: italic;
 }
 
-
 small {
   font-size: small;
 }
@@ -40,6 +39,10 @@ h1 {
 h2 {
   font-size: 180%;
   color: darkblue;
+}
+
+.content-area {
+  padding: 1%;
 }
 
 img {
