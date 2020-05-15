@@ -1131,6 +1131,9 @@ pre .copy-to-clipboard:hover {
     text-align: left;
 }
 
+option {
+    color: initial;
+}
 #body-inner p {
     text-align: justify;
 }

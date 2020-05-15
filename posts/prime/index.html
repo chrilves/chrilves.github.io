@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.58.0" />
+    <meta name="generator" content="Hugo 0.70.0" />
     <meta name="description" content="@chrilves&#39; Archives">
 <meta name="author" content="@chrilves">
 
@@ -12,18 +12,18 @@
     <title>Proving Primality with GADTs :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1572303468" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1589526100" rel="stylesheet">
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1572303468"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1589526100"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
     <style>
@@ -120,14 +120,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1572303468"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1572303468"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1589526100"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1589526100"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1572303468"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1589526100"></script>
 
     
   </div>
@@ -138,6 +138,8 @@
         
           
           
+
+
 
 
  
@@ -167,6 +169,8 @@
             
 
 
+
+
  
   
     
@@ -184,6 +188,8 @@
           
             
             
+
+
 
 
  
@@ -205,6 +211,8 @@
             
 
 
+
+
  
   
     
@@ -222,6 +230,8 @@
           
             
             
+
+
 
 
  
@@ -243,6 +253,8 @@
             
 
 
+
+
  
   
     
@@ -260,6 +272,8 @@
           
             
             
+
+
 
 
  
@@ -281,6 +295,8 @@
             
 
 
+
+
  
   
     
@@ -300,6 +316,8 @@
             
 
 
+
+
  
   
     
@@ -317,6 +335,8 @@
           
             
             
+
+
 
 
  
@@ -343,6 +363,8 @@
 
           
           
+
+
 
 
  
@@ -372,6 +394,8 @@
             
 
 
+
+
  
   
     
@@ -389,6 +413,8 @@
           
             
             
+
+
 
 
  
@@ -410,6 +436,8 @@
             
 
 
+
+
  
   
     
@@ -429,6 +457,8 @@
             
 
 
+
+
  
   
     
@@ -446,6 +476,8 @@
           
             
             
+
+
 
 
  
@@ -518,7 +550,6 @@
 
 
 
-
         <section id="body">
         <div id="overlay"></div>
         <div class="padding highlightable">
@@ -558,14 +589,9 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li><a href="#the-challenge">The Challenge</a></li>
-<li><a href="#what-the-hell-is-going-on">What the hell is going on ???</a>
-<ul>
-<li><a href="#proving-that-a-natural-number-is-prime">Proving that a Natural Number is Prime</a></li>
-</ul></li>
-<li><a href="#conclusion">Conclusion</a></li>
-</ul>
+  <ul>
+    <li><a href="#proving-that-a-natural-number-is-prime">Proving that a Natural Number is Prime</a></li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -590,56 +616,47 @@
 
 
 
-
-
 <ul>
 <li><strong>The <a href="https://scala-lang.org">Scala</a> source code is at <a href="https://github.com/chrilves/gadt.scala">github.com/chrilves/gadt.scala</a>.</strong></li>
 <li><strong>The <a href="https://haxe.org">Haxe</a> source code is at <a href="https://github.com/chrilves/Gadts.hx">github.com/chrilves/Gadts.hx</a>.</strong></li>
 <li><strong><a href="https://chrilves.github.io/prime">The Web Application is here.</a></strong></li>
 </ul>
-
 <p>Today we will explore the <a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">Curry–Howard correspondence</a>. Our mission
-is writing, in <a href="https://www.scala-lang.org/">Scala</a>&rsquo;s <em>type system</em>, the property
+is writing, in <a href="https://www.scala-lang.org/">Scala</a>&lsquo;s <em>type system</em>, the property
 on natural number of being <a href="https://en.wikipedia.org/wiki/Prime_number">prime</a>. Wikipedia defines it by:</p>
-
 <blockquote>
 <p>A natural number (1, 2, 3, 4, 5, 6, etc.) is called a <strong>prime number</strong> (or a <strong>prime</strong>) if it is greater than 1 and cannot be written as a product of two natural numbers that are both smaller than it.</p>
 </blockquote>
-
 <p>An equivalent way to put it is:</p>
-
 <blockquote>
 <p>A natural number is prime if it is <strong>greater than 1 and cannot be divided by any natural number greater than 1 but smaller than it</strong>.</p>
 </blockquote>
-
 <p>These definitions are equivalent as, by definition, any natural number <em>n</em> is divisible by <em>k</em> if and only if it can be written <em>n = k × p</em> for some natural number <em>p</em>.</p>
-
 <p>Writing a program whose execution checks whether a number is prime is easy. But we are not interested in executing programs, only compiling them! We want the <strong>compiler to verify</strong>
 that a number is indeed prime. At that point, you may wonder how it is even possible to use the compiler to &ldquo;prove&rdquo; something about numbers. That&rsquo;s exactly the point of the
 <a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">Curry–Howard correspondence</a></p>
-
 <h1 id="the-challenge">The Challenge</h1>
-
 <p>You can write any <strong>positive integer</strong> in the input bow below:
 <span id="prime-web"></span>
 <script type="text/javascript" src="https://chrilves.github.io/js/prime-ui.js"></script></p>
-
 <ul>
-<li><p>Please write <code>3</code> in the input box above. A button shall appear
+<li>
+<p>Please write <code>3</code> in the input box above. A button shall appear
 letting you download <code>Prime3.scala</code>. Run it via</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">scala Prime3.scala</code></pre></div>
-<p>The file should compile and run flawlessly outputting <code>ForAllCons(NotDivRec(NotDivBasic(ListIsPositive(),LTTrivial()),AddPlus1(AddZero())),ForAllNil())</code>. Look into <code>Prime3.scala</code>,
-you should see a value <code>prime3: Prime[_3]</code> defined. The <code>main</code> method simply outputs this value.</p></li>
-
-<li><p>Now, write <code>4</code> in the input box. Download and run <code>Prime4.scala</code> via</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">scala Prime4.scala</code></pre></div>
-<p>The file should compile but execution should failed with the exception <code>scala.NotImplementedError: an implementation is missing</code>. Look into <code>Prime4.scala</code>,
-the value <code>prime4: Prime[_4]</code> is defined by <code>???</code>.</p></li>
-
-<li><p>Read <code>Prime4.scala</code> carefully, starting from the beginning, and <strong>try to write a valid
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">scala Prime3.scala
+</code></pre></div><p>The file should compile and run flawlessly outputting <code>ForAllCons(NotDivRec(NotDivBasic(ListIsPositive(),LTTrivial()),AddPlus1(AddZero())),ForAllNil())</code>. Look into <code>Prime3.scala</code>,
+you should see a value <code>prime3: Prime[_3]</code> defined. The <code>main</code> method simply outputs this value.</p>
+</li>
+<li>
+<p>Now, write <code>4</code> in the input box. Download and run <code>Prime4.scala</code> via</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">scala Prime4.scala
+</code></pre></div><p>The file should compile but execution should failed with the exception <code>scala.NotImplementedError: an implementation is missing</code>. Look into <code>Prime4.scala</code>,
+the value <code>prime4: Prime[_4]</code> is defined by <code>???</code>.</p>
+</li>
+<li>
+<p>Read <code>Prime4.scala</code> carefully, starting from the beginning, and <strong>try to write a valid
 definition for</strong> <code>val prime4: Prime[_4]</code>. Remember to <strong>follow very scrupulously the rules
 stated in the first comment of <code>Prime4.scala</code></strong>.</p>
-
 <ul>
 <li>DO NOT ALTER, IN ANY WAY, THE DEFINITION OF ANY TYPE IN THE FILE</li>
 <li>DO NOT ADD SUB CLASSES/OBJECTS TO TYPES IN THE FILE</li>
@@ -649,82 +666,74 @@ stated in the first comment of <code>Prime4.scala</code></strong>.</p>
 NOT A <code>def prime4: Prime[_4]</code>,
 NOT A <code>lazy val prime4: Prime[_4]</code>!</li>
 <li>YOUR CODE SHOULD TYPE-CHECK AND RUN PRINTING THE VALUE <code>prime4</code></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Try to find valid values of type</strong> <code>Prime[_N]</code> <strong>when is not a prime number.</strong></p>
-
-<h1 id="what-the-hell-is-going-on">What the hell is going on ???</h1>
-
+<h1 id="what-the-hell-is-going-on-">What the hell is going on ???</h1>
 <p>To encode properties over natural number, we need to start by encoding natural numbers.
 To do so, we associate to any natural number a type:</p>
-
 <ul>
-<li>to 0 we associate the type <code>String</code></li>
-<li>to 1 we associate the type <code>List[String]</code></li>
-<li>to 2 we associate the type <code>List[List[String]]</code></li>
-<li>to 3 we associate the type <code>List[List[List[String]]]</code></li>
-
-<li><p>and so on:</p>
+<li>
+<p>to 0 we associate the type <code>String</code></p>
+</li>
+<li>
+<p>to 1 we associate the type <code>List[String]</code></p>
+</li>
+<li>
+<p>to 2 we associate the type <code>List[List[String]]</code></p>
+</li>
+<li>
+<p>to 3 we associate the type <code>List[List[List[String]]]</code></p>
+</li>
+<li>
+<p>and so on:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>
 <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[String]
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[String]]
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[String]]]
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[String]]]]
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#f92672">]</span> <span style="color:#f92672">//</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]]]]]</span></code></pre></div></li>
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[List[String]]]]]
+</span></code></pre></div></li>
 </ul>
-
 <p>The next step is to define the type <code>Prime[N]</code> such that:</p>
-
 <blockquote>
 <p>There exists a <strong>valid</strong> of type <code>Prime[N]</code> <strong>if and only if</strong> <code>N</code> is (the type associated to) a <strong>prime</strong> number.</p>
 </blockquote>
-
 <h2 id="proving-that-a-natural-number-is-prime">Proving that a Natural Number is Prime</h2>
-
 <p>Let <em>n</em> be a natural number and <code>N</code> its associated type (for example <em>n=3</em> and <code>N = _3</code>).
 Then:</p>
-
 <blockquote>
 <p><em>n</em> is prime <strong>if and only if</strong> for all natural number <em>m</em> such that <em>2 ≤ m &lt; n</em>, then <em>m</em> does not divide <em>n</em>.</p>
 </blockquote>
-
 <p>The type <code>ForAll[X, N]</code> encodes this exact property. There exists a value of type <code>ForAll[X,N]</code> <strong>if and only if</strong> both:</p>
-
 <ul>
 <li><code>X ≤ N</code></li>
 <li>For all <code>M</code> such that <code>X ≤ M &lt; N</code>, <code>M</code> do not divide <code>N</code></li>
 </ul>
-
 <p>Actually the type <code>Prime[N]</code> is an alias for <code>ForAll[_2, N]</code>. We need to encode two more properties:</p>
-
 <ul>
 <li>For <code>I</code> and <code>J</code> two natural numbers, the property that <code>I</code> is less than or equal to <code>J</code> (<code>I ≤ J</code>).
 It is encoded as the type <code>LessThan[I, J]</code>.</li>
 <li>For <code>I</code> and <code>J</code> two natural numbers, the property that <code>I</code> does not divide <code>J</code>.
 It is encoded as the type <code>NotDiv[I, J]</code>.</li>
 </ul>
-
 <p>Read the file <code>PrimeN.scala</code> carefully, each step is described and explained in much details.</p>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>Why asking you to build a value that not exists? Because the main point is not knowing whether there
 exists a value of type <code>Prime[_4]</code> but understanding why such a value (following all the rules!) cannot exists!</p>
-
 <p>It is widely known and accepted in programming culture that every type has values. After all, types exists only
 to qualify values, right? And instantiating a type <code>T</code> is as simple as calling <code>new</code>! There is one huge problem
 with this claim: <strong>it is completely wrong!</strong>. The idea that a types can have no value, often called empty type
 or uninhabited type, is the cornerstone of a lot of techniques including logic, maths, programming with rich types,
 formal systems like <a href="https://coq.inria.fr/">Coq</a>, etc.</p>
-
 <p>This example is indeed both complicated and complex. It is neither a regular usage of <em>GADTs</em> nor something
 meant for production! It&rsquo;s <strong>perfectly ok being confused</strong> about it or not understanding what is going on. As I
 said, it is an complicated and complex example!! But when you manage to understand it, consider you master the
 subject.</p>
 
 
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -1033,19 +1042,19 @@ subject.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1572303468"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1589526100"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1572303468"></script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1589526100"></script>
 
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1572303468" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1572303468"></script>
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1589526100" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1589526100"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

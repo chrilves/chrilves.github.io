@@ -80,7 +80,6 @@
   margin-bottom: 5%;
 }
 
-
 .abs-slide ol {
   list-style-type: decimal;
   list-style-position: outside;
@@ -119,6 +118,15 @@
   width: 50%;
 }
 
+.abs-whoami-left {
+  margin-right: 2%;
+  width: 35%;
+}
+
+.abs-whoami-right {
+  margin-left: 2%;
+  width: 65%;
+}
 
 .abs-journey {
   height: 2.5em;
@@ -146,6 +154,12 @@
   position: fixed;
   bottom: 2%;
   right: 2%;
+}
+
+#me {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #videolehavre {

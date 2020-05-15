@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.58.0" />
+    <meta name="generator" content="Hugo 0.70.0" />
     <meta name="description" content="ScalaIO.2017 Talk">
 <meta name="author" content="@chrilves">
 
@@ -12,18 +12,18 @@
     <title>F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1572303468" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1572303468" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1589526100" rel="stylesheet">
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1572303468"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1589526100"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
     <style>
@@ -120,14 +120,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1572303468"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1572303468"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1589526100"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1589526100"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1572303468"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1589526100"></script>
 
     
   </div>
@@ -138,6 +138,8 @@
         
           
           
+
+
 
 
  
@@ -167,6 +169,8 @@
             
 
 
+
+
  
   
     
@@ -184,6 +188,8 @@
           
             
             
+
+
 
 
  
@@ -205,6 +211,8 @@
             
 
 
+
+
  
   
     
@@ -222,6 +230,8 @@
           
             
             
+
+
 
 
  
@@ -243,6 +253,8 @@
             
 
 
+
+
  
   
     
@@ -260,6 +272,8 @@
           
             
             
+
+
 
 
  
@@ -281,6 +295,8 @@
             
 
 
+
+
  
   
     
@@ -300,6 +316,8 @@
             
 
 
+
+
  
   
     
@@ -317,6 +335,8 @@
           
             
             
+
+
 
 
  
@@ -343,6 +363,8 @@
 
           
           
+
+
 
 
  
@@ -372,6 +394,8 @@
             
 
 
+
+
  
   
     
@@ -389,6 +413,8 @@
           
             
             
+
+
 
 
  
@@ -410,6 +436,8 @@
             
 
 
+
+
  
   
     
@@ -429,6 +457,8 @@
             
 
 
+
+
  
   
     
@@ -446,6 +476,8 @@
           
             
             
+
+
 
 
  
@@ -518,7 +550,6 @@
 
 
 
-
         <section id="body">
         <div id="overlay"></div>
         <div class="padding highlightable">
@@ -557,12 +588,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li><a href="#the-video">The Video</a></li>
-<li><a href="#the-slides-https-chrilves-github-io-f-algebra-talk-index-html"><a href="https://chrilves.github.io/f-algebra-talk/index.html">The Slides</a></a></li>
-</ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -586,20 +612,14 @@
 
 
 
-
-
 <p>I had the chance to present a talk about <em>F-Algebras</em> at <a href="https://scala.io/2017/talks.html#/#SJO-8794">ScalaIO 2017</a>.</p>
-
 <h1 id="the-video">The Video</h1>
-
-<iframe width="1024" height="768" src="https://www.youtube.com/embed/MfxN6oSLKDU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-
-<h1 id="the-slides-https-chrilves-github-io-f-algebra-talk-index-html"><a href="https://chrilves.github.io/f-algebra-talk/index.html">The Slides</a></h1>
-
-<iframe width="1024" height="768" src="https://chrilves.github.io/slides/f-algebra-talk/index.html"></iframe>
+<!-- raw HTML omitted -->
+<h1 id="the-slideshttpschrilvesgithubiof-algebra-talkindexhtml"><a href="https://chrilves.github.io/f-algebra-talk/index.html">The Slides</a></h1>
+<!-- raw HTML omitted -->
 
 
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -908,19 +928,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1572303468"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1589526100"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1572303468"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1572303468"></script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1589526100"></script>
 
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1572303468" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1572303468"></script>
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1589526100" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1589526100"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
