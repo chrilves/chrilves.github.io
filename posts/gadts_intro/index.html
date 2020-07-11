@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.70.0" />
+    <meta name="generator" content="Hugo 0.73.0" />
     <meta name="description" content="Introduction to catamorphisms on Algebraic Data Types">
 <meta name="author" content="@chrilves">
 
@@ -12,20 +12,27 @@
     <title>Demystifying GADTs :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1589526100" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1589526100" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1594490837" rel="stylesheet">
+    
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1589526100"></script>
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
-
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1594490837"></script>
+    
+    
+    <link rel="stylesheet" href="https://chrilves.github.io/assets/katex/katex.min.css"/>
+    <script defer src="https://chrilves.github.io/assets/katex/katex.min.js"></script>
+    <script defer src="https://chrilves.github.io/assets/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+    
+    
     <style>
       :root #header + #content > #left > #rlblock_left{
           display:none !important;
@@ -34,7 +41,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/posts/gadts_intro/">
+  <body class="" data-url="https://chrilves.github.io/posts/gadts_intro/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -120,14 +127,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1589526100"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1589526100"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1594490837"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1594490837"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1589526100"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1594490837"></script>
 
     
   </div>
@@ -164,6 +171,27 @@
           
 
         
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/posts/probability_in_scala_3_all_sides/" title="Playing with Probability in Scala 3" class="dd-item ">
+        <a href="https://chrilves.github.io/posts/probability_in_scala_3_all_sides/">
+        Playing with Probability in Scala 3
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
           
             
             
@@ -581,7 +609,7 @@
                   <span class="links">
                  
                  
-                   Demystifying GADTs 
+                   Demystifying GADTs
                  
                   </span>
                 </div>
@@ -615,7 +643,6 @@
           
 
         
-
 
 
 <p><strong>Generalized Algebraic Data Types (GADT)</strong> is certainly one of the most feared concept in programming nowadays. Very few mainstream languages support GADTs. The only ones i know which does are <a href="https://www.haskell.org/ghc">Haskell</a>, <a href="https://www.scala-lang.org">Scala</a>, <a href="https://ocaml.org/index.fr.html">OCaml</a> and <a href="https://haxe.org">Haxe</a>. The idea is actually very simple but often presented in complicated ways. In fact, if you&rsquo;re familiar to both basic <em>Object-Oriented-with-Generics</em> and basic <em>functional</em> programming, then you most probably are already familiar with GADTs without even knowing you are. But if GADTs are so simple, why so many people feel terrified by them? Well GADTs rely on two fundamental ideas, one of them is known by every <em>Object-Oriented-with-Generics</em> programmer while the other is known by every <em>functional</em> programmer. The problem is most people make the huge mistake of opposing them even though they are complementary. So before diving into GADTs, let me remind you of these elementary notions from <em>Object-Oriented</em> and <em>functional</em> programming.</p>
@@ -881,7 +908,7 @@ res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</sp
 </span><span style="color:#75715e"></span>        fa<span style="color:#f92672">.</span>toList<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>f<span style="color:#f92672">).</span>mkString
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><p><em>GADTs</em> are an example of <em>Bushnell&rsquo;s law</em>. As you can see, they are easy to learn but can be used in very tricky situations which makes them hard to master. They are clearly very helpful in many situations but it seems they are still unfortunately very little used. <em>Haskell</em> supports them very well! <em>Scala</em>&lsquo;s support is actually very good but not as good as <em>Haskell</em>&lsquo;s. <em>Scala 3</em> will probably support them as well as <em>Haskell</em> since <em>Dotty</em>&lsquo;s support is excellent. The only two other mainstream languages i know supporting them are <em>OCaml</em> and <em>Haxe</em>. Even if those two have a very good support, their lack of <em>Higer-Kinded types</em> forbids the most interesting uses.</p>
+</code></pre></div><p><em>GADTs</em> are an example of <em>Bushnell&rsquo;s law</em>. As you can see, they are easy to learn but can be used in very tricky situations which makes them hard to master. They are clearly very helpful in many situations but it seems they are still unfortunately very little used. <em>Haskell</em> supports them very well! <em>Scala</em>&rsquo;s support is actually very good but not as good as <em>Haskell</em>&rsquo;s. <em>Scala 3</em> will probably support them as well as <em>Haskell</em> since <em>Dotty</em>&rsquo;s support is excellent. The only two other mainstream languages i know supporting them are <em>OCaml</em> and <em>Haxe</em>. Even if those two have a very good support, their lack of <em>Higer-Kinded types</em> forbids the most interesting uses.</p>
 <p>As you probably know, it is possible to define a <code>fold</code> functor for every <em>Algebraic Data Type</em>. It is also possible to define <code>fold</code> functions for every <em>GADT</em>. As an exercise, try to define fold functions for the following <em>GADTs</em>:</p>
 <ul>
 <li>
@@ -949,6 +976,22 @@ res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</sp
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1207,19 +1250,19 @@ res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Boolean</sp
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1589526100"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1589526100"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1589526100"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1589526100"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1589526100"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1594490837"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1589526100"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1589526100"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1589526100"></script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1594490837"></script>
 
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1589526100" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1589526100"></script>
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1594490837" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1594490837"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

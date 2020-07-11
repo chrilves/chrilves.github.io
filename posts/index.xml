@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Playing with Probability in Scala 3</title>
+      <link>https://chrilves.github.io/posts/probability_in_scala_3_all_sides/</link>
+      <pubDate>Sat, 11 Jul 2020 19:43:00 +0200</pubDate>
+      
+      <guid>https://chrilves.github.io/posts/probability_in_scala_3_all_sides/</guid>
+      <description>Here is a simple experiment: take a fair dice (or a coin) and roll it until every side of the dice has been observed at least once. Write down the number of rolls and repeat the operation several times. On average, how many rolls does it take to observe every side of the dice at least once? This is precisely the question we are about to answer together.
+Solving Maths puzzle is fun.</description>
+    </item>
+    
+    <item>
       <title>Les GADTs Par l&#39;Exemple</title>
       <link>https://chrilves.github.io/posts/les_gadts_par_l_exemple/</link>
       <pubDate>Sun, 27 Oct 2019 22:30:00 +0200</pubDate>
@@ -38,7 +48,7 @@ This workshop is made of three parts. The last one presents three of the most va
       <pubDate>Tue, 01 Oct 2019 10:42:39 +0100</pubDate>
       
       <guid>https://chrilves.github.io/posts/prime/</guid>
-      <description>The Scala source code is at github.com/chrilves/gadt.scala. The Haxe source code is at github.com/chrilves/Gadts.hx. The Web Application is here.  Today we will explore the Curry–Howard correspondence. Our mission is writing, in Scala&amp;lsquo;s type system, the property on natural number of being prime. Wikipedia defines it by:
+      <description>The Scala source code is at github.com/chrilves/gadt.scala. The Haxe source code is at github.com/chrilves/Gadts.hx. The Web Application is here.  Today we will explore the Curry–Howard correspondence. Our mission is writing, in Scala&amp;rsquo;s type system, the property on natural number of being prime. Wikipedia defines it by:
  A natural number (1, 2, 3, 4, 5, 6, etc.) is called a prime number (or a prime) if it is greater than 1 and cannot be written as a product of two natural numbers that are both smaller than it.</description>
     </item>
     
