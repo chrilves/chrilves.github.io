@@ -12,19 +12,19 @@
     <title>Playing with Probability in Scala 3 :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1594490837" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1594490837" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1594651652" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1594651652" rel="stylesheet">
     
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1594651652"></script>
     
     
     <link rel="stylesheet" href="https://chrilves.github.io/assets/katex/katex.min.css"/>
@@ -127,14 +127,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1594490837"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1594490837"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1594651652"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1594651652"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1594490837"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1594651652"></script>
 
     
   </div>
@@ -659,13 +659,13 @@ This is precisely the question we are about to answer together.</p>
 <ul>
 <li>on <strong>Arch Linux</strong>, as usual there is an <a href="https://aur.archlinux.org/packages/scala-dotty/">AUR package</a>
 : <code>aur/scala-dotty</code>. Install it via <code>yay -S aur/scala-dotty</code> or any other <em>AUR</em> helper.</li>
-<li>on other <em>Linux</em> distributions, download <a href="https://github.com/lampepfl/dotty/releases/download/0.24.0/dotty-0.24.0.tar.gz,">https://github.com/lampepfl/dotty/releases/download/0.24.0/dotty-0.24.0.tar.gz,</a> extract it and make sure the executables are in your <code>$PATH</code>.</li>
+<li>on other <em>Linux</em> distributions, download <a href="https://github.com/lampepfl/dotty/releases/download/0.25.0-RC2/dotty-0.25.0-RC2.tar.gz,">https://github.com/lampepfl/dotty/releases/download/0.25.0-RC2/dotty-0.25.0-RC2.tar.gz,</a> extract it and make sure the executables are in your <code>$PATH</code>.</li>
 <li>on other systems, follow the instructions <a href="https://dotty.epfl.ch/#getting-started">here</a>.</li>
 </ul>
 <p>You should now be able to run the <em>Scala 3 REPL</em> via the command:</p>
 <pre><code class="language-prompt" data-lang="prompt">[shell prompt]$ dotr -new-syntax -Yexplicit-nulls -Yerased-terms -indent -version
 Starting dotty REPL...
-Dotty compiler version 0.24.0-RC1 -- Copyright 2002-2020, LAMP/EPFL
+Dotty compiler version 0.25.0-RC2 -- Copyright 2002-2020, LAMP/EPFL
 scala&gt;
 </code></pre><p><strong>An Important Note:</strong> Please refrain from starting your favourite IDE or
 starting a new project. It will only make experimenting harder and painful.
@@ -1456,7 +1456,7 @@ plotting it</p>
 <p>how many rolls are needed, on average, with a \(n\) sided fair dice, to observe all of its sides.</p>
 </blockquote>
 <p>But the answer was not! We have seen how to check, empirically, that the <em>Scala</em>
-<code>Random.nextInt</code> function correctly simulate a fair dice. From there we run
+<code>Random.nextInt</code> function correctly simulates a fair dice. From there we run
 (many) experiments to get an approximation of the answer.
 We experienced how easy but disastrous it can be to build a model disconnected
 from reality.
@@ -1808,19 +1808,19 @@ The list is pretty large.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1594490837"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1594490837"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1594490837"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1594490837"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1594490837"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1594651652"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1594651652"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1594651652"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1594651652"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1594651652"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1594651652"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1594490837"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1594490837"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1594490837"></script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1594651652"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1594651652"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1594651652"></script>
 
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1594490837" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1594490837"></script>
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1594651652" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1594651652"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
