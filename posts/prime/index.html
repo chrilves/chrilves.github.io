@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="generator" content="Hugo 0.101.0" />
     <meta name="description" content="@chrilves&#39; Archives">
 <meta name="author" content="@chrilves">
 
@@ -12,19 +12,19 @@
     <title>Proving Primality with GADTs :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1594651767" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1594651767" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1661281509" rel="stylesheet">
     
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1594651767"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1661281509"></script>
     
     
     <link rel="stylesheet" href="https://chrilves.github.io/assets/katex/katex.min.css"/>
@@ -127,14 +127,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1594651767"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1594651767"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1661281509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1661281509"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1594651767"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1661281509"></script>
 
     
   </div>
@@ -670,14 +670,14 @@ that a number is indeed prime. At that point, you may wonder how it is even poss
 <li>
 <p>Please write <code>3</code> in the input box above. A button shall appear
 letting you download <code>Prime3.scala</code>. Run it via</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">scala Prime3.scala
-</code></pre></div><p>The file should compile and run flawlessly outputting <code>ForAllCons(NotDivRec(NotDivBasic(ListIsPositive(),LTTrivial()),AddPlus1(AddZero())),ForAllNil())</code>. Look into <code>Prime3.scala</code>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>scala Prime3.scala
+</span></span></code></pre></div><p>The file should compile and run flawlessly outputting <code>ForAllCons(NotDivRec(NotDivBasic(ListIsPositive(),LTTrivial()),AddPlus1(AddZero())),ForAllNil())</code>. Look into <code>Prime3.scala</code>,
 you should see a value <code>prime3: Prime[_3]</code> defined. The <code>main</code> method simply outputs this value.</p>
 </li>
 <li>
 <p>Now, write <code>4</code> in the input box. Download and run <code>Prime4.scala</code> via</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">scala Prime4.scala
-</code></pre></div><p>The file should compile but execution should failed with the exception <code>scala.NotImplementedError: an implementation is missing</code>. Look into <code>Prime4.scala</code>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>scala Prime4.scala
+</span></span></code></pre></div><p>The file should compile but execution should failed with the exception <code>scala.NotImplementedError: an implementation is missing</code>. Look into <code>Prime4.scala</code>,
 the value <code>prime4: Prime[_4]</code> is defined by <code>???</code>.</p>
 </li>
 <li>
@@ -715,13 +715,13 @@ To do so, we associate to any natural number a type:</p>
 </li>
 <li>
 <p>and so on:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>
-<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[String]
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[String]]
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[String]]]
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[String]]]]
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[List[String]]]]]
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[String]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[String]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[String]]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[String]]]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[List[String]]]]]
+</span></span></span></code></pre></div></li>
 </ul>
 <p>The next step is to define the type <code>Prime[N]</code> such that:</p>
 <blockquote>
@@ -1085,19 +1085,19 @@ subject.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1594651767"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1594651767"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1594651767"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1594651767"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1594651767"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1594651767"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1661281509"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1594651767"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1594651767"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1594651767"></script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1661281509"></script>
 
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1594651767" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1594651767"></script>
+    <link href="https://chrilves.github.io/mermaid/mermaid.css?1661281509" rel="stylesheet" />
+    <script src="https://chrilves.github.io/mermaid/mermaid.js?1661281509"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

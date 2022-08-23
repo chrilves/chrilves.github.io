@@ -6,11 +6,7 @@
     <description>Recent content on @chrilves&#39; Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 11 Jul 2020 19:43:00 +0200</lastBuildDate>
-    
-	<atom:link href="https://chrilves.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 11 Jul 2020 19:43:00 +0200</lastBuildDate><atom:link href="https://chrilves.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Playing with Probability in Scala 3</title>
       <link>https://chrilves.github.io/posts/probability_in_scala_3_all_sides/</link>
@@ -48,8 +44,8 @@ This workshop is made of three parts. The last one presents three of the most va
       <pubDate>Tue, 01 Oct 2019 10:42:39 +0100</pubDate>
       
       <guid>https://chrilves.github.io/posts/prime/</guid>
-      <description>The Scala source code is at github.com/chrilves/gadt.scala. The Haxe source code is at github.com/chrilves/Gadts.hx. The Web Application is here.  Today we will explore the Curry–Howard correspondence. Our mission is writing, in Scala&amp;rsquo;s type system, the property on natural number of being prime. Wikipedia defines it by:
- A natural number (1, 2, 3, 4, 5, 6, etc.) is called a prime number (or a prime) if it is greater than 1 and cannot be written as a product of two natural numbers that are both smaller than it.</description>
+      <description>The Scala source code is at github.com/chrilves/gadt.scala. The Haxe source code is at github.com/chrilves/Gadts.hx. The Web Application is here. Today we will explore the Curry–Howard correspondence. Our mission is writing, in Scala&amp;rsquo;s type system, the property on natural number of being prime. Wikipedia defines it by:
+A natural number (1, 2, 3, 4, 5, 6, etc.) is called a prime number (or a prime) if it is greater than 1 and cannot be written as a product of two natural numbers that are both smaller than it.</description>
     </item>
     
     <item>
@@ -126,7 +122,7 @@ A simple example We will take as example an encoding of non-negative integers, a
       <description>Today we will meet an amazing family: the fold functions!
 The well known foldRight Lists is one of the first data structure every developer/computer scientist meet in her/his journey into programming:
 sealed abstract class List[+A] final case object Nil extends List[Nothing] final case class Cons[+A](head: A, tail: List[A]) extends List[A] It means means values of type List[A] can be of (only) two forms:
- either Nil or Cons(head, tail) for some values head of type A and tail of type List[A]  For example we can define the following lists:</description>
+either Nil or Cons(head, tail) for some values head of type A and tail of type List[A] For example we can define the following lists:</description>
     </item>
     
     <item>
