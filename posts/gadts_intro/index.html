@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="description" content="Introduction to catamorphisms on Algebraic Data Types">
 <meta name="author" content="@chrilves">
 
@@ -12,19 +12,20 @@
     <title>Demystifying GADTs :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/tabs.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1680206344" rel="stylesheet">
     
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1680206344"></script>
     
     
     <link rel="stylesheet" href="https://chrilves.github.io/assets/katex/katex.min.css"/>
@@ -127,14 +128,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1661281509"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1661281509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1680206344"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1680206344"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1661281509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1680206344"></script>
 
     
   </div>
@@ -677,12 +678,12 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> 8<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> Boolean <span style="color:#a6e22e">getNthElement</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> nth<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nth <span style="color:#f92672">&gt;=</span> 0 <span style="color:#f92672">&amp;&amp;</span> nth <span style="color:#f92672">&lt;=</span> 7<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">((</span>bte <span style="color:#f92672">&gt;&gt;&gt;</span> nth <span style="color:#f92672">&amp;</span> 1<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> 1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nth <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> nth <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">((</span>bte <span style="color:#f92672">&gt;&gt;&gt;</span> nth <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">IndexOutOfBoundsException</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
@@ -723,15 +724,15 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>A<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">guess</span><span style="color:#f92672">(</span>Sequence<span style="color:#f92672">&lt;</span>A<span style="color:#f92672">&gt;</span> x<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>x <span style="color:#66d9ef">instanceof</span> MyByte<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I guess A is actually Boolean, let&#39;s check!&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(((</span>Sequence<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;)</span>x<span style="color:#f92672">).</span><span style="color:#a6e22e">getNthElement</span><span style="color:#f92672">(</span>0<span style="color:#f92672">).</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(((</span>Sequence<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;)</span>x<span style="color:#f92672">).</span><span style="color:#a6e22e">getNthElement</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>x <span style="color:#66d9ef">instanceof</span> MyString<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I guess A is actually Character&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(((</span>Sequence<span style="color:#f92672">&lt;</span>Character<span style="color:#f92672">&gt;)</span>x<span style="color:#f92672">).</span><span style="color:#a6e22e">getNthElement</span><span style="color:#f92672">(</span>0<span style="color:#f92672">).</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(((</span>Sequence<span style="color:#f92672">&lt;</span>Character<span style="color:#f92672">&gt;)</span>x<span style="color:#f92672">).</span><span style="color:#a6e22e">getNthElement</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>x <span style="color:#66d9ef">instanceof</span> MyArray<span style="color:#f92672">&lt;?&gt;)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I guess A is a sub-class of Number but i can not guess which one&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(((</span>Sequence<span style="color:#f92672">&lt;?&gt;)</span> x<span style="color:#f92672">).</span><span style="color:#a6e22e">getNthElement</span><span style="color:#f92672">(</span>0<span style="color:#f92672">).</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(((</span>Sequence<span style="color:#f92672">&lt;?&gt;)</span> x<span style="color:#f92672">).</span><span style="color:#a6e22e">getNthElement</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>   System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I don&#39;t know what A is&#34;</span><span style="color:#f92672">);</span>
@@ -930,7 +931,7 @@
 </footer>
 
         
-        </div> 
+        </div>
         
 
       </div>
@@ -938,8 +939,8 @@
     <div id="navigation">
         
         
+
         
-        
             
             
                 
@@ -976,186 +977,6 @@
                     
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1232,12 +1053,192 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
         
 
 
@@ -1246,26 +1247,28 @@
     </div>
 
     </section>
-    
+
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1680206344"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1661281509"></script>
-
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1661281509" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1661281509"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1680206344"></script>
+    
+        
+            <script src="https://chrilves.github.io/mermaid/mermaid.js?1680206344"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
     
 
   </body>

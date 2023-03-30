@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="description" content="@chrilves&#39; Archives">
 <meta name="author" content="@chrilves">
 
@@ -12,19 +12,20 @@
     <title>Proving Primality with GADTs :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/tabs.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1680206344" rel="stylesheet">
     
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1680206344"></script>
     
     
     <link rel="stylesheet" href="https://chrilves.github.io/assets/katex/katex.min.css"/>
@@ -127,14 +128,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1661281509"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1661281509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1680206344"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1680206344"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1661281509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1680206344"></script>
 
     
   </div>
@@ -671,7 +672,7 @@ that a number is indeed prime. At that point, you may wonder how it is even poss
 <p>Please write <code>3</code> in the input box above. A button shall appear
 letting you download <code>Prime3.scala</code>. Run it via</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>scala Prime3.scala
-</span></span></code></pre></div><p>The file should compile and run flawlessly outputting <code>ForAllCons(NotDivRec(NotDivBasic(ListIsPositive(),LTTrivial()),AddPlus1(AddZero())),ForAllNil())</code>. Look into <code>Prime3.scala</code>,
+</span></span></code></pre></div><p>The file should compile and run flawlessly outputting <code>ForAllRec(NotDivRec(NotDivBase(SIsPositive(),LTBase()),AddPlus1(AddZero())),ForAllBase())</code>. Look into <code>Prime3.scala</code>,
 you should see a value <code>prime3: Prime[_3]</code> defined. The <code>main</code> method simply outputs this value.</p>
 </li>
 <li>
@@ -699,33 +700,29 @@ NOT A <code>lazy val prime4: Prime[_4]</code>!</li>
 <p><strong>Try to find valid values of type</strong> <code>Prime[_N]</code> <strong>when is not a prime number.</strong></p>
 <h1 id="what-the-hell-is-going-on-">What the hell is going on ???</h1>
 <p>To encode properties over natural number, we need to start by encoding natural numbers.
-To do so, we associate to any natural number a type:</p>
-<ul>
-<li>
-<p>to 0 we associate the type <code>String</code></p>
-</li>
-<li>
-<p>to 1 we associate the type <code>List[String]</code></p>
-</li>
-<li>
-<p>to 2 we associate the type <code>List[List[String]]</code></p>
-</li>
-<li>
-<p>to 3 we associate the type <code>List[List[List[String]]]</code></p>
-</li>
-<li>
-<p>and so on:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[String]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[String]]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[String]]]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[String]]]]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#f92672">]</span> <span style="color:#75715e">// List[List[List[List[List[String]]]]]
-</span></span></span></code></pre></div></li>
-</ul>
-<p>The next step is to define the type <code>Prime[N]</code> such that:</p>
+To do so, we associate to any natural number a type. Natural numbers can be constructed
+by starting from the first one, <em>0</em>, and creating new ones by adding <em>1</em> successively.
+For example, <em>1 = 0 + 1</em>, <em>2 = 0 + 1 + 1</em>, <em>3 = 0 + 1 + 1 + 1</em>, etc.
+Our encoding will mimic this construction, starting from a base type encoding <em>0</em> and
+an operation <em>&quot;+ 1&quot;</em>.
+The number <em>0</em> is encoded as the type <code>_0</code> defined as the <code>final abstract class _0</code>
+and the operation <em>&quot;+ 1&quot;</em> as the type function <code>final abstract class S[N &lt;: Nat]</code> which
+for every type <code>N</code> encoding a natural number <em>n</em> gives the type <code>S[N]</code> encoding the
+natural number <em>n + 1</em>. The type <code>Nat</code> can simply be defined as the alias
+<code>type Nat = _0 | S[?]</code> because a natural number is either <em>0</em> or obtained by some <em>+ 1</em> operations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Nat</span> <span style="color:#f92672">=</span> _0 <span style="color:#f92672">|</span> S<span style="color:#f92672">[</span><span style="color:#66d9ef">?</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">S</span><span style="color:#f92672">[</span><span style="color:#66d9ef">N</span> <span style="color:#66d9ef">&lt;:</span> <span style="color:#66d9ef">Nat</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">type</span> _1 <span style="color:#66d9ef">=</span> S<span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">0</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span> <span style="color:#f92672">=</span> S<span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#f92672">]</span> <span style="color:#75715e">// S[S[_0]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span> <span style="color:#f92672">=</span> S<span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#f92672">]</span> <span style="color:#75715e">// S[S[S[_0]]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span> <span style="color:#f92672">=</span> S<span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#f92672">]</span> <span style="color:#75715e">// S[S[S[S[_0]]]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">5</span> <span style="color:#f92672">=</span> S<span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#f92672">]</span> <span style="color:#75715e">// S[S[S[S[S[_0]]]]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>The next step is to define the type <code>Prime[N]</code> such that:</p>
 <blockquote>
-<p>There exists a <strong>valid</strong> of type <code>Prime[N]</code> <strong>if and only if</strong> <code>N</code> is (the type associated to) a <strong>prime</strong> number.</p>
+<p>There exists a <strong>valid</strong> value of type <code>Prime[N]</code> <strong>if and only if</strong> <code>N</code> is (the type associated to) a <strong>prime</strong> number.</p>
 </blockquote>
 <h2 id="proving-that-a-natural-number-is-prime">Proving that a Natural Number is Prime</h2>
 <p>Let <em>n</em> be a natural number and <code>N</code> its associated type (for example <em>n=3</em> and <code>N = _3</code>).
@@ -765,7 +762,7 @@ subject.</p>
 </footer>
 
         
-        </div> 
+        </div>
         
 
       </div>
@@ -773,8 +770,8 @@ subject.</p>
     <div id="navigation">
         
         
+
         
-        
             
             
                 
@@ -803,74 +800,6 @@ subject.</p>
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -928,21 +857,6 @@ subject.</p>
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -960,24 +874,8 @@ subject.</p>
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -986,6 +884,9 @@ subject.</p>
                     
                     
 
+                    
+            
+        
                     
                         
             
@@ -1070,9 +971,105 @@ subject.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
         
 
 
@@ -1081,26 +1078,28 @@ subject.</p>
     </div>
 
     </section>
-    
+
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1680206344"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1661281509"></script>
-
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1661281509" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1661281509"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1680206344"></script>
+    
+        
+            <script src="https://chrilves.github.io/mermaid/mermaid.js?1680206344"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
     
 
   </body>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="description" content="@chrilves&#39; Archives">
 <meta name="author" content="@chrilves">
 
@@ -12,19 +12,20 @@
     <title>Les GADTs Par l&#39;Exemple :: @chrilves&#39; Archives</title>
 
     
-    <link href="https://chrilves.github.io/css/nucleus.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hybrid.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/featherlight.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/auto-complete.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/theme.css?1661281509" rel="stylesheet">
-    <link href="https://chrilves.github.io/css/hugo-theme.css?1661281509" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/nucleus.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/fontawesome-all.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hybrid.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/featherlight.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/perfect-scrollbar.min.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/auto-complete.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/atom-one-dark-reasonable.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/theme.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/tabs.css?1680206344" rel="stylesheet">
+    <link href="https://chrilves.github.io/css/hugo-theme.css?1680206344" rel="stylesheet">
     
     
 
-    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/jquery-3.3.1.min.js?1680206344"></script>
     
     
     <link rel="stylesheet" href="https://chrilves.github.io/assets/katex/katex.min.css"/>
@@ -127,14 +128,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1661281509"></script>
-<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1661281509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/lunr.min.js?1680206344"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/auto-complete.js?1680206344"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/chrilves.github.io";
     
 </script>
-<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1661281509"></script>
+<script type="text/javascript" src="https://chrilves.github.io/js/search.js?1680206344"></script>
 
     
   </div>
@@ -757,9 +758,10 @@ ce n&rsquo;est probablement pas le cas:</p>
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 1:</strong> Combien de types la ligne <code>class UnType</code> définit-elle?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Comme son nom le suggère, la ligne <code>class UnType</code> définit seulement un type, nommé <code>UnType</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 </ul>
 <p>Passons maintenant à:</p>
@@ -767,7 +769,8 @@ ce n&rsquo;est probablement pas le cas:</p>
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 2:</strong> Combien de types la ligne <code>class UnTypePourChaque[A]</code> définit-elle?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Comme son nom le suggère, chaque type concret <code>A</code> donne lieu à
 un type distinct <code>UnTypePourChaque[A]</code>.</p>
 <p>Par exemple, une liste d&rsquo;entiers n&rsquo;est ni une liste de booléens,
@@ -778,17 +781,18 @@ En effet les types <code>List[Int]</code>, <code>List[Boolean]</code>,
 <strong>un type distinct pour chaque type concret</strong> <code>A</code>.
 Il y a une infinité de types concrets <code>A</code>,
 donc une infinité de de types distincts <code>UnTypePourChaque[A]</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 3:</strong> Donnez une valeur qui appartient à la fois aux types
 <code>UnTypePourChaque[Int]</code> et <code>UnTypePourChaque[Boolean]</code>.</p>
 <p><strong>Pour rappel, <code>null</code> n&rsquo;existe pas!</strong></p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>C&rsquo;est en fait impossible. Chaque type concret <code>A</code> donne lieu
 à un type distinct <code>UnTypePourChaque[A]</code> qui n&rsquo;a aucune valeur en commun
 avec les autres types de la forme <code>UnTypePourChaque[B]</code> avec <code>B ≠ A</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 </ul>
 <h3 id="combien-de-valeurs">Combien de valeurs?</h3>
@@ -798,13 +802,15 @@ avec les autres types de la forme <code>UnTypePourChaque[B]</code> avec <code>B 
 <li>
 <p><strong>Question 1:</strong> Donnez une valeur appartenant au type <code>PasDeValeurPourCeType</code>?
 Combien de valeurs appartiennent au type <code>PasDeValeurPourCeType</code>?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Astuce (cliquer pour dévoiler)*</summary>
 <ul>
 <li>Qu&rsquo;est ce qu&rsquo;une classe <code>final</code>? En quoi est-ce qu&rsquo;elle diffère d&rsquo;une classe normale (non finale)?</li>
 <li>Qu&rsquo;est ce qu&rsquo;une classe <code>abstract</code>? En quoi est-ce qu&rsquo;elle diffère d&rsquo;une classe concrète?</li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+  </details>
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>La classe <code>PasDeValeurPourCeType</code> est déclarée comme <code>abstract</code>.
 Cela signifie qu&rsquo;il est interdit de créer des instances directes de cette classe:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>scala<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PasDeValeurPourCeType</span>
@@ -817,7 +823,7 @@ telles sous-classes:</p>
 </span></span><span style="display:flex;"><span>                                        <span style="color:#f92672">^</span>
 </span></span><span style="display:flex;"><span>        error<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">illegal</span> <span style="color:#66d9ef">inheritance</span> <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#66d9ef">PasDeValeurPourCeType</span>
 </span></span></code></pre></div><p>Il n&rsquo;existe aucun moyen de créer une instance pour <code>PasDeValeurPourCeType</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 </ul>
 <p>Prenons un autre exemple:</p>
@@ -826,17 +832,19 @@ telles sous-classes:</p>
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 2:</strong> Donnez une valeur appartenant au type <code>ExactementUneValeur</code>?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Par définition, <code>LaSeuleValeur</code> est une valeur du type <code>ExactementUneValeur</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 3:</strong> Combien de valeurs appartiennent à <code>ExactementUneValeur</code>?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Comme ci-dessus, <code>ExactementUneValeur</code>, étant un <code>trait</code>, est <em>abstrait</em>. Étant <code>sealed</code>,
 l&rsquo;étendre en dehors de son fichier source est interdit.
 Donc <code>LaSeuleValeur</code> est la seule valeur du type <code>ExactementUneValeur</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 </ul>
 <h2 id="premier-contact">Premier Contact</h2>
@@ -850,25 +858,28 @@ de ces deux idées.</p>
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 1:</strong> Donnez une valeur du type <code>ATrait[Char]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Par définition, <code>AValue</code> est une valeur du type <code>ATrait[Char]</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 2:</strong> Donnez une valeur du type <code>ATrait[Double]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Il n&rsquo;existe aucun moyen d&rsquo;obtenir une instance du type <code>ATrait[Double]</code>.
 Il n&rsquo;existe en fait aucun moyen d&rsquo;obtenir une instance de <code>ATrait[B]</code> pour <code>B ≠ Char</code>
 parce que la seule valeur possible est <code>AValue</code> qui est de type <code>ATrait[Char]</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 3:</strong> Que pouvez vous conclure sur le type <code>A</code> si vous avez une valeur
 <code>ev</code> de type <code>ATrait[A]</code> (c.-à-d. <code>ev: ATrait[A]</code>)?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>La seule valeur possible est <code>AValue</code>, donc <code>ev == AValue</code>.
 De plus <code>AValue</code> est de type <code>ATrait[Char]</code> donc <code>A = Char</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 4:</strong> Dans la session interactive (<em>REPL</em>), entrez le code suivant:</p>
@@ -883,22 +894,25 @@ De plus <code>AValue</code> est de type <code>ATrait[Char]</code> donc <code>A =
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">AValue</span> <span style="color:#66d9ef">=&gt;</span> x
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span></code></pre></div><p>Le filtrage par motif (pattern-matching) est il exhaustif?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Le filtrage par motif est exhaustif parce la seule et unique valeur possible
 pour <code>ev</code> est en fait <code>AValue</code>. De plus <code>AValue</code> est de type <code>ATrait[Char]</code> ce qui signifie
 que <code>ev : ATrait[Char]</code> parce que <code>ev == AValue</code>. Donc <code>A = Char</code> et <code>x : Char</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 6:</strong> Appelez <code>f</code> avec <code>x = 'w' : Char</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>scala<span style="color:#f92672">&gt;</span> f<span style="color:#f92672">[</span><span style="color:#66d9ef">Char</span><span style="color:#f92672">](</span><span style="color:#e6db74">&#39;w&#39;</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">AValue</span><span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Char</span> <span style="color:#f92672">=</span> w
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 7:</strong> Appelez <code>f</code> avec <code>x =  5.2 : Double</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>C&rsquo;est impossible parce que cela demenderait de fournir une valeur
 <code>ev : ATrait[Double]</code>, ce qui n&rsquo;existe pas!</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>scala<span style="color:#f92672">&gt;</span> f<span style="color:#f92672">[</span><span style="color:#66d9ef">Double</span><span style="color:#f92672">](</span><span style="color:#ae81ff">5</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">AValue</span><span style="color:#f92672">)</span>
@@ -906,10 +920,11 @@ que <code>ev : ATrait[Char]</code> parce que <code>ev == AValue</code>. Donc <co
 </span></span><span style="display:flex;"><span>          error<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">mismatch</span><span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>            found   <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">AValue.type</span>
 </span></span><span style="display:flex;"><span>            required<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ATrait</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Double</span><span style="color:#f92672">]</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+<details>
+  <summary>**Remarque pour les personnes à l'aise en _Scala_** *(cliquer pour dévoiler)* </summary>
 <p>En utilisant toutes les chouettes fonctionnalités syntaxiques de <em>Scala</em>,
 la version satisfaisante en production du code ci-dessus est:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">IsChar</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
@@ -924,7 +939,7 @@ la version satisfaisante en production du code ci-dessus est:</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">IsChar</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">IsChar</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Evidence</span> <span style="color:#66d9ef">=&gt;</span> x
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div></details>
 <h3 id="cas-dutilisation-la-seule-chose-que-je-sais-est-quil-existe">Cas d&rsquo;Utilisation: La seule chose que je sais, est qu&rsquo;il existe</h3>
 <p>Que feriez vous si vous vouliez que votre application tienne un journal d’évènements (c.-à-d. un <em>log</em>),
 mais que vous vouliez être sur qu&rsquo;elle ne dépende d&rsquo;aucun détail d&rsquo;implémentation de la méthode
@@ -951,7 +966,8 @@ différents types <code>X</code> (<code>String</code>, <code>List[String]</code>
 Clairement <code>v</code> doit être une instance de la classe <code>LogWith[X]</code> pour un certain <code>X</code>.
 Que pouvez vous dire sur le type <code>X</code>? Pouvez-vous deviner quel type concret est <code>X</code>?</p>
 <p><strong>Pour rappel, il est interdit d&rsquo;utiliser la réflexion au runtime!</strong> (c.-à-d. <code>isInstanceOf</code>, <code>getClass</code>, etc)</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Nous ne savons presque rien sur <code>X</code>. La seule chose que nous avons est qu&rsquo;il existe au
 moins une valeur (<code>v.logs</code>) de type <code>X</code>. À part cela, <code>X</code> peut être n&rsquo;importe quel type.</p>
 <p>Ne pas savoir quel type concret est <code>X</code> est très utile pour garantir que le code qui utilisera
@@ -961,7 +977,7 @@ la liste, ne retenir que les <em>n</em> premiers caractères, etc. En cachant la
 notre application à ne pas dépendre du type concret derrière<code>X</code> mais de n&rsquo;utiliser que la
 fonnction fournie <code>v.appendMessage</code>.
 Ainsi changer l&rsquo;implémentation réelle de la méthode de journalisation ne cassera aucun code.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 2:</strong> Écrivez la fonction <code>def log(message: String, v: UnknownLogger): UnknownLogger</code>
@@ -986,17 +1002,19 @@ Les variables de type se comportent comme des variables de motif classiques
 types et non des valeurs.
 Avoir <code>t</code> sous la main nous permet d&rsquo;aider le compilateur en donnant
 explicitement certains types (comme ci-dessus, expliciter que <code>r</code> est de type <code>t</code>).</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> log<span style="color:#f92672">(</span>message<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span> v<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogger</span><span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogger</span> <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>  v <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> vx <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">LogWith</span><span style="color:#f92672">[</span><span style="color:#66d9ef">x</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">LogWith</span><span style="color:#f92672">[</span><span style="color:#66d9ef">x</span><span style="color:#f92672">](</span>vx<span style="color:#f92672">.</span>appendMessage<span style="color:#f92672">(</span>vx<span style="color:#f92672">.</span>logs<span style="color:#f92672">,</span> message<span style="color:#f92672">),</span> vx<span style="color:#f92672">.</span>appendMessage<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 3:</strong> Exécutez <code>log(&quot;Hello World&quot;, loggerStr)</code> et <code>log(&quot;Hello World&quot;, loggerList)</code>
 et <code>log(&quot;Hello World&quot;, loggerStdout)</code></p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>scala<span style="color:#f92672">&gt;</span> log<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World&#34;</span><span style="color:#f92672">,</span> loggerStr<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogger</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">LogWith</span><span style="color:#f92672">(</span><span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span><span style="color:#f92672">,</span><span style="color:#a6e22e">$$Lambda$988</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1455466014</span><span style="color:#66d9ef">@</span><span style="color:#ae81ff">421</span>ead7e<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
@@ -1006,10 +1024,11 @@ et <code>log(&quot;Hello World&quot;, loggerStdout)</code></p>
 </span></span><span style="display:flex;"><span>scala<span style="color:#f92672">&gt;</span> log<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello World&#34;</span><span style="color:#f92672">,</span> loggerStdout<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span>
 </span></span><span style="display:flex;"><span>res2<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogger</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">LogWith</span><span style="color:#f92672">((),</span><span style="color:#a6e22e">$$Lambda$990</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1835105031</span><span style="color:#66d9ef">@</span><span style="color:#ae81ff">340</span>c57e0<span style="color:#f92672">)</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+<details>
+  <summary>**Remarque pour les personnes à l'aise en _Scala_** *(cliquer pour dévoiler)* </summary>
 <p>Une fois encore, en utilisant toutes les chouettes fonctionnalités syntaxiques de <em>Scala</em>,
 la version satisfaisante en production du code ci-dessus est:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">UnknownLogger</span> <span style="color:#f92672">{</span>
@@ -1029,7 +1048,7 @@ la version satisfaisante en production du code ci-dessus est:</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> apply<span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">](</span>logs<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span><span style="color:#f92672">,</span> appendMessage<span style="color:#66d9ef">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">X</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> X<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">UnknownLogger</span> <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">LogWith</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">](</span>logs<span style="color:#f92672">,</span> appendMessage<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div></details>
 <h3 id="conclusion-intermédiaire">Conclusion Intermédiaire</h3>
 <p>Les <em>GADTs</em> ne sont en fait que ceci: de simples <em>sealed trait</em> avec quelques
 <em>case object</em> (possiblement aucun) et quelques <em>final case class</em> (également possiblement aucune!).
@@ -1049,34 +1068,38 @@ tout comme tout entier <code>x</code> est également inférieur ou égal à lui-
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 1:</strong> Donnez une valeur de type <code>EqT[Int, Int]</code></p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>scala<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Evidence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span>, <span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>res0<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Int</span>,<span style="color:#66d9ef">Int</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Evidence</span><span style="color:#f92672">()</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 2:</strong> Donnez une valeur de type <code>EqT[String, Int]</code></p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>La classe <code>Evidence</code> est l&rsquo;unique sous-classe conctrète du trait <code>EqT</code> et il est
 impossible d&rsquo;en créer une autre parce que <code>EqT</code> est <code>sealed</code>. Donc une valeur <code>v : EqT[A,B]</code>
 ne peut être qu&rsquo;une instance de <code>Evidence[X]</code> pour un certain type <code>X</code>, qui elle-même est
 de type <code>EqT[X,X]</code>.
 Ainsi il n&rsquo;y a aucun moyen d&rsquo;obtenir une valeur de type <code>EqT[String, Int]</code></p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 <li>
 <p><strong>Question 3:</strong> Soient <code>A</code> et <code>B</code> deux types (inconnus).
 Si je vous donne une valeur de type <code>EqT[A,B]</code>, que pouvez-vous en déduire sur <code>A</code> et <code>B</code>?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Si je vous donne une valeur <code>v : EqT[A,B]</code>, alors vous savez que <code>v</code> est une instance
 de <code>Evidence[X]</code> pour un certain type <code>X</code> (inconnu). En effet la classe <code>Evidence</code>  est la seule
 et unique sous-classe concrète du <code>sealed trait</code> <code>EqT</code>. En fait, <code>Evidence[X]</code> est un sous-type de
 <code>EqT[X,X]</code>. Donc <code>v : EqT[X,X]</code>. Les types <code>EqT[A,B]</code> et <code>EqT[X,X]</code> n&rsquo;ont aucune valeur en commun
 si <code>A ≠ X</code> ou <code>B ≠ X</code>, donc <code>A = X</code> et <code>B = X</code>. Et donc <code>A = B</code>. CQFD.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+<details>
+  <summary>**Remarque pour les personnes à l'aise en _Scala_** *(cliquer pour dévoiler)* </summary>
 <p>En production, il est pratique de définir <code>EqT</code> de la manière suivante, qui est bien entendu équivalente:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">object</span> <span style="color:#a6e22e">EqT</span> <span style="color:#f92672">{</span>
@@ -1086,7 +1109,7 @@ si <code>A ≠ X</code> ou <code>B ≠ X</code>, donc <code>A = X</code> et <cod
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> apply<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span><span style="color:#66d9ef">implicit</span> ev<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ev.</span><span style="color:#66d9ef">type</span> <span style="color:#f92672">=</span> ev
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div></details>
 <h4 id="passer-dun-type-égal-à-lautre">Passer d&rsquo;un type égal à l&rsquo;autre</h4>
 <p>Si <code>A</code> et <code>B</code> sont en fait le même type, alors <code>List[A]</code> est également le même
 type que <code>List[B]</code>, <code>Option[A]</code> est également le même type que <code>Option[B]</code>,
@@ -1095,12 +1118,13 @@ que <code>F[B]</code>.</p>
 <ul>
 <li>
 <p><strong>Question 4:</strong> Écrivez la fonction <code>def coerce[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> coerce<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">_</span><span style="color:#f92672">]</span>,<span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>eqT<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">])(</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
 </span></span><span style="display:flex;"><span>  eqT <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Evidence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">x</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=&gt;</span> fa
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <p>La bibliothèque standard de <em>Scala</em> définit déjà une classe, nommée <code>=:=[A,B]</code>
@@ -1120,7 +1144,8 @@ Le &ldquo;symbole&rdquo; <code>&lt;:&lt;</code> est en effet un nom d&rsquo;obje
 <li>
 <p><strong>Question 5:</strong> En utilisant la fonction <code>coerce</code> ci-dessus,
 écrivez la fonction <code>def toScalaEq[A,B](eqT: EqT[A,B]): A =:= B</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Astuce (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> toScalaEq<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>eqT<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span><span style="color:#66d9ef">:</span><span style="color:#f92672">=</span> B <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Trouver une définition pour:
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">        - le constructeur de type `F`
@@ -1132,21 +1157,23 @@ Le &ldquo;symbole&rdquo; <code>&lt;:&lt;</code> est en effet un nom d&rsquo;obje
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Telles que cet appel: */</span>
 </span></span><span style="display:flex;"><span>  coerce<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span>,<span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>eqT<span style="color:#f92672">)(</span>fa<span style="color:#f92672">)</span> <span style="color:#75715e">// soit de type `F[B]`
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> toScalaEq<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>eqT<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span><span style="color:#66d9ef">:</span><span style="color:#f92672">=</span> B <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> A <span style="color:#f92672">=:=</span> X
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">val</span> fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">(&lt;:&lt;).</span>refl<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>  coerce<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span>,<span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>eqT<span style="color:#f92672">)(</span>fa<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 6:</strong> En utilisant la <em>méthode</em> <code>substituteCo[F[_]](ff: F[A]): F[B]</code> des
 objets de la classe <code>A =:= B</code>, dont la
 <a href="https://www.scala-lang.org/api/current/scala/$eq$colon$eq.html#substituteCo%5BF%5B_%5D%5D(ff:F%5BFrom%5D):F%5BTo%5D">documentation est ici</a>,
 écrivez la fonction <code>def fromScalaEq[A,B](scala: A =:= B): EqT[A,B]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Astuce (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> fromScalaEq<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>scala<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span><span style="color:#66d9ef">:</span><span style="color:#f92672">=</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Trouver une définition pour:
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">        - le constructeur de type `F`
@@ -1158,14 +1185,15 @@ objets de la classe <code>A =:= B</code>, dont la
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Telles que cet appel: */</span>
 </span></span><span style="display:flex;"><span>  scala<span style="color:#f92672">.</span>substituteCo<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">](</span>fa<span style="color:#f92672">)</span> <span style="color:#75715e">// soit de type `F[B]`
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> fromScalaEq<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>scala<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span><span style="color:#66d9ef">:</span><span style="color:#f92672">=</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">EqT</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">X</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">val</span> fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">F</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Evidence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]()</span>
 </span></span><span style="display:flex;"><span>  scala<span style="color:#f92672">.</span>substituteCo<span style="color:#f92672">[</span><span style="color:#66d9ef">F</span><span style="color:#f92672">](</span>fa<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <h3 id="cas-dutilisation-témoin-de-sous-typage">Cas d&rsquo;Utilisation: Témoin de Sous-Typage</h3>
@@ -1189,10 +1217,12 @@ créez le trait <code>SubTypeOf[A,B]</code> (et tout ce qui est nécessaire) tel
 </blockquote>
 <p>Pour rappel, par définition, un type <code>A</code> est un sous-type de lui-même (c.-à-d. <code>A &lt;: A</code>).</p>
 <p>Pour rappel, n&rsquo;utilisez pas la classe <code>&lt;:&lt;[A,B]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">SubTypeOf</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SubTypeEvidence</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span> <span style="color:#66d9ef">&lt;:</span> <span style="color:#66d9ef">B</span>, <span style="color:#66d9ef">B</span><span style="color:#f92672">]()</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">SubTypeOf</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  <details>
+    <summary>**Remarque pour les personnes à l'aise en _Scala_** *(cliquer pour dévoiler)* </summary>
 <p>En production, il est pratique de définir <code>SubTypeOf</code> de la manière équivalente suivante:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">SubTypeOf</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">object</span> <span style="color:#a6e22e">SubTypeOf</span> <span style="color:#f92672">{</span>
@@ -1202,8 +1232,8 @@ créez le trait <code>SubTypeOf[A,B]</code> (et tout ce qui est nécessaire) tel
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> apply<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span><span style="color:#66d9ef">implicit</span> ev<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">SubTypeOf</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ev.</span><span style="color:#66d9ef">type</span> <span style="color:#f92672">=</span> ev
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
+  </details>
 </li>
 </ul>
 <h3 id="cas-dutilisation-éviter-les-messages-derreur-de-scalac-à-propos-des-bornes-non-respectées">Cas d&rsquo;Utilisation: Éviter les messages d&rsquo;erreur de <em>scalac</em> à propos des bornes non respectées</h3>
@@ -1238,13 +1268,14 @@ et passons lui <code>elephant</code> comme argument:</p>
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 1:</strong> Pourquoi <em>scalac</em> se plaint il?</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>La fonction <code>dummy</code> requiert que son argument <code>F</code>, qui est un constructeur
 de type comme le sont <code>List</code>, <code>Option</code>, <code>Future</code>, etc, accepte n&rsquo;importe quel type
 en argument afin qu&rsquo;il soit toujours possible d&rsquo;écrire <code>F[A]</code> pour n&rsquo;importe quel type <code>A</code>.
 Hors <code>AnimalEating</code> impose que son argument soit un sous-type de <code>Food</code>.
 Donc <code>AnimalEating</code> ne peut être utilisé comme argument <code>F</code> de <code>dummy</code>.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 </ul>
 <p>Le problème est que, en définissant <code>class AnimalEating[A &lt;: Food]</code>,
@@ -1282,11 +1313,13 @@ et pas des entiers, ni des booléens et encore moins des chaînes de caractères
 n&rsquo;importe quand, de créer librement des sous-classes de <code>AnimalEating</code>.
 Bien évidemment, ces sous-classes doivent respecter les deux contraintes
 ci-dessus.</p>
-<!-- raw HTML omitted -->
+<details>
+  <summary>*Astuce (cliquer pour dévoiler)*</summary>
 <p>En <em>Scala</em>, <code>Nothing</code> est un type ne contenant aucune valeur.
 Pouvez vous créer une valeur de type <code>(Nothing, Int)</code>? Pourquoi?</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+</details>
+<details>
+  <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>Si, afin de créer une instance de <code>AnimalEating[A]</code>, nous forçons <strong>chaque</strong>
 méthode créant des valeurs à prendre un paramètre supplémentaire de type <code>SubTypeOf[A, Food]</code>,
 alors il sera uniquement possible de créer une instance de <code>AnimalEating[A]</code>
@@ -1305,7 +1338,7 @@ il nous faut fournir <code>ev : SubTypeOf[A, Food]</code>.</p>
 fournir de lui-même le paramètre <code>ev : SubTypeOf[A, Food]</code>.</p>
 <p>Notez qu&rsquo;il est désormais possible d&rsquo;écrire le type <code>AnimalEating[Int]</code>
 mais vous ne pourrez jamais créer une valeur de ce type.</p>
-<!-- raw HTML omitted -->
+</details>
 </li>
 </ul>
 </li>
@@ -1386,7 +1419,8 @@ ne doivent <strong>pas</strong> avoir <strong>de corps</strong> du tout
 (c.-à-d. il ne doit pas y avoir d&rsquo;accolades <code>{ ... }</code> dans leurs déclarations);</p>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Astuce (cliquer pour dévoiler)*</summary>
 <p>Le code ressemble à ceci:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">ChartType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">/*METTRE</span> <span style="color:#66d9ef">LES</span> <span style="color:#66d9ef">GENERICS</span> <span style="color:#66d9ef">ICI*/</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">PieChart</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">ChartType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">/*Il</span> <span style="color:#66d9ef">y</span> <span style="color:#66d9ef">a</span> <span style="color:#66d9ef">quelque</span> <span style="color:#66d9ef">chose</span> <span style="color:#66d9ef">à</span> <span style="color:#66d9ef">écrire</span> <span style="color:#66d9ef">ici*/</span><span style="color:#f92672">]</span>
@@ -1401,8 +1435,9 @@ ne doivent <strong>pas</strong> avoir <strong>de corps</strong> du tout
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">val</span> xyData<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">XYData</span> <span style="color:#f92672">=</span> data
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">()</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">ChartType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">PieChart</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">ChartType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">PieData</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">XYChart</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">ChartType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">XYData</span><span style="color:#f92672">]</span>
@@ -1416,7 +1451,7 @@ ne doivent <strong>pas</strong> avoir <strong>de corps</strong> du tout
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">val</span> xyData<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">XYData</span> <span style="color:#f92672">=</span> data
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">()</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <p>Vous pouvez maintenant dormir sur vos deux oreilles avec l&rsquo;assurance que
@@ -1494,17 +1529,19 @@ De nouveau, leurs implémentations peuvent être fournies ailleurs et il peut en
 via la définition d&rsquo;un <code>sealed trait</code> muni de quelques <code>final case class</code> et
 <code>case object</code>, écrivez l&rsquo;équivalent de <code>EffectSig</code> de la même manière.
 Appelez ce trait <code>Effect</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">CurrentTimeMillis</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Long</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">PrintLn</span><span style="color:#f92672">(</span>msg<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Unit</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">Mesure</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>fun<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span> <span style="color:#f92672">=&gt;</span> A<span style="color:#f92672">,</span> arg<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 2:</strong> Écrivez la fonction <code>def run[A](effect: Effect[A]): A</code> qui reproduit l&rsquo;implémentation de
 <code>EffectImpl</code> tout comme <code>runExampleEffect</code> reproduit celle de <code>ExampleEffectImpl</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> run<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>effect<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>  effect <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">CurrentTimeMillis</span> <span style="color:#66d9ef">=&gt;</span>
@@ -1520,7 +1557,7 @@ Appelez ce trait <code>Effect</code>.</p>
 </span></span><span style="display:flex;"><span>      println<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;Took </span><span style="color:#e6db74">${</span>t1 <span style="color:#f92672">-</span> t0<span style="color:#e6db74">}</span><span style="color:#e6db74"> milli-seconds&#34;</span><span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>      r
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <p>Le type <code>Effect[A]</code> déclare des effets intéressants (<code>CurrentTimeMillis</code>,
@@ -1537,18 +1574,20 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 <li>
 <p><strong>Question 3:</strong> Ajoutez deux <em>final case classes</em>, <code>Pure</code> et <code>FlatMap</code>,
 à <code>Effect[A]</code> déclarant ces deux opérations.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">CurrentTimeMillis</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Long</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">PrintLn</span><span style="color:#f92672">(</span>msg<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Unit</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">Mesure</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>fun<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span> <span style="color:#f92672">=&gt;</span> A<span style="color:#f92672">,</span> arg<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">Pure</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>value<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">FlatMap</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span>,<span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>fx<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">X</span><span style="color:#f92672">],</span> f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">X</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 4:</strong> Adaptez la fonction <code>run</code> pour gérer ces deux nouveaux cas.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> run<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span>effect<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>  effect <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">CurrentTimeMillis</span> <span style="color:#66d9ef">=&gt;</span>
@@ -1572,7 +1611,7 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">val</span> fa <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> f<span style="color:#f92672">(</span>x<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>      run<span style="color:#f92672">(</span>fa<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 5:</strong> Ajoutez les deux méthodes suivantes au trait <code>Effect[A]</code> pour obtenir:</p>
@@ -1588,7 +1627,8 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span> <span style="color:#66d9ef">yield</span> <span style="color:#f92672">()</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>run<span style="color:#f92672">(</span>effect1<span style="color:#f92672">)</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">def</span> flatMap<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">FlatMap</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> f<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Effect</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span> flatMap<span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]((</span>a<span style="color:#66d9ef">:</span><span style="color:#66d9ef">A</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=&gt;</span> <span style="color:#a6e22e">Pure</span><span style="color:#f92672">(</span>f<span style="color:#f92672">(</span>a<span style="color:#f92672">)))</span>
@@ -1631,7 +1671,7 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 </span></span></code></pre></div><p>En exécutant <code>run(effect1)</code> on obtient:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>scala<span style="color:#f92672">&gt;</span> run<span style="color:#f92672">(</span>effect1<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">The</span> current time is <span style="color:#ae81ff">1569773175010</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <p>Félicitations! Vous venez d&rsquo;écrire votre première monade <em>IO</em>! Il y
@@ -1677,13 +1717,15 @@ Elle peut stocker <code>(&quot;Hello World&quot;, 5.2)</code> grâce à la règl
 <p>Il existe une valeur de type <code>DBType[A]</code> <strong>si et seulement si</strong> <code>A</code>
 est un type pris en charge par la base de données.</p>
 </blockquote>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>La version simple est:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">DBString</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">String</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">DBDouble</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">Double</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">DBPair</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>first<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> second<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[(</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">)]</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  <details>
+  <summary>**Remarque pour les personnes à l'aise en _Scala_** *(cliquer pour dévoiler)* </summary>
 <p>En utilisant toutes les chouettes fonctionnalités syntaxiques de <em>Scala</em>,
 la version satisfaisante en production du code ci-dessus est:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
@@ -1703,8 +1745,8 @@ la version satisfaisante en production du code ci-dessus est:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> apply<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span><span style="color:#66d9ef">implicit</span> ev<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">ev.</span><span style="color:#66d9ef">type</span> <span style="color:#f92672">=</span> ev
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
+  </details>
 </li>
 </ul>
 <p>En utilisant <code>DBType</code>, nous pouvons coupler une valeur de type <code>A</code>
@@ -1732,7 +1774,8 @@ pour lequel il est possible de fournir une instance du trait:</p>
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 2:</strong> Écrivez une instance de <code>Functor[DBValue]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <p>C&rsquo;est en fait impossible! Si nous tentions de compiler le code suivant:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">DBValueFunctor</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Functor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">DBValue</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
@@ -1756,7 +1799,7 @@ est un type pris en charge par la base de donnée.</p>
 <p>Donc il est impossible d&rsquo;obtenir une valeur de type <code>DBType[Boolean]</code>
 et donc il est impossible d&rsquo;écrire une fonction <code>map</code> pout <code>DBValue</code>.
 Ainsi il n&rsquo;y a aucun moyen de définir une instance de <code>Functor</code> pour <code>DBValue</code>. CQDF.</p>
-<!-- raw HTML omitted -->
+  </details>
 </li>
 </ul>
 <p>Un <em>Foncteur Généralisé</em> est très similaire à un <code>Functor</code> classique, à la différence près
@@ -1778,12 +1821,13 @@ possible d&rsquo;écrire:</p>
 </span></span></code></pre></div><ul>
 <li>
 <p><strong>Question 3:</strong> Écrivez une instance de <code>GenFunctor[DBType, DBValue]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">DBValueGenFunctor</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">GenFunctor</span><span style="color:#f92672">[</span><span style="color:#66d9ef">DBType</span>, <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> map<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span>,<span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>fa<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])(</span>f<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">A</span> <span style="color:#f92672">=&gt;</span> B<span style="color:#f92672">)(</span><span style="color:#66d9ef">implicit</span> evA<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">],</span> evB<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBType</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">DBValue</span><span style="color:#f92672">[</span><span style="color:#66d9ef">B</span><span style="color:#f92672">](</span>f<span style="color:#f92672">(</span>fa<span style="color:#f92672">.</span>value<span style="color:#f92672">))(</span>evB<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <p>Ce que nous avons fait ici avec <code>Functor</code> peut être fait avec de nombreuses structures de données et
@@ -1927,7 +1971,8 @@ Voici deux relations d&rsquo;ordre possibles (il en existe de nombreuses autres!
 </blockquote>
 <p>En suivant la méthoe employée pour <code>Lex</code> and <code>RevLex</code>,
 implémentez l&rsquo;ordre <code>Alternate</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">trait</span> <span style="color:#a6e22e">Alternate</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">val</span> order <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Order</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
@@ -1953,7 +1998,7 @@ implémentez l&rsquo;ordre <code>Alternate</code>.</p>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <p>Il existe de nombreuses manières de définir une relation d&rsquo;ordre valide sur les listes hétérogènes!
@@ -1990,7 +2035,8 @@ raison d&rsquo;être est de passer leurs arguments au constructeur correspondant
 <li>
 <p><strong>Question 2:</strong> Écrivez une fonction <code>def lex[A](implicit v : HListOrder[A]): Order[A]</code>
 qui retourne l&rsquo;ordre lexicographique à partir d&rsquo;une valeur de type <code>HListOrder[A]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> lex<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span><span style="color:#66d9ef">implicit</span> v <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">HListOrder</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Order</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
 </span></span><span style="display:flex;"><span>  v <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">HListOrder</span><span style="color:#f92672">.</span><span style="color:#a6e22e">HNilOrder</span> <span style="color:#66d9ef">=&gt;</span>
@@ -2005,12 +2051,13 @@ qui retourne l&rsquo;ordre lexicographique à partir d&rsquo;une valeur de type 
 </span></span><span style="display:flex;"><span>          orderHead<span style="color:#f92672">.</span>lesserThan<span style="color:#f92672">(</span>h1<span style="color:#f92672">,</span>h2<span style="color:#f92672">)</span> <span style="color:#f92672">||</span> <span style="color:#f92672">(</span>orderHead<span style="color:#f92672">.</span>areEqual<span style="color:#f92672">(</span>h1<span style="color:#f92672">,</span>h2<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> orderTail<span style="color:#f92672">.</span>lesserThan<span style="color:#f92672">(</span>t1<span style="color:#f92672">,</span>t2<span style="color:#f92672">))</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 <li>
 <p><strong>Question 3:</strong> Écrivez une fonction <code>def revLex[A](implicit v : HListOrder[A]): Order[A]</code>
 qui retourne l&rsquo;ordre lexicographique inversé à partir d&rsquo;une valeur de type <code>HListOrder[A]</code>.</p>
-<!-- raw HTML omitted -->
+  <details>
+    <summary>*Solution (cliquer pour dévoiler)*</summary>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> revLex<span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">](</span><span style="color:#66d9ef">implicit</span> v <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">HListOrder</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">])</span><span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Order</span><span style="color:#f92672">[</span><span style="color:#66d9ef">A</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">=</span>
 </span></span><span style="display:flex;"><span>  v <span style="color:#66d9ef">match</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">HListOrder</span><span style="color:#f92672">.</span><span style="color:#a6e22e">HNilOrder</span> <span style="color:#66d9ef">=&gt;</span>
@@ -2025,7 +2072,7 @@ qui retourne l&rsquo;ordre lexicographique inversé à partir d&rsquo;une valeur
 </span></span><span style="display:flex;"><span>          orderTail<span style="color:#f92672">.</span>lesserThan<span style="color:#f92672">(</span>t1<span style="color:#f92672">,</span>t2<span style="color:#f92672">)</span> <span style="color:#f92672">||</span> <span style="color:#f92672">(</span>orderTail<span style="color:#f92672">.</span>areEqual<span style="color:#f92672">(</span>t1<span style="color:#f92672">,</span>t2<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> orderHead<span style="color:#f92672">.</span>lesserThan<span style="color:#f92672">(</span>h1<span style="color:#f92672">,</span>h2<span style="color:#f92672">))</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+</span></span></code></pre></div>  </details>
 </li>
 </ul>
 <p>Cette approche a de nombreux avantages. Alors que l&rsquo;approche initiale devait effectuer
@@ -2059,7 +2106,7 @@ de comprendre les techniques.</p>
 </footer>
 
         
-        </div> 
+        </div>
         
 
       </div>
@@ -2067,8 +2114,8 @@ de comprendre les techniques.</p>
     <div id="navigation">
         
         
+
         
-        
             
             
                 
@@ -2097,42 +2144,6 @@ de comprendre les techniques.</p>
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -2157,6 +2168,26 @@ de comprendre les techniques.</p>
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -2265,6 +2296,22 @@ de comprendre les techniques.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -2366,7 +2413,7 @@ de comprendre les techniques.</p>
                     
             
         
-        
+
         
 
 
@@ -2375,26 +2422,28 @@ de comprendre les techniques.</p>
     </div>
 
     </section>
-    
+
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://chrilves.github.io/js/clipboard.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/jquery.sticky.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/featherlight.min.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/highlight.pack.js?1661281509"></script>
+    <script src="https://chrilves.github.io/js/clipboard.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/perfect-scrollbar.jquery.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/jquery.sticky.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/featherlight.min.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/highlight.pack.js?1680206344"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/learn.js?1661281509"></script>
-    <script src="https://chrilves.github.io/js/hugo-learn.js?1661281509"></script>
-
-    <link href="https://chrilves.github.io/mermaid/mermaid.css?1661281509" rel="stylesheet" />
-    <script src="https://chrilves.github.io/mermaid/mermaid.js?1661281509"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
+    <script src="https://chrilves.github.io/js/modernizr.custom-3.6.0.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/learn.js?1680206344"></script>
+    <script src="https://chrilves.github.io/js/hugo-learn.js?1680206344"></script>
+    
+        
+            <script src="https://chrilves.github.io/mermaid/mermaid.js?1680206344"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
     
 
   </body>
