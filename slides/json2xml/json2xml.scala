@@ -10,7 +10,7 @@ object Presentation {
           new UnprefixedAttribute("type", jsType, scala.xml.Null),
           TopScope,
           true,
-          children: _*
+          children*
           )
 
     json match {
@@ -19,7 +19,7 @@ object Presentation {
       case JsNumber(n) => mkRoot("number", Text(n.toString))
       case JsBoolean(b) => mkRoot("boolean", Text(b.toString))
       case JsArray(l) => mkRoot("array", l.map(json2xml(_, s"${rootLabel}Item")):_*)
-      case JsObject(m) => mkRoot("object", m.toList.map { case (k,v) => json2xml(v, k) }: _*)
+      case JsObject(m) => mkRoot("object", m.toList.map { case (k,v) => json2xml(v, k) }*)
     }
   }
 }
@@ -86,7 +86,7 @@ object MainPoint {
             new UnprefixedAttribute("type", jsType, scala.xml.Null),
             TopScope,
             true,
-            children: _*
+            children*
             )
 
     (j: JsLike[String => Elem]) =>
@@ -105,11 +105,11 @@ object MainPoint {
           
         case Arr(a) =>
           (root: String) => {
-            mkRoot("array", a.map(_(s"${root}Item")): _*)(root)
+            mkRoot("array", a.map(_(s"${root}Item"))*)(root)
           }
 
         case Obj(m) =>
-          mkRoot("object", m.toList.map { case (k, v) => v(k) }: _*)
+          mkRoot("object", m.toList.map { case (k, v) => v(k) }*)
       }
   }
 

@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>How to make game in the browser thanks to ScalaJS</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -34,7 +34,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -64,42 +64,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="read-this-first.html"><strong aria-hidden="true">1.</strong> READ THIS FIRST</a></li><li class="chapter-item expanded "><a href="first-step-web.html"><strong aria-hidden="true">2.</strong> First Steps in the Web</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="slimetrail.html"><strong aria-hidden="true">2.1.</strong> Slimetrail</a></li><li class="chapter-item expanded "><a href="play-with-dom.html"><strong aria-hidden="true">2.2.</strong> Playing with the Document Object Model (DOM)</a></li></ol></li><li class="chapter-item expanded "><a href="scalajs-intro.html"><strong aria-hidden="true">3.</strong> Introduction to ScalaJS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="slimetrail-text-app.html"><strong aria-hidden="true">3.1.</strong> The Slimetrail Text App</a></li><li class="chapter-item expanded "><a href="inviting-scalajs.html"><strong aria-hidden="true">3.2.</strong> Inviting ScalaJS to the Party</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -190,15 +219,15 @@
 <li><strong>Recommended finishing before: 9:45am</strong></li>
 </ul>
 <p>The <strong>console</strong> panel is a <em>JavaScript</em> <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>. Enter the following <em>JavaScript</em> code and watch the effects on the page:</p>
-<pre><code class="language-js">let x = &quot;Welcome &quot;;
+<pre><code class="language-js">let x = "Welcome ";
 x;
 </code></pre>
-<pre><code class="language-js">x = x + &quot;to the console&quot;;
+<pre><code class="language-js">x = x + "to the console";
 </code></pre>
 <pre><code class="language-js">console.log(x);
 </code></pre>
 <pre><code class="language-js">document.body
-        .appendChild(document.createTextNode(&quot;Hello&quot;));
+        .appendChild(document.createTextNode("Hello"));
 </code></pre>
 <p>The structure of the page, exposed in the <strong>inspector</strong> panel, is (more or less) an <strong>XML tree</strong> made of <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node">Node</a>. There are different kind of nodes such
 as <a href="https://developer.mozilla.org/en-US/docs/Web/API/Text">Text</a> nodes which are leaves representing some text or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a> nodes which represent an <em>HTML</em> or <em>SVG</em> tag such as <code>div</code>, <code>span</code>, <code>body</code>, <code>svg</code> and many others. As you can see in the inspector <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a> nodes can have sub-nodes that are called children and <strong>key/value</strong> pairs attached to them called <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attributes">Attributes</a>. We will only use <code>Text</code> and <code>Element</code> nodes in this session.</p>
@@ -207,14 +236,14 @@ as <a href="https://developer.mozilla.org/en-US/docs/Web/API/Text">Text</a> node
 <li>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById">document.getElementById</a> get an <code>Element</code> node by its <code>id</code> attribute.</p>
 <p><strong>Try the following code in the console. Observe the result and find the node in the inspector:</strong></p>
-<pre><code class="language-js">let rules = document.getElementById(&quot;rules&quot;);
+<pre><code class="language-js">let rules = document.getElementById("rules");
 rules;
 </code></pre>
 </li>
 <li>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">document.createTextNode</a> creates a <code>Text</code> node but does not attach it to the page yet!</p>
 <p><strong>Try the following code in the console. Observe the result and try to find it in the inspector:</strong></p>
-<pre><code class="language-js">let mytextnode = document.createTextNode(&quot;I am a text node&quot;);
+<pre><code class="language-js">let mytextnode = document.createTextNode("I am a text node");
 mytextnode;
 </code></pre>
 </li>
@@ -227,7 +256,7 @@ mytextnode;
 <li>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild">element.replaceChild</a> replace a node that is a child of the element by another node.</p>
 <p><strong>Try this in the console:</strong></p>
-<pre><code class="language-js">let mynewtextnode = document.createTextNode(&quot;I am the new text node&quot;);
+<pre><code class="language-js">let mynewtextnode = document.createTextNode("I am the new text node");
 rules.replaceChild(mynewtextnode, mytextnode);
 </code></pre>
 <p><strong>Observe the effect on the page. Using the inspector, notice what happend.</strong></p>
@@ -235,18 +264,18 @@ rules.replaceChild(mynewtextnode, mytextnode);
 <li>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS">document.createElementNS</a> creates a new <code>Element</code> node but does not attach it to the page yet. Note that this function requires an argument called the <strong>namespace</strong>. A tag may have several meaning depending on the context, how does the browser know how to interpret it? Take a <code>address</code> tag for example, is it a postal address? Or an email address maybe? To avoid ambiguity, we can make clear what is the meaning of a tag by defining its <strong>namespace</strong>. We will use two namespaces in this session:</p>
 <ul>
-<li>The <em>HTML</em> namespace tells the browser the node is to be interpreted as an <em>HTML</em> node. Its value is <code>&quot;http://www.w3.org/1999/xhtml&quot;</code>.</li>
-<li>The <em>SVG</em> namespace tells the browser the node is to be interpreted as an <em>SVG</em> node. Its value is <code>&quot;http://www.w3.org/2000/svg&quot;</code>.</li>
+<li>The <em>HTML</em> namespace tells the browser the node is to be interpreted as an <em>HTML</em> node. Its value is <code>"http://www.w3.org/1999/xhtml"</code>.</li>
+<li>The <em>SVG</em> namespace tells the browser the node is to be interpreted as an <em>SVG</em> node. Its value is <code>"http://www.w3.org/2000/svg"</code>.</li>
 </ul>
 <p>Using the <em>HTML</em> namespace for a <em>SVG</em> node will result in the browser treating it as an <em>HTML</em> node and thus misbehaving. <strong>Be very careful about that, always give the correct namespace.</strong></p>
 <p><strong>Try the following code in the console. Add the element to the page and observe the result in the inspector:</strong></p>
 <pre><code class="language-js">let myhtmlelement =
-      document.createElementNS(&quot;http://www.w3.org/1999/xhtml&quot;, &quot;h1&quot;);
+      document.createElementNS("http://www.w3.org/1999/xhtml", "h1");
 myhtmlelement;
 </code></pre>
 <p><strong>Try the following code in the console. Add the element to the page and observe the result in the inspector:</strong></p>
 <pre><code class="language-js"> let mysvgelement =
-      document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;polygon&quot;);
+      document.createElementNS("http://www.w3.org/2000/svg", "polygon");
  mysvgelement;
 </code></pre>
 </li>
@@ -255,20 +284,20 @@ myhtmlelement;
 <p><strong>Try the following code in the console. Observe the effects on</strong> <code>myhtmlelement</code> <strong>in the inspector.</strong></p>
 <pre><code class="language-js">myhtmlelement.setAttributeNS(
         undefined,
-        &quot;akey&quot;,
-        &quot;avalue&quot;);
+        "akey",
+        "avalue");
 myhtmlelement;
 </code></pre>
 <pre><code class="language-js">myhtmlelement.setAttributeNS(
         undefined,
-        &quot;akey&quot;,
-        &quot;newvalue&quot;);
+        "akey",
+        "newvalue");
 myhtmlelement;
 </code></pre>
 <pre><code class="language-js">myhtmlelement.setAttributeNS(
-      &quot;http://www.w3.org/1999/xlink&quot;,
-      &quot;xlink&quot;,
-      &quot;anothervalue&quot;);
+      "http://www.w3.org/1999/xlink",
+      "xlink",
+      "anothervalue");
 myhtmlelement;
 </code></pre>
 </li>
@@ -283,26 +312,26 @@ rulesParent;
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">Node.addEventListener</a> attach a reaction to an event on this node.</p>
 <p><strong>Try the following code in the console. Then click on the page to observe the result.</strong></p>
 <pre><code class="language-js">function reaction1(event) {
-  alert(&quot;Event received and reaction triggered!&quot;);
+  alert("Event received and reaction triggered!");
 }
-document.body.addEventListener(&quot;click&quot;, reaction1);
+document.body.addEventListener("click", reaction1);
 </code></pre>
 </li>
 <li>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation">Event.stopPropagation</a> prevents further propagation of the current event in the <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">capturing and bubbling phases</a>.</p>
 <pre><code class="language-js">function reaction2(event) {
   event.stopPropagation();
-  alert(&quot;Event received, reaction triggered but no further propagation!&quot;);
+  alert("Event received, reaction triggered but no further propagation!");
 }
-document.body.addEventListener(&quot;click&quot;, reaction2);
+document.body.addEventListener("click", reaction2);
 </code></pre>
 </li>
 <li>
 <p>By default, <em>JavaScript</em> code in a page can be executed before the page is fully loaded. Code that need the page to be fully loaded can set themselves as an event listener on <code>document</code> for the <a href="https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded">DOMContentLoaded</a> event.</p>
 <pre><code class="language-js">function reaction3(event) {
-  alert(&quot;I will be executed when the page is fully loaded&quot;);
+  alert("I will be executed when the page is fully loaded");
 }
-document.addEventListener(&quot;DOMContentLoaded&quot;, reaction3);
+document.addEventListener("DOMContentLoaded", reaction3);
 </code></pre>
 </li>
 </ul>
@@ -316,8 +345,8 @@ document.addEventListener(&quot;DOMContentLoaded&quot;, reaction3);
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script type="text/javascript"&gt;
     /* Place here the code that create the svg tree
        and add it to the page so that the image is
        displayed by the browser.
@@ -329,31 +358,31 @@ document.addEventListener(&quot;DOMContentLoaded&quot;, reaction3);
 &lt;/html&gt;
 </code></pre>
 <p><strong>Write within the</strong> <code>&lt;script ...&gt;</code> <strong>tag above the <em>JavaScript</em> code to create the following complete <em>Element</em> and append it to the</strong> <code>&lt;body&gt;</code> <strong>node so that the browser displays the image.</strong> This example is taken from the book <a href="http://shop.oreilly.com/product/0636920032335.do">SVG Essentials</a>.</p>
-<pre><code class="language-html">&lt;svg width=&quot;140&quot;
-     height=&quot;170&quot;
-     xmlns=&quot;http://www.w3.org/2000/svg&quot;
-     xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+<pre><code class="language-html">&lt;svg width="140"
+     height="170"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
 
   &lt;title&gt;Cat&lt;/title&gt;
   &lt;desc&gt;Stick Figure of a Cat&lt;/desc&gt;
   
-  &lt;circle cx=&quot;70&quot; cy=&quot;95&quot; r=&quot;50&quot; style=&quot;stroke: black; fill: none;&quot;&gt;&lt;/circle&gt;
-  &lt;circle cx=&quot;55&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
-  &lt;circle cx=&quot;85&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
+  &lt;circle cx="70" cy="95" r="50" style="stroke: black; fill: none;"&gt;&lt;/circle&gt;
+  &lt;circle cx="55" cy="80" r="5" stroke="black" fill="#339933"&gt;&lt;/circle&gt;
+  &lt;circle cx="85" cy="80" r="5" stroke="black" fill="#339933"&gt;&lt;/circle&gt;
   
-  &lt;g id=&quot;whiskers&quot;&gt;
-    &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;85&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
-    &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;105&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
+  &lt;g id="whiskers"&gt;
+    &lt;line x1="75" y1="95" x2="135" y2="85" style="stroke: black;"&gt;&lt;/line&gt;
+    &lt;line x1="75" y1="95" x2="135" y2="105" style="stroke: black;"&gt;&lt;/line&gt;
   &lt;/g&gt;
 
-  &lt;use xlink:href=&quot;#whiskers&quot; transform=&quot;scale(-1 1) translate(-140 0)&quot;&gt;&lt;/use&gt;
+  &lt;use xlink:href="#whiskers" transform="scale(-1 1) translate(-140 0)"&gt;&lt;/use&gt;
   
-  &lt;polyline points=&quot;108 62, 90 10, 70 45, 50, 10, 32, 62&quot;
-            style=&quot;stroke: black; fill: none;&quot;&gt;
+  &lt;polyline points="108 62, 90 10, 70 45, 50, 10, 32, 62"
+            style="stroke: black; fill: none;"&gt;
   &lt;/polyline&gt;
 
-  &lt;polyline points=&quot;35 110, 45 120, 95 120, 105, 110&quot;
-            style=&quot;stroke: black; fill: none;&quot;&gt;
+  &lt;polyline points="35 110, 45 120, 95 120, 105, 110"
+            style="stroke: black; fill: none;"&gt;
   &lt;/polyline&gt;
 &lt;/svg&gt;
 </code></pre>
@@ -361,39 +390,39 @@ document.addEventListener(&quot;DOMContentLoaded&quot;, reaction3);
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script type="text/javascript"&gt;
     /* Your Javascript code to create the following
        svg element should be here
     */
     &lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;svg width=&quot;140&quot;
-         height=&quot;170&quot;
-         xmlns=&quot;http://www.w3.org/2000/svg&quot;
-         xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+    &lt;svg width="140"
+         height="170"
+         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
 
       &lt;title&gt;Cat&lt;/title&gt;
       &lt;desc&gt;Stick Figure of a Cat&lt;/desc&gt;
 
-      &lt;circle cx=&quot;70&quot; cy=&quot;95&quot; r=&quot;50&quot; style=&quot;stroke: black; fill: none;&quot;&gt;&lt;/circle&gt;
-      &lt;circle cx=&quot;55&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
-      &lt;circle cx=&quot;85&quot; cy=&quot;80&quot; r=&quot;5&quot; stroke=&quot;black&quot; fill=&quot;#339933&quot;&gt;&lt;/circle&gt;
+      &lt;circle cx="70" cy="95" r="50" style="stroke: black; fill: none;"&gt;&lt;/circle&gt;
+      &lt;circle cx="55" cy="80" r="5" stroke="black" fill="#339933"&gt;&lt;/circle&gt;
+      &lt;circle cx="85" cy="80" r="5" stroke="black" fill="#339933"&gt;&lt;/circle&gt;
 
-      &lt;g id=&quot;whiskers&quot;&gt;
-        &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;85&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
-        &lt;line x1=&quot;75&quot; y1=&quot;95&quot; x2=&quot;135&quot; y2=&quot;105&quot; style=&quot;stroke: black;&quot;&gt;&lt;/line&gt;
+      &lt;g id="whiskers"&gt;
+        &lt;line x1="75" y1="95" x2="135" y2="85" style="stroke: black;"&gt;&lt;/line&gt;
+        &lt;line x1="75" y1="95" x2="135" y2="105" style="stroke: black;"&gt;&lt;/line&gt;
       &lt;/g&gt;
 
-      &lt;use xlink:href=&quot;#whiskers&quot; transform=&quot;scale(-1 1) translate(-140 0)&quot;&gt;&lt;/use&gt;
+      &lt;use xlink:href="#whiskers" transform="scale(-1 1) translate(-140 0)"&gt;&lt;/use&gt;
 
-      &lt;polyline points=&quot;108 62, 90 10, 70 45, 50, 10, 32, 62&quot;
-                style=&quot;stroke: black; fill: none;&quot;&gt;
+      &lt;polyline points="108 62, 90 10, 70 45, 50, 10, 32, 62"
+                style="stroke: black; fill: none;"&gt;
       &lt;/polyline&gt;
 
-      &lt;polyline points=&quot;35 110, 45 120, 95 120, 105, 110&quot;
-                style=&quot;stroke: black; fill: none;&quot;&gt;
+      &lt;polyline points="35 110, 45 120, 95 120, 105, 110"
+                style="stroke: black; fill: none;"&gt;
       &lt;/polyline&gt;
     &lt;/svg&gt;
   &lt;/body&gt;
@@ -476,8 +505,8 @@ trait TextApplication extends Application {
 </ul>
 <p><strong>Add the following lines to</strong> <code>project/plugins.sbt</code> <strong>.</strong></p>
 <pre><code class="language-scala">// ScalaJS
-addSbtPlugin(&quot;org.portable-scala&quot; % &quot;sbt-scalajs-crossproject&quot; % &quot;0.6.0&quot;)
-addSbtPlugin(&quot;org.scala-js&quot; % &quot;sbt-scalajs&quot; % &quot;0.6.25&quot;)
+addSbtPlugin("org.portable-scala" % "sbt-scalajs-crossproject" % "0.6.0")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.25")
 </code></pre>
 <p>A large amount of <em>Scala</em> libraries are available both as <em>JVM</em> and <em>ScalaJS</em> artifacts. So will we! The <em>Text UI</em> needs the <code>toolbox</code> and <code>slimetrail</code> to be compiled for the <em>JVM</em> while the <em>Web UI</em> needs them to be compiled in <code>JavaScript</code>. <em>Cross-projects</em> can define <code>libraryDependencies</code> using <code>%%%</code> instead of <code>%%</code> to ensure the correct artifacts are fetched.</p>
 <p><strong>In</strong> <code>build.sbt</code><strong>, replace any</strong> <code>%%</code> <strong>in</strong> <code>commonSettings</code> <strong>by</strong> <code>%%%</code> <strong>.</strong></p>
@@ -532,12 +561,12 @@ lazy val slimetrailJVM = slimetrail.jvm
 <pre><code class="language-scala">// Web Interface
 lazy val web =
   project
-    .in(file(&quot;web&quot;))
+    .in(file("web"))
     .enablePlugins(ScalaJSPlugin)
     .settings(commonSettings: _*)
     .settings(
-      name := &quot;slimetrail-web&quot;,
-      libraryDependencies += &quot;org.scala-js&quot; %%% &quot;scalajs-dom&quot; % &quot;0.9.6&quot;,
+      name := "slimetrail-web",
+      libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.6",
       scalaJSUseMainModuleInitializer := true
     )
     .dependsOn(slimetrailJS)
@@ -586,12 +615,12 @@ final class SlimetrailWebApp(size: Int)
 
 object Main {
   def onLoading(a: =&gt; Unit): Unit =
-    document.addEventListener(&quot;DOMContentLoaded&quot;, (_: Event) =&gt; a)
+    document.addEventListener("DOMContentLoaded", (_: Event) =&gt; a)
 
   def main(args: Array[String]): Unit =
     onLoading {
       new SlimetrailWebApp(10)
-        .run(document.getElementById(&quot;scalajs-controlled-node&quot;))
+        .run(document.getElementById("scalajs-controlled-node"))
     }
 }
 </code></pre>
