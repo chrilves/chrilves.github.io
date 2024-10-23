@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Playing with Probability in Scala 3 :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/posts/probability_in_scala_3_all_sides/index.html</link>
+    <description>Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/posts/probability_in_scala_3_all_sides/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

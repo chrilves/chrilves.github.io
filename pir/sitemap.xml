@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://chrilves.github.io/pir/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/index.html" />
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/pir/categories/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/categories/index.html" />
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/pir/frontmatter/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/frontmatter/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/frontmatter/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/frontmatter/index.html" />
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/pir/options/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/options/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/options/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/options/index.html" />
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/pir/tags/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/tags/index.html" />
+  </url>
+</urlset>

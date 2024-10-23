@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Episode 4 - CoProducts :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/types/4-coproducts/index.html</link>
+    <description>CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 + ... + A_n in Type Theory.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/types/4-coproducts/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

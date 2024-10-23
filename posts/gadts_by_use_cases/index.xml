@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GADTs By Use Cases :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/posts/gadts_by_use_cases/index.html</link>
+    <description>Discover Generalized ADT through lots of practical examples.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/posts/gadts_by_use_cases/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

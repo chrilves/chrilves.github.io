@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demystifying GADTs :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/posts/gadts_intro/index.html</link>
+    <description>Introduction to catamorphisms on Algebraic Data Types</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/posts/gadts_intro/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

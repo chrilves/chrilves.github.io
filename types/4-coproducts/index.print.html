@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.3">
+    <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
+    <meta name="description" content="CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 &#43; ... &#43; A_n in Type Theory.">
+    <meta name="author" content="chrilves">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Episode 4 - CoProducts :: @chrilves&#39; Archives">
+    <meta name="twitter:description" content="CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 &#43; ... &#43; A_n in Type Theory.">
+  <meta name="twitter:site" content="@chrilves"/>
+    <meta property="og:url" content="https://chrilves.github.io/types/4-coproducts/index.html">
+    <meta property="og:site_name" content="@chrilves&#39; Archives">
+    <meta property="og:title" content="Episode 4 - CoProducts :: @chrilves&#39; Archives">
+    <meta property="og:description" content="CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 &#43; ... &#43; A_n in Type Theory.">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Introduction to Types">
+    <meta property="article:published_time" content="2018-12-16T00:04:00+00:00">
+    <meta property="article:modified_time" content="2018-12-16T00:04:00+00:00">
+    <meta itemprop="name" content="Episode 4 - CoProducts :: @chrilves&#39; Archives">
+    <meta itemprop="description" content="CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 &#43; ... &#43; A_n in Type Theory.">
+    <meta itemprop="datePublished" content="2018-12-16T00:04:00+00:00">
+    <meta itemprop="dateModified" content="2018-12-16T00:04:00+00:00">
+    <meta itemprop="wordCount" content="1058">
+    <title>Episode 4 - CoProducts :: @chrilves&#39; Archives</title>
+    <link href="https://chrilves.github.io/types/4-coproducts/index.html" rel="canonical" type="text/html" title="Episode 4 - CoProducts :: @chrilves&#39; Archives">
+    <link href="../../types/4-coproducts/index.xml" rel="alternate" type="application/rss+xml" title="Episode 4 - CoProducts :: @chrilves&#39; Archives">
+    <link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729680927" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729680927" rel="stylesheet">
+    <link href="../../css/fonts.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729680927" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729680927" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1729680927" rel="stylesheet">
+    <script src="../../js/variant.js?1729680927"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../types/4-coproducts/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#equivalence-of-inductive-and-functional-forms">Equivalence of inductive and functional forms</a></li>
+    <li><a href="#generalization-to-a-product-of-any-number-of-types">Generalization to a product of any number of types</a></li>
+    <li><a href="#next-episode-recursive-data-typeshttpschrilvesgithubiotypes5-rectypes"><a href="https://chrilves.github.io/types/5-rectypes/">Next Episode: Recursive Data Types</a></a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Episode 4 - CoProducts</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/4-coproducts.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/4-coproducts/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/3-products/index.html" title="Episode 3 - Products (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/5-rectypes/index.html" title="Episode 5 - Recursive Data Types (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable types" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="episode-4---coproducts">Episode 4 - CoProducts</h1>
+
+<p>CoProducts, often called <em>sum types</em>, <em>discriminated unions</em> or <em>disjoint unions</em>, are a convenient way to express an alternative between different types. The <strong>coproduct</strong> of <code>n</code> types (with <code>n</code> being <em>0</em>, <em>1</em>, <em>2</em>, etc) <code>A_1</code>, <code>A_2</code>, &hellip;, <code>A_n</code> is precisely the type whose values are <code>(i, a_i)</code> where <code>i</code> is a number, called the <strong>tag</strong>, between <code>1</code> and <code>n</code> both included (<code>1 ≤ i ≤  n</code>) and <code>a_i</code> is a value of type <code>A_i</code> (the actual type then depends on the value of <code>i</code>). Is is often written <code>Either[A_1, ..., A_n]</code> in programming and <code>A_1 + ... + A_n</code> in <em>Type Theory</em>.</p>
+<p>Let&rsquo;s take, as an example, <code>n = 4</code>, <code>A_1 = Char</code>, <code>A_2 = Boolean</code>, <code>A_3 = Char</code> and <code>A_4 = Double</code>. The following values are all <strong>valid and distinct</strong> values of type <code>Either4[Char, Boolean, Char, Double]</code>: <code>(1, 'C')</code>, <code>(2, true)</code>, <code>(3, 'D')</code>, <code>(4, 3.2)</code>, <code>(3, 'C')</code>. Note that <code>(1, 'C')</code> and <code>(3, 'C')</code> are different values because the <em>tag</em> is different.</p>
+<p>Instead of writing the <em>tag</em> explicitly, programming languages often let us write <code>n</code> <strong>constructors</strong>: <code>Inj_i: A_i =&gt; Either_n[A_1, ..., A_n]</code> such that
+</p>
+$$\forall i\in{1,\dots,n},\quad \texttt{Inj}_i : \texttt{A}_i \rightarrow \texttt{Either}_n[\texttt{A}_1,\dots,\texttt{A}_n]$$$$\forall i\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \texttt{Inj}_i(a_i) = (i, a_i)$$<p>Note that:</p>
+<ul>
+<li>As usual <strong>constructors are injective</strong> functions
+$$\forall i\in{1,\dots,n},\quad \forall a_i,a'_i:\texttt{A}_i,\quad \texttt{Inj}_i(a_i) = \texttt{Inj}_i(a'_i) \Leftrightarrow a_i = a'_i$$</li>
+<li>The <strong>only way to get a value</strong> of type <code>Either_n[A_1, ... , A_n]</code> is by using one of the constructors
+$$\forall v:\texttt{Either}_n[\texttt{A}_1,\dots,\texttt{A}_n],\quad \exists! i\in{1,\dots,n},\quad \texttt{Inj}_i(a_i) = v$$</li>
+<li>Two <strong>different constructors produce different values</strong> (hense the <em>disjoint</em> and <em>discriminated</em> unions)
+$$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\texttt{A}_j,\quad \texttt{Inj}_i(a_i) = \texttt{Inj}_j(a_j) \Leftrightarrow i = j \textbf{ and } a_i = a_j$$</li>
+</ul>
+<p>For example with <code>n = 2</code>, the <em>coproduct</em> of two types <code>A</code> and <code>B</code> is defined as</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">inj1</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">,</span> <span class="n">inj2</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Inj1</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">inj1</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Inj2</span><span class="o">(</span><span class="n">b</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">inj2</span><span class="o">(</span><span class="n">b</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Inj1</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Either2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Inj2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Either2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span></span></span></code></pre></div>
+<p>Saying the pattern matching above is exhaustive is exactly equivalent to say a value of type <code>Either2[A,B]</code> has to be either <code>Inj1(a)</code> for some <code>a:A</code> or <code>Inj2(b)</code> for some <code>b:B</code>. Requiring that <code>Inj1</code> and <code>Inj2</code> produce different values is also mandatory as <code>Eirher2[Error, Result]</code> is often used to model computation that may fail. A failed computation would produce a <code>Inj1(e)</code> with <code>e</code> being the error that occurred while a successful computation would produce a <code>Inj2(r)</code> with <code>r</code> the result of the computation. We want to be able to discriminate these two cases, even when the types <code>Error</code> and <code>Result</code> are the same as it is usually the case when the computation need to compute a string or fail with an error message. Likewise, the injectivity of the constructors is mandatory to be able to the result produced <code>r</code> or the error that occurred <code>e</code>.</p>
+<h2 id="equivalence-of-inductive-and-functional-forms">Equivalence of inductive and functional forms</h2>
+<p>Once again any *coproductù can be <em>equivalently expressed</em> as a <em>data type</em> <code>Either_n_Ind[A_1, ..., A_n]</code> and as a <em>function type</em> <code>Either_n_Fun[A_1, ..., A_n]</code> with <em>inverse functions</em> <code>ind2fun</code> and <code>fun2ind</code> converting back and forth types <code>Either_n_Ind[A_1, ..., A_n]</code> and <code>Either_n_Fun[A_1, ..., A_n]</code>. For example with <code>n = 2</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Inj1_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Inj2_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">inj1</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">,</span> <span class="n">inj2</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">inj1_fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="nc">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="nc">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">inj1</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">,</span> <span class="n">inj2</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span> <span class="n">inj1</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">inj2_fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="nc">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">b</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="nc">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">inj1</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">,</span> <span class="n">inj2</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span> <span class="n">inj2</span><span class="o">(</span><span class="n">b</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">ind2fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span><span class="k">:</span> <span class="kt">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Inj1_Ind</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">inj1_fun</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Inj2_Ind</span><span class="o">(</span><span class="n">b</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">inj2_fun</span><span class="o">(</span><span class="n">b</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span><span class="k">:</span> <span class="kt">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]](</span><span class="nc">Inj1_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">_</span><span class="o">,</span> <span class="nc">Inj2_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">_</span><span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl"> <span class="kt">Inj1_Ind</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"> <span class="kt">Inj2_Ind</span> <span class="ow">::</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">Either2Fun</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">c</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">inj1_fun</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Either2Fun</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nf">inj1_fun</span> <span class="n">a</span> <span class="n">f</span> <span class="kr">_</span> <span class="ow">=</span> <span class="n">f</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">inj2_fun</span> <span class="ow">::</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Either2Fun</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nf">inj2_fun</span> <span class="n">b</span> <span class="kr">_</span> <span class="n">g</span> <span class="ow">=</span> <span class="n">g</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="ow">::</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Either2Fun</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="p">(</span><span class="kt">Inj1_Ind</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=</span> <span class="n">inj1_fun</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="p">(</span><span class="kt">Inj2_Ind</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=</span> <span class="n">inj2_fun</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="ow">::</span> <span class="kt">Either2Fun</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">f</span> <span class="kt">Inj1_Ind</span> <span class="kt">Inj2_Ind</span></span></span></code></pre></div>
+<h2 id="generalization-to-a-product-of-any-number-of-types">Generalization to a product of any number of types</h2>
+<p>The definition of <code>Either2</code> above can be adapted to <code>Either_n[A_1, ..., A_n]</code> for any value of <code>n</code> (i.e. <em>0</em>, <em>1</em>, <em>2</em>, <em>3</em>, <em>4</em>, &hellip;). With <code>n = 0</code>, which means a coproduct of zero types, there is no constructor, which means it is impossible to build a value of this type. Thus <code>Either_0</code> is equivalent to <code>False</code> (i.e. <code>Either_0 ≅ False</code>). With <code>n = 1</code>, <code>Either_n[A] ≅ A</code>.</p>
+<p>Further more for any types <code>A</code>, <code>B</code> and <code>C</code> we have the following properties</p>
+<ul>
+<li><code>Either2[A,B]</code> is equivalent to <code>Either2[B,A]</code></li>
+<li><code>Either2[Either2[A,B], C]</code> and <code>Either2[A, Either2[B,C]]</code> and <code>Either3[A,B,C]</code> are all equivalent</li>
+<li><code>Eithr2[False,A]</code> and  <code>Either2[A,False]</code> and <code>A</code> are all equivalent</li>
+<li><code>Either_1[A]</code> is equivalent to <code>A</code></li>
+<li><code>(C, Either2[A,B])</code> is equivalent to <code>Either2[(C,A), (C,B)]</code></li>
+</ul>
+<p><em>Exercise: write conversion functions <code>from</code> and <code>to</code>for each of these equivalence, such that <code>from</code> and <code>to</code> are inverse functions.</em></p>
+<p>Remember that in <em>Type Theory</em>, <code>False</code> is written <code>0</code>, <code>Unit</code> is written <code>1</code>, the <em>product</em> <code>(A_1, ..., A_n)</code> is written <code>A_1 × ... A_n</code> and the <em>coproduct</em> <code>Either_n[A_1, ..., A_n]</code> is written <code>A_1 + ... + A_n</code>. If we express the above properties using <em>Type Theory</em> notation, we get</p>
+<ul>
+<li><code>A + B ≅ B + A</code></li>
+<li><code>(A + B) + C ≅ A + (B + C) ≅ A + B + C</code></li>
+<li><code>0 + A ≅ A + 0 ≅ A</code></li>
+<li><code>C × (A + B) ≅ (C × A) + (C × B)</code></li>
+<li><code>1 × A ≅ A</code></li>
+<li><code>0 × A ≅ A × 0 ≅ 0</code></li>
+</ul>
+<p>Is arithmetic familiar to you? If so such equations should be familiar too. But these times there are not between numbers but between equivalent types. If you ever wonder why <a href="https://en.wikipedia.org/wiki/Algebraic_data_type" rel="external" target="_self">Algebraic Data Types</a> are called this way, this should give you some hints.</p>
+<h2 id="next-episode-recursive-data-typeshttpschrilvesgithubiotypes5-rectypes"><a href="https://chrilves.github.io/types/5-rectypes/" rel="external" target="_self">Next Episode: Recursive Data Types</a></h2>
+<p>In the <a href="https://chrilves.github.io/types/5-rectypes/" rel="external" target="_self">next episode</a>, we will see <strong>Recursive Data Types</strong>.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1729680927" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729680927" defer></script>
+    <script src="../../js/theme.js?1729680927" defer></script>
+  </body>
+</html>

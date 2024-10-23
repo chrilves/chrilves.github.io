@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.3">
+    <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
+    <meta name="description" content="Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, take the time to develop a deep understanding of what is really going on.">
+    <meta name="author" content="chrilves">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Episode 2 - Enumerations :: @chrilves&#39; Archives">
+    <meta name="twitter:description" content="Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, take the time to develop a deep understanding of what is really going on.">
+  <meta name="twitter:site" content="@chrilves"/>
+    <meta property="og:url" content="https://chrilves.github.io/types/2-enums/index.html">
+    <meta property="og:site_name" content="@chrilves&#39; Archives">
+    <meta property="og:title" content="Episode 2 - Enumerations :: @chrilves&#39; Archives">
+    <meta property="og:description" content="Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, take the time to develop a deep understanding of what is really going on.">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Introduction to Types">
+    <meta property="article:published_time" content="2018-12-16T00:02:00+00:00">
+    <meta property="article:modified_time" content="2018-12-16T00:02:00+00:00">
+    <meta itemprop="name" content="Episode 2 - Enumerations :: @chrilves&#39; Archives">
+    <meta itemprop="description" content="Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, take the time to develop a deep understanding of what is really going on.">
+    <meta itemprop="datePublished" content="2018-12-16T00:02:00+00:00">
+    <meta itemprop="dateModified" content="2018-12-16T00:02:00+00:00">
+    <meta itemprop="wordCount" content="1999">
+    <title>Episode 2 - Enumerations :: @chrilves&#39; Archives</title>
+    <link href="https://chrilves.github.io/types/2-enums/index.html" rel="canonical" type="text/html" title="Episode 2 - Enumerations :: @chrilves&#39; Archives">
+    <link href="../../types/2-enums/index.xml" rel="alternate" type="application/rss+xml" title="Episode 2 - Enumerations :: @chrilves&#39; Archives">
+    <link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729680927" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729680927" rel="stylesheet">
+    <link href="../../css/fonts.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729680927" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729680927" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1729680927" rel="stylesheet">
+    <script src="../../js/variant.js?1729680927"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../types/2-enums/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#many-equivalent-ways-to-express-it">Many equivalent ways to express it</a></li>
+    <li><a href="#the-empty-type">The empty type</a></li>
+    <li><a href="#the-singleton-type">The singleton type</a></li>
+    <li><a href="#the-two-values-type-booleans">The two values type: Booleans</a></li>
+    <li><a href="#next-episode-productshttpschrilvesgithubiotypes3-products"><a href="https://chrilves.github.io/types/3-products/">Next Episode: Products</a></a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Episode 2 - Enumerations</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/2-enums.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/2-enums/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/1-why/index.html" title="Episode 1 - Why Types? (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/3-products/index.html" title="Episode 3 - Products (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable types" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="episode-2---enumerations">Episode 2 - Enumerations</h1>
+
+<p>Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But <em>the subject of these post series is nothing like a ready-to-paste answers cookbook</em>. On the contrary, this is a presentation of <strong>deep, difficult but rewarding concepts</strong>. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, <strong>take the time to develop a deep understanding</strong> of what is really going on.</p>
+<p>As such, the example i give may look simple. They are indeed much simpler than in real-life applications. They are not meant to be applicable as-is but to shed light on the core ideas. If you understand the principles they rely on, you&rsquo;ll be able to apply these powerful concepts in your day to day code. <strong>Do not skim through</strong> this but take the time to develop your understanding.</p>
+<p>In this whole series is we will assume <code>null</code> (in <em>Scala</em>), <code>undefined</code> (in <em>Haskell</em>) and <a href="https://en.wikipedia.org/wiki/Side_effect_(computer_science)" rel="external" target="_self">side-effects</a> do not exist. <code>null</code>, <code>undefined</code> and <em>side-effects</em> are <em>absurd</em> in every possible way. They make interesting properties collapse and should be <em>avoided at all costs</em>! We will consider all functions from <code>A</code> to <code>B</code> to be <strong>mathematical functions</strong>:</p>
+<ul>
+<li>they always return a valid value of type <code>B</code> of any input input value of type <code>A</code></li>
+<li>on the same argument (or an equal argument), they always return the same result (or an equal result)</li>
+<li>the only effect of executing them is obtaining a result, no side-effect allowed</li>
+<li>If <code>b:B = f(a:A)</code> we can always replace <code>b</code> by <code>f(a)</code> and vice-versa, anywhere in the program, without altering its behavior (apart from computation time and memory consumption)</li>
+</ul>
+<p>Formally it means we will consider all functions <a href="https://en.wikipedia.org/wiki/Referential_transparency" rel="external" target="_self">referentially transparent</a> and <a href="https://en.wikipedia.org/wiki/Total_functional_programming" rel="external" target="_self">total</a>. That being said, let the journey begin with a very useful concept.</p>
+<h2 id="many-equivalent-ways-to-express-it">Many equivalent ways to express it</h2>
+<p>There is often many ways to express the same idea. How would you represent a piece of text? The types <code>List[Char]</code> and <code>String</code> are two different ways to do so. These types are indeed not equal: they are not encoded the same way and have distinct performance properties. But despite their differences, they can be considered equivalent. There is indeed  a one-to-one correspondence between them: we can define two functions <code>list2string: List[Char] =&gt; String</code> and <code>string2list: String =&gt; List[Char]</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">list2string</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">String</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">l</span><span class="k">:</span><span class="kt">List</span><span class="o">[</span><span class="kt">Char</span><span class="o">])</span> <span class="k">=&gt;</span> <span class="n">l</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="o">(</span><span class="n">str</span><span class="o">,</span><span class="n">char</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="s">s&#34;</span><span class="si">$str$char</span><span class="s">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">string2list</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">List</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">str</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">str</span><span class="o">.</span><span class="n">toList</span></span></span></code></pre></div>
+<p>such that <code>list2string</code> and <code>string2list</code> are the <strong>inverse of each other</strong>
+</p>
+$$\forall s:\texttt{String},\quad \texttt{string2list}(\texttt{list2string}(s)) = s$$$$\forall l:\texttt{List[Char]},\quad \texttt{list2string}(\texttt{string2list}(l)) = l$$<p>which also means</p>
+<ul>
+<li>
+<p>for any list there is a unique string </p>
+$$\forall l:\texttt{List[Char]}\ \exists! s:\texttt{String}  ,\quad \texttt{string2list}(s) = l$$</li>
+<li>
+<p>for any string there is a unique list </p>
+$$\forall s:\texttt{String}\ \exists! l:\texttt{List[Char]},\quad \texttt{string2list}(\texttt{list2string}(s)) = s$$</li>
+<li>
+<p><code>list2string</code> and <code>string2list</code> are <strong>injective</strong>
+</p>
+$$\forall l1, l2:\texttt{List[Char]},\ \texttt{list2string}(l1) = \texttt{list2string}(l2) \implies l1 = l2$$$$\forall s1, s2:\texttt{String},\ \texttt{string2list}(s1) = \texttt{string2list}(s2) \implies s1 = s2$$</li>
+</ul>
+<p>Basically it means we can always convert from one type to the other without loss of generality.</p>
+<blockquote>
+<p>For any function <code>f: A =&gt; B</code> (i.e. from <code>A</code> to <code>B</code>), <code>f</code> is called a <strong>bjection</strong> <em>if and only if</em> there exists a function <code>g: B =&gt; A</code> (i.e. from <code>B</code> to <code>A</code>) such that <code>f</code> and <code>g</code> are <em>inverse of each other</em>:
+</p>
+$$\forall a:\texttt{A},\quad \texttt{g}(\texttt{f}(a)) = a$$$$\forall b:\texttt{B},\quad \texttt{f}(\texttt{g}(b)) = b$$<p>
+Two types <code>A</code> and <code>B</code> are called <strong>equivalent</strong>, which is written <code>A ≅ B</code>, <em>if and only if</em> there exists a <em>bijection</em> <code>f: A =&gt; B</code>.</p>
+</blockquote>
+<p>This notion is <em>fundamental</em> as it tells us that similarity between types is how closely they behave, not how closely they look. Two types of apparent very different form may actually be equivalent while two whose form may seem close may be fundamentally at odds. Focus on properties, not on looks.</p>
+<h2 id="the-empty-type">The empty type</h2>
+<p>The first type i want to present has many names. <a href="https://www.scala-lang.org" rel="external" target="_self">Scala</a> names it <code>Nothing</code>, <a href="https://elm-lang.org" rel="external" target="_self">Elm</a> calls it <code>Never</code>, <a href="https://coq.inria.fr" rel="external" target="_self">Coq</a> uses the name it usually has in <a href="https://en.wikipedia.org/wiki/Proof_theory" rel="external" target="_self">Proof Theory</a> which is <code>False</code> while <a href="https://en.wikipedia.org/wiki/Type_theory" rel="external" target="_self">Type Theory</a> refers to it as <code>0</code>. This is an <strong>uninhabited type</strong> which means there is no value of this type. You may look at it as the empty set (hence the name <code>0</code>):</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">False</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<p>This class being <code>final</code> we cannot define sub-classes, but being also <code>abstract</code> we cannot instantiate it either! And even if we could, how would we write a function <code>fold</code> which meets the specification that it provides a value of type <code>A</code> for any <code>A</code>? Remember, <code>null</code> does not exists.</p>
+<p>How a type without values can be useful? By representing impossible cases in the type-system. Let <code>v</code> be a value of type <code>Either[False, Int]</code>. <code>v</code> has to be <code>Right(i)</code> for some integer <code>i</code> because otherwise it would be <code>Left(f)</code> for some value <code>f</code> of type <code>False</code> which is impossible! It means the following pattern-matching is exhaustive.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">extractRight</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">v</span><span class="k">:</span> <span class="kt">Either</span><span class="o">[</span><span class="kt">False</span>,<span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">Right</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<p>Unfortunately <em>Scala</em> protests it&rsquo;s not, demanding we cover the case <code>v = Left(f: False)</code> by returning a value of type <code>A</code>. We know, assuming <code>null</code> does not exists, there can not be such a value <code>f:False</code>. How to make <em>Scala</em> happy? Fortunately, every hypothetical value of type <code>False</code> comes with a handy <code>fold</code> function able to return anything. It corresponds in logic to <a href="https://en.wikipedia.org/wiki/Principle_of_explosion" rel="external" target="_self">the principle of explosion</a> stating that from a contradicton (having a value of an empty type for example), you can conclude anything:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">extractRight</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">v</span><span class="k">:</span> <span class="kt">Either</span><span class="o">[</span><span class="kt">False</span>,<span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">Right</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">Left</span><span class="o">(</span><span class="n">f</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<p>Note that <code>extractRight</code> and <code>Right:A =&gt; Either[False, A]</code> being <em>inverse functions</em> it means <code>Either[False, A]</code> is equivalent to <code>A</code>. This one is of the main properties of <code>False</code>: <code>Either[False, A]</code>, <code>Either[A, False]</code> and <code>A</code> are all equivalent (i.e. <code>Either[False, A] ≅ A ≅ Either[A, False]</code>).</p>
+<p>You could argue using <code>Either[False, A]</code> is pointless as it is equivalent to <code>A</code> which is true, but bare in mind it is just a toy example. A more realistic one would involve complex types such as bifunctors like <code>IO[E,A]</code>. The ability to express impossible cases let us write <em>IO</em> computations that never fails <code>IO[False, A]</code> and <em>IO</em> computation that never returns <code>IO[E,False]</code> with the same code and <a href="https://en.wikipedia.org/wiki/Application_programming_interface" rel="external" target="_self">API</a> instead of relying on code/API duplication which is a <em>waste of time, effort and complexity</em>.</p>
+<p>The idea being <code>False</code> can be <em>expressed in many equivalent ways</em>. The three types <code>False</code>, <code>FalseInd</code> and <code>FalseFun</code> are equivalent (``False ≅ FalseInd ≅ FalseFun`):</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">FalseInd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">FalseFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<p>This is even clearer in <a href="https://www.haskell.org/ghc" rel="external" target="_self">Haskell</a> as shown below where <code>ind2fun</code> and <code>fun2ind</code> are <em>inverse functions</em>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="cm">{-# LANGUAGE RankNTypes, EmptyCase #-}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">module</span> <span class="nn">Iso</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">FalseInd</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">FalseFun</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="ow">::</span> <span class="kt">FalseInd</span> <span class="ow">-&gt;</span> <span class="kt">FalseFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="n">x</span> <span class="ow">=</span> <span class="kr">case</span> <span class="n">x</span> <span class="kr">of</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="ow">::</span> <span class="kt">FalseFun</span> <span class="ow">-&gt;</span> <span class="kt">FalseInd</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">x</span> <span class="ow">=</span> <span class="n">x</span></span></span></code></pre></div>
+<p>In <em>Scala</em> like in <em>Haskell</em> <code>FalseInd</code> express the idea of a <strong>data type with no constructor</strong> (i.e. to way to build a value) while <code>FalseFun</code> is the <strong>type of a function</strong> with no argument (i.e. a constant) returning values of type <code>A</code> for any <code>A</code>, but such a function does not exists. It may seem weird having functions between empty types but it actually makes a lot of sense: there is indeed a one-to-one correspondence between these two types as both have no values at all.</p>
+<h2 id="the-singleton-type">The singleton type</h2>
+<p>Often called <code>unit</code>, <code>()</code> or <code>1</code>, it is the type with <strong>only one value</strong>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Unit</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Unique</span> <span class="k">=&gt;</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Unique</span> <span class="k">extends</span> <span class="nc">Unit</span></span></span></code></pre></div>
+<p>Note that the type <code>Unit</code> admits <em>one and exactly one value</em> which is <code>UniqueInd</code>. <code>UniqueInd</code> is called a <strong>constructor of the data type <code>Unit</code></strong> as it one way (the only one actually) to build a value of type <code>Unit</code>. <code>Unit</code> is useful everywhere you have to fill a value and/or a type but you actually don&rsquo;t care which. For example, let <code>v = println(&quot;Hello World&quot;):IO[Unit]</code> be the value printing a message to the screen. We don&rsquo;t care what the execution <code>v</code> returns, we are only interested into what is printed, but it still needs to return something for the program to continue.</p>
+<p>Once again <code>Unit</code> can be <em>equivalently expressed</em> as both the data type <code>UnitInd</code> and the <em>function type</em> <code>UnitFun</code>. Indeed <code>ind2fun</code> and <code>fun2ind</code> are <em>inverse functions</em> showing <code>Unit ≅ UnitInd ≅ UnitFun</code>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">UnitInd</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">UniqueInd</span> <span class="k">extends</span> <span class="nc">UnitInd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">UnitFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">uniqueFun</span><span class="k">:</span> <span class="kt">UnitFun</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">UnitFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">ind2fun</span><span class="k">:</span> <span class="kt">UnitInd</span> <span class="o">=&gt;</span> <span class="nc">UnitFun</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">UnitInd</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">i</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">UniqueInd</span> <span class="k">=&gt;</span> <span class="n">uniqueFun</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="k">:</span> <span class="kt">UnitFun</span> <span class="o">=&gt;</span> <span class="nc">UnitInd</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">UnitFun</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">UnitInd</span><span class="o">](</span><span class="nc">UniqueInd</span><span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">UnitInd</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">UniqueInd</span> <span class="ow">::</span> <span class="kt">UnitInd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">UnitFun</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">uniqueFun</span> <span class="ow">::</span> <span class="kt">UnitFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">uniqueFun</span> <span class="n">x</span> <span class="ow">=</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="ow">::</span> <span class="kt">UnitInd</span> <span class="ow">-&gt;</span> <span class="kt">UnitFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="kt">UniqueInd</span> <span class="ow">=</span> <span class="n">uniqueFun</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="ow">::</span> <span class="kt">UnitFun</span> <span class="ow">-&gt;</span> <span class="kt">UnitInd</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">u</span> <span class="ow">=</span> <span class="n">u</span> <span class="kt">UniqueInd</span></span></span></code></pre></div>
+<p>The type <code>UnitFun</code> may surprise you. How is it possible that a function type like it has only one possible value? <strong>Try</strong> to write a <em>referentially transparent</em> and <em>total</em> instance of <code>UnitFun</code>. You will see there is only one way to do so.</p>
+<p>One of the main properties of <code>Unit</code> is that <code>(Unit, A)</code>, <code>(A, Unit)</code> and <code>A</code> are equivalent (i.e. <code>(Unit, A) ≅ A ≅ (A, Unit)</code>). <em>Exercise: write the inverse functions between these types.</em></p>
+<h2 id="the-two-values-type-booleans">The two values type: Booleans</h2>
+<p>Here comes one of the most well known type: the one with <strong>exactly two values</strong> often called <code>Boolean</code> in programming and <code>2</code> in <em>Type Theory</em>. Its values are generally named <code>true</code> and <code>false</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Boolean</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">tt</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ff</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">True</span>  <span class="k">=&gt;</span> <span class="n">tt</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">False</span> <span class="k">=&gt;</span> <span class="n">ff</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">True</span>  <span class="k">extends</span> <span class="nc">Boolean</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">False</span> <span class="k">extends</span> <span class="nc">Boolean</span></span></span></code></pre></div>
+<p>I&rsquo;m sure you&rsquo;re already familiar with booleans, but did you recognize the <code>fold</code> function? It is generally named <code>if-then-else</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">ifThenElse</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">b</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)(</span><span class="n">tt</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ff</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">tt</span><span class="o">,</span> <span class="n">ff</span><span class="o">)</span></span></span></code></pre></div>
+<p><code>True</code> and <code>False</code> are called the <strong>constructors of <code>Boolean</code></strong> because they are the <strong>only way to build values</strong> of type <code>Boolean</code>. Once again this idea of a type with two values is <em>equivalently expressed</em> both as the <em>data type</em> <code>BoolInd</code> and as the <em>function type</em> <code>BoolFun</code> . Functions <code>ind2fun</code> and <code>fun2ind</code> are indeed <em>inverse</em> of each other.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">BoolInd</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">TrueInd</span>  <span class="k">extends</span> <span class="nc">BoolInd</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">FalseInd</span> <span class="k">extends</span> <span class="nc">BoolInd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">BoolFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">tt</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ff</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">trueFun</span><span class="k">:</span> <span class="kt">BoolFun</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">BoolFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">tt</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ff</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="n">tt</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">falseFun</span><span class="k">:</span> <span class="kt">BoolFun</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">BoolFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">tt</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ff</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="n">ff</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">ind2fun</span><span class="k">:</span> <span class="kt">BoolInd</span> <span class="o">=&gt;</span> <span class="nc">BoolFun</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">BoolInd</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">i</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">TrueInd</span>  <span class="k">=&gt;</span> <span class="n">trueFun</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">FalseInd</span> <span class="k">=&gt;</span> <span class="n">falseFun</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="k">:</span> <span class="kt">BoolFun</span> <span class="o">=&gt;</span> <span class="nc">BoolInd</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">BoolFun</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">BoolInd</span><span class="o">](</span><span class="nc">TrueInd</span><span class="o">,</span> <span class="nc">FalseInd</span><span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">BoolInd</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">TrueInd</span>  <span class="ow">::</span> <span class="kt">BoolInd</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">FalseInd</span> <span class="ow">::</span> <span class="kt">BoolInd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">BoolFun</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="n">a</span> <span class="ow">-&gt;</span>  <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">trueFun</span> <span class="ow">::</span> <span class="kt">BoolFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">trueFun</span> <span class="n">tt</span> <span class="kr">_</span> <span class="ow">=</span> <span class="n">tt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">falseFun</span> <span class="ow">::</span> <span class="kt">BoolFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">falseFun</span> <span class="kr">_</span> <span class="n">ff</span> <span class="ow">=</span> <span class="n">ff</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="ow">::</span> <span class="kt">BoolInd</span> <span class="ow">-&gt;</span> <span class="kt">BoolFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="kt">TrueInd</span>  <span class="ow">=</span> <span class="n">trueFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="kt">FalseInd</span> <span class="ow">=</span> <span class="n">falseFun</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="ow">::</span> <span class="kt">BoolFun</span> <span class="ow">-&gt;</span> <span class="kt">BoolInd</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">u</span> <span class="ow">=</span> <span class="n">u</span> <span class="kt">TrueInd</span> <span class="kt">FalseInd</span></span></span></code></pre></div>
+<p>Once again the type <code>BoolFun</code> may surprise you. Once again <strong>try</strong> to write a <em>referentially transparent</em> and <em>total</em> instance of <code>BoolFun</code>. You will see there are only two ways to do so.</p>
+<p>I could continue forever presenting types with <em>3</em>, <em>4</em>, &hellip; values but by now you must see the same pattern repeating and repeating again.</p>
+<h2 id="next-episode-productshttpschrilvesgithubiotypes3-products"><a href="https://chrilves.github.io/types/3-products/" rel="external" target="_self">Next Episode: Products</a></h2>
+<p>In the <a href="https://chrilves.github.io/types/3-products/" rel="external" target="_self">next episode</a>, we will a convenient way to combine types: <strong>Products</strong>.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1729680927" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729680927" defer></script>
+    <script src="../../js/theme.js?1729680927" defer></script>
+  </body>
+</html>

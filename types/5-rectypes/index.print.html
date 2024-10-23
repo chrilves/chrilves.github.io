@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.3">
+    <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
+    <meta name="description" content="We have seen many types but we still don’t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.">
+    <meta name="author" content="chrilves">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
+    <meta name="twitter:description" content="We have seen many types but we still don’t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.">
+  <meta name="twitter:site" content="@chrilves"/>
+    <meta property="og:url" content="https://chrilves.github.io/types/5-rectypes/index.html">
+    <meta property="og:site_name" content="@chrilves&#39; Archives">
+    <meta property="og:title" content="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
+    <meta property="og:description" content="We have seen many types but we still don’t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Introduction to Types">
+    <meta property="article:published_time" content="2018-12-16T00:05:00+00:00">
+    <meta property="article:modified_time" content="2018-12-16T00:05:00+00:00">
+    <meta itemprop="name" content="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
+    <meta itemprop="description" content="We have seen many types but we still don’t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.">
+    <meta itemprop="datePublished" content="2018-12-16T00:05:00+00:00">
+    <meta itemprop="dateModified" content="2018-12-16T00:05:00+00:00">
+    <meta itemprop="wordCount" content="1964">
+    <title>Episode 5 - Recursive Data Types :: @chrilves&#39; Archives</title>
+    <link href="https://chrilves.github.io/types/5-rectypes/index.html" rel="canonical" type="text/html" title="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
+    <link href="../../types/5-rectypes/index.xml" rel="alternate" type="application/rss+xml" title="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
+    <link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729680927" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729680927" rel="stylesheet">
+    <link href="../../css/fonts.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729680927" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729680927" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1729680927" rel="stylesheet">
+    <script src="../../js/variant.js?1729680927"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../types/5-rectypes/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#a-simple-example">A simple example</a>
+      <ul>
+        <li><a href="#equivalence-of-inductive-and-functional-definitions">Equivalence of inductive and functional definitions</a></li>
+      </ul>
+    </li>
+    <li><a href="#lists">Lists</a>
+      <ul>
+        <li><a href="#equivalence-of-inductive-and-functional-definitions-1">Equivalence of inductive and functional definitions</a></li>
+      </ul>
+    </li>
+    <li><a href="#algebraic-data-types">Algebraic Data Types</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Episode 5 - Recursive Data Types</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/5-rectypes.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/5-rectypes/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/4-coproducts/index.html" title="Episode 4 - CoProducts (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable types" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="episode-5---recursive-data-types">Episode 5 - Recursive Data Types</h1>
+
+<p>We have seen many types but we still don&rsquo;t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, <strong>do no skim through</strong> them but take the time to <strong>develop a deep understanding</strong>. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.</p>
+<h2 id="a-simple-example">A simple example</h2>
+<p>We will take as example an encoding of <em>non-negative</em> integers, also called <strong>natural numbers</strong>, i.e. numbers <em>0</em>, <em>1</em>, <em>2</em>, <em>3</em> and so on. There are actually many encodings possible, but we will take a simple encoding known as <a href="https://wiki.haskell.org/Peano_numbers" rel="external" target="_self">Peano numbers</a>. Did you ever wonder how <em>natural numbers</em> are built? There can actually be built starting from <code>0</code> then adding <code>1</code> to <code>0</code> to make <code>1</code>, then adding <code>1</code> to <code>1</code> to make <code>2</code>, then adding <code>1</code> to <code>2</code> to make <code>3</code>, then adding <code>1</code> to <code>3</code> to make <code>4</code>, and so on. Our encoding will mimic this construction. We need <strong>two constructors</strong>: one of represent <code>0</code> and the other to represent the operation of adding <code>1</code> to the previous number to make a new one.</p>
+<p>Let&rsquo;s call <code>Nat</code> the type of natural numbers. The first constructor, representing <code>0</code> should be a constant of type <code>Nat</code> while the second one, representing the operation of adding <code>1</code> should be a function of type <code>Nat =&gt; Nat</code>. Remember that <em>constructors need to be injective</em>, but we are lucky, this operation is actually injective. Let call the first constructor <code>Zero:Nat</code> and the second one <code>Succ:Nat =&gt; Nat</code> (for successor). This is easy to translate into <em>Scala</em> and <em>Haskell</em>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Nat</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">zero</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">succ</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Zero</span> <span class="k">=&gt;</span> <span class="n">zero</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Succ</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="n">a</span> <span class="k">=</span> <span class="n">p</span><span class="o">.</span><span class="n">fold</span><span class="o">(</span><span class="n">zero</span><span class="o">,</span> <span class="n">succ</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">succ</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Zero</span>         <span class="k">extends</span> <span class="nc">Nat</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Succ</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Nat</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Nat</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Nat</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">Zero</span> <span class="ow">::</span> <span class="kt">Nat</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">Succ</span> <span class="ow">::</span> <span class="kt">Nat</span> <span class="ow">-&gt;</span> <span class="kt">Nat</span></span></span></code></pre></div>
+<p>Note that all the constructors we have seen in the previous episodes took as argument <em>already defined types</em>, but the first argument of <code>Succ</code> is of type <code>Nat</code>, the very <em>same type we are defining</em>. This is the reason why <code>Nat</code> is called a <strong>recursive data type</strong>: some of its constructors take as arguments values of type <code>Nat</code> itself. As usual:</p>
+<ul>
+<li>constructors are injective</li>
+<li>different constructors produces different value</li>
+<li>every value of type <code>Nat</code> is either a <code>Zero</code> or a <code>Succ(n)</code> for some <code>n:Nat</code></li>
+</ul>
+<p>The problem is, unlike <em>enumerations</em>, <em>products</em> and <em>coproducts</em> where these properties are enough to define their respective type (<em>up to equivalence</em>) without ambiguity. With <em>recursive data types</em> there can be several <strong>non-equivalent</strong> types for which these three properties hold. For example, the type <code>{0, 1, 2, ...}</code> of natural numbers and <code>{O, 1, 2,  ..., ∞}</code> in which we added one special number called infinity such that <code>Succ(∞) = ∞</code> both have the three properties above. So wee need to add a new <em>constraint</em>, which is that: <strong>among all the types for which these properties hold, <code>Nat</code> is taken as the smallest one</strong>.</p>
+<p><em>Recursive types</em> have amazing properties. For example the types <code>Nat</code> and <code>Option[Nat]</code> are equivalent! Indeed <code>nat2opt</code> and <code>opt2nat</code> are <em>inverse bijections</em>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">opt2nat</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Nat</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Nat</span> <span class="k">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Succ</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span> <span class="nc">Zero</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">nat2opt</span><span class="k">:</span> <span class="kt">Nat</span> <span class="o">=&gt;</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">Nat</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Succ</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Zero</span> <span class="k">=&gt;</span> <span class="nc">None</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">opt2nat</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Nat</span> <span class="ow">-&gt;</span> <span class="kt">Nat</span>
+</span></span><span class="line"><span class="cl"><span class="nf">opt2nat</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">n</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">Succ</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl"><span class="nf">opt2nat</span> <span class="kt">Nothing</span>  <span class="ow">=</span> <span class="kt">Zero</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">nat2opt</span> <span class="ow">::</span> <span class="kt">Nat</span> <span class="ow">-&gt;</span> <span class="kt">Maybe</span> <span class="kt">Nat</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nat2opt</span> <span class="p">(</span><span class="kt">Succ</span> <span class="n">n</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nat2opt</span> <span class="kt">Zero</span>     <span class="ow">=</span> <span class="kt">Nothing</span></span></span></code></pre></div>
+<p>It means that <code>Nat ≅ Option[Nat]</code>. Note that <code>Option[T] ≅ Either[Unit, T] ≅ 1 + T</code> in <em>Type Theory</em> notation, so <code>Nat</code> is actually one of the solution of the <strong>type equation</strong> <code>T ≅ 1 + T</code>. Such an equation means we are looking for types <code>T</code> such that <code>T</code> and <code>Option[T]</code> are equivalent. Regarding <code>Option</code> as a function from types to type, where the type <code>Option[T]</code> is the one obtained by applying the argument <code>T</code> to the function <code>Option</code>, <code>Nat</code> is one of the <a href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)" rel="external" target="_self">fixed-point</a> of this function. More precisely, <code>Nat</code> is the least fixed-point of <code>Option</code>.</p>
+<blockquote>
+<p>Let <code>μ: (Type -&gt; Type) -&gt; Type</code> be the operator taking a type function <code>F</code> as argument (written <code>F[_]</code> in <em>Scala</em> and <code>f :: * -&gt; *</code> in <em>haskell</em>) and returning the <strong>least fixed-point</strong> of <code>F</code>, which is defined as the smallest type <code>T</code> (up to equivalence) which is solution of the equation <code>T ≅ F[T]</code>. To simplify the notations, we may also write <code>μT.F[T]</code> instead of <code>μ(F)</code>.</p>
+</blockquote>
+<p>As an example <code>Nat = μ(Option)</code> which we also write <code>Nat = μT.Either[Unit, T]</code> and also  <code>Nat = μT.(1 + T)</code>.</p>
+<p>Another solution to the equation, which is, this time the <em>greatest fixed-point</em> of <code>Option</code> is the type <code>NatInf</code>, representing <code>{0, 1, 2, ..., ∞}</code>, defined as below. It is the <em>biggest type</em> which is solution (up to equivalence) of the equation <code>T ≅ 1 + T</code>. The two <em>inverse functions</em> <code>opt2natInf</code> and <code>natInf2opt</code> proves the equivalence:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">NatInf</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">unfold</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">zero</span><span class="k">:</span> <span class="kt">NatInf</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">NatInf</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">unfold</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">succ</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatInf</span><span class="o">)</span><span class="k">:</span> <span class="kt">NatInf</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">NatInf</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">unfold</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="o">∞</span> <span class="k">:</span> <span class="kt">NatInf</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">NatInf</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">unfold</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(∞)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">opt2natInf</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">NatInf</span> <span class="k">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">succ</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">None</span>    <span class="k">=&gt;</span> <span class="n">zero</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">natInf2opt</span><span class="k">:</span> <span class="kt">NatInf</span> <span class="o">=&gt;</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatInf</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span><span class="o">.</span><span class="n">unfold</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">newtype</span> <span class="kt">NatInf</span> <span class="ow">=</span> <span class="kt">NatInf</span> <span class="p">{</span> <span class="n">unfold</span> <span class="ow">::</span>  <span class="kt">Maybe</span> <span class="kt">NatInf</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">zero</span> <span class="ow">::</span> <span class="kt">NatInf</span>
+</span></span><span class="line"><span class="cl"><span class="nf">zero</span> <span class="ow">=</span> <span class="kt">NatInf</span> <span class="kt">Nothing</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">succ</span> <span class="ow">::</span> <span class="kt">NatInf</span> <span class="ow">-&gt;</span> <span class="kt">NatInf</span>
+</span></span><span class="line"><span class="cl"><span class="nf">succ</span> <span class="n">n</span> <span class="ow">=</span> <span class="kt">NatInf</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">inf</span> <span class="ow">::</span> <span class="kt">NatInf</span>
+</span></span><span class="line"><span class="cl"><span class="nf">inf</span> <span class="ow">=</span> <span class="kt">NatInf</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">inf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">opt2natInf</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">NatInf</span> <span class="ow">-&gt;</span> <span class="kt">NatInf</span>
+</span></span><span class="line"><span class="cl"><span class="nf">opt2natInf</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">n</span><span class="p">)</span> <span class="ow">=</span> <span class="n">succ</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl"><span class="nf">opt2natInf</span> <span class="kt">Nothing</span>  <span class="ow">=</span> <span class="n">zero</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">natInf2opt</span> <span class="ow">::</span> <span class="kt">NatInf</span> <span class="ow">-&gt;</span> <span class="kt">Maybe</span> <span class="kt">NatInf</span>
+</span></span><span class="line"><span class="cl"><span class="nf">natInf2opt</span> <span class="ow">=</span> <span class="n">unfold</span></span></span></code></pre></div>
+<h3 id="equivalence-of-inductive-and-functional-definitions">Equivalence of inductive and functional definitions</h3>
+<p><code>Nat</code> can be <em>equivalently defined</em> as a <em>data type</em> <code>NatInd</code> as well as a <em>function type</em> <code>NatFun</code>. Inverse bijections <code>ind2fun</code> and <code>fun2ind</code> prove <code>NatInf</code> and <code>NarInd</code> are equivalent:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">NatInd</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">ZeroInd</span> <span class="k">extends</span> <span class="nc">NatInd</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">SuccInd</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatInd</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">NatInd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">NatFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">zero</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">succ</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">zeroFun</span> <span class="k">:</span> <span class="kt">NatFun</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">NatFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">zero</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">succ</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="n">zero</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">succFun</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatFun</span><span class="o">)</span> <span class="k">:</span> <span class="kt">NatFun</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">NatFun</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">zero</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">succ</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">a</span> <span class="k">=</span> <span class="n">n</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">zero</span><span class="o">,</span> <span class="n">succ</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">succ</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">ind2fun</span><span class="k">:</span> <span class="kt">NatInd</span> <span class="o">=&gt;</span> <span class="nc">NatFun</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">NatInd</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">ZeroInd</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">zeroFun</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">SuccInd</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="n">n</span> <span class="k">=</span> <span class="n">ind2fun</span><span class="o">(</span><span class="n">p</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">succFun</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="k">:</span> <span class="kt">NatFun</span> <span class="o">=&gt;</span> <span class="nc">NatInd</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatFun</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">NatInd</span><span class="o">](</span><span class="nc">ZeroInd</span><span class="o">,</span> <span class="nc">SuccInd</span><span class="o">(</span><span class="k">_</span><span class="o">))</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">NatInd</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">ZeroInd</span> <span class="ow">::</span> <span class="kt">NatInd</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">SuccInd</span> <span class="ow">::</span> <span class="kt">NatInd</span> <span class="ow">-&gt;</span> <span class="kt">NatInd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">NatFun</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">zeroFun</span> <span class="ow">::</span> <span class="kt">NatFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">zeroFun</span> <span class="n">z</span> <span class="kr">_</span> <span class="ow">=</span> <span class="n">z</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">succFun</span> <span class="ow">::</span> <span class="kt">NatFun</span> <span class="ow">-&gt;</span> <span class="kt">NatFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">succFun</span> <span class="n">n</span> <span class="n">z</span> <span class="n">s</span> <span class="ow">=</span> <span class="n">s</span> <span class="p">(</span><span class="n">n</span> <span class="n">z</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="ow">::</span> <span class="kt">NatInd</span> <span class="ow">-&gt;</span> <span class="kt">NatFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span>  <span class="kt">ZeroInd</span>    <span class="ow">=</span> <span class="n">zeroFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="p">(</span><span class="kt">SuccInd</span> <span class="n">n</span><span class="p">)</span> <span class="ow">=</span> <span class="n">succFun</span> <span class="p">(</span><span class="n">ind2fun</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="ow">::</span> <span class="kt">NatFun</span> <span class="ow">-&gt;</span> <span class="kt">NatInd</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">n</span> <span class="kt">ZeroInd</span> <span class="kt">SuccInd</span></span></span></code></pre></div>
+<h2 id="lists">Lists</h2>
+<p>Similarly, given a type <code>A</code>, we want to define the the type of lists whose elements are of type <code>A</code>, written <code>List[A]</code>. Let <code>l:List[A]</code> be a list whose elements are of type <code>A</code>. There are two cases: either the list is empty or it is not. Let&rsquo;s call the the empty list <code>Nil</code>. If the list is not empty, let <code>head</code> be its first element and <code>tail</code> the rest of the list (i.e. the same list as <code>l</code> but without the first element <code>head</code>). Then <code>tail</code> is also a list of type <code>List[A]</code> and <code>l</code> can be obtained by prepending <code>head</code> to <code>tail</code>. We will write this prepending operation <code>Cons :: (A, List[A]) =&gt; List[A]</code> such that <code>l = Cons(head, tail)</code>.</p>
+<p>Once again we see we have <strong>two constructors</strong>: <code>Nil</code> of type <code>List[A]</code> and <code>Cons</code> of type <code>(A, List[A]) =&gt; List[A]</code>. Besides, these constructors satisfy the usual thee properties:</p>
+<ul>
+<li>constructors are injective</li>
+<li>different constructors produces different value</li>
+<li>every value of type <code>List[A]</code> is either a <code>Nil</code> or a <code>Cons(head, tail)</code> for some <code>head:A</code> and some <code>tail:List[A]</code></li>
+</ul>
+<p>Furthermore <code>List[A]</code> is the smallest type satisfying these properties. It can easily be defined in <em>Scala</em> as</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">List</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">nil</span><span class="k">:</span> <span class="kt">R</span><span class="o">,</span> <span class="n">cons</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">R</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Nil</span> <span class="k">=&gt;</span> <span class="n">nil</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Cons</span><span class="o">(</span><span class="n">head</span><span class="o">,</span><span class="n">tail</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">tail</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">nil</span><span class="o">,</span> <span class="n">cons</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cons</span><span class="o">(</span><span class="n">head</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Nil</span> <span class="k">extends</span> <span class="nc">List</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Cons</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
+<p>Like any recursive data type, <code>List[A]</code> is the smallest solution of a <em>type equation</em>. This time the equation is <code>T ≅ 1 + (A, T)</code> which in a more <em>Scalaish</em> syntax is <code>T ≅ Option[(A, T)]</code>. Equivalently, <code>List[A]</code> is also the <em>least fixed-point</em> of the type-function:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">F</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Option</span><span class="o">[(</span><span class="kt">A</span>, <span class="kt">T</span><span class="o">)]</span></span></span></code></pre></div>
+<p>Which means <code>List[A] = μT.(1 + A × T)</code>. The biggest type which is solution (up to equivalence) of the equation, which is the <em>greatest fixed-point</em> of <code>F</code> is the type of streams whose elements are of type <code>A</code>, written <code>Stream[A]</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">trait</span> <span class="kt">Steam</span><span class="p">[</span><span class="kt">A</span><span class="p">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">def</span> <span class="n">unfold</span><span class="kt">:</span> <span class="kt">Option</span><span class="p">[(</span><span class="kt">A</span><span class="p">,</span> <span class="kt">Stream</span><span class="p">[</span><span class="kt">A</span><span class="p">])]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">newtype</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Stream</span> <span class="p">{</span> <span class="n">runStream</span> <span class="ow">::</span> <span class="n">forall</span> <span class="n">c</span><span class="o">.</span> <span class="p">(</span><span class="kt">Maybe</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kt">Stream</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span> <span class="p">}</span></span></span></code></pre></div>
+<p><em>Exercise: write the bijections proving <code>Stream[A] ≅ Option[(A, Stream[A])]</code></em></p>
+<h3 id="equivalence-of-inductive-and-functional-definitions-1">Equivalence of inductive and functional definitions</h3>
+<p><code>List[A]</code> can equivalently be defined as the <em>data type</em> <code>ListInd[A]</code> as well as the <em>type function</em> <code>ListFun[A]</code>. The two inverse functions <code>ind2fun</code> and <code>fun2ind</code> prove <code>ListInd[A]</code> and <code>ListFun[A]</code> are equivalent:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">NilInd</span> <span class="k">extends</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">ConsInd</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">ListFun</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">nil</span><span class="k">:</span> <span class="kt">R</span><span class="o">,</span> <span class="n">cons</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">R</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">nilFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">nil</span><span class="k">:</span> <span class="kt">R</span><span class="o">,</span> <span class="n">cons</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">R</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span> <span class="n">nil</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">consFun</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">nil</span><span class="k">:</span> <span class="kt">R</span><span class="o">,</span> <span class="n">cons</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">R</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">tail</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">nil</span><span class="o">,</span> <span class="n">cons</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">cons</span><span class="o">(</span><span class="n">head</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">ind2fun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">NilInd</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nilFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">ConsInd</span><span class="o">(</span><span class="n">head</span><span class="o">,</span> <span class="n">tail</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="n">tailFun</span> <span class="k">=</span> <span class="n">ind2fun</span><span class="o">(</span><span class="n">tail</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">consFun</span><span class="o">(</span><span class="n">head</span><span class="o">,</span> <span class="n">tailFun</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">]](</span><span class="nc">NilInd</span><span class="o">,</span> <span class="nc">ConsInd</span><span class="o">(</span><span class="k">_</span><span class="o">,</span><span class="k">_</span><span class="o">))</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">ListInd</span> <span class="n">a</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">NilInd</span>  <span class="ow">::</span> <span class="kt">ListInd</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">ConsInd</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListInd</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListInd</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">ListFun</span> <span class="n">a</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">r</span><span class="o">.</span> <span class="n">r</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">r</span> <span class="ow">-&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">nilFun</span> <span class="ow">::</span> <span class="kt">ListFun</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nilFun</span> <span class="n">nil</span> <span class="kr">_</span> <span class="ow">=</span> <span class="n">nil</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">consFun</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListFun</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListFun</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">consFun</span> <span class="n">head</span> <span class="n">tail</span> <span class="n">nil</span> <span class="n">cons</span> <span class="ow">=</span> <span class="n">cons</span> <span class="n">head</span> <span class="p">(</span><span class="n">tail</span> <span class="n">nil</span> <span class="n">cons</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="ow">::</span> <span class="kt">ListInd</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListFun</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span>  <span class="kt">NilInd</span>             <span class="ow">=</span> <span class="n">nilFun</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="p">(</span><span class="kt">ConsInd</span> <span class="n">head</span> <span class="n">tail</span><span class="p">)</span> <span class="ow">=</span> <span class="n">consFun</span> <span class="n">head</span> <span class="p">(</span><span class="n">ind2fun</span> <span class="n">tail</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="ow">::</span> <span class="kt">ListFun</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListInd</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">f</span> <span class="kt">NilInd</span> <span class="kt">ConsInd</span></span></span></code></pre></div>
+<h2 id="algebraic-data-types">Algebraic Data Types</h2>
+<p><a href="https://en.wikipedia.org/wiki/Algebraic_data_type" rel="external" target="_self">Algebraic Data Types</a> are types that can be expressed using only <code>False</code>, <code>Unit</code>, <em>products</em>, <em>coproducts</em> and the <em>least fixed-point</em> operator <code>μ</code>. For example, binary trees whose elements are of type <code>A</code>, defined in <em>Scala</em> by</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">empty</span><span class="k">:</span> <span class="kt">R</span><span class="o">,</span> <span class="n">leaf</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">,</span> <span class="n">node</span><span class="k">:</span> <span class="o">(</span><span class="kt">R</span><span class="o">,</span> <span class="kt">R</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Empty</span>   <span class="k">=&gt;</span> <span class="n">empty</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Leaf</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">leaf</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Node</span><span class="o">(</span><span class="n">l</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="n">al</span> <span class="k">=</span> <span class="n">l</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">empty</span><span class="o">,</span> <span class="n">leaf</span><span class="o">,</span> <span class="n">node</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="n">ar</span> <span class="k">=</span> <span class="n">r</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">empty</span><span class="o">,</span> <span class="n">leaf</span><span class="o">,</span> <span class="n">node</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node</span><span class="o">(</span><span class="n">al</span><span class="o">,</span> <span class="n">ar</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Empty</span> <span class="k">extends</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Leaf</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Node</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">left</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">right</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
+<p>can be expressed as the type <code>Tree[A] = μT.(1 + A + (T × T))</code>, which is the smallest type (up to equivalence) solution of the equation <code>T ≅ Either3[Unit, A, (T, T)]</code>.</p>
+<p><em>Exercise: write the bijection proving the equivalence.</em></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1729680927" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729680927" defer></script>
+    <script src="../../js/theme.js?1729680927" defer></script>
+  </body>
+</html>

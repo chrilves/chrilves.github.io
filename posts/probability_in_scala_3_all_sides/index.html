@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.3">
+    <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
+    <meta name="description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+    <meta name="author" content="chrilves">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Playing with Probability in Scala 3 :: @chrilves&#39; Archives">
+    <meta name="twitter:description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+  <meta name="twitter:site" content="@chrilves"/>
+    <meta property="og:url" content="https://chrilves.github.io/posts/probability_in_scala_3_all_sides/index.html">
+    <meta property="og:site_name" content="@chrilves&#39; Archives">
+    <meta property="og:title" content="Playing with Probability in Scala 3 :: @chrilves&#39; Archives">
+    <meta property="og:description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Posts">
+    <meta property="article:published_time" content="2020-07-11T19:43:00+02:00">
+    <meta property="article:modified_time" content="2020-07-11T19:43:00+02:00">
+    <meta itemprop="name" content="Playing with Probability in Scala 3 :: @chrilves&#39; Archives">
+    <meta itemprop="description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+    <meta itemprop="datePublished" content="2020-07-11T19:43:00+02:00">
+    <meta itemprop="dateModified" content="2020-07-11T19:43:00+02:00">
+    <meta itemprop="wordCount" content="5665">
+    <meta itemprop="keywords" content="Probability,Dice,Statistics,Scala 3,Dotty,Functional Programming,Coin">
+    <title>Playing with Probability in Scala 3 :: @chrilves&#39; Archives</title>
+    <link href="../../posts/probability_in_scala_3_all_sides/index.xml" rel="alternate" type="application/rss+xml" title="Playing with Probability in Scala 3 :: @chrilves&#39; Archives">
+    <link href="../../posts/probability_in_scala_3_all_sides/index.print.html" rel="alternate" type="text/html" title="Playing with Probability in Scala 3 :: @chrilves&#39; Archives">
+    <link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729680927" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729680927" rel="stylesheet">
+    <link href="../../css/fonts.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729680927" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729680927" rel="stylesheet" media="print">
+    <script src="../../js/variant.js?1729680927"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../posts/probability_in_scala_3_all_sides/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#understanding-the-problem">Understanding the Problem</a></li>
+    <li><a href="#modelling-the-problem">Modelling the Problem</a></li>
+    <li><a href="#understanding-the-experiment">Understanding the Experiment</a></li>
+    <li><a href="#understanding-the-probability">Understanding the Probability</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Playing with Probability in Scala 3</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/probability_in_scala_3_all_sides.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/probability_in_scala_3_all_sides/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/index.html" title="Posts (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/les_gadts_par_l_exemple/index.html" title="Les GADTs Par l&#39;Exemple (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="playing-with-probability-in-scala-3">Playing with Probability in Scala 3</h1>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+<p>Here is a simple experiment: take a <strong>fair</strong> dice (or a coin) and roll it until every
+side of the dice has been observed <strong>at least once</strong>. Write down the number of
+rolls and repeat the operation several times.
+<em>On average, how many rolls does it take to observe every side of the dice at
+least once?</em>
+This is precisely the question we are about to answer together.</p>
+<p>Solving Maths puzzle is fun. Solving them using the shiniest features of
+<a href="https://dotty.epfl.ch/" rel="external" target="_self">Scala 3</a> is even amazingly funnier! If you do not have
+<em>Scala 3</em> installed yet:</p>
+<ul>
+<li>on <strong>Arch Linux</strong>, as usual there is an <a href="https://aur.archlinux.org/packages/scala-dotty/" rel="external" target="_self">AUR package</a>
+: <code>aur/scala-dotty</code>. Install it via <code>yay -S aur/scala-dotty</code> or any other <em>AUR</em> helper.</li>
+<li>on other <em>Linux</em> distributions, download <a href="https://github.com/lampepfl/dotty/releases/download/0.25.0-RC2/dotty-0.25.0-RC2.tar.gz" rel="external" target="_self">https://github.com/lampepfl/dotty/releases/download/0.25.0-RC2/dotty-0.25.0-RC2.tar.gz</a> , extract it and make sure the executables are in your <code>$PATH</code>.</li>
+<li>on other systems, follow the instructions <a href="https://dotty.epfl.ch/#getting-started" rel="external" target="_self">here</a>.</li>
+</ul>
+<p>You should now be able to run the <em>Scala 3 REPL</em> via the command:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-prompt" data-lang="prompt">[shell prompt]$ dotr -new-syntax -Yexplicit-nulls -Yerased-terms -indent -version
+Starting dotty REPL...
+Dotty compiler version 0.25.0-RC2 -- Copyright 2002-2020, LAMP/EPFL
+scala&gt;</code></pre></div>
+<p><strong>An Important Note:</strong> Please refrain from starting your favourite IDE or
+starting a new project. It will only make experimenting harder and painful.
+All you need is the <em>Scala 3 REPL</em>, any basic text editor and knowing how to
+copy-paste on your system.</p>
+<h2 id="understanding-the-problem">Understanding the Problem</h2>
+<p>Let us start by modelling a dice. The sides of a dice will be numbered starting
+from <em>1</em>. We consider a coin as a 2-sided dice whose sides are <em>1</em> and <em>2</em>.
+The sides of an usual 6-sided dice are <em>1</em>, <em>2</em>, <em>3</em>, <em>4</em>, <em>5</em> and <em>6</em>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Dice</span><span class="o">(</span><span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">roll</span><span class="o">()</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scala</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="nc">Random</span><span class="o">.</span><span class="n">nextInt</span><span class="o">(</span><span class="n">sides</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">d2</span>   <span class="k">=</span> <span class="nc">Dice</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">d6</span>   <span class="k">=</span> <span class="nc">Dice</span><span class="o">(</span><span class="mi">6</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">d10</span>  <span class="k">=</span> <span class="nc">Dice</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">d20</span>  <span class="k">=</span> <span class="nc">Dice</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">d100</span> <span class="k">=</span> <span class="nc">Dice</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span></span></span></code></pre></div>
+<p><code>d2</code> models a coin, <code>d6</code> models a usual 6-sided dice, etc. The method <code>roll</code>
+, as its name suggest, simulates rolling the dice. On each invocation it gives
+a random side (its number).
+The first question to answer is: <em>is such a dice fair ?</em> Remember that a fair
+dice is one for which every side is equally likely to be observed. For a coin,
+it means getting <em>1</em> is as likely as getting <em>2</em>. To check empirically that
+a dice is fair, or at least not loaded, we will roll it many times and count
+how often we observe its sides:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="o">(</span><span class="n">dice</span><span class="k">:</span> <span class="kt">Dice</span><span class="o">)</span> <span class="n">frequencies</span><span class="o">(</span><span class="n">rolls</span><span class="k">:</span> <span class="kt">Long</span><span class="o">)</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Double</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Stores how many times we observed each side
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">val</span> <span class="n">arr</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">.</span><span class="n">fill</span><span class="o">(</span><span class="n">dice</span><span class="o">.</span><span class="n">sides</span><span class="o">)(</span><span class="mi">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">1L</span> <span class="n">to</span> <span class="n">rolls</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arr</span><span class="o">(</span><span class="n">dice</span><span class="o">.</span><span class="n">roll</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Transforms counters into ratio
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">val</span> <span class="n">probability</span><span class="k">:</span> <span class="kt">IndexedSeq</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">Double</span><span class="o">)]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">dice</span><span class="o">.</span><span class="n">sides</span> <span class="k">yield</span>
+</span></span><span class="line"><span class="cl">      <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">arr</span><span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">).</span><span class="n">toDouble</span> <span class="o">/</span> <span class="n">rolls</span>
+</span></span><span class="line"><span class="cl">  <span class="n">probability</span><span class="o">.</span><span class="n">toMap</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">d2</span><span class="o">.</span><span class="n">frequencies</span><span class="o">(</span><span class="mi">1000000000L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res0</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="mf">0.499985517</span><span class="o">,</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mf">0.500014483</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">d6</span><span class="o">.</span><span class="n">frequencies</span><span class="o">(</span><span class="mi">1000000000L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res1</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="nc">HashMap</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">1</span> <span class="o">-&gt;</span> <span class="mf">0.166669596</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mf">0.166660131</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">3</span> <span class="o">-&gt;</span> <span class="mf">0.166664591</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">4</span> <span class="o">-&gt;</span> <span class="mf">0.166654524</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">5</span> <span class="o">-&gt;</span> <span class="mf">0.166665811</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">6</span> <span class="o">-&gt;</span> <span class="mf">0.166685347</span><span class="o">)</span></span></span></code></pre></div>
+<p>This <a href="https://dotty.epfl.ch/docs/reference/contextual/extension-methods.html" rel="external" target="_self">extension method</a>
+can be called like any method of <code>Dice</code>.
+As you can see, the frequencies are very close to each other. In addition, the
+more rolls we perform, the closer they are.
+We can conclude that these dice are fair enough.
+We are finally ready for our big adventure: finding the so desired average!
+We call an <strong>experiment</strong> the action of rolling the dice until every side has
+been observed <em>at least once</em> and the <strong>length</strong> of the experiment its number of
+rolls.
+The method <code>rollUntilAllSeen</code> simulates an experiment and return its length.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="o">(</span><span class="n">dice</span><span class="k">:</span> <span class="kt">Dice</span><span class="o">)</span> <span class="n">rollUntilAllSeen</span><span class="o">()</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">rolls</span>     <span class="k">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">seen</span>      <span class="k">=</span> <span class="nc">Array</span><span class="o">.</span><span class="n">fill</span><span class="o">(</span><span class="n">dice</span><span class="o">.</span><span class="n">sides</span><span class="o">)(</span><span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">remaining</span> <span class="k">=</span> <span class="n">dice</span><span class="o">.</span><span class="n">sides</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="n">remaining</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">outcome</span> <span class="k">=</span> <span class="n">dice</span><span class="o">.</span><span class="n">roll</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rolls</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">!</span><span class="n">seen</span><span class="o">(</span><span class="n">outcome</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">      <span class="n">seen</span><span class="o">(</span><span class="n">outcome</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="k">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="n">remaining</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="n">rolls</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">d6</span><span class="o">.</span><span class="n">rollUntilAllSeen</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res2</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">d6</span><span class="o">.</span><span class="n">rollUntilAllSeen</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res3</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">15</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">d6</span><span class="o">.</span><span class="n">rollUntilAllSeen</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res4</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">d6</span><span class="o">.</span><span class="n">rollUntilAllSeen</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res5</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">9</span></span></span></code></pre></div>
+<p>Based on the four experiments above, we get the impression that the average
+should be close to <em>11</em>, but four experiments are not a lot to get an accurate
+estimation of the real average.
+Fortunately, the more experiments we run, the closer we get to it.
+We need to compute the average over a large number of experiments.
+We will actually be a bit smarter.
+Instead of limiting ourselves to computing the average, we will count, for every
+observed length, the number of its experiments.
+It will give us how often a length is observed, i.e. its <em>frequency</em>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Histogram</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">values</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">BigInt</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">average</span><span class="o">(</span><span class="n">using</span> <span class="nc">Accumulable</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="nc">Ratio</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">acc</span>   <span class="k">:</span> <span class="kt">A</span>      <span class="o">=</span> <span class="n">summon</span><span class="o">[</span><span class="kt">Accumulable</span><span class="o">[</span><span class="kt">A</span><span class="o">]].</span><span class="n">zero</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">total</span> <span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">count</span><span class="o">)</span> <span class="k">&lt;-</span> <span class="n">values</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">      <span class="n">acc</span> <span class="o">+=</span> <span class="n">a</span><span class="o">*</span><span class="n">count</span>
+</span></span><span class="line"><span class="cl">      <span class="n">total</span> <span class="o">+=</span> <span class="n">count</span>
+</span></span><span class="line"><span class="cl">    <span class="n">acc</span> <span class="o">/</span> <span class="n">total</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">frequencies</span><span class="o">(</span><span class="n">using</span> <span class="nc">Ratio</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">BigDecimal</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">total</span> <span class="k">=</span> <span class="n">values</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span>
+</span></span><span class="line"><span class="cl">    <span class="n">values</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="k">case</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">count</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="nc">BigDecimal</span><span class="o">(</span><span class="n">count</span><span class="o">)</span> <span class="o">/</span> <span class="nc">BigDecimal</span><span class="o">(</span><span class="n">total</span><span class="o">)</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">Histogram</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">histoB</span> <span class="k">=</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">mutable</span><span class="o">.</span><span class="nc">Map</span><span class="o">.</span><span class="n">empty</span><span class="o">[</span><span class="kt">B</span>, <span class="kt">BigInt</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">count</span><span class="o">)</span> <span class="k">&lt;-</span> <span class="n">values</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">b</span> <span class="k">=</span> <span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">histoB</span><span class="o">.</span><span class="n">update</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">histoB</span><span class="o">.</span><span class="n">getOrElse</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">+</span> <span class="n">count</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="nc">Histogram</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">histoB</span><span class="o">.</span><span class="n">toMap</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">Histogram</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">apply</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">iterations</span><span class="k">:</span> <span class="kt">Long</span><span class="o">)(</span><span class="n">value</span> <span class="k">:</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">Histogram</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">histo</span> <span class="k">=</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">mutable</span><span class="o">.</span><span class="nc">Map</span><span class="o">.</span><span class="n">empty</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">BigInt</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">1L</span> <span class="n">to</span> <span class="n">iterations</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">a</span> <span class="k">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">      <span class="n">histo</span><span class="o">.</span><span class="n">update</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">histo</span><span class="o">.</span><span class="n">getOrElse</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="nc">Histogram</span><span class="o">(</span><span class="n">histo</span><span class="o">.</span><span class="n">toMap</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<p>The class <code>Histogram[A]</code> is essentially a key-value store where the value
+is the number of times the key has been observed, also known as its
+<em>multiplicity</em>.
+You may also wonder how <em>Scala</em> can accept adding two values of type <code>A</code> and
+multiplying/dividing a value of type <code>A</code> by a <code>BigInt</code> in <code>average</code>.
+It works thanks to the magic of
+<a href="https://dotty.epfl.ch/docs/reference/contextual/type-classes.html" rel="external" target="_self">Type Classes in Scala 3</a>.
+<code>Accumulable</code> and <code>Ratio</code> are two type classes defined by:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Accumulable</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">zero</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">A</span><span class="o">)+(</span><span class="n">y</span><span class="k">:</span><span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">A</span><span class="o">)*(</span><span class="n">m</span><span class="k">:</span> <span class="kt">BigInt</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Ratio</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">A</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="n">m</span><span class="k">:</span> <span class="kt">BigInt</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<p>Note that, unlike <em>Scala 2</em>, no weird implicit conversion is required to support
+infix syntax for <code>+</code>, <code>*</code> and <code>/</code>. These methods are just defined as extension
+methods.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">h6</span> <span class="k">=</span> <span class="nc">Histogram</span><span class="o">(</span><span class="mi">100000000L</span><span class="o">)(</span><span class="n">d6</span><span class="o">.</span><span class="n">rollUntilAllSeen</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">h6</span><span class="k">:</span> <span class="kt">Histogram</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Histogram</span><span class="o">(</span><span class="nc">HashMap</span><span class="o">(</span><span class="mi">73</span> <span class="o">-&gt;</span> <span class="mi">202</span><span class="o">,</span> <span class="mi">69</span> <span class="o">-&gt;</span> <span class="mi">385</span><span class="o">,</span> <span class="mi">88</span> <span class="o">-&gt;</span> <span class="mi">17</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">10</span> <span class="o">-&gt;</span> <span class="mi">8298014</span><span class="o">,</span> <span class="mi">56</span> <span class="o">-&gt;</span> <span class="mi">4403</span><span class="o">,</span> <span class="mi">42</span> <span class="o">-&gt;</span> <span class="mi">56557</span><span class="o">,</span> <span class="mi">24</span> <span class="o">-&gt;</span> <span class="mi">1462064</span><span class="o">,</span> <span class="mi">37</span> <span class="o">-&gt;</span> <span class="mi">140975</span><span class="o">,</span> <span class="o">...))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">h6</span><span class="o">.</span><span class="n">average</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="o">|</span><span class="n">h6</span><span class="o">.</span><span class="n">average</span>
+</span></span><span class="line"><span class="cl">  <span class="o">|</span>          <span class="o">^</span>
+</span></span><span class="line"><span class="cl">  <span class="o">|</span><span class="n">no</span> <span class="k">implicit</span> <span class="n">argument</span> <span class="n">of</span> <span class="k">type</span> <span class="kt">Accumulable</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="n">was</span> <span class="n">found</span> <span class="k">for</span> <span class="n">parameter</span> <span class="n">x$1</span> <span class="n">of</span> <span class="n">method</span> <span class="n">average</span> <span class="n">in</span> <span class="k">class</span> <span class="nc">Histogram</span></span></span></code></pre></div>
+<p>If your first reaction is to implement an instance of <code>Accumulable</code> for <code>Int</code>,
+ask yourself how you could be confident that the computed values are correct when
+adding two positive numbers can result into a negative one:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">x</span> <span class="k">=</span> <span class="mi">1990000000</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">x</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1990000000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res0</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">314967296</span></span></span></code></pre></div>
+<p>I am well aware that most use cases using <code>Int</code> is perfectly fine,
+because they never have numbers big enough to reach this limit.
+After all, 10 digits ought to be enough for anybody, right?
+In the next sections, you will see that we will reach this limit very often!
+Writing an instance of <code>Accumulable</code> for <code>Int</code> is a catastrophic idea.
+Instead we will write instances for <code>BigInt</code> and <code>BigDecimal</code>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">given</span> <span class="nc">Accumulable</span><span class="o">[</span><span class="kt">BigInt</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">zero</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">BigInt</span><span class="o">)+(</span><span class="n">y</span><span class="k">:</span><span class="kt">BigInt</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">BigInt</span><span class="o">)*(</span><span class="n">m</span><span class="k">:</span><span class="kt">BigInt</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">given</span> <span class="nc">Accumulable</span><span class="o">[</span><span class="kt">BigDecimal</span><span class="o">]</span> <span class="k">with</span> <span class="nc">Ratio</span><span class="o">[</span><span class="kt">BigDecimal</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">zero</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="nc">BigDecimal</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">BigDecimal</span><span class="o">)+(</span><span class="n">y</span><span class="k">:</span><span class="kt">BigDecimal</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">BigDecimal</span><span class="o">)*(</span><span class="n">m</span><span class="k">:</span><span class="kt">BigInt</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">BigDecimal</span><span class="o">)/(</span><span class="n">m</span><span class="k">:</span><span class="kt">BigInt</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<p>Now we can get out much awaited average:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">h6</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="k">_</span><span class="o">)).</span><span class="n">average</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res0</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">14.69830127</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="nc">Histogram</span><span class="o">(</span><span class="mi">10000000L</span><span class="o">)(</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="n">d6</span><span class="o">.</span><span class="n">rollUntilAllSeen</span><span class="o">())).</span><span class="n">average</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res1</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">14.6949955</span></span></span></code></pre></div>
+<p>As you can see, the average is never far from <em>14.69</em>. Knowing the average is
+nice but it does not tell us much about how the length is distributed among
+the experiments. This is precisely the reason why we kept counters!
+To visualize this data, we can export the histogram as a
+<a href="https://en.wikipedia.org/wiki/Comma-separated_values" rel="external" target="_self">CSV file</a>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="o">(</span><span class="n">histogram</span><span class="k">:</span> <span class="kt">Histogram</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="n">toCSV</span><span class="o">(</span><span class="n">fileName</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">import</span> <span class="nn">java.io._</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">pw</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">fileName</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pw</span><span class="o">.</span><span class="n">println</span><span class="o">(</span><span class="s">&#34;value,count&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">length</span> <span class="k">&lt;-</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">histogram</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">keySet</span><span class="o">.</span><span class="n">max</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">      <span class="n">pw</span><span class="o">.</span><span class="n">println</span><span class="o">(</span><span class="s">s&#34;</span><span class="si">$length</span><span class="s">,</span><span class="si">${</span><span class="n">histogram</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">getOrElse</span><span class="o">(</span><span class="n">length</span><span class="o">,</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span><span class="si">}</span><span class="s">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pw</span><span class="o">.</span><span class="n">close</span><span class="o">()</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">h6</span><span class="o">.</span><span class="n">toCSV</span><span class="o">(</span><span class="s">&#34;d6.csv&#34;</span><span class="o">)</span></span></span></code></pre></div>
+<p>Opening the file <code>d6.csv</code> with <a href="https://www.libreoffice.org/" rel="external" target="_self">LibreOffice</a>
+and plotting the data as a <em>XY Chart</em> using the <code>value</code> column as <em>X</em> and <code>count</code>
+as <em>Y</em> gives this chart:</p>
+<p><a href="#R-image-8029b0f4a2fc946f68d6517ddbcfb345" class="lightbox-link"><img alt="d6 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d6.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8029b0f4a2fc946f68d6517ddbcfb345"><img alt="d6 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d6.svg"></a></p>
+<p>As you can see, after length 15, there is a huge decrease in the number of
+experiments. And after length 50, the number of experiment is almost neglectable.
+The situation is similar for other dice. For example, here is the curve for <code>d100</code>:</p>
+<p><a href="#R-image-e9bf1ed5100c3fc4ca8051087468708c" class="lightbox-link"><img alt="d100 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d100_distrib.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e9bf1ed5100c3fc4ca8051087468708c"><img alt="d100 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d100_distrib.svg"></a></p>
+<p>By running enough experiment, we can get an pretty close estimation of the
+average. But an experiment is by nature random, every measure we perform is very
+likely to give a (close but still) different estimation of the average. We need
+a more reliable way to approximate the average.</p>
+<h2 id="modelling-the-problem">Modelling the Problem</h2>
+<p>To get a more reliable approximation of the average, or the exact value, we can
+not rely on random experiments. We need to use maths! Remember that an experiment
+is a sequence of dice rolls such that, as soon as every side of the dice have been
+observed at least once, the sequence is over. <em>Given a dice</em>, we will call a
+sequence of sides <strong>valid</strong> when it follows these rules.</p>
+<p>Using a 3-sided dice:</p>
+<ul>
+<li>The sequence <code>2→2→1→2</code> is invalid because the side <code>3</code> has not been observed.</li>
+<li>The sequence <code>2→2→1→2→3→3</code> is invalid because the sequence needs to stop as
+soon as every side has been observed so the last roll is not required.</li>
+<li>The sequence <code>2→2→1→2→3</code> is valid: every side has been observed and it was not
+possible to stop earlier.</li>
+</ul>
+<p>Note that the validity depends on the dice used! The sequence <code>2→2→1→2→3</code> is
+valid for a 3-sided dice but invalid for a 4-sided dice. To compute the average,
+we will: (1) enumerate all valid sequences (up to a certain length), then (2)
+sum their length and finally (3) divide by the number of values in the sum.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">enumerate</span><span class="o">(</span><span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">depth</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">aux</span><span class="o">(</span><span class="n">revSeq</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">revSeq</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="n">depth</span>
+</span></span><span class="line"><span class="cl">    <span class="n">then</span> <span class="nc">LazyList</span><span class="o">.</span><span class="n">empty</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span> <span class="n">revSeq</span><span class="o">.</span><span class="n">toSet</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">sides</span>
+</span></span><span class="line"><span class="cl">          <span class="n">then</span> <span class="nc">LazyList</span><span class="o">(</span><span class="n">revSeq</span><span class="o">.</span><span class="n">reverse</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">else</span> <span class="nc">LazyList</span><span class="o">.</span><span class="n">range</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">sides</span><span class="o">+</span><span class="mi">1</span><span class="o">).</span><span class="n">flatMap</span> <span class="o">{</span> <span class="n">next</span> <span class="k">=&gt;</span> <span class="n">aux</span><span class="o">(</span><span class="n">next</span> <span class="k">:</span><span class="kt">:</span> <span class="kt">revSeq</span><span class="o">)</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">aux</span><span class="o">(</span><span class="nc">List</span><span class="o">.</span><span class="n">empty</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">average</span><span class="o">(</span><span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">depth</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">validSequences</span> <span class="k">=</span> <span class="n">enumerate</span><span class="o">(</span><span class="n">sides</span><span class="o">,</span> <span class="n">depth</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">validSequences</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">toDouble</span><span class="o">).</span><span class="n">sum</span> <span class="o">/</span> <span class="n">validSequences</span><span class="o">.</span><span class="n">size</span></span></span></code></pre></div>
+<p>For a 3-sided dice, the list of all valid sequences up to length 5 is:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">enumerate</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">5</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">mkString</span><span class="o">(</span><span class="s">&#34;→&#34;</span><span class="o">)).</span><span class="n">toList</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res26</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>   <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>   <span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>   <span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>   <span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>     <span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>   <span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>   <span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>   <span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span>   <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>   <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>     <span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>   <span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>   <span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>   <span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>     <span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>   <span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>     <span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>   <span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>   <span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span>   <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span>   <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">1</span><span class="o">→</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">3</span><span class="o">→</span><span class="mi">2</span><span class="o">→</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">)</span></span></span></code></pre></div>
+<p>That&rsquo;s awesome! We just have to average all the lengths:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">average</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">5</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res27</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">4.545454545454546</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">average</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">10</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res32</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">9.071713147410359</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">average</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">14</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res36</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">13.00953778429934</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">average</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">16</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res39</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">15.003205911089399</span></span></span></code></pre></div>
+<p>Apparently, computing the average for sequences up to length 16 does not
+converge yet. Unfortunately our implementation is to slow for large sequences.
+The number of valid sequences grows exponentially over length.
+We need a much faster algorithm.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">aggregate</span><span class="o">[</span><span class="kt">A:Accumulable</span><span class="o">](</span><span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">depth</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)(</span><span class="n">f</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">current</span> <span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">BigInt</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">.</span><span class="n">fill</span><span class="o">(</span><span class="n">sides</span><span class="o">+</span><span class="mi">1</span><span class="o">)(</span><span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">next</span>    <span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">BigInt</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">.</span><span class="n">fill</span><span class="o">(</span><span class="n">sides</span><span class="o">+</span><span class="mi">1</span><span class="o">)(</span><span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">agg</span>     <span class="k">:</span> <span class="kt">A</span>             <span class="o">=</span> <span class="n">summon</span><span class="o">[</span><span class="kt">Accumulable</span><span class="o">[</span><span class="kt">A</span><span class="o">]].</span><span class="n">zero</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">length</span>  <span class="k">:</span> <span class="kt">Int</span>           <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">current</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="k">=</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="c1">// The empty sequence is the unique sequence where 0 sides have been seen
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="n">depth</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">agg</span> <span class="o">+=</span> <span class="n">f</span><span class="o">(</span><span class="n">length</span><span class="o">)</span> <span class="o">*</span> <span class="n">current</span><span class="o">(</span><span class="n">sides</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">seen</span> <span class="k">&lt;-</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">sides</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">      <span class="n">next</span><span class="o">(</span><span class="n">seen</span><span class="o">)</span>     <span class="o">+=</span> <span class="n">current</span><span class="o">(</span><span class="n">seen</span><span class="o">)</span> <span class="o">*</span> <span class="n">seen</span>
+</span></span><span class="line"><span class="cl">      <span class="n">next</span><span class="o">(</span><span class="n">seen</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+=</span> <span class="n">current</span><span class="o">(</span><span class="n">seen</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="n">sides</span> <span class="o">-</span> <span class="n">seen</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">length</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">current</span> <span class="k">=</span> <span class="n">next</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next</span>    <span class="k">=</span> <span class="nc">Array</span><span class="o">.</span><span class="n">fill</span><span class="o">(</span><span class="n">sides</span><span class="o">+</span><span class="mi">1</span><span class="o">)(</span><span class="nc">BigInt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">agg</span></span></span></code></pre></div>
+<p>This is a generic aggregation function that, given a <code>sides</code>-sided dice,
+gives to every valid sequence a value that depends only on its length (via <code>f</code>)
+and aggregate them over all valid sequences up to a certain length called the
+<code>depth</code>. We can use it to compute the average for sequences up to length
+<em>100000</em>).</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">depth</span> <span class="k">=</span> <span class="mi">100000</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">depth</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">100000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">sides</span> <span class="k">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">sumOfLengths</span> <span class="k">=</span> <span class="n">aggregate</span><span class="o">(</span><span class="n">sides</span><span class="o">,</span><span class="n">depth</span><span class="o">)(</span><span class="n">length</span> <span class="k">=&gt;</span> <span class="nc">BigInt</span><span class="o">(</span><span class="n">length</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">sumOfLengths</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span> <span class="n">A</span> <span class="mi">30109</span> <span class="n">digits</span> <span class="n">positive</span> <span class="n">integer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">numberOfSeqs</span> <span class="k">=</span> <span class="n">aggregate</span><span class="o">(</span><span class="n">sides</span><span class="o">,</span><span class="n">depth</span><span class="o">)(</span><span class="n">length</span> <span class="k">=&gt;</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">numberOfSeqs</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span>  <span class="n">A</span> <span class="mi">30104</span> <span class="n">digits</span> <span class="n">positive</span> <span class="n">integer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">avegrageUpTo100000</span> <span class="k">=</span> <span class="o">(</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="n">sumOfLengths</span><span class="o">)/</span><span class="n">numberOfSeqs</span><span class="o">).</span><span class="n">toDouble</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">avegrageUpTo100000</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">99999.0</span></span></span></code></pre></div>
+<p>The average does not seem to converge. Have a look at previous estimations of the
+averages for depths <em>5</em>, <em>10</em>, <em>14</em> and <em>16</em>. The average seem very close to
+<em>depth - 1</em>. It seem to indicate that, on average, you need to roll a 3-sided
+dice an infinity of times to obverse every side at least once. It means that,
+regardless the number of rolls you perform, it is almost certain that you will
+never see at least once side. Let&rsquo;s confirm that using the methods of the
+previous section:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">d3</span> <span class="k">=</span> <span class="nc">Dice</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">d3</span><span class="k">:</span> <span class="kt">Dice</span> <span class="o">=</span> <span class="nc">Dice</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">h3</span> <span class="k">=</span> <span class="nc">Histogram</span><span class="o">(</span><span class="mi">100000000L</span><span class="o">)(</span><span class="n">d3</span><span class="o">.</span><span class="n">rollUntilAllSeen</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">h3</span><span class="k">:</span> <span class="kt">Histogram</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Histogram</span><span class="o">(</span><span class="nc">HashMap</span><span class="o">(...))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">h3</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="k">_</span><span class="o">)).</span><span class="n">average</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res6</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">5.5003517</span></span></span></code></pre></div>
+<p>The experience shows that, on average, <em>5.5</em> rolls are enough to see every side
+of a 3-sided dice. The only possible conclusion is that our modeling is very
+wrong.
+The problem is we consider every sequence to be equally likely. But the sequence
+<code>1→2→3</code> is much likelier to happen than <code>1→2→2→1→2→1→2→1→1→2→1→3</code>. We can plot
+the <code>h3</code> histogram to check that the longer a sequence is, the less likely it
+is to happen:</p>
+<p><a href="#R-image-3e01051f9f729a7007bb304c74699474" class="lightbox-link"><img alt="d3 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d3_distrib.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3e01051f9f729a7007bb304c74699474"><img alt="d3 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d3_distrib.svg"></a></p>
+<p>Our real big mistake is our mathematical modeling does not model the real
+problem. This is a very important rule in modeling: <strong>models much match
+closely the things they are supposed to model</strong>.</p>
+<h2 id="understanding-the-experiment">Understanding the Experiment</h2>
+<p>To get a mathematical model that closely match the experience, we need to have a
+deeper understanding of the problem. When we perform 10000000 experiments, we get
+as many valid sequences of sides. But taking the hypothesis that theses sequences
+are all distinct is wrong. An experiment is a random process, you may get the
+same sequence several times. We need to take into account how often a sequence
+is likely to happen.</p>
+<p>Given a \(n\)-sided fair dice, by definition of fairness, every time we roll
+the dice, for any side, there is exactly \(\frac{1}{n}\) chance to observe this
+side. Each roll being independent from other ones, for every sequence of \(m\)
+rolls, there is \((\frac{1}{n})^m\) chance to observe this sequence.</p>
+<p>Do not jump on the conclusion that the probability of a valid sequence of
+length \(m\) in our problem is \((\frac{1}{n})^m\) yet! If we change the
+problem slightly by requiring that every side is observed <strong>exactly</strong> once
+(ignoring sequences where one side is observed several times). Then for a coin
+there is only 2 valid sequences <code>1→2</code> and <code>2→1</code>, each equally likely so they both
+have probability \(\frac{1}{2}\), not \(\frac{1}{4}\). The good way to
+proceed is finding a probability space that models correctly the problem.</p>
+<p>Remember that the dice used has been fixed as a \(n\)-sided fair dice.
+The first step in defining a probability space is defining the outcomes. Outcomes
+are the results of statistical experiments. It our problem, outcomes are the
+valid sequences of dice rolls. Then we need to define the set of events. Events
+are the things whose likelihood we want to measure! For example: what is the
+probability that a valid sequence starts with <code>1</code>, or what is the probability
+that a valid sequence is a palindrome (i.e. the reverse of the sequence is the
+sequence itself),etc. It feels natural, in our situation, to consider as event,
+any set of valid sequences. Last but not least, we need the probability function.
+Its purpose is to give, for any event, the likelihood of this event. Informally,
+a probability function must satisfy 3 properties:</p>
+<ol>
+<li>the likelihood of any event must be <strong>positive or null</strong> but never negative!</li>
+<li>the likelihood of <strong>distinct</strong> events is the sum of the likelihood of every event.</li>
+<li>the likelihood of the set of <strong>all</strong> valid sequences must be <em>1</em>.</li>
+</ol>
+<p>This is where things get complicated. We can decide to give to any valid sequence
+of size \(m\) the the probability (\((\frac{1}{n})^m\)), but we need to prove
+that this function satisfies all the conditions above to be a probability
+function.
+In addition, the set of valid sequences is not that trivial to work with (at
+least for me!). Fortunately working in this probability space is not mandatory.
+We can work in more comfortable probability space as long as we are able to
+transpose results into this one.</p>
+<p>Remember that the dice being used is a \(n\)-sided fair dice. Let us start by
+some definitions:</p>
+<ul>
+<li>
+<p>Let \(\mathcal{C}_n=\{1,\dots,n\}\) be the set of the dice&rsquo;s sides.</p>
+</li>
+<li>
+<p>The set of <em>countably infinite sequences of sides</em> is written \(\Omega\).</p>
+</li>
+<li>
+<p>The set of <em>finite sequences of sides</em> is written \(\mathcal{F}\).</p>
+</li>
+<li>
+<p>For any <em>finite sequence of sides</em> \(f \in \mathcal{F}\), its length is written \(|f|\).</p>
+</li>
+<li>
+<p>For any sequence \(s \in \mathcal{F} \cup \Omega\) of sides (finite or infinite),
+let \(\diamond s\) be the set of sides observed in \(s\)
+and \(\sharp s\) be the number of distinct sides observed in \(s\), i.e.
+\(\sharp s = |\diamond s|\).</p>
+</li>
+<li>
+<p>For any sequence \(s \in \mathcal{F} \cup \Omega\) of sides (finite or infinite),
+and any \(i \in \{1,\dots,|s]\}\), let \(s_{[i]}\) be the sides observed at
+the \(i\)-th roll of \(s\), i.e. \(s=(s_{[1]},\dots,s_{[|s|]})\).</p>
+</li>
+<li>
+<p>For any \(f \in \mathcal{F}\) and \(f&rsquo; \in \mathcal{F}\cup\Omega\),
+where \(f = (s_1,\dots,s_i)\) and
+\(f&rsquo; = (s&rsquo;_1,\dots)\), we write \(f \cdot f&rsquo; \in \mathcal{F}\cup\Omega\) the
+concatenation of \(f\) and \(f&rsquo;\), i.e. the <em>sequence</em>
+\((s_1,\dots,s_i,s&rsquo;_1,\dots)\).
+Furthermore, for any set of <em>prefix</em> \(F \subset \mathcal{F}\),
+and any set set of (finite or infinite) sequences \(S\subset \mathcal{F}\cup\Omega\),
+we write \(F\cdot S = \{f\cdot s\mid f\in F,\ s\in S\}\) the set of
+sequences made of concatenations of \(F\) and \(S\).</p>
+</li>
+</ul>
+<p>For the new probability space, we can take as outcomes \(\Omega\), the set of
+all <strong>infinite</strong> (but countable) sequence of sides.
+Given a finite sequence of sides \(f \in \mathcal{F}\) (possibly empty),
+the set of all outcomes (infinite sequences) that start with \(f\)
+is called a <strong>prefix event</strong> and written \(\mathcal{E}(f)\).
+The finite sequence \(f \in \mathcal{F}\) is called a <strong>prefix</strong>.
+Note that the set of all outcomes, \(\Omega\), is an event because
+it is the <em>prefix event</em> of the empty sequence \(\epsilon\).
+The set of all <em>prefix events</em> is written \(\mathcal{E}\).
+We will take as events the the <a href="https://en.wikipedia.org/wiki/%CE%A3-algebra" rel="external" target="_self">σ-field</a>
+\(\sigma(\mathcal{E})\) generated from <em>prefix events</em>, i.e. the smallest
+<em>σ-field</em> containing <em>prefix events</em> that is closed under complement, countable
+unions and intersections.
+It means that any countable union or intersection of events is an event and
+the complement of any event is an event.
+Let \(F\subset \mathcal{F}\) be a <strong>finite or countable</strong> set of <em>prefixes</em>,
+we write \(\mathcal{E}(F)\) the event \(\bigcup_{f\in F} \mathcal{E}(f)\).</p>
+<p>The class of sets \(\mathcal{R} = \mathcal{E} \cup \{\emptyset\} \) is a
+<a href="https://en.wikipedia.org/wiki/Ring_of_sets" rel="external" target="_self">semiring of sets</a>.
+It comes from two facts. Let \(f_1, f_2\in \mathcal{F}\) be two <em>prefixes</em>.
+Either \(\mathcal{E}(f_1)\) and \(\mathcal{E}(f_2)\) are disjoint, or one
+is contained in the other.
+It proves that \(\mathcal{R}\) is table by finite intersection.
+If \(\mathcal{E}(f_2) \subset \mathcal{E}(f_1)\) then there exists
+\(f_3\in \mathcal{F}\) such that \(f_2 = f_1 \cdot f_3\) and
+\(\mathcal{E}(f) = \bigcup_{f_4\in \mathcal{F}, |f_4|=|f_3|} \mathcal{E}(f \cdot f_4)\).
+It proves that \(\mathcal{E}(f_1) \setminus \mathcal{E}(f_2)\) can be written
+as a finite union of disjoint element of \(\mathcal{R}\).</p>
+<p>Instead of defining the probability function \(p\) directly over
+\(\sigma(\mathcal{E})\), \(p\) is defined over \(\mathcal{R}\) first and
+then extended to \(\sigma(\mathcal{E})\) using
+<a href="https://en.wikipedia.org/wiki/Carath%C3%A9odory%27s_extension_theorem" rel="external" target="_self">Carathéodory&rsquo;s extension theorem</a>.
+\(p\) is defined on \(\mathcal{R}\) by</p>
+$$\begin{aligned}
+p(\emptyset)                                          & = 0
+\\\\ \forall f \in \mathcal{F}\quad p(\mathcal{E}(f)) & = (\frac{1}{n})^{|f|}
+\end{aligned}$$<p>\(p\) is additive and σ-subadditive because the only way for the union of two
+disjoint elements of \(\mathcal{R}\) to be in \(\mathcal{R}\) is if one of
+the two is the empty set. It is also σ-finite because
+\(p(\Omega) = p(\mathcal{E}(\epsilon)) = (\frac{1}{n})^{0} = 1\).
+The function \(p\) can then be uniquely extended into a <em>probability function</em>
+over \(\sigma(\mathcal{E})\).</p>
+<p>Note that:</p>
+$$\begin{aligned}
+\forall f\_1,f\_2\in \mathcal{F},\quad p(\mathcal{E}(f\_1\cdot f\_2))
+    & = p(\mathcal{E}(f\_1)) \times p(\mathcal{E}(f\_2))
+\\\\    \forall f\in \mathcal{F},\quad p(\mathcal{E}(f))
+    & = \prod\_{i=1}^{|f|}p(\mathcal{E}(f\_{[i]}))
+\end{aligned}$$<p>The <em>probability space</em> \((\Omega,\sigma(\mathcal{E}),p)\) has the very
+pleasing property that the probability of a <em>prefix event</em> \(\mathcal{E}(f)\)
+is exactly the probability of getting the sequence \(f\) with \(|f|\) dice
+rolls. There is a problem though: there are outcomes for which not every side
+has been observed at least once. The infinite sequence \((1,\dots)\) is such
+an outcome.</p>
+<p>Let \(M\) the subset of outcomes such that at least one side has not been
+observed, i.e. \( M = \{ \omega \in \Omega \mid \sharp \omega &lt; n \} \).
+We want to know how likely \(M\) is.
+For any \(i \in \mathbb{N} \), let \(M_i\) the set of outcomes such at least
+one side has not been observed up to the \(i\)-th roll,
+i.e. \(M_i = \mathcal{E}(\{f \in \mathcal{F}\mid |f|=i,\ \sharp f &lt; n\})\).</p>
+<p>For any \(i\in \mathbb{N}\),
+\(M_i\) is an event because it is a finite union of events.
+Not observing at least one side with an infinity of rolls is equivalent to not
+observing this side for every \(i\)-th roll, so
+\(M = \bigcap_{i\in\mathbb{N}} M_i\).
+From the last equation, we can conclude that \(M\) is an event because
+it is a countable intersection of events.
+Furthermore, given \(i\) dice rolls, the probability of not observing a given
+side is \((\frac{n-1}{n})^i\) so
+\(p(M_i) \le n \times (\frac{n-1}{n})^i\).
+Note that \(M_{i+1} \subset M_i\), so
+\(\bigcap_{j=0}^i M_j = M_i\).
+We can conclude that the probability, given an infinity of dice rolls, of never
+observing one side (anyone) is \(0\):</p>
+$$ p(M) =
+   p(\bigcap\_{i\in\mathbb{N}} M\_i) =
+   \lim_{i\rightarrow\infty} p(M_i) \le
+   \lim_{i\rightarrow\infty} n \times \Bigl(\frac{n-1}{n}\Bigr)^i =
+   0 $$<p>Note that it does not mean these outcome are impossible. In theory, if you flip
+a coin endlessly, it is possible to always get head (resp. tail), but this is
+incredibly unlikely. Let \(\Omega&rsquo; = \overline{M}\) be set of outcomes such
+that every side has been observed at least once. \(\Omega&rsquo;\) is the complement
+of \(M\), written \(\overline{M}\). Its probability is then
+\(p(\Omega&rsquo;) = 1\). So for any event \(E\in\sigma(\mathcal{E})\),
+\(p(E) = p(E\cap\Omega&rsquo;) + p(E\cap M)\), but \(p(E\cap M) \le p(M) = 0\),
+so</p>
+$$\forall E\in\sigma(\mathcal{E})\quad p(E) = p(E\cap\Omega')$$<p>Informally, it means we can assume that, in every outcome, every side of the dice
+are observed at least once.
+More precisely, we take as <em>probability space</em>, the restriction of
+\((\Omega,\sigma(\mathcal{E}),p)\) to \(\Omega&rsquo;\), written
+\((\Omega&rsquo;,\sigma(\mathcal{E})|_{\Omega&rsquo;},p)\).</p>
+<p>How does the problem translates into this probability space? Remember that an
+outcome \(\omega \in \Omega&rsquo;\) is an <strong>infinite</strong> sequence
+\((s_1,s_2,\dots)\) of sides \(s_i \in \mathcal{C}_n\) such that every
+every side is observed at some point.
+For any \(m \in \{0,\dots,n\}\) we define the <strong>random variable</strong>
+\(X_m\) as the function, from \(\Omega&rsquo;\) to
+\(\mathbb{R}\),  that maps any outcome
+\(\omega \in \Omega&rsquo; = (s_1,s_2,\dots)\) to the first \(i\) such
+that \(m\) side has been observed at least once.</p>
+$$\forall \omega = (s\_1)\_{i\ge 1}\in \Omega', \quad
+  X\_m(\omega) =
+  \inf\_{\ i\ } \bigl\\{ i \mid \sharp (s\_1,\dots,s\_i) = m \bigr\\}$$<p>Note that \(X_n(\omega)\) is the number of rolls needed to observe every side
+of the chosen dice at least once. The average we are looking for is actually
+the <a href="https://en.wikipedia.org/wiki/Expected_value" rel="external" target="_self">expected value</a>
+of \(X_n\). But for the expected value to defined, \(X_m\) has to be a
+<a href="https://en.wikipedia.org/wiki/Measurable_function" rel="external" target="_self">measurable function</a> from
+\((\Omega&rsquo;,\sigma(\mathcal{E})|_{\Omega&rsquo;})\)
+to
+\((\mathbb{R},\mathcal{B}(\mathbb{R}))\).
+Let \(F_{m,l}\) be the set of <em>prefixes</em> \(f=(s_1,\dots,s_l)\) of length
+\(l\) such that \(l\) is the first roll for which exactly \(m\) sides
+have been observed at least once, i.e.
+\(l = \inf_i\{i \mid \sharp (s_1,\dots,s_i) = m \}\).
+Then
+</p>
+$$ X\_m =
+   \sum\_{l\in\mathbb{N}}
+   \sum\_{f \in F\_{m,l}} l \times \mathbb{1}\_{\mathcal{E}(f)\cap \Omega'} $$<p>
+and so \(X_m\) is indeed measurable. The <em>expected value</em> is:</p>
+$$\begin{aligned}
+\mathbb{E}(X\_m) & = \sum_{l\in\mathbb{N}} l\times p(X\_m^{-1}(l))
+\\\\             & = \sum_{l\in\mathbb{N}}
+                       \sum\_{f \in F\_{m,l}} l \times p(\mathcal{E}(f))
+\\\\             & = \sum_{l\in\mathbb{N}}
+                        \sum\_{f \in F\_{m,l}} l \times \Bigl(\frac{1}{n}\Bigr)^l
+\\\\             & = \sum_{l\in\mathbb{N}} |F\_{m,l}| \times l \times \Bigl(\frac{1}{n}\Bigr)^l
+\end{aligned}$$<p>The mistake we did in the last section is now clear. We computed
+\(\sum_{l\in\mathbb{N}} |F_{m,l}| \times l\)
+instead of
+\(\sum_{l\in\mathbb{N}} |F_{m,l}| \times l \times (\frac{1}{n})^l\).
+We just have to fix the function used in the aggregation to compute the right
+value:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">forOneValidPrefix</span><span class="o">(</span><span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)(</span><span class="n">length</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="n">sides</span><span class="o">).</span><span class="n">pow</span><span class="o">(</span><span class="n">length</span><span class="o">)</span> <span class="o">*</span> <span class="n">length</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">depth</span> <span class="k">=</span> <span class="mi">100000</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">depth</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">100000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">sides</span> <span class="k">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">expectedValueFor100000</span> <span class="k">=</span> <span class="n">aggregate</span><span class="o">(</span><span class="n">sides</span><span class="o">,</span><span class="n">depth</span><span class="o">)(</span><span class="n">forOneValidPrefix</span><span class="o">(</span><span class="n">sides</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">expectedValueFor100000</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">5.499999999999999999999999999999999</span></span></span></code></pre></div>
+<p>This time the computed value match what we observed with random experiments,
+a value around \(5.5\). It also match the average we got for a 6-sided fair
+dice:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">depth</span> <span class="k">=</span> <span class="mi">10000</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">depth</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">sides</span> <span class="k">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">expectedValueFor100000</span> <span class="k">=</span> <span class="n">aggregate</span><span class="o">(</span><span class="n">sides</span><span class="o">,</span><span class="n">depth</span><span class="o">)(</span><span class="n">forOneValidPrefix</span><span class="o">(</span><span class="n">sides</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">expectedValueFor100000</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">14.70000000000000000000000000000001</span></span></span></code></pre></div>
+<p>We can actually go a bit deeper by observing that for any \(m \in \{1,\dots,n\}\),
+\(\mathbb{E}(X_m) = \mathbb{E}(X_{m-1}) + \mathbb{E}(X_m - X_{m-1})\):</p>
+$$\begin{aligned}
+     \mathbb{E}(X\_m)           & = \sum_{i=0}^{m-1} \mathbb{E}(X\_{i+1} - X_i)
+\\\\ \mathbb{E}(X\_{i+1}-X\_i)  & = \sum\_{d\in\mathbb{N}^\*} d \times p((X\_{i+1}-X\_i)^{-1}(d))
+\\\\ p((X\_{i+1}-X\_i)^{-1}(d)) & = \sum\_{k\in\mathbb{N}} p(\mathcal{E}(F\_{i+1,k+d})
+                                                           \cap \mathcal{E}(F\_{i,k}))
+\\\\p(\mathcal{E}(F\_{i+1,k+d})\cap \mathcal{E}(F\_{i,k}))
+    & = p(\mathcal{E}(\\{f \cdot f' \cdot c \mid
+            f\in F\_{i,k},\quad |f'|=d-1,\ \diamond f' \subset \diamond f,\quad c\in \mathcal{C}\_n\setminus\diamond f
+            \\}))
+\\\\& = \sum\_{f\in F\_{i,k}} \Biggl(
+        \sum\_{|f'|=d-1,\ \diamond f' \subset \diamond f} \Biggl(
+        \sum\_{c\in \mathcal{C}\_n\setminus \diamond f}
+        p(\mathcal{E}(f \cdot f' \cdot c)) \Biggr)\Biggr)
+\\\\& = \sum\_{f\in F\_{i,k}} \Biggl( p(\mathcal{E}(f)) \times
+        \sum\_{|f'|=d-1,\ \diamond f' \subset \diamond f} \Biggl( p(\mathcal{E}(f')) \times
+        \sum\_{c\in \mathcal{C}\_n\setminus \diamond f}
+        p(\mathcal{E}(c)) \Biggr)\Biggr)
+\\\\& = \sum\_{f\in F\_{i,k}} \Biggl( p(\mathcal{E}(f)) \times
+        |\\{f'\in \mathcal{F} \mid |f'|=d-1,\ \diamond f' \subset \diamond f\\}|
+        \times \Bigl(\frac{1}{n}\Bigr)^{d-1} \times \frac{n-i}{n}
+        \Biggr)
+\\\\& = \Bigl(\frac{i}{n}\Bigr)^{d-1} \times \frac{n-i}{n} \times p(\mathcal{E}(F\_{i,k}))
+\end{aligned}$$<p>So
+\(p(\mathcal{E}(F_{i+1,k+d}) | \mathcal{E}(F_{i,k}))
+= (\frac{i}{n})<sup>{d-1}\times \frac{n-1}{n} \).
+So
+\(\mathbb{E}(X_{i+1} - X_i)
+= \sum_{d\in\mathbb{N}</sup>*} d \times \frac{n-1}{n}\times (\frac{i}{n})^{d-1} \).
+We recognize a
+<a href="https://en.wikipedia.org/wiki/Geometric_distribution" rel="external" target="_self">Geometric Distribution</a>
+whose probability of success is \(p&rsquo; = \frac{n-i}{n}\). Its expected value is
+known to be \(\frac{1}{p&rsquo;} = \frac{n}{n-i}\). It can be computed by</p>
+$$\begin{aligned}
+\mathbb{E}(X\_{i+1} - X\_i) & = \sum_{d\in\mathbb{N}^\*} d \times \frac{n-i}{n}\times \Bigl(\frac{i}{n}\Bigr)^{d-1}
+\\\\& = \frac{n-i}{n} \times \sum_{d\in\mathbb{N}^\*} d \times \Bigl(\frac{i}{n}\Bigr)^{d-1}
+\\\\& = \frac{n-i}{n} \times \sum_{d\in\mathbb{N}^\*} d \times \Bigl(\frac{i}{n}\Bigr)^{d-1}
+\end{aligned}$$<p>But
+</p>
+$$\begin{aligned}
+\sum_{d\in\mathbb{N}^\star} d \times x^{d-1} & = \sum_{d\in\mathbb{N}^\star} (x^d)^\prime
+\\\\& = \Bigl(\sum_{d\in\mathbb{N}^\star} x^d\Bigr)^\prime
+\\\\& = \Bigl(\frac{x}{1 - x}\Bigr)^\prime
+\\\\& = \frac{1}{(1 - x)^2}
+\end{aligned}$$<p>So
+</p>
+$$\begin{aligned}
+\mathbb{E}(X\_{i+1} - X\_i) & = \frac{n-i}{n} \times \frac{1}{(1 - \frac{i}{n})^2}
+\\\\& = \frac{n-i}{n} \times \Bigl(\frac{n}{n - i}\Bigr)^2
+\\\\& = \frac{n}{n - i}
+\end{aligned}$$<p>Finally we can give the formula for the <em>expected value</em> and check that it gives
+the expected values:</p>
+$$ \mathbb{E}(X_n) = \sum_{i=0}^{n-1} \frac{n}{n-i} $$<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">expectedValue</span><span class="o">(</span><span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="n">sides</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="n">sides</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span> <span class="k">_</span><span class="o">).</span><span class="n">sum</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">expectedValue</span><span class="o">(</span><span class="mi">6</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res0</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">14.7</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">expectedValue</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res1</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">5.5</span></span></span></code></pre></div>
+<h2 id="understanding-the-probability">Understanding the Probability</h2>
+<p>Still given a \(n\)-sided fair dice \(n&gt;0\).
+Let \(C \subset \mathcal{C}_n\) be a subset
+of the sides of the dice and \(l \in \mathbb{N}\) a non-negative integer.
+The event of all outcomes whose <em>prefixes</em> of length \(l\) do not contain any
+side in \(C\) is written</p>
+$$M\_{n,l,C} = \mathcal{E}(\\{ f\in \mathcal{F} \mid |f|=l,\quad \diamond f \cap C = \emptyset \\}$$<p>Note that for any subsets \(C_1\) and \(C_2\) of \(\mathcal{C}_n\) and
+\(l\in\mathbb{N}\), the property
+\(M_{n,l,C_1}\cap M_{n,l,C_1} = M_{n,l,C_1\cup C_2}\) holds and
+\(p(M_{n,l,C}) = (\frac{n - |C|}{n})^l = (1 - \frac{|C|}{n})^l\).
+Let \(A_{n,l}\) be the event of all outcomes whose <em>prefixes</em> of size \(l\)
+contain every side of the dice at least once:</p>
+$$\begin{aligned}
+A\_{n,l} & = \mathcal{E}(\\{ f\in \mathcal{F} \mid |f|=l,\quad \diamond f = C\_n \\}
+\\\\     & = \bigcap\_{c\in \mathcal{C}\_n} \overline{M\_{n,l,\\{c\\}}}
+\\\\     & = \overline{\bigcup\_{c\in C} M\_{n,l,\\{c\\}}}
+\end{aligned}$$$$\begin{aligned}
+p(A\_{n,l}) & = 1 - p(\bigcup\_{c \in C\_n} M\_{n,l,\\{c\\}})
+\\\\        & = 1 - \Biggl[\sum\_{C \subset C\_n,C\neq\emptyset} -(-1)^{|C|} \times p(\bigcap\_{c\in C}
+                M\_{n,l,\\{c\\}})\Biggr]
+\\\\        & = 1 - \Biggl[\sum\_{C \subset C\_n,C\neq\emptyset} -(-1)^{|C|} \times p(M\_{n,C,l})\Biggr]
+\\\\        & = 1 + \Biggl[\sum\_{C \subset C\_n,C\neq\emptyset} (-1)^{|C|} \times \biggl(\frac{1-|C|}{n}\biggr)^{l}\Biggr]
+\\\\          & = 1 + \sum\_{k=1}^{n} \binom{n}{k} \times (-1)^k \times \biggl(1 - \frac{k}{n}\biggr)^{l}
+\end{aligned}$$<p>We can generalize this result: given a \(n\)-sided fair dice and
+\(C \subset \mathcal{C}_n\) a subset of the sides of the dice. Let \(A_{n,l,C}\)
+be the set of outcomes whose <em>prefixes</em> of length \(l\) do contain only sides
+of \(C\) and every side of \(C\):</p>
+$$\begin{aligned}
+A\_{n,l,C} & = \mathcal{E}(\\{f\in \mathcal{F} \mid |f|=n, \quad \diamond f = C\\})
+\\\\p(A\_{n,l,C}\mid M\_{n,l,\overline{C}}) & = p(A\_{l,|C|})
+\\\                                         & = 1 + \sum\_{k=1}^{|C|} \binom{|C|}{k} \times (-1)^k \times \biggl(1 - \frac{k}{|C|}\biggr)^{l}
+\end{aligned}$$<p>We found the probability of observing, in \(l\) dice rolls <strong>or less</strong>, a subset
+of all the sides. But \(A_{n,l,C}\) is not in general \(X_n^{-1}(\{l\})\)
+because outcomes in \(X_n^{-1}(\{l\})\) reach the last observed side at roll
+\(l\) while outcomes in \(A_{n,l}\) may have observed every side much before
+the \(l\)-th roll.
+But we can relate the two.
+For any side \(c \in \mathcal{C}_n\) and any non-negative integer \(i\in\mathbb{N}\),
+let \(R_{n,i,c}\) the event of observing the side \(c\) at roll \(i\).
+Let \(l\in\mathbb{N}^*\):</p>
+$$\begin{aligned}
+X\_n^{-1}(\\{l\\})        & = \bigcup\_{c=1}^n A\_{n,l-1,C\_n\setminus\\{c\\}}
+                                               \cap M\_{n,l-1,\\{c\\}}
+                                               \cap R\_{n,l,c}
+\\\\p(X\_n^{-1}(\\{l\\})) & = \sum\_{c=1}^n p(A\_{n,l-1,C\_n\setminus\\{c\\}}
+                                              \cap M\_{n,l-1,\\{c\\}}
+                                              \cap R\_{n,l,c})
+\\\\                      & = \sum\_{c=1}^n p(A\_{n,l-1,C\_n\setminus\\{c\\}} \mid M\_{n,l-1,\\{c\\}})
+                                            \times p(M\_{n,l-1,\\{c\\}})
+                                            \times \frac{1}{n}
+\\\\                      & = \sum\_{c=1}^n p(A\_{n-1,l-1})
+                                            \times \biggl(\frac{n-1}{n}\biggr)^{l-1}
+                                            \times \frac{1}{n}
+\\\\                      & = \biggl(\frac{n-1}{n}\biggr)^{l-1} \times p(A\_{n-1,l-1})
+\\\\                      & = \biggl(\frac{n - 1}{n}\biggr)^{l-1} \times
+                              \Biggl[ 1 + \sum\_{k=1}^{n-1} \binom{n-1}{k} \times (-1)^k \times \biggl(\frac{n - 1 - k}{n-1}\biggr)^{l-1} \Biggr]
+\\\\                      & = \biggl(1 - \frac{1}{n}\biggr)^{l-1}
+                              +
+                              \sum\_{k=1}^{n-1} \binom{n-1}{k} \times (-1)^k \times \biggl(1 - \frac{k+1}{n}\biggr)^{l-1}
+\end{aligned}$$<p>We need to be careful when translating this formula to avoid computation
+approximations to lead to very wrong answers:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">probabilityForLength</span><span class="o">(</span><span class="n">sides</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">length</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">cnk</span><span class="o">(</span><span class="n">k</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">dfact</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">k</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">res</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span> <span class="nc">BigInt</span><span class="o">(</span><span class="mi">1L</span><span class="o">))</span><span class="k">:</span> <span class="kt">BigInt</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">      <span class="n">then</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span> <span class="n">dfact</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">res</span><span class="o">*</span><span class="n">n</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">dfact</span><span class="o">(</span><span class="n">f</span><span class="o">,</span><span class="n">k</span><span class="o">)</span> <span class="o">/</span> <span class="n">dfact</span><span class="o">(</span><span class="n">k</span><span class="o">,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">sides</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">sides</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">      <span class="nc">BigDecimal</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">      <span class="nc">BigDecimal</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="o">((</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="n">sides</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)/</span><span class="n">sides</span><span class="o">).</span><span class="n">pow</span><span class="o">(</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">      <span class="nc">BigDecimal</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="o">(</span><span class="n">sides</span><span class="o">-</span><span class="mi">1</span><span class="o">)).</span><span class="n">map</span> <span class="o">{</span> <span class="o">(</span><span class="n">k</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">(</span> <span class="n">cnk</span><span class="o">(</span><span class="n">k</span><span class="o">,</span><span class="n">sides</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">*</span> <span class="o">(</span><span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">*</span> <span class="nc">BigInt</span><span class="o">(</span><span class="n">sides</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="o">).</span><span class="n">pow</span><span class="o">(</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}.</span><span class="n">sum</span>
+</span></span><span class="line"><span class="cl">      <span class="o">)</span> <span class="o">/</span> <span class="nc">BigDecimal</span><span class="o">(</span><span class="n">sides</span><span class="o">).</span><span class="n">pow</span><span class="o">(</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">)</span></span></span></code></pre></div>
+<p>We can check that the probability of observing all the sides of a 120-sided dice
+in less than 120 rolls is indeed 0:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">probabilityForLength</span><span class="o">(</span><span class="mi">120</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res0</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mi">4</span><span class="n">E</span><span class="o">-</span><span class="mi">34</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">probabilityForLength</span><span class="o">(</span><span class="mi">120</span><span class="o">,</span> <span class="mi">42</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res1</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">8.751991852311394833964673845157515E-34</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">probabilityForLength</span><span class="o">(</span><span class="mi">120</span><span class="o">,</span> <span class="mi">99</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res2</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">1.468941911574859178966522092677385E-33</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">probabilityForLength</span><span class="o">(</span><span class="mi">120</span><span class="o">,</span> <span class="mi">119</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res3</span><span class="k">:</span> <span class="kt">BigDecimal</span> <span class="o">=</span> <span class="mf">1.529470021201154499656736868919480E-33</span></span></span></code></pre></div>
+<p>Note that the very small numbers we get for 42, 99 and 119 rolls instead of 0
+are due approximations in computing with so big and small numbers.
+To get a better idea of how the probability behaves we can, as usual,
+export it as a CSV file. Let us start by defining the probability for every
+length using a stream:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">probaD120</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">          <span class="nc">LazyList</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">iterate</span><span class="o">(</span><span class="mi">0</span><span class="o">)(</span><span class="k">_</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">length</span> <span class="k">=&gt;</span> <span class="n">length</span> <span class="o">-&gt;</span> <span class="n">probabilityForLength</span><span class="o">(</span><span class="mi">120</span><span class="o">,</span> <span class="n">length</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">probaD120</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">BigDecimal</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">LazyList</span><span class="o">(&lt;</span><span class="n">not</span> <span class="n">computed</span><span class="o">&gt;)</span></span></span></code></pre></div>
+<p>And write this stream up to some length into a CSV file:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="o">(</span><span class="n">self</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">BigDecimal</span><span class="o">)])</span> <span class="n">plot</span><span class="o">(</span><span class="n">depth</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">file</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">import</span> <span class="nn">java.io._</span>
+</span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">pw</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">file</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pw</span><span class="o">.</span><span class="n">println</span><span class="o">(</span><span class="s">&#34;length;probability&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="o">(</span><span class="n">length</span><span class="o">,</span> <span class="n">proba</span><span class="o">)</span> <span class="k">&lt;-</span> <span class="n">self</span><span class="o">.</span><span class="n">take</span><span class="o">(</span><span class="n">depth</span><span class="o">)</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pw</span><span class="o">.</span><span class="n">printf</span><span class="o">(</span><span class="s">&#34;%d;%f\n&#34;</span><span class="o">,</span> <span class="n">length</span><span class="o">,</span> <span class="n">proba</span><span class="o">.</span><span class="n">toDouble</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pw</span><span class="o">.</span><span class="n">close</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">probaD120</span><span class="o">.</span><span class="n">plot</span><span class="o">(</span><span class="mi">1500</span><span class="o">,</span> <span class="s">&#34;/tmp/d120.csv&#34;</span><span class="o">)</span></span></span></code></pre></div>
+<p><a href="#R-image-0668ef9bd0e5172a75fe021d8591c449" class="lightbox-link"><img alt="d120 density length/probability" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_distrib.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0668ef9bd0e5172a75fe021d8591c449"><img alt="d120 density length/probability" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_distrib.svg"></a></p>
+<p>There is a lot of things we can do thanks to this probability like asking how
+many rolls we need to observe all the sides of dice 9 times out of 10.
+The probability of observing all the sides of the dice in <strong>exactly or less than</strong>
+\(l\) rolls is given by</p>
+$$p(X\_n \le l) = \sum\_{l'=0}^{l} p(X\_n = l')$$<p>All we need to do is transform the stream <code>probaD120</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>,<span class="kt">C</span><span class="o">](</span><span class="n">ll</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="n">foldP</span><span class="o">(</span><span class="n">z</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">B</span><span class="o">,</span><span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">B</span><span class="o">,</span><span class="n">C</span><span class="o">))</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[</span><span class="kt">C</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">LazyList</span><span class="o">.</span><span class="n">unfold</span><span class="o">((</span><span class="n">ll</span><span class="o">,</span><span class="n">z</span><span class="o">))</span> <span class="o">{</span> <span class="k">case</span> <span class="o">(</span><span class="n">l0</span><span class="o">,</span> <span class="n">z0</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">l0</span><span class="o">.</span><span class="n">isEmpty</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">None</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="o">(</span><span class="n">z1</span><span class="o">,</span><span class="n">c0</span><span class="o">)</span> <span class="k">=</span> <span class="n">f</span><span class="o">(</span><span class="n">z0</span><span class="o">,</span><span class="n">l0</span><span class="o">.</span><span class="n">head</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">Some</span><span class="o">((</span><span class="n">c0</span><span class="o">,</span> <span class="o">(</span><span class="n">l0</span><span class="o">.</span><span class="n">tail</span><span class="o">,</span><span class="n">z1</span><span class="o">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="o">(</span><span class="n">self</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">BigDecimal</span><span class="o">)])</span> <span class="n">cumul</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">BigDecimal</span><span class="o">)]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="n">self</span><span class="o">.</span><span class="n">foldP</span><span class="o">(</span><span class="nc">BigDecimal</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">{</span> <span class="k">case</span> <span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="o">(</span><span class="n">l</span><span class="o">,</span><span class="n">p</span><span class="o">))</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">s</span><span class="o">+</span><span class="n">p</span><span class="o">,</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">s</span><span class="o">+</span><span class="n">p</span><span class="o">))</span> <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">distribD120</span> <span class="k">=</span> <span class="n">probaD120</span><span class="o">.</span><span class="n">cumul</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">distribD120</span><span class="k">:</span> <span class="kt">LazyList</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">BigDecimal</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">LazyList</span><span class="o">(&lt;</span><span class="n">not</span> <span class="n">computed</span><span class="o">&gt;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">distribD120</span><span class="o">.</span><span class="n">dropWhile</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span> <span class="o">&lt;</span> <span class="mf">0.9</span><span class="o">).</span><span class="n">head</span><span class="o">.</span><span class="n">_1</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">res5</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">842</span></span></span></code></pre></div>
+<p>There is 90% chance that we observe all sides of the 120-sided fair dice with 842
+rolls. Once again, we can get a better idea of how the distribution behaves by
+plotting it</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">distribD120</span><span class="o">.</span><span class="n">plot</span><span class="o">(</span><span class="mi">1500</span><span class="o">,</span> <span class="s">&#34;/tmp/d120_cumul.csv&#34;</span><span class="o">)</span></span></span></code></pre></div>
+<p><a href="#R-image-cd50613d69e00640921d71ef134c3619" class="lightbox-link"><img alt="d120 distribution length/probability" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_cumul.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cd50613d69e00640921d71ef134c3619"><img alt="d120 distribution length/probability" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_cumul.svg"></a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The initial question was simple:</p>
+<blockquote>
+<p>how many rolls are needed, on average, with a \(n\) sided fair dice, to observe all of its sides.</p>
+</blockquote>
+<p>But the answer was not! We have seen how to check, empirically, that the <em>Scala</em>
+<code>Random.nextInt</code> function correctly simulates a fair dice. From there we run
+(many) experiments to get an approximation of the answer.
+We experienced how easy but disastrous it can be to build a model disconnected
+from reality.
+We learned that building a valid model requires a deep understanding of the
+problem and the experiments.
+We had to put a <strong>lot</strong> of care into the construction of the model to be sure
+it is a valid formalization of the problem.
+The maths were not easy, but they were right.
+And in the end, maths lead us to a very simple formula.
+Was all this formal brutality useful? Yes, it was.
+The simple formula gives the exact answer and is by far the most efficient
+implementation.
+Going deeper we found how to answer more questions like the chance we have to
+observe all sides in \(l\) rolls or less. We even were able to get a precise
+idea of how the probability behaves by plotting it.</p>
+<p>All along this journey, we used many of the new <em>Scala 3</em> features among which
+<a href="https://dotty.epfl.ch/docs/reference/contextual/extension-methods.html" rel="external" target="_self">extensions methods</a>
+and
+<a href="https://dotty.epfl.ch/docs/reference/contextual/type-classes.html" rel="external" target="_self">Type Classes</a>.
+We saw how easy they were to use and the great benefits they offer.
+<em>Extensions methods</em> let us add methods to objects without any boilerplate,
+<em>Type Classes</em> let us write generic function, etc.</p>
+<p>I hope you enjoyed this journey as much as I loved writing it. Have a look at
+<a href="https://dotty.epfl.ch/docs/reference/overview.html" rel="external" target="_self">all the <em>Scala 3</em> features</a>.
+Many of them are not covered here but are truly amazing (Polymorphic Functions,
+Dependent Function Types, Match Types, Intersection and Union Types, etc).
+The list is pretty large.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a id="logo" href="../../">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="65mm"
+   height="7mm"
+   viewBox="0 0 96.990127 7.7258329"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="193.2115"
+     inkscape:cy="-34.320002"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1026"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.9716412,-5.0276302)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="8.3895578"
+       y="12.61588"
+       id="text4543"><tspan
+         sodipodi:role="line"
+         id="tspan4541"
+         x="8.3895578"
+         y="12.61588"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum';stroke-width:0.26458332;fill:#ffffff">@chrilves' Archives</tspan></text>
+  </g>
+</svg>
+</a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.js?1729680927";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1729680927" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1729680927" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1729680927" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1729680927" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1729680927" defer></script>
+        <script src="../../js/search.js?1729680927" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-topics">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-6c8465a20210a85121ce7f08ddd74896" aria-controls="R-subsections-6c8465a20210a85121ce7f08ddd74896" checked><label for="R-section-6c8465a20210a85121ce7f08ddd74896"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-6c8465a20210a85121ce7f08ddd74896" class="collapsible-menu">
+            <li class="active " data-nav-id="/posts/probability_in_scala_3_all_sides/index.html"><a class="padding" href="../../posts/probability_in_scala_3_all_sides/index.html">Playing with Probability in Scala 3<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/les_gadts_par_l_exemple/index.html"><a class="padding" href="../../posts/les_gadts_par_l_exemple/index.html">Les GADTs Par l&#39;Exemple<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/gadts_by_use_cases/index.html"><a class="padding" href="../../posts/gadts_by_use_cases/index.html">GADTs By Use Cases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/prime/index.html"><a class="padding" href="../../posts/prime/index.html">Proving Primality with GADTs<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/recursion_schemes_intro/index.html"><a class="padding" href="../../posts/recursion_schemes_intro/index.html">Recursion Schemes: the high-school introduction<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/gadts_intro/index.html"><a class="padding" href="../../posts/gadts_intro/index.html">Demystifying GADTs<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/folds/index.html"><a class="padding" href="../../posts/folds/index.html">Let&#39;s meet the charming fold family<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/slimetrail/index.html"><a class="padding" href="../../posts/slimetrail/index.html">How to make game in the browser thanks to ScalaJS<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/json2xml/index.html"><a class="padding" href="../../posts/json2xml/index.html">JSON to XML: the probably a tiny bit over engineered way<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/falgebra_scalaio_2017/index.html"><a class="padding" href="../../posts/falgebra_scalaio_2017/index.html">F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/types/index.html"><input type="checkbox" id="R-section-49e20b5298b1a94e847e064ae86775fe" aria-controls="R-subsections-49e20b5298b1a94e847e064ae86775fe"><label for="R-section-49e20b5298b1a94e847e064ae86775fe"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-49e20b5298b1a94e847e064ae86775fe" class="collapsible-menu">
+            <li class="" data-nav-id="/types/1-why/index.html"><a class="padding" href="../../types/1-why/index.html">Episode 1 - Why Types?<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/2-enums/index.html"><a class="padding" href="../../types/2-enums/index.html">Episode 2 - Enumerations<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/3-products/index.html"><a class="padding" href="../../types/3-products/index.html">Episode 3 - Products<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/4-coproducts/index.html"><a class="padding" href="../../types/4-coproducts/index.html">Episode 4 - CoProducts<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/5-rectypes/index.html"><a class="padding" href="../../types/5-rectypes/index.html">Episode 5 - Recursive Data Types<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space">
+            <li><a class="padding" href="https://github.com/chrilves"><i class="fa-fw fab fa-github"></i> GitHub Repo</a></li>
+            <li><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+            <li><a class="padding" href="https://twitter.com/chrilves"><i class='fab fa-fw fa-twitter'></i> Twitter</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showLangSwitch showVariantSwitch showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch showLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../posts/probability_in_scala_3_all_sides/index.html" lang="en" selected>English</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch showVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
+                      <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                      <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                      <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
+                      <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
+                      <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
+                      <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
+                      <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
+                      <option id="R-select-variant-neon" value="neon">Neon</option>
+                      <option id="R-select-variant-learn" value="learn">Learn</option>
+                      <option id="R-select-variant-blue" value="blue">Blue</option>
+                      <option id="R-select-variant-green" value="green">Green</option>
+                      <option id="R-select-variant-red" value="red">Red</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1729680927" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729680927" defer></script>
+    <script src="../../js/theme.js?1729680927" defer></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/posts/recursion_schemes_intro/index.html</link>
+    <description>Presentation of recursion schemes from simple examples without the complex vocabulary in the way.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/posts/recursion_schemes_intro/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

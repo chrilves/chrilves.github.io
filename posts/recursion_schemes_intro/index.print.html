@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.3">
+    <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
+    <meta name="description" content="Presentation of recursion schemes from simple examples without the complex vocabulary in the way.">
+    <meta name="author" content="chrilves">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives">
+    <meta name="twitter:description" content="Presentation of recursion schemes from simple examples without the complex vocabulary in the way.">
+  <meta name="twitter:site" content="@chrilves"/>
+    <meta property="og:url" content="https://chrilves.github.io/posts/recursion_schemes_intro/index.html">
+    <meta property="og:site_name" content="@chrilves&#39; Archives">
+    <meta property="og:title" content="Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives">
+    <meta property="og:description" content="Presentation of recursion schemes from simple examples without the complex vocabulary in the way.">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Posts">
+    <meta property="article:published_time" content="2019-03-22T10:00:00+01:00">
+    <meta property="article:modified_time" content="2019-03-22T10:00:00+01:00">
+    <meta itemprop="name" content="Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives">
+    <meta itemprop="description" content="Presentation of recursion schemes from simple examples without the complex vocabulary in the way.">
+    <meta itemprop="datePublished" content="2019-03-22T10:00:00+01:00">
+    <meta itemprop="dateModified" content="2019-03-22T10:00:00+01:00">
+    <meta itemprop="wordCount" content="3556">
+    <meta itemprop="keywords" content="Recursion Schemes,Algebra,F-Algebra">
+    <title>Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives</title>
+    <link href="https://chrilves.github.io/posts/recursion_schemes_intro/index.html" rel="canonical" type="text/html" title="Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives">
+    <link href="../../posts/recursion_schemes_intro/index.xml" rel="alternate" type="application/rss+xml" title="Recursion Schemes: the high-school introduction :: @chrilves&#39; Archives">
+    <link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729680927" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729680927" rel="stylesheet">
+    <link href="../../css/fonts.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729680927" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729680927" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1729680927" rel="stylesheet">
+    <script src="../../js/variant.js?1729680927"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../posts/recursion_schemes_intro/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#learning-recursion-schemes">Learning Recursion Schemes</a></li>
+    <li><a href="#in-recursion-schemes-there-is-recursion">In <em>Recursion Schemes</em>, there is <em>Recursion</em></a></li>
+    <li><a href="#scaling-up">Scaling up!</a></li>
+    <li><a href="#time-to-take-off">Time to take off!</a></li>
+    <li><a href="#yeah-buzzwords">Yeah! Buzzwords!</a></li>
+    <li><a href="#where-to-go-from-here">Where to go from here?</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Recursion Schemes: the high-school introduction</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/recursion_schemes_intro.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/recursion_schemes_intro/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/prime/index.html" title="Proving Primality with GADTs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/gadts_intro/index.html" title="Demystifying GADTs (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="recursion-schemes-the-high-school-introduction">Recursion Schemes: the high-school introduction</h1>
+
+<p><em>I gave a talk on Thursday the 28th of march 2019 at the <a href="https://www.meetup.com/fr-FR/Paris-Scala-User-Group-PSUG/events/259498147/" rel="external" target="_self">96th Paris Scala User Group</a> session on about this. The <a href="../../slides/recursion-schemes-intro/index.html">slides are here</a>.</em></p>
+<p>Recursion schemes are said to be a tough subject. Articles and presentations often
+flood the audience with lots of names such as <em>Algebra</em>, <em>CoAlgebra</em>, <em>catamorphisms</em>,
+<em>anamorhpisms</em>, <em>hylomorphism</em>, etc. Is knowing all these concepts required to understand
+recursion schemes? I have good news for you: it isn&rsquo;t! All you need, to see what recursion
+schemes are and why there are useful, can be presented with just a single basic function,
+often taught as an introduction to programming: factorial. I&rsquo;m glad to welcome you to
+to the high-school introduction to recursion scheme 😉.</p>
+<h2 id="learning-recursion-schemes">Learning Recursion Schemes</h2>
+<p>Before diving into the subject, let&rsquo;s take a moment to contextualize.
+Recursion-schemes, like most of advanced functional programming techniques,
+is almost never taught in programming courses or books. It means there is a strong chance
+the subject, and the concepts it relies upon, is totally new to you.
+I want you to remember you haven&rsquo;t learnt programming in one day, and you probably did not
+start learning programming by implementing a distributed steaming application over
+a spark cluster from scratch.
+Like most of us, you probably started by coding some sort of <em>Hello, World!</em>.
+Let&rsquo;s face it, real business application are a lot more complex than this.
+Do you imagine what a first introduction to programming would be, if instead of asking
+people to write a simple <em>Hello, World!</em>, we would ask them to write a real state-of-the-art
+large-scale business application that meets all the requirements we expect in
+production nowadays? <strong>Learning takes time! Start with toy examples that are
+indeed far from real-word cases but enables you to grow your understanding, one step at a time.</strong></p>
+<p>The examples below are indeed toy examples. When i develop with recursion scheme, like any
+specialist in any field, i use specialist techniques and vocabulary (you know, the usual vocabulary
+from category and type theory). But if you&rsquo;re reading this, it probably means you&rsquo;re not a
+recursion-scheme specialist yet. Using complex words flatters our ego, which
+is very enjoyable, but developing a deep understanding of these notions is far better! So let&rsquo;s put our ego
+aside for a moment and accept to start with the basics.</p>
+<h2 id="in-recursion-schemes-there-is-recursion">In <em>Recursion Schemes</em>, there is <em>Recursion</em></h2>
+<p>First of all, let me present you the famous <em>factorial</em> function. It is defined on <em>non-negative</em> numbers <em>n</em> as the
+product of all numbers between <em>1</em> and <em>n</em> included:</p>
+$$fact(n) = 1 \times 2 \times 3 \times \cdots \times n$$<p>To ease the presentation we will take <code>Int</code> as the type of <em>non-negative integers</em>.
+Obviously in production code negative values should be handled appropriately
+but for simplicity&rsquo;s sake, we will define <code>fact</code> in <em>Scala</em> and in <em>Haskell</em> as</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fact</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">fact</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">*</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">fact</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fact</span> <span class="mi">0</span> <span class="ow">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fact</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">fact</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="kr">in</span> <span class="n">n</span> <span class="o">*</span> <span class="n">r</span></span></span></code></pre></div>
+<p>Factorial is written here as a recursive function.
+As you probably know, it can also be written as an
+iterative one (using a <code>for</code> or <code>while</code> loop) but the subject of this article is <em>Recursion
+Schemes</em>, not <em>Iterative Schemes</em>, so let&rsquo;s use recursion. This function computes <code>fact(2)</code> as follows:</p>
+<ul>
+<li><code>fact(2) = 2 * fact(1)</code> so it needs to compute <code>fact(1)</code></li>
+<li><code>fact(1) = 1 * fact(0)</code> so it needs to compute <code>fact(0)</code></li>
+<li><code>fact(0) = 1</code></li>
+<li>now that the result of <code>fact(0)</code> is known, it can replace the call of <code>fact(0)</code>
+by its result which gives <code>fact(1) = 1 * fact(0) = 1 * 1 = 1</code></li>
+<li>now that the result of <code>fact(1)</code> is known, it can replace the call of <code>fact(1)</code>
+by its result which gives <code>fact(2) = 2 * fact(1) = 2 * 1 = 2</code>.</li>
+</ul>
+<p>Look at how <code>fact(n)</code> is calling it-self: if <code>n = 0</code> then it doesn&rsquo;t call itself, otherwise
+it calls itself on <code>n - 1</code>. Let&rsquo;s split this definition in two parts: the first one contains all the code
+relevant to how <code>fact</code> is calling itself but only it, the second one is made of the rest. There is no clear
+rule for what is relevant and what is not. Different splits may work, they will just give rise to different
+schemes, which is not a problem at all. You just need to find one that fits your needs.</p>
+<p>For <code>fact</code>, the key element to note is it is not calling itself when <code>n = 0</code> but otherwise calls itself
+with <code>n - 1</code>. The constant returned in the <code>n = 0</code> case and the operation done in the other one have no impact
+on how <code>fact</code> recurses. So i choose to split it by taking all code not relevant to recursion out of
+its body:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="cm">/* Part irrelevant to recursion:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * The real definitions of these variables
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * have no impact on how fact is calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">baseCase</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">recCase</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* Recursion-only part:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * The only implementation details it contains
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * are about how fact it calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fact</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">fact</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">recCase</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="cm">{-
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Part irrelevant to recursion:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> The real definitions of these variables
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Have no impact on how fact is calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm">-}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase</span> <span class="ow">::</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase</span>  <span class="ow">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">recCase</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">recCase</span> <span class="n">n</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="cm">{-
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Recursion-only part:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> The only implementation details it contains
+</span></span></span><span class="line"><span class="cl"><span class="cm"> are about how fact it calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm"> -}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fact</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fact</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fact</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">fact</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="kr">in</span> <span class="n">recCase</span> <span class="n">n</span> <span class="n">r</span></span></span></code></pre></div>
+<p>Let me present you another function, also defined on <em>non-negative</em> numbers <em>n</em>,
+but that computes this time the <em>sum</em>  of all numbers between <em>1</em> and <em>n</em> included:</p>
+$$sum(n)  = 1 + 2 + 3 + \cdots + n$$<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">sum</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">sum</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">+</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">sum</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="mi">0</span> <span class="ow">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">sum</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">in</span> <span class="n">n</span> <span class="o">+</span> <span class="n">r</span></span></span></code></pre></div>
+<p>We can apply the same technique to <code>sum</code>: splitting the definition into two parts,
+one containing all but only recursion-relevant code, and the other the rest. It gives:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="cm">/* Part irrelevant to recursion:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * The real definitions of these variables
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * have no impact on how sum is recurs
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">baseCase</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">recCase</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* Recursion-only part:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * The only implementation details it contains
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * are about how fact it recurs
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">sum</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">sum</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">recCase</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="cm">{-
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Part irrelevant to recursion:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> The real definitions of these variables
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Have no impact on how fact is calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm">-}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase</span> <span class="ow">::</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase</span> <span class="ow">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">recCase</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">recCase</span> <span class="n">n</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">n</span> <span class="o">+</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="cm">{-
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Recursion-only part:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> The only implementation details it contains
+</span></span></span><span class="line"><span class="cl"><span class="cm"> are about how fact it calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm"> -}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">sum</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">in</span> <span class="n">recCase</span> <span class="n">n</span> <span class="n">r</span></span></span></code></pre></div>
+<p>Do you see how similar the recursion-relevant parts of <code>sum</code> and  <code>fact</code> are? They are actually identical! It means
+<code>fact</code> and <code>sum</code> have the same recursion structure. The recursion-irrelevant part differ:
+the constant <code>baseCase</code> which is <em>1</em> in <code>fact</code> but <em>0</em> in <code>sum</code> and operation <code>recCase</code> which is <code>n * r</code> in <code>fact</code> but
+<code>n + r</code> in <code>sum</code>. Note that if we replace, in each case, occurrences of <code>baseRec</code> and <code>recCase</code> by their definition, we
+get back the original functions. Look at the common recursive-relevant part:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">commonRecursiveRelevantPart</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">commonRecursiveRelevantPart</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">recCase</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">commonRecursiveRelevantPart</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">commonRecursiveRelevantPart</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl"><span class="nf">commonRecursiveRelevantPart</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">commonRecursiveRelevantPart</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                <span class="kr">in</span> <span class="n">recCase</span> <span class="n">n</span> <span class="n">r</span></span></span></code></pre></div>
+<p>Obviously, for this code to be correct, <code>baseCase</code> and <code>recCase</code> have to be defined. Let&rsquo;s fix this by taking them
+as arguments:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">(</span><span class="n">baseCase</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Int</span> <span class="k">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">commonRecursiveRelevantPart</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r</span> <span class="k">=</span> <span class="n">commonRecursiveRelevantPart</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">recCase</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">commonRecursiveRelevantPart</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase</span> <span class="n">recCase</span> <span class="ow">=</span> <span class="n">commonRecursiveRelevantPart</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">commonRecursiveRelevantPart</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl">    <span class="n">commonRecursiveRelevantPart</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">    <span class="n">commonRecursiveRelevantPart</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">commonRecursiveRelevantPart</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                    <span class="kr">in</span> <span class="n">recCase</span> <span class="n">n</span> <span class="n">r</span></span></span></code></pre></div>
+<p>It is then trivial to define both <code>fact</code> and <code>sum</code> by feeding <code>scheme</code> with corresponding definitions for <code>baseCase</code> and <code>recCase</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fact</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Int</span> <span class="k">=</span> <span class="n">scheme</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="n">r</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">sum</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Int</span> <span class="k">=</span> <span class="n">scheme</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">r</span><span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">fact</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fact</span> <span class="ow">=</span> <span class="n">scheme</span> <span class="mi">1</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="ow">=</span> <span class="n">scheme</span> <span class="mi">0</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span></span></span></code></pre></div>
+<p>We can now give a first answer to how recursion schemes can be useful. They enable to
+to write less code which is both easier and safer. But there is more! Recursive calls, like any
+function calls, consume the stack. If there are too many recursive calls (i.e. when <code>n</code> is to big),
+there is a risk of stack overflow. Some languages like <em>Scala</em> are smart enough to avoid, in some cases,
+this problem by transforming <em>tail-recursive</em> functions into iterative loops.
+Unfortunately not all recursive functions are <em>tail-recursive</em>. Writing recursive functions as
+iterative loops is not the solution either since it is intricate and error-prone.
+Fortunately it is enough to only write the recursion scheme once:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">(</span><span class="n">baseCase</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Int</span><span class="o">)(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">res</span> <span class="k">=</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">i</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="k">=</span> <span class="n">recCase</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">res</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">res</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase</span> <span class="n">recCase</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">aux</span> <span class="n">baseCase</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="n">res</span> <span class="n">i</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">then</span> <span class="n">aux</span> <span class="p">(</span><span class="n">recCase</span> <span class="n">i</span> <span class="n">res</span><span class="p">)</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">else</span> <span class="n">res</span></span></span></code></pre></div>
+<p>Note that the scheme is usually simpler to write as it only focuses on recursion, not
+business logic. Furthermore one scheme may fit many functions thus reducing the complexity
+and bugs in writing business functions. Remember that <code>fact</code> and <code>sum</code> are purposely trivial.
+They are just toy example to introduce the subject. In practice you will use much more complex
+recursive functions. Once you&rsquo;ve understood this example, you&rsquo;ll be able to scale this technique
+to any recursive one, however complex it is.</p>
+<h2 id="scaling-up">Scaling up!</h2>
+<p>To be sure we have a good understanding of the techniqe, let&rsquo;s apply it to the <em>fibonacci</em> function we all love.
+It is defined on <em>non-negative</em> integers by</p>
+$$fib(0) = 1$$$$fib(1) = 1$$$$fib(n+2) = fib(n+1) + fib(n)$$<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="n">n</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">0</span> <span class="k">=&gt;</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">1</span> <span class="k">=&gt;</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">n</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r1</span> <span class="k">=</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r2</span> <span class="k">=</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">fib</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="mi">0</span> <span class="ow">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="mi">1</span> <span class="ow">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r1</span> <span class="ow">=</span> <span class="n">fib</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r2</span> <span class="ow">=</span> <span class="n">fib</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span></span></span></code></pre></div>
+<p>The function <code>fib</code> does not call itself when <code>n</code> is <em>0</em> or <em>1</em> but calls itself twice, on <code>n-1</code> and <code>n-2</code> otherwise.
+So we can, like <code>fact</code> and <code>sum</code>, split <code>fib</code> into two pieces: one containing only recursion-relevant code and the
+other one the rest. Once again the split is done by taking recursion-irrelevant code out of the function&rsquo;s body.
+Remember they are many ways to split it up. This one is just one of many sensible way of doing so:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="cm">/* Part irrelevant to recursion:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * The real definitions of these variables
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * have no impact on how fact is calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">baseCase0</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">baseCase1</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">recCase</span><span class="o">(</span><span class="n">r1</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r2</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* Recursion-only part:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * The only implementation details it contains
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * are about how fib it calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="n">n</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">0</span> <span class="k">=&gt;</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">1</span> <span class="k">=&gt;</span> <span class="n">baseCase1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">n</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r1</span> <span class="k">=</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r2</span> <span class="k">=</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">recCase</span><span class="o">(</span><span class="n">r1</span><span class="o">,</span> <span class="n">r2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="cm">{-
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Part irrelevant to recursion:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> The real definitions of these variables
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Have no impact on how fact is calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm">-}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase0</span> <span class="ow">::</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase0</span> <span class="ow">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase1</span> <span class="ow">::</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">baseCase1</span> <span class="ow">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">recCase</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">recCase</span> <span class="n">n</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">n</span> <span class="o">+</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">{-
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Recursion-only part:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> The only implementation details it contains
+</span></span></span><span class="line"><span class="cl"><span class="cm"> are about how fact it calling itself
+</span></span></span><span class="line"><span class="cl"><span class="cm"> -}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="mi">1</span> <span class="ow">=</span> <span class="n">baseCase1</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">recCase</span> <span class="n">r1</span> <span class="n">r2</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r1</span> <span class="ow">=</span> <span class="n">fib</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r2</span> <span class="ow">=</span> <span class="n">fib</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span></span></span></code></pre></div>
+<p>Which leads to the recursion scheme:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">(</span><span class="n">baseCase0</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">baseCase1</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Int</span><span class="o">)(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="n">n</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">0</span> <span class="k">=&gt;</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">1</span> <span class="k">=&gt;</span> <span class="n">baseCase1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">n</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r1</span> <span class="k">=</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">r2</span> <span class="k">=</span> <span class="n">fib</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">recCase</span><span class="o">(</span><span class="n">r1</span><span class="o">,</span> <span class="n">r2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase0</span> <span class="n">baseCase1</span> <span class="n">recCase</span> <span class="ow">=</span> <span class="n">aux</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="mi">1</span> <span class="ow">=</span> <span class="n">baseCase1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">recCase</span> <span class="n">r1</span> <span class="n">r2</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r1</span> <span class="ow">=</span> <span class="n">aux</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r2</span> <span class="ow">=</span> <span class="n">aux</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span></span></span></code></pre></div>
+<p>It is then trivial to define <code>fib</code> by giving appropriate definition to <code>scheme</code> arguments: <code>baseCase0</code>, <code>baseCase1</code> and
+<code>recCase</code>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fib</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Int</span> <span class="k">=</span> <span class="n">scheme</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="n">r1</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r2</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">fib</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fib</span> <span class="ow">=</span> <span class="n">scheme</span> <span class="mi">1</span> <span class="mi">1</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span></span></span></code></pre></div>
+<p>Once again this implementation is not optimal as each call of <code>fib</code> can make to 2 recursive calls
+which leads to an exponential time complexity. While computing <code>fib(5)</code> is fast, computing <code>fib(1000)</code> may
+take much longer. As you already probably guessed, writing the recursion scheme as an iterative loop, which
+sadly makes it more intricate, solves the problem:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">(</span><span class="n">baseCase0</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">baseCase1</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Int</span><span class="o">)(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">b0</span> <span class="k">=</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">b1</span> <span class="k">=</span> <span class="n">baseCase1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">i</span> <span class="k">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">b2</span> <span class="k">=</span> <span class="n">recCase</span><span class="o">(</span><span class="n">b0</span><span class="o">,</span> <span class="n">b1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">b0</span> <span class="k">=</span> <span class="n">b1</span>
+</span></span><span class="line"><span class="cl">      <span class="n">b1</span> <span class="k">=</span> <span class="n">b2</span>
+</span></span><span class="line"><span class="cl">      <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase0</span> <span class="n">baseCase1</span> <span class="n">recCase</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase0</span> <span class="n">baseCase1</span> <span class="n">recCase</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">aux</span> <span class="n">baseCase0</span> <span class="n">baseCase1</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="n">b0</span> <span class="n">b1</span> <span class="n">i</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">                  <span class="kr">then</span> <span class="n">aux</span> <span class="n">b1</span> <span class="p">(</span><span class="n">recCase</span> <span class="n">b0</span> <span class="n">b1</span><span class="p">)</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                  <span class="kr">else</span> <span class="n">b1</span></span></span></code></pre></div>
+<p>By now you should get a good grasp on what recursion schemes are. But we have
+only seen a tiny fraction of how useful they are. It&rsquo;s about time to consider
+the real power of <code>fact</code>, <code>sum</code> and <code>fib</code>&rsquo;s schemes.</p>
+<h2 id="time-to-take-off">Time to take off!</h2>
+<p>Previously we defined <code>fact</code> and <code>sum</code>&rsquo;s schemes as</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">(</span><span class="n">baseCase</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Int</span><span class="o">)(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">res</span> <span class="k">=</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">i</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="k">=</span> <span class="n">recCase</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">res</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">res</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase</span> <span class="n">recCase</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">aux</span> <span class="n">baseCase</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="n">res</span> <span class="n">i</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">then</span> <span class="n">aux</span> <span class="p">(</span><span class="n">recCase</span> <span class="n">i</span> <span class="n">res</span><span class="p">)</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">else</span> <span class="n">res</span></span></span></code></pre></div>
+<p>I have a small exercise for you: find where this code relies on <code>baseCase</code> to be an <code>Int</code>?
+It&rsquo;s important, take the time to figure it out. The answer is simple: it does not! <code>baseCase</code> can actually be
+any of type <code>A</code>! We don&rsquo;t even have to modify the code (only the type signature):</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">baseCase</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">A</span><span class="o">)(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">res</span> <span class="k">=</span> <span class="n">baseCase</span>
+</span></span><span class="line"><span class="cl">  <span class="k">var</span> <span class="n">i</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="k">=</span> <span class="n">recCase</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">res</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">res</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase</span> <span class="n">recCase</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">aux</span> <span class="n">baseCase</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="n">res</span> <span class="n">i</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">then</span> <span class="n">aux</span> <span class="p">(</span><span class="n">recCase</span> <span class="n">i</span> <span class="n">res</span><span class="p">)</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">else</span> <span class="n">res</span></span></span></code></pre></div>
+<p>Not only can we still define <code>fact</code> (and <code>sum</code>) like above but it makes trivial defining
+the functions like <code>list</code> which returns the list of integers between <em>n</em> and <em>1</em>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">list</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">scheme</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]](</span><span class="nc">Nil</span><span class="o">,</span> <span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="k">=&gt;</span> <span class="n">n</span> <span class="k">:</span><span class="kt">:</span> <span class="kt">r</span><span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">list</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">list</span> <span class="ow">=</span> <span class="n">scheme</span> <span class="kt">[]</span> <span class="p">(</span><span class="kt">:</span><span class="p">)</span></span></span></code></pre></div>
+<p>Unsurprisingly <code>fib</code>&rsquo;s recursion scheme can also be generalized without changing a single line of code (only type signature):</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">baseCase0</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">baseCase1</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">A</span><span class="o">)(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">b0</span> <span class="k">=</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">b1</span> <span class="k">=</span> <span class="n">baseCase1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="n">i</span> <span class="k">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">b2</span> <span class="k">=</span> <span class="n">recCase</span><span class="o">(</span><span class="n">b0</span><span class="o">,</span> <span class="n">b1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">b0</span> <span class="k">=</span> <span class="n">b1</span>
+</span></span><span class="line"><span class="cl">      <span class="n">b1</span> <span class="k">=</span> <span class="n">b2</span>
+</span></span><span class="line"><span class="cl">      <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase0</span> <span class="n">baseCase1</span> <span class="n">recCase</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">baseCase0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="n">baseCase0</span> <span class="n">baseCase1</span> <span class="n">recCase</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">aux</span> <span class="n">baseCase0</span> <span class="n">baseCase1</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aux</span> <span class="n">b0</span> <span class="n">b1</span> <span class="n">i</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">                  <span class="kr">then</span> <span class="n">aux</span> <span class="n">b1</span> <span class="p">(</span><span class="n">recCase</span> <span class="n">b0</span> <span class="n">b1</span><span class="p">)</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                  <span class="kr">else</span> <span class="n">b1</span></span></span></code></pre></div>
+<p>While <code>fact</code>&rsquo;s scheme is related to lists, <code>fib</code>&rsquo;s one is related to trees:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Leaf</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">left</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">right</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">tree</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">Boolean</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="n">scheme</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nc">Leaf</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nc">Leaf</span><span class="o">(</span><span class="kc">true</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="o">(</span><span class="n">r1</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">Boolean</span><span class="o">],</span> <span class="n">r2</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">Boolean</span><span class="o">])</span> <span class="k">=&gt;</span> <span class="nc">Node</span><span class="o">(</span><span class="n">r1</span><span class="o">,</span><span class="n">r2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Tree</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Leaf</span> <span class="n">a</span> <span class="o">|</span> <span class="kt">Node</span> <span class="p">(</span><span class="kt">Tree</span> <span class="n">a</span><span class="p">)</span> <span class="p">(</span><span class="kt">Tree</span> <span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">tree</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Tree</span> <span class="kt">Bool</span>
+</span></span><span class="line"><span class="cl"><span class="nf">tree</span> <span class="ow">=</span> <span class="n">scheme</span> <span class="p">(</span><span class="kt">Leaf</span> <span class="kt">False</span><span class="p">)</span> <span class="p">(</span><span class="kt">Leaf</span> <span class="kt">True</span><span class="p">)</span> <span class="kt">Node</span></span></span></code></pre></div>
+<p>I have few real exercises for you this time:</p>
+<ul>
+<li><em>find in your production code several spots where this scheme could be useful.</em></li>
+<li><em>write schemes, as general as possible, for at least 5 recursive functions in our production code.</em></li>
+</ul>
+<p>Obviously I won&rsquo;t check you did the exercises but you should really do them. Reading is not sufficient to
+develop your understanding of the technique, you need to experiment! Try things, play with
+these notions until it clicks. <strong>Learning recursion schemes is like going on expeditions:
+preparation time may seem the easier part but if you did not prepare well enough, you&rsquo;ll get lost.</strong></p>
+<h2 id="yeah-buzzwords">Yeah! Buzzwords!</h2>
+<p>As we have seen, <code>fact</code>&rsquo;s scheme takes 2 arguments:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">baseCase</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">recCase</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="n">A</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span></span></span></code></pre></div>
+<p>While this definition is perfectly ok, we can regroup these argument in any structure that can hold both values like
+a pair, an interface or a trait:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">FactorialSchemeArguments</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">baseCase</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">recCase</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">scheme</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">arguments</span><span class="k">:</span> <span class="kt">FactorialSchemeArguments</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="n">A</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">class</span> <span class="kt">FactorialSchemeArguments</span> <span class="n">a</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="n">baseCase</span> <span class="ow">::</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">  <span class="n">recCase</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">scheme</span> <span class="ow">::</span> <span class="kt">FactorialSchemeArguments</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span></span></span></code></pre></div>
+<p>Note that <code>scheme</code> is still the same: it still takes the same two arguments.
+But even if the code didn&rsquo;t change, this transformation makes us see <code>scheme</code>
+from a different perspective. It shows <code>scheme</code> as a functions transforming
+an integer to an <code>A</code> provided that we give some structure to  <code>A</code>: a constant
+<code>baseCase</code> and an operation <code>recCase</code>. Let&rsquo;s give this structure and the scheme
+names: i decide to call the structure a <em>AkolovioaAlgebra</em> (don&rsquo;t look for
+it in literature, i just coined the term) and the scheme an <em>akolovioaMorphism</em>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">AkolovioaAlgebra</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">initial</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">action</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">r</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">akolovioaMorphism</span><span class="o">[</span><span class="kt">A:</span> <span class="kt">AkolovioaAlgebra</span><span class="o">]</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="n">A</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">class</span> <span class="kt">AkolovioaAlgebra</span> <span class="n">a</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="n">initial</span> <span class="ow">::</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">  <span class="n">action</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">akolovioaMorphism</span> <span class="ow">::</span> <span class="kt">AkolovioaAlgebra</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span></span></span></code></pre></div>
+<p>This looks smart, doesn&rsquo;t it? 😉 It is actually very close to a very common structure in
+programming! <em>Will you find which one?</em> Obviously the same can be done for <em>fibonacci</em>&rsquo;s scheme.
+<em>As an exercise, apply this technique to fibonacci&rsquo;s scheme and give them pretty names.</em></p>
+<h2 id="where-to-go-from-here">Where to go from here?</h2>
+<p>As you know this is not the end of the story: the subject is closely related to
+pervasive notions such as (co)algebras, inductive types, categories, initial-objects, fixed-points,
+algebraic data types, etc. Whichever next subject you choose to dive into, the approach this article follows,
+i.e. experimenting on toy examples, really helps developing a solid understanding. I want you to realize
+each definition you read in books, articles, talks, etc is the result of people experimenting. The common trap
+in this field is looking at definitions as sacred pieces of unquestionable truth no mortal can see through.
+It is actually the exact opposite! Science is by essence experimentation. This is by investigating and trying things
+you end up figuring out how things work. But, like in science, for your investigation to be productive your tests need
+to be done in a controlled environment with as few variables as possible so that it is easy for you to see what&rsquo;s going on.
+That&rsquo;s why toy examples are so important: they contain the essence of what makes things work without all the noise
+real examples have.</p>
+<p>Take care and spread recursion schemes around 😉</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1729680927" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729680927" defer></script>
+    <script src="../../js/theme.js?1729680927" defer></script>
+  </body>
+</html>

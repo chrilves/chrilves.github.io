@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.3">
+    <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
+    <meta name="description" content="Products, often called tuples, records or case classes, are a convenient way to bundle values of different types into a single value. The product of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are formed with exactly one value of each type A_i for 1 ≤ i ≤ n. It is written (A_1, A_2, ..., A_n) in many languages, Product_n[A_1, A_2, ..., A_n] in Scala and A_1 × ... × A_n in Type Theory. As an example, the product of two types A and B would be defined as">
+    <meta name="author" content="chrilves">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Episode 3 - Products :: @chrilves&#39; Archives">
+    <meta name="twitter:description" content="Products, often called tuples, records or case classes, are a convenient way to bundle values of different types into a single value. The product of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are formed with exactly one value of each type A_i for 1 ≤ i ≤ n. It is written (A_1, A_2, ..., A_n) in many languages, Product_n[A_1, A_2, ..., A_n] in Scala and A_1 × ... × A_n in Type Theory. As an example, the product of two types A and B would be defined as">
+  <meta name="twitter:site" content="@chrilves"/>
+    <meta property="og:url" content="https://chrilves.github.io/types/3-products/index.html">
+    <meta property="og:site_name" content="@chrilves&#39; Archives">
+    <meta property="og:title" content="Episode 3 - Products :: @chrilves&#39; Archives">
+    <meta property="og:description" content="Products, often called tuples, records or case classes, are a convenient way to bundle values of different types into a single value. The product of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are formed with exactly one value of each type A_i for 1 ≤ i ≤ n. It is written (A_1, A_2, ..., A_n) in many languages, Product_n[A_1, A_2, ..., A_n] in Scala and A_1 × ... × A_n in Type Theory. As an example, the product of two types A and B would be defined as">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Introduction to Types">
+    <meta property="article:published_time" content="2018-12-16T00:03:00+00:00">
+    <meta property="article:modified_time" content="2018-12-16T00:03:00+00:00">
+    <meta itemprop="name" content="Episode 3 - Products :: @chrilves&#39; Archives">
+    <meta itemprop="description" content="Products, often called tuples, records or case classes, are a convenient way to bundle values of different types into a single value. The product of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are formed with exactly one value of each type A_i for 1 ≤ i ≤ n. It is written (A_1, A_2, ..., A_n) in many languages, Product_n[A_1, A_2, ..., A_n] in Scala and A_1 × ... × A_n in Type Theory. As an example, the product of two types A and B would be defined as">
+    <meta itemprop="datePublished" content="2018-12-16T00:03:00+00:00">
+    <meta itemprop="dateModified" content="2018-12-16T00:03:00+00:00">
+    <meta itemprop="wordCount" content="797">
+    <title>Episode 3 - Products :: @chrilves&#39; Archives</title>
+    <link href="https://chrilves.github.io/types/3-products/index.html" rel="canonical" type="text/html" title="Episode 3 - Products :: @chrilves&#39; Archives">
+    <link href="../../types/3-products/index.xml" rel="alternate" type="application/rss+xml" title="Episode 3 - Products :: @chrilves&#39; Archives">
+    <link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729680927" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729680927" rel="stylesheet">
+    <link href="../../css/fonts.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729680927" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729680927" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729680927" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1729680927" rel="stylesheet">
+    <script src="../../js/variant.js?1729680927"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../types/3-products/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#equivalence-of-inductive-and-functional-forms">Equivalence of inductive and functional forms</a></li>
+    <li><a href="#generalization-to-a-product-of-any-number-of-types">Generalization to a product of any number of types</a></li>
+    <li><a href="#next-episode-coproductshttpschrilvesgithubiotypes4-coproducts"><a href="https://chrilves.github.io/types/4-coproducts/">Next Episode: CoProducts</a></a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Episode 3 - Products</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/3-products.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/3-products/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/2-enums/index.html" title="Episode 2 - Enumerations (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/4-coproducts/index.html" title="Episode 4 - CoProducts (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable types" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="episode-3---products">Episode 3 - Products</h1>
+
+<p>Products, often called <em>tuples</em>, <em>records</em> or <strong>case classes</strong>, are a convenient way to bundle values of different types into a single value. The <strong>product</strong> of <code>n</code> types (with <code>n</code> being <em>0</em>, <em>1</em>, <em>2</em>, etc) <code>A_1</code>, <code>A_2</code>, &hellip;, <code>A_n</code> is precisely the type whose values are formed with exactly one value of each type <code>A_i</code> for <code>1 ≤ i ≤  n</code>. It is written <code>(A_1, A_2, ..., A_n)</code> in many languages, <code>Product_n[A_1, A_2, ..., A_n]</code> in <em>Scala</em> and <code>A_1 × ... × A_n</code> in <em>Type Theory</em>. As an example, the product of two types <code>A</code> and <code>B</code> would be defined as</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Product2</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">B</span><span class="o">](</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">B</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span> <span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Product2</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">=</span> <span class="kt">Constructor</span> <span class="n">a</span> <span class="n">b</span></span></span></code></pre></div>
+<p>Although in practice this is the preferred way to define the product of two types <code>A</code> and <code>B</code>, we will in this presentation prefer the <strong>equivalent</strong> definition below:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Product2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">C</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">B</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">C</span><span class="o">)</span><span class="k">:</span> <span class="kt">C</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Constructor</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Constructor</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Product2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Product2</span> <span class="n">a</span> <span class="n">b</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">Constructor</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Product2</span> <span class="n">a</span> <span class="n">b</span></span></span></code></pre></div>
+<p>This <em>equivalent definition</em> makes clear the distinction between the type <code>Product2[A,B]</code> and the <strong>constructor</strong> <code>Constructor[A,B]</code>.  the constructor is a <strong>function</strong> taking as argument one value of type <code>A</code>, another value of type <code>B</code> and returning a value of type <code>Product2[A,B]</code>. Its type in <em>Haskell</em> is <code>A -&gt; B -&gt; Product2 A B</code> and in <em>Scala</em> <code>(A, B) =&gt; Product2[A,B]</code>. Note than in <em>Scala</em> functions of type <code>(A, B) =&gt; C</code> are functions of <strong>two arguments</strong> (precisely <code>Function2[A,B,C]</code>) and <strong>not of one argument</strong> <code>(A,B)</code> (which would be <code>Function1[(A,B), C]</code>):</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="nc">Constructor</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">String</span><span class="o">]</span> <span class="k">_</span> <span class="k">:</span> <span class="o">(</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">String</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="nc">Product2</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">String</span><span class="o">]</span> <span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res0</span><span class="k">:</span> <span class="o">(</span><span class="kt">Int</span><span class="o">,</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Product2</span><span class="o">[</span><span class="kt">Int</span>,<span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">$$Lambda$1620</span><span class="o">/</span><span class="mi">2032136633</span><span class="k">@</span><span class="mi">55</span><span class="n">be2608</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">t</span> <span class="kt">Constructor</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Constructor</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Product2</span> <span class="n">a</span> <span class="n">b</span></span></span></code></pre></div>
+<p>Besides, by definition <strong>constructors are injective functions</strong>, which means that for any values <code>a1:A</code>, <code>a2:A</code>, <code>b1:B</code> and <code>b2:B</code>, <code>Constructor[A,B](a1,b1) == Constructor[A,B](a2,b2)</code> <em>if and only if</em> <code>a1 == a2</code> and <code>b1 == b2</code>
+</p>
+$$\forall a1,\ a2:\texttt{A},\ b1,\ b2:\texttt{B},\quad \texttt{Constructor[A,B]}(a1,b1) = \texttt{Constructor[A,B]}(a2,b2) \Longleftrightarrow a1 = a2 \textbf{ and } b1 = b2$$<p>Besides, <code>Constructor[A,B]</code> being the <em>only constructor</em> of <code>Product2[A,B]</code> then for any value <code>v</code> of type <code>Product2[A,B]</code>, there is a unique value <code>a</code> of type <code>A</code> and a unique value <code>b</code> of type <code>B</code> such that <code>v = Constructor[A,B](a,b)</code>
+</p>
+$$\forall v:\texttt{Product2[A,B]}\ \exists!\ (a:\texttt{A} \textrm{ and } b:\texttt{B}),\quad v = \texttt{Constructor[A,B]}(a,b)$$<h2 id="equivalence-of-inductive-and-functional-forms">Equivalence of inductive and functional forms</h2>
+<p>Once again any product can be <em>equivalently expressed</em> as a <em>data type</em> <code>Product_n_Ind[A_1, ..., A_n]</code> and as a <em>function type</em> <code>Product_n_Fun[A_1, ..., A_n]</code> with <em>inverse functions</em> <code>ind2fun</code> and <code>fun2ind</code> converting back and forth types <code>Product_n_Ind[A_1, ..., A_n]</code> and <code>Product_n_Fun[A_1, ..., A_n]</code>. For example with <code>n = 2</code>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Product2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">ConstructorInd</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Product2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Product2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">C</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">B</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">C</span><span class="o">)</span><span class="k">:</span> <span class="kt">C</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">constructorFun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">Product2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">Product2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">C</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">B</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">C</span><span class="o">)</span><span class="k">:</span> <span class="kt">C</span> <span class="o">=</span> <span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">ind2fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span><span class="k">:</span> <span class="kt">Product2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Product2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">Product2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span> <span class="k">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="k">match</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">ConstructorInd</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">constructorFun</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span><span class="k">:</span> <span class="kt">Product2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Product2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+</span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">Product2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">Product2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]](</span><span class="nc">ConstructorInd</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">_</span><span class="o">)</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Product2Ind</span> <span class="n">a</span> <span class="n">b</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">ConstructorInd</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Product2Ind</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">Product2Fun</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">c</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">constructorFun</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Product2Fun</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nf">constructorFun</span> <span class="n">a</span> <span class="n">b</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">f</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="ow">::</span> <span class="kt">Product2Ind</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Product2Fun</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ind2fun</span> <span class="p">(</span><span class="kt">ConstructorInd</span> <span class="n">a</span> <span class="n">b</span><span class="p">)</span> <span class="ow">=</span> <span class="n">constructorFun</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="ow">::</span> <span class="kt">Product2Fun</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Product2Ind</span> <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">f</span> <span class="kt">ConstructorInd</span></span></span></code></pre></div>
+<h2 id="generalization-to-a-product-of-any-number-of-types">Generalization to a product of any number of types</h2>
+<p>The definition of <code>Product2</code> above can be adapted to <code>Product_n[A_1, ..., A_n]</code> for any value of <code>n</code> (i.e. <em>0</em>, <em>1</em>, <em>2</em>, <em>3</em>, <em>4</em>, &hellip;). With <code>n = 0</code>, which means a product of zero types, the constructor takes zero argument, which means it is a constant. Thus <code>Product_0</code> is equivalent to <code>Unit</code> (i.e. <code>Product_0 ≅ Unit</code>). This is the reason why <code>Unit</code> is sometimes written <code>()</code>. With <code>n = 1</code>, <code>Product_n[A] ≅ A</code>.</p>
+<p>Further more for any types <code>A</code>, <code>B</code> and <code>C</code> we have the following properties</p>
+<ul>
+<li><code>(A , B)</code> is equivalent to <code>(B , A)</code></li>
+<li><code>((A, B), C)</code> and <code>(A, (B, C))</code> and <code>(A, B, C)</code> are all equivalent</li>
+<li><code>(Unit, A)</code> and  <code>(A, Unit)</code> and <code>A</code> are all equivalent</li>
+<li><code>(A)</code> is equivalent to <code>A</code></li>
+<li><code>(False, A)</code> and <code>(A, False)</code> and <code>False</code> are all equivalent</li>
+</ul>
+<p><em>Exercise: write conversion functions <code>from</code> and <code>to</code>for each of these equivalence, such that <code>from</code> and <code>to</code> are inverse functions.</em></p>
+<h2 id="next-episode-coproductshttpschrilvesgithubiotypes4-coproducts"><a href="https://chrilves.github.io/types/4-coproducts/" rel="external" target="_self">Next Episode: CoProducts</a></h2>
+<p>In the <a href="https://chrilves.github.io/types/4-coproducts/" rel="external" target="_self">next episode</a>, we will a convenient way to express alternatives: <strong>CoProducts</strong>.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1729680927" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729680927" defer></script>
+    <script src="../../js/theme.js?1729680927" defer></script>
+  </body>
+</html>

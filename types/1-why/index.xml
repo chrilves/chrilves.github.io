@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Episode 1 - Why Types? :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/types/1-why/index.html</link>
+    <description>Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let’s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/types/1-why/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

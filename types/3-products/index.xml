@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Episode 3 - Products :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/types/3-products/index.html</link>
+    <description>Products, often called tuples, records or case classes, are a convenient way to bundle values of different types into a single value. The product of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are formed with exactly one value of each type A_i for 1 ≤ i ≤ n. It is written (A_1, A_2, ..., A_n) in many languages, Product_n[A_1, A_2, ..., A_n] in Scala and A_1 × ... × A_n in Type Theory. As an example, the product of two types A and B would be defined as</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/types/3-products/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

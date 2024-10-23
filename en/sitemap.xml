@@ -1,63 +1,95 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://chrilves.github.io/en/</loc>
+    <loc>https://chrilves.github.io/posts/index.html</loc>
+    <lastmod>2024-09-23T20:00:32+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/probability_in_scala_3_all_sides/index.html</loc>
     <lastmod>2020-07-11T19:43:00+02:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/probability_in_scala_3_all_sides/</loc>
-    <lastmod>2020-07-11T19:43:00+02:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/les_gadts_par_l_exemple/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/les_gadts_par_l_exemple/index.html</loc>
     <lastmod>2019-10-27T22:30:00+02:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/gadts_by_use_cases/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/gadts_by_use_cases/index.html</loc>
     <lastmod>2019-10-26T05:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/prime/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/prime/index.html</loc>
     <lastmod>2019-10-01T10:42:39+01:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/recursion_schemes_intro/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/recursion_schemes_intro/index.html</loc>
     <lastmod>2019-03-22T10:00:00+01:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/gadts_intro/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/gadts_intro/index.html</loc>
     <lastmod>2019-02-20T11:09:38+01:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/</loc>
-    <lastmod>2018-12-17T14:51:53+01:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/types/5-rectypes/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/types/5-rectypes/index.html</loc>
     <lastmod>2018-12-16T00:05:00+00:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/types/4-coproducts/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/types/4-coproducts/index.html</loc>
     <lastmod>2018-12-16T00:04:00+00:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/types/3-products/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/types/3-products/index.html</loc>
     <lastmod>2018-12-16T00:03:00+00:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/types/2-enums/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/types/2-enums/index.html</loc>
     <lastmod>2018-12-16T00:02:00+00:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/types/1-why/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/types/1-why/index.html</loc>
     <lastmod>2018-12-16T00:01:00+00:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/types/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/types/index.html</loc>
     <lastmod>2018-12-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/folds/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/folds/index.html</loc>
     <lastmod>2018-11-30T14:13:12+01:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/slimetrail/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/slimetrail/index.html</loc>
     <lastmod>2018-09-18T15:30:53+02:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/json2xml/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/json2xml/index.html</loc>
     <lastmod>2018-09-18T11:18:27+02:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/posts/falgebra_scalaio_2017/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/posts/falgebra_scalaio_2017/index.html</loc>
     <lastmod>2017-09-18T15:55:26+02:00</lastmod>
-  </url><url>
-    <loc>https://chrilves.github.io/en/categories/</loc>
-  </url><url>
-    <loc>https://chrilves.github.io/en/tags/</loc>
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/categories/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/categories/index.html" />
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/frontmatter/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/frontmatter/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/frontmatter/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/frontmatter/index.html" />
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/options/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/options/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/options/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/options/index.html" />
+  </url>
+  <url>
+    <loc>https://chrilves.github.io/tags/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chrilves.github.io/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chrilves.github.io/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="art-x-pir" href="https://chrilves.github.io/pir/tags/index.html" />
   </url>
 </urlset>

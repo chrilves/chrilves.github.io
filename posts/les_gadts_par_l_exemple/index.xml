@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Les GADTs Par l&#39;Exemple :: @chrilves&#39; Archives</title>
+    <link>https://chrilves.github.io/posts/les_gadts_par_l_exemple/index.html</link>
+    <description>Découvrez les ADT généralisés en vous amusant.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://chrilves.github.io/posts/les_gadts_par_l_exemple/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
