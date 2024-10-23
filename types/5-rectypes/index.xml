@@ -3,7 +3,7 @@
   <channel>
     <title>Episode 5 - Recursive Data Types :: @chrilves&#39; Archives</title>
     <link>https://chrilves.github.io/types/5-rectypes/index.html</link>
-    <description>We have seen many types but we still don’t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.</description>
+    <description>In today&#39;s episodes, let&#39;s see how to type recursive data such as lists and trees.</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>

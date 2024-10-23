@@ -3,7 +3,7 @@
   <channel>
     <title>Episode 2 - Enumerations :: @chrilves&#39; Archives</title>
     <link>https://chrilves.github.io/types/2-enums/index.html</link>
-    <description>Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, take the time to develop a deep understanding of what is really going on.</description>
+    <description>This episode is about one of the simplest types: enumeations.</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>

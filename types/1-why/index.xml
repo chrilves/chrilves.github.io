@@ -3,7 +3,7 @@
   <channel>
     <title>Episode 1 - Why Types? :: @chrilves&#39; Archives</title>
     <link>https://chrilves.github.io/types/1-why/index.html</link>
-    <description>Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let’s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.</description>
+    <description>Types are more complex and nuanced than you may think. Let me show you.</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>

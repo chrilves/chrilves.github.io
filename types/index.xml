@@ -13,7 +13,7 @@
       <link>https://chrilves.github.io/types/5-rectypes/index.html</link>
       <pubDate>Sun, 16 Dec 2018 00:05:00 +0000</pubDate>
       <guid>https://chrilves.github.io/types/5-rectypes/index.html</guid>
-      <description>We have seen many types but we still don’t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, do no skim through them but take the time to develop a deep understanding. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.</description>
+      <description>In today&#39;s episodes, let&#39;s see how to type recursive data such as lists and trees.</description>
     </item>
     <item>
       <title>Episode 4 - CoProducts</title>
@@ -34,14 +34,14 @@
       <link>https://chrilves.github.io/types/2-enums/index.html</link>
       <pubDate>Sun, 16 Dec 2018 00:02:00 +0000</pubDate>
       <guid>https://chrilves.github.io/types/2-enums/index.html</guid>
-      <description>Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But the subject of these post series is nothing like a ready-to-paste answers cookbook. On the contrary, this is a presentation of deep, difficult but rewarding concepts. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, take the time to develop a deep understanding of what is really going on.</description>
+      <description>This episode is about one of the simplest types: enumeations.</description>
     </item>
     <item>
       <title>Episode 1 - Why Types?</title>
       <link>https://chrilves.github.io/types/1-why/index.html</link>
       <pubDate>Sun, 16 Dec 2018 00:01:00 +0000</pubDate>
       <guid>https://chrilves.github.io/types/1-why/index.html</guid>
-      <description>Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let’s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.</description>
+      <description>Types are more complex and nuanced than you may think. Let me show you.</description>
     </item>
   </channel>
 </rss>

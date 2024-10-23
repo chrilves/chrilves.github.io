@@ -1,6 +1,10 @@
-@import "variables.css?1729680927";
+@import "variables.css?1729688328";
 
 @charset "UTF-8";
+
+article p {
+    text-align: justify;
+}
 
 /* until browsers don't let us set length values based on dppx, we
 need a way to calculate them ourself */
@@ -112,7 +116,6 @@ html {
     color-scheme: only var(--INTERNAL-BROWSER-theme);
     height: 100%;
     width: 100%;
-    text-align: justify;
 }
 
 body {

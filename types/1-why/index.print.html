@@ -5,40 +5,40 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.136.3">
     <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
-    <meta name="description" content="Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let’s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.">
+    <meta name="description" content="Types are more complex and nuanced than you may think. Let me show you.">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Episode 1 - Why Types? :: @chrilves&#39; Archives">
-    <meta name="twitter:description" content="Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let’s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.">
+    <meta name="twitter:description" content="Types are more complex and nuanced than you may think. Let me show you.">
   <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/types/1-why/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="Episode 1 - Why Types? :: @chrilves&#39; Archives">
-    <meta property="og:description" content="Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let’s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.">
+    <meta property="og:description" content="Types are more complex and nuanced than you may think. Let me show you.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction to Types">
     <meta property="article:published_time" content="2018-12-16T00:01:00+00:00">
     <meta property="article:modified_time" content="2018-12-16T00:01:00+00:00">
     <meta itemprop="name" content="Episode 1 - Why Types? :: @chrilves&#39; Archives">
-    <meta itemprop="description" content="Why using types? When are they useful? Why we should care about types? What are types? These are the questions this series of posts give some answers to. Let’s start by realizing a fundamental fact: types are everywhere! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. Types are specification, discriminating what makes sense from what makes not.">
+    <meta itemprop="description" content="Types are more complex and nuanced than you may think. Let me show you.">
     <meta itemprop="datePublished" content="2018-12-16T00:01:00+00:00">
     <meta itemprop="dateModified" content="2018-12-16T00:01:00+00:00">
     <meta itemprop="wordCount" content="1044">
     <title>Episode 1 - Why Types? :: @chrilves&#39; Archives</title>
     <link href="https://chrilves.github.io/types/1-why/index.html" rel="canonical" type="text/html" title="Episode 1 - Why Types? :: @chrilves&#39; Archives">
     <link href="../../types/1-why/index.xml" rel="alternate" type="application/rss+xml" title="Episode 1 - Why Types? :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729680927" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1729680927" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729680927" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1729680927" rel="stylesheet">
-    <link href="../../css/fonts.css?1729680927" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729680927" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1729680927" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1729680927" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1729680927" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1729680927" rel="stylesheet">
-    <script src="../../js/variant.js?1729680927"></script>
+    <link href="../../css/fontawesome-all.min.css?1729688328" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729688328" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729688328" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729688328" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729688328" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729688328" rel="stylesheet">
+    <link href="../../css/fonts.css?1729688328" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729688328" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729688328" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729688328" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729688328" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729688328" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1729688328" rel="stylesheet">
+    <script src="../../js/variant.js?1729688328"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -114,6 +114,7 @@
   </header>
 
 <h1 id="episode-1---why-types">Episode 1 - Why Types?</h1>
+    <p class="article-meta default"><em>Sun, Dec 16, 2018 - 1100 Words</em></p>
 
 <p><strong>Why using</strong> types? <strong>When</strong> are they useful? <strong>Why</strong> we should <strong>care</strong> about types? <strong>What</strong> are types? These are the questions <a href="https://chrilves.github.io/types/" rel="external" target="_self">this series of posts</a> give some answers to. Let&rsquo;s start by realizing a fundamental fact: <strong>types are everywhere</strong>! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. <strong>Types are specification</strong>, discriminating what makes sense from what makes not.</p>
 <h2 id="a-real-life-example">A real life example</h2>
@@ -178,8 +179,8 @@
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1729680927" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1729680927" defer></script>
-    <script src="../../js/theme.js?1729680927" defer></script>
+    <script src="../../js/clipboard.min.js?1729688328" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729688328" defer></script>
+    <script src="../../js/theme.js?1729688328" defer></script>
   </body>
 </html>
