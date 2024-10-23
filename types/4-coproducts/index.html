@@ -28,16 +28,16 @@
     <title>Episode 4 - CoProducts :: @chrilves&#39; Archives</title>
     <link href="../../types/4-coproducts/index.xml" rel="alternate" type="application/rss+xml" title="Episode 4 - CoProducts :: @chrilves&#39; Archives">
     <link href="../../types/4-coproducts/index.print.html" rel="alternate" type="text/html" title="Episode 4 - CoProducts :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1729693097" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729693097" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1729693097" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1729693097" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729693097" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1729693097" rel="stylesheet">
-    <link href="../../css/fonts.css?1729693097" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729693097" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1729693097" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1729693097" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1729693097" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1729693097" rel="stylesheet" media="print">
-    <script src="../../js/variant.js?1729693097"></script>
+    <link href="../../css/fontawesome-all.min.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729693550" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1729693550" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729693550" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1729693550" rel="stylesheet">
+    <link href="../../css/fonts.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729693550" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1729693550" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1729693550" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1729693550" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1729693550" rel="stylesheet" media="print">
+    <script src="../../js/variant.js?1729693550"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -113,7 +113,7 @@
   </header>
 
 <h1 id="episode-4---coproducts">Episode 4 - CoProducts</h1>
-    <p class="article-meta default"><em>Sun, Dec 16, 2018 - 1100 Words</em></p>
+    <p class="article-meta default"><em>16 Dec 2018 - 1100 Words</em></p>
 
 <p>CoProducts, often called <em>sum types</em>, <em>discriminated unions</em> or <em>disjoint unions</em>, are a convenient way to express an alternative between different types. The <strong>coproduct</strong> of <code>n</code> types (with <code>n</code> being <em>0</em>, <em>1</em>, <em>2</em>, etc) <code>A_1</code>, <code>A_2</code>, &hellip;, <code>A_n</code> is precisely the type whose values are <code>(i, a_i)</code> where <code>i</code> is a number, called the <strong>tag</strong>, between <code>1</code> and <code>n</code> both included (<code>1 ≤ i ≤  n</code>) and <code>a_i</code> is a value of type <code>A_i</code> (the actual type then depends on the value of <code>i</code>). Is is often written <code>Either[A_1, ..., A_n]</code> in programming and <code>A_1 + ... + A_n</code> in <em>Type Theory</em>.</p>
 <p>Let&rsquo;s take, as an example, <code>n = 4</code>, <code>A_1 = Char</code>, <code>A_2 = Boolean</code>, <code>A_3 = Char</code> and <code>A_4 = Double</code>. The following values are all <strong>valid and distinct</strong> values of type <code>Either4[Char, Boolean, Char, Double]</code>: <code>(1, 'C')</code>, <code>(2, true)</code>, <code>(3, 'D')</code>, <code>(4, 3.2)</code>, <code>(3, 'C')</code>. Note that <code>(1, 'C')</code> and <code>(3, 'C')</code> are different values because the <em>tag</em> is different.</p>
@@ -296,7 +296,7 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
 </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.js?1729693097";
+          window.index_js_url="../../searchindex.js?1729693550";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -309,12 +309,12 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1729693097" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1729693097" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1729693097" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1729693097" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1729693097" defer></script>
-        <script src="../../js/search.js?1729693097" defer></script>
+        <script src="../../js/auto-complete.js?1729693550" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1729693550" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1729693550" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1729693550" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1729693550" defer></script>
+        <script src="../../js/search.js?1729693550" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -411,8 +411,8 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1729693097" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1729693097" defer></script>
+    <script src="../../js/clipboard.min.js?1729693550" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1729693550" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -427,7 +427,7 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
       }
       useMathJax( JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1729693097"></script>
-    <script src="../../js/theme.js?1729693097" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1729693550"></script>
+    <script src="../../js/theme.js?1729693550" defer></script>
   </body>
 </html>

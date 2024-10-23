@@ -25,17 +25,17 @@
     <title>Introduction to Types :: @chrilves&#39; Archives</title>
     <link href="https://chrilves.github.io/types/index.html" rel="canonical" type="text/html" title="Introduction to Types :: @chrilves&#39; Archives">
     <link href="../types/index.xml" rel="alternate" type="application/rss+xml" title="Introduction to Types :: @chrilves&#39; Archives">
-    <link href="../css/fontawesome-all.min.css?1729693097" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1729693097" rel="stylesheet"></noscript>
-    <link href="../css/nucleus.css?1729693097" rel="stylesheet">
-    <link href="../css/auto-complete.css?1729693097" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1729693097" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1729693097" rel="stylesheet">
-    <link href="../css/fonts.css?1729693097" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1729693097" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1729693097" rel="stylesheet">
-    <link href="../css/theme-relearn-auto.css?1729693097" rel="stylesheet" id="R-variant-style">
-    <link href="../css/chroma-relearn-auto.css?1729693097" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../css/print.css?1729693097" rel="stylesheet" media="print">
-    <link href="../css/format-print.css?1729693097" rel="stylesheet">
-    <script src="../js/variant.js?1729693097"></script>
+    <link href="../css/fontawesome-all.min.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1729693550" rel="stylesheet"></noscript>
+    <link href="../css/nucleus.css?1729693550" rel="stylesheet">
+    <link href="../css/auto-complete.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1729693550" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1729693550" rel="stylesheet">
+    <link href="../css/fonts.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1729693550" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1729693550" rel="stylesheet">
+    <link href="../css/theme-relearn-auto.css?1729693550" rel="stylesheet" id="R-variant-style">
+    <link href="../css/chroma-relearn-auto.css?1729693550" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../css/print.css?1729693550" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1729693550" rel="stylesheet">
+    <script src="../js/variant.js?1729693550"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -138,7 +138,7 @@
   </header>
 
 <h1 id="episode-1---why-types">Episode 1 - Why Types?</h1>
-    <p class="article-meta default"><em>Sun, Dec 16, 2018 - 1100 Words</em></p>
+    <p class="article-meta default"><em>16 Dec 2018 - 1100 Words</em></p>
 
 <p><strong>Why using</strong> types? <strong>When</strong> are they useful? <strong>Why</strong> we should <strong>care</strong> about types? <strong>What</strong> are types? These are the questions <a href="https://chrilves.github.io/types/" rel="external" target="_self">this series of posts</a> give some answers to. Let&rsquo;s start by realizing a fundamental fact: <strong>types are everywhere</strong>! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. <strong>Types are specification</strong>, discriminating what makes sense from what makes not.</p>
 <h2 id="a-real-life-example">A real life example</h2>
@@ -205,7 +205,7 @@
   </header>
 
 <h1 id="episode-2---enumerations">Episode 2 - Enumerations</h1>
-    <p class="article-meta default"><em>Sun, Dec 16, 2018 - 2000 Words</em></p>
+    <p class="article-meta default"><em>16 Dec 2018 - 2000 Words</em></p>
 
 <p>Now that we know what types are and why there are useful, it is about time to meet some remarkable ones. But before we start, there is some important things to state. As a developer i know how tempting it is to search ready-to-paste answers. But <em>the subject of these post series is nothing like a ready-to-paste answers cookbook</em>. On the contrary, this is a presentation of <strong>deep, difficult but rewarding concepts</strong>. Do not see them as patterns to follow blindly, like it is unfortunately too often the case in our field. Instead, <strong>take the time to develop a deep understanding</strong> of what is really going on.</p>
 <p>As such, the example i give may look simple. They are indeed much simpler than in real-life applications. They are not meant to be applicable as-is but to shed light on the core ideas. If you understand the principles they rely on, you&rsquo;ll be able to apply these powerful concepts in your day to day code. <strong>Do not skim through</strong> this but take the time to develop your understanding.</p>
@@ -403,7 +403,7 @@ Two types <code>A</code> and <code>B</code> are called <strong>equivalent</stron
   </header>
 
 <h1 id="episode-3---products">Episode 3 - Products</h1>
-    <p class="article-meta default"><em>Sun, Dec 16, 2018 - 800 Words</em></p>
+    <p class="article-meta default"><em>16 Dec 2018 - 800 Words</em></p>
 
 <p>Products, often called <em>tuples</em>, <em>records</em> or <strong>case classes</strong>, are a convenient way to bundle values of different types into a single value. The <strong>product</strong> of <code>n</code> types (with <code>n</code> being <em>0</em>, <em>1</em>, <em>2</em>, etc) <code>A_1</code>, <code>A_2</code>, &hellip;, <code>A_n</code> is precisely the type whose values are formed with exactly one value of each type <code>A_i</code> for <code>1 ≤ i ≤  n</code>. It is written <code>(A_1, A_2, ..., A_n)</code> in many languages, <code>Product_n[A_1, A_2, ..., A_n]</code> in <em>Scala</em> and <code>A_1 × ... × A_n</code> in <em>Type Theory</em>. As an example, the product of two types <code>A</code> and <code>B</code> would be defined as</p>
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Product2</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">B</span><span class="o">](</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="o">{</span>
@@ -486,7 +486,7 @@ $$\forall v:\texttt{Product2[A,B]}\ \exists!\ (a:\texttt{A} \textrm{ and } b:\te
   </header>
 
 <h1 id="episode-4---coproducts">Episode 4 - CoProducts</h1>
-    <p class="article-meta default"><em>Sun, Dec 16, 2018 - 1100 Words</em></p>
+    <p class="article-meta default"><em>16 Dec 2018 - 1100 Words</em></p>
 
 <p>CoProducts, often called <em>sum types</em>, <em>discriminated unions</em> or <em>disjoint unions</em>, are a convenient way to express an alternative between different types. The <strong>coproduct</strong> of <code>n</code> types (with <code>n</code> being <em>0</em>, <em>1</em>, <em>2</em>, etc) <code>A_1</code>, <code>A_2</code>, &hellip;, <code>A_n</code> is precisely the type whose values are <code>(i, a_i)</code> where <code>i</code> is a number, called the <strong>tag</strong>, between <code>1</code> and <code>n</code> both included (<code>1 ≤ i ≤  n</code>) and <code>a_i</code> is a value of type <code>A_i</code> (the actual type then depends on the value of <code>i</code>). Is is often written <code>Either[A_1, ..., A_n]</code> in programming and <code>A_1 + ... + A_n</code> in <em>Type Theory</em>.</p>
 <p>Let&rsquo;s take, as an example, <code>n = 4</code>, <code>A_1 = Char</code>, <code>A_2 = Boolean</code>, <code>A_3 = Char</code> and <code>A_4 = Double</code>. The following values are all <strong>valid and distinct</strong> values of type <code>Either4[Char, Boolean, Char, Double]</code>: <code>(1, 'C')</code>, <code>(2, true)</code>, <code>(3, 'D')</code>, <code>(4, 3.2)</code>, <code>(3, 'C')</code>. Note that <code>(1, 'C')</code> and <code>(3, 'C')</code> are different values because the <em>tag</em> is different.</p>
@@ -594,7 +594,7 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
   </header>
 
 <h1 id="episode-5---recursive-data-types">Episode 5 - Recursive Data Types</h1>
-    <p class="article-meta default"><em>Sun, Dec 16, 2018 - 2000 Words</em></p>
+    <p class="article-meta default"><em>16 Dec 2018 - 2000 Words</em></p>
 
 <p>We have seen many types but we still don&rsquo;t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, <strong>do no skim through</strong> them but take the time to <strong>develop a deep understanding</strong>. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.</p>
 <h2 id="a-simple-example">A simple example</h2>
@@ -847,8 +847,8 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
         </div>
       </main>
     </div>
-    <script src="../js/clipboard.min.js?1729693097" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1729693097" defer></script>
+    <script src="../js/clipboard.min.js?1729693550" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1729693550" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -863,7 +863,7 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
       }
       useMathJax( JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../js/mathjax/tex-mml-chtml.js?1729693097"></script>
-    <script src="../js/theme.js?1729693097" defer></script>
+    <script id="MathJax-script" async src="../js/mathjax/tex-mml-chtml.js?1729693550"></script>
+    <script src="../js/theme.js?1729693550" defer></script>
   </body>
 </html>
