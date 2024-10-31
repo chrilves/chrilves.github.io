@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.0.1+72a875f1db967152c77914cff4d53f8fcee0e619">
+    <meta name="generator" content="Relearn 7.1.1">
     <meta name="description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
@@ -29,16 +29,16 @@
     <title>Playing with Probability in Scala 3 :: @chrilves&#39; Archives</title>
     <link href="../../posts/probability_in_scala_3_all_sides/index.xml" rel="alternate" type="application/rss+xml" title="Playing with Probability in Scala 3 :: @chrilves&#39; Archives">
     <link href="../../posts/probability_in_scala_3_all_sides/index.print.html" rel="alternate" type="text/html" title="Playing with Probability in Scala 3 :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1729693550" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1729693550" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1729693550" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1729693550" rel="stylesheet">
-    <link href="../../css/fonts.css?1729693550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1729693550" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1729693550" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1729693550" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1729693550" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1729693550" rel="stylesheet" media="print">
-    <script src="../../js/variant.js?1729693550"></script>
+    <link href="../../css/fontawesome-all.min.css?1730385139" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1730385139" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1730385139" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1730385139" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1730385139" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1730385139" rel="stylesheet">
+    <link href="../../css/fonts.css?1730385139" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1730385139" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1730385139" rel="stylesheet">
+    <link href="../../css/theme-relearn-auto.css?1730385139" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/chroma-relearn-auto.css?1730385139" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../../css/print.css?1730385139" rel="stylesheet" media="print">
+    <script src="../../js/variant.js?1730385139"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -334,13 +334,13 @@ To visualize this data, we can export the histogram as a
 <p>Opening the file <code>d6.csv</code> with <a href="https://www.libreoffice.org/" rel="external" target="_self">LibreOffice</a>
 and plotting the data as a <em>XY Chart</em> using the <code>value</code> column as <em>X</em> and <code>count</code>
 as <em>Y</em> gives this chart:</p>
-<p><a href="#R-image-55707a885e43a40602a418e3a0fa1d9c" class="lightbox-link"><img alt="d6 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d6.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-55707a885e43a40602a418e3a0fa1d9c"><img alt="d6 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d6.svg"></a></p>
+<p><a href="#R-image-b786917c6845bd531627b79c579e8da1" class="lightbox-link"><img alt="d6 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d6.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b786917c6845bd531627b79c579e8da1"><img alt="d6 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d6.svg"></a></p>
 <p>As you can see, after length 15, there is a huge decrease in the number of
 experiments. And after length 50, the number of experiment is almost neglectable.
 The situation is similar for other dice. For example, here is the curve for <code>d100</code>:</p>
-<p><a href="#R-image-12f0416ab87683a0b1f1c643f0680a11" class="lightbox-link"><img alt="d100 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d100_distrib.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-12f0416ab87683a0b1f1c643f0680a11"><img alt="d100 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d100_distrib.svg"></a></p>
+<p><a href="#R-image-2770f0254c01b8887779b5f3efc6e600" class="lightbox-link"><img alt="d100 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d100_distrib.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2770f0254c01b8887779b5f3efc6e600"><img alt="d100 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d100_distrib.svg"></a></p>
 <p>By running enough experiment, we can get an pretty close estimation of the
 average. But an experiment is by nature random, every measure we perform is very
 likely to give a (close but still) different estimation of the average. We need
@@ -466,8 +466,8 @@ The problem is we consider every sequence to be equally likely. But the sequence
 <code>1→2→3</code> is much likelier to happen than <code>1→2→2→1→2→1→2→1→1→2→1→3</code>. We can plot
 the <code>h3</code> histogram to check that the longer a sequence is, the less likely it
 is to happen:</p>
-<p><a href="#R-image-e8c9be583d30d6ed82b4006c340b9537" class="lightbox-link"><img alt="d3 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d3_distrib.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e8c9be583d30d6ed82b4006c340b9537"><img alt="d3 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d3_distrib.svg"></a></p>
+<p><a href="#R-image-149c3c69cb6cde2b1de9c2ffec760c8c" class="lightbox-link"><img alt="d3 distribution length/count" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d3_distrib.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-149c3c69cb6cde2b1de9c2ffec760c8c"><img alt="d3 distribution length/count" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d3_distrib.svg"></a></p>
 <p>Our real big mistake is our mathematical modeling does not model the real
 problem. This is a very important rule in modeling: <strong>models much match
 closely the things they are supposed to model</strong>.</p>
@@ -884,8 +884,8 @@ length using a stream:</p>
 </span></span><span class="line"><span class="cl">    <span class="n">pw</span><span class="o">.</span><span class="n">printf</span><span class="o">(</span><span class="s">&#34;%d;%f\n&#34;</span><span class="o">,</span> <span class="n">length</span><span class="o">,</span> <span class="n">proba</span><span class="o">.</span><span class="n">toDouble</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="n">pw</span><span class="o">.</span><span class="n">close</span></span></span></code></pre></div>
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">probaD120</span><span class="o">.</span><span class="n">plot</span><span class="o">(</span><span class="mi">1500</span><span class="o">,</span> <span class="s">&#34;/tmp/d120.csv&#34;</span><span class="o">)</span></span></span></code></pre></div>
-<p><a href="#R-image-d8bb59980542f491cf0a7ee4eac21b9c" class="lightbox-link"><img alt="d120 density length/probability" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_distrib.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d8bb59980542f491cf0a7ee4eac21b9c"><img alt="d120 density length/probability" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_distrib.svg"></a></p>
+<p><a href="#R-image-c98eac72bd8b6284b5f0d6a2e9ab1232" class="lightbox-link"><img alt="d120 density length/probability" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_distrib.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c98eac72bd8b6284b5f0d6a2e9ab1232"><img alt="d120 density length/probability" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_distrib.svg"></a></p>
 <p>There is a lot of things we can do thanks to this probability like asking how
 many rolls we need to observe all the sides of dice 9 times out of 10.
 The probability of observing all the sides of the dice in <strong>exactly or less than</strong>
@@ -911,8 +911,8 @@ $$p(X_n \le l) = \sum_{l'=0}^{l} p(X_n = l')$$<p>All we need to do is transform 
 rolls. Once again, we can get a better idea of how the distribution behaves by
 plotting it</p>
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">distribD120</span><span class="o">.</span><span class="n">plot</span><span class="o">(</span><span class="mi">1500</span><span class="o">,</span> <span class="s">&#34;/tmp/d120_cumul.csv&#34;</span><span class="o">)</span></span></span></code></pre></div>
-<p><a href="#R-image-3a349e82b968cbf54814bdb136dbc294" class="lightbox-link"><img alt="d120 distribution length/probability" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_cumul.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3a349e82b968cbf54814bdb136dbc294"><img alt="d120 distribution length/probability" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_cumul.svg"></a></p>
+<p><a href="#R-image-2f3fb42cc8e4f2aaa57aeb19b6cb48d8" class="lightbox-link"><img alt="d120 distribution length/probability" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_cumul.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2f3fb42cc8e4f2aaa57aeb19b6cb48d8"><img alt="d120 distribution length/probability" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="../../assets/posts/probability_in_scala_3_all_sides/d120_cumul.svg"></a></p>
 <h2 id="conclusion">Conclusion</h2>
 <p>The initial question was simple:</p>
 <blockquote>
@@ -1031,7 +1031,7 @@ The list is pretty large.</p>
 </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.js?1729693550";
+          window.index_js_url="../../searchindex.en.js?1730385139";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -1044,20 +1044,20 @@ The list is pretty large.</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1729693550" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1729693550" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1729693550" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1729693550" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1729693550" defer></script>
-        <script src="../../js/search.js?1729693550" defer></script>
+        <script src="../../js/auto-complete.js?1730385139" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1730385139" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1730385139" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1730385139" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1730385139" defer></script>
+        <script src="../../js/search.js?1730385139" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
       </div>
       <div id="R-content-wrapper" class="highlightable">
-        <div id="R-topics">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="parent " data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-6c8465a20210a85121ce7f08ddd74896" aria-controls="R-subsections-6c8465a20210a85121ce7f08ddd74896" checked><label for="R-section-6c8465a20210a85121ce7f08ddd74896"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-6c8465a20210a85121ce7f08ddd74896" class="collapsible-menu">
+            <li class="parent " data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090" checked><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
             <li class="active " data-nav-id="/posts/probability_in_scala_3_all_sides/index.html"><a class="padding" href="../../posts/probability_in_scala_3_all_sides/index.html">Playing with Probability in Scala 3<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/les_gadts_par_l_exemple/index.html"><a class="padding" href="../../posts/les_gadts_par_l_exemple/index.html">Les GADTs Par l&#39;Exemple<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/gadts_by_use_cases/index.html"><a class="padding" href="../../posts/gadts_by_use_cases/index.html">GADTs By Use Cases<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -1068,7 +1068,7 @@ The list is pretty large.</p>
             <li class="" data-nav-id="/posts/slimetrail/index.html"><a class="padding" href="../../posts/slimetrail/index.html">How to make game in the browser thanks to ScalaJS<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/json2xml/index.html"><a class="padding" href="../../posts/json2xml/index.html">JSON to XML: the probably a tiny bit over engineered way<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/falgebra_scalaio_2017/index.html"><a class="padding" href="../../posts/falgebra_scalaio_2017/index.html">F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
-            <li class="" data-nav-id="/types/index.html"><input type="checkbox" id="R-section-49e20b5298b1a94e847e064ae86775fe" aria-controls="R-subsections-49e20b5298b1a94e847e064ae86775fe"><label for="R-section-49e20b5298b1a94e847e064ae86775fe"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-49e20b5298b1a94e847e064ae86775fe" class="collapsible-menu">
+            <li class="" data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49"><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
             <li class="" data-nav-id="/types/1-why/index.html"><a class="padding" href="../../types/1-why/index.html">Episode 1 - Why Types?<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/2-enums/index.html"><a class="padding" href="../../types/2-enums/index.html">Episode 2 - Enumerations<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/3-products/index.html"><a class="padding" href="../../types/3-products/index.html">Episode 3 - Products<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -1076,12 +1076,12 @@ The list is pretty large.</p>
             <li class="" data-nav-id="/types/5-rectypes/index.html"><a class="padding" href="../../types/5-rectypes/index.html">Episode 5 - Recursive Data Types<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
           </ul>
         </div>
-        <div id="R-shortcuts">
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
           <div class="nav-title padding">More</div>
-          <ul class="space">
-            <li><a class="padding" href="https://github.com/chrilves"><i class="fa-fw fab fa-github"></i> GitHub Repo</a></li>
-            <li><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
-            <li><a class="padding" href="https://twitter.com/chrilves"><i class='fab fa-fw fa-twitter'></i> Twitter</a></li>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
           </ul>
         </div>
         <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter"></div>
@@ -1146,8 +1146,8 @@ The list is pretty large.</p>
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1729693550" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1729693550" defer></script>
+    <script src="../../js/clipboard.min.js?1730385139" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1730385139" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -1162,7 +1162,7 @@ The list is pretty large.</p>
       }
       useMathJax( JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1729693550"></script>
-    <script src="../../js/theme.js?1729693550" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1730385139"></script>
+    <script src="../../js/theme.js?1730385139" defer></script>
   </body>
 </html>
