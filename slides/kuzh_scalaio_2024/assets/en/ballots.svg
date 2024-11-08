@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="45.095562mm"
+   height="54.377598mm"
+   viewBox="0 0 45.095562 54.377598"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-66.742733,-31.750001)">
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="66.742737"
+       y="47.582668"
+       id="text1"><tspan
+         id="tspan1"
+         style="font-size:4.23333px;fill:#ff0000;stroke-width:0.264583"
+         x="66.742737"
+         y="47.582668">Ada</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#372cfc;stroke-width:0.276026;stroke-dasharray:none;stroke-opacity:1"
+       id="rect20"
+       width="31.749992"
+       height="31.750004"
+       x="78.052086"
+       y="54.239582" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#4244ef;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+       x="-87.501266"
+       y="74.045509"
+       id="text20"
+       transform="rotate(-91.793936)"><tspan
+         id="tspan20"
+         style="font-size:6.35px;fill:#4244ef;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         x="-87.501266"
+         y="74.045509">Ballot Box</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;fill:#00ff15;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-opacity:1"
+       x="77.499786"
+       y="41.967468"
+       id="text21"><tspan
+         id="tspan21"
+         style="font-size:4.23333px;fill:#00ff15;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-opacity:1"
+         x="77.499786"
+         y="41.967468">Bob</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;fill:#d000ff;fill-opacity:1;stroke-width:0.264583"
+       x="90.396492"
+       y="34.81493"
+       id="text22"><tspan
+         id="tspan22"
+         style="font-size:4.23333px;fill:#d000ff;fill-opacity:1;stroke-width:0.264583"
+         x="90.396492"
+         y="34.81493">Corvo</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;fill:#ff9200;fill-opacity:1;stroke-width:0.264583"
+       x="104.09978"
+       y="48.905586"
+       id="text23"><tspan
+         id="tspan23"
+         style="font-size:4.23333px;fill:#ff9200;fill-opacity:1;stroke-width:0.264583"
+         x="104.09978"
+         y="48.905586">Dan</tspan></text>
+    <path
+       style="fill:none;stroke:#ef1614;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 75.406246,47.625002 c 6.614584,0 7.9375,18.520833 7.9375,18.520833 l 1.322917,-3.96875 -1.322917,3.96875 -2.645833,-2.645833"
+       id="path25" />
+    <path
+       style="fill:none;stroke:#2ad514;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 85.98958,42.333335 c 5.291666,6.614584 3.96875,23.8125 3.96875,23.8125 l 2.645833,-3.96875 -2.645833,3.96875 -2.645834,-3.96875"
+       id="path27" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#c725d9;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 96.572913,35.71875 v 30.427085 l 2.645833,-3.96875 -2.645833,3.96875 -2.645833,-3.96875"
+       id="path28" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#cc6c30;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 108.47916,50.270835 c -3.96875,7.9375 -3.96875,15.875 -3.96875,15.875 l -1.32291,-3.96875 1.32291,3.96875 2.64584,-3.96875"
+       id="path29" />
+    <rect
+       style="fill:#9f9f9f;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1"
+       id="rect29"
+       width="6.614583"
+       height="3.9687502"
+       x="84.005203"
+       y="80.697922" />
+    <rect
+       style="fill:#9f9f9f;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1"
+       id="rect29-9"
+       width="6.614583"
+       height="3.9687502"
+       x="84.005203"
+       y="74.083336" />
+    <rect
+       style="fill:#9f9f9f;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1"
+       id="rect29-9-4"
+       width="6.614583"
+       height="3.9687502"
+       x="101.20312"
+       y="79.375" />
+    <rect
+       style="fill:#9f9f9f;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1"
+       id="rect29-9-48"
+       width="6.614583"
+       height="3.9687502"
+       x="92.604164"
+       y="76.729172" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="92.604164"
+       y="75.40625"
+       id="text29"><tspan
+         id="tspan29"
+         style="font-size:3.52778px;fill:#757575;fill-opacity:1;stroke-width:0.264583"
+         x="92.604164"
+         y="75.40625">Ballots</tspan></text>
+  </g>
+</svg>

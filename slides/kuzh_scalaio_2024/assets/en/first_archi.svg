@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="94.259567mm"
+   height="50.27084mm"
+   viewBox="0 0 94.259567 50.27084"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker15"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path15" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker13"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path13" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker12"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path12" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker10"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path10" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path3" />
+    </marker>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-33.732611,-25.13542)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.421726"
+       id="rect1"
+       width="34.395832"
+       height="11.906245"
+       x="63.5"
+       y="44.979172" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="64.822914"
+       y="54.239586"
+       id="text1"><tspan
+         id="tspan1"
+         style="stroke-width:0.264583"
+         x="64.822914"
+         y="54.239586">Server</tspan></text>
+    <ellipse
+       style="fill:#ff0000;stroke:none;stroke-width:0.460142"
+       id="path1"
+       cx="42.994793"
+       cy="31.750002"
+       rx="8.5989571"
+       ry="6.614584" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="36.713577"
+       y="34.325279"
+       id="text2"><tspan
+         id="tspan2"
+         style="font-size:7.05556px;fill:#ffffff;stroke-width:0.264583"
+         x="36.713577"
+         y="34.325279">Ada</tspan></text>
+    <ellipse
+       style="fill:#ff00ff;stroke:none;stroke-width:0.476658"
+       id="path1-7"
+       cx="117.73958"
+       cy="69.453125"
+       rx="10.252602"
+       ry="5.9531245" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="110.05556"
+       y="71.381058"
+       id="text2-9"><tspan
+         id="tspan2-2"
+         style="font-size:5.64444px;fill:#ffffff;stroke-width:0.264583"
+         x="110.05556"
+         y="71.381058">Corvo</tspan></text>
+    <ellipse
+       style="fill:#ff6600;stroke:none;stroke-width:0.460142"
+       id="path1-6"
+       cx="42.33157"
+       cy="68.791672"
+       rx="8.5989571"
+       ry="6.614584" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="36.05035"
+       y="71.366943"
+       id="text2-1"><tspan
+         id="tspan2-29"
+         style="font-size:7.05556px;fill:#ffffff;stroke-width:0.264583"
+         x="36.05035"
+         y="71.366943">Dan</tspan></text>
+    <ellipse
+       style="fill:#00ff00;stroke:none;stroke-width:0.460142"
+       id="path1-75"
+       cx="119.0625"
+       cy="31.750002"
+       rx="8.5989571"
+       ry="6.614584" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="112.78129"
+       y="34.325279"
+       id="text2-92"><tspan
+         id="tspan2-28"
+         style="font-size:7.05556px;fill:#ffffff;stroke-width:0.264583"
+         x="112.78129"
+         y="34.325279">Bob</tspan></text>
+    <path
+       style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#marker4)"
+       d="M 51.593747,35.71875 62.17708,43.656252"
+       id="path2" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#00ff00;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker6);marker-end:url(#marker7)"
+       d="m 111.125,37.041666 -10.58334,6.614586"
+       id="path5" />
+    <path
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#ff6600;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker9);marker-end:url(#marker10)"
+       d="M 51.593748,64.822919 62.17708,58.208335"
+       id="path8" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker12);marker-end:url(#marker13)"
+       d="m 99.218746,58.208335 9.260414,6.614583"
+       id="path11" />
+    <path
+       style="fill:none;stroke:#ff192a;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:1.32, 0.165;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker15)"
+       d="m 54.23958,34.395833 c 9.260417,7.937502 34.358659,13.778793 54.23958,1.322917"
+       id="path14" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.41111px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="66.469231"
+       y="-2.454654"
+       id="text15"
+       transform="rotate(36.68729)"><tspan
+         id="tspan15"
+         style="font-size:1.41111px;fill:#ff0000;stroke-width:0.264583"
+         x="66.469231"
+         y="-2.454654">websocket</tspan></text>
+  </g>
+</svg>
