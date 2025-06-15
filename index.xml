@@ -3,17 +3,17 @@
   <channel>
     <title>@chrilves&#39; Archives</title>
     <link>https://chrilves.github.io/index.html</link>
-    <description>PostsArticles about programming, game design and maths.</description>
+    <description>PostsArticles about programming, gaming and maths.</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 07 Oct 2024 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jun 2025 15:48:33 +0200</lastBuildDate>
     <atom:link href="https://chrilves.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Posts</title>
       <link>https://chrilves.github.io/posts/index.html</link>
-      <pubDate>Mon, 07 Oct 2024 00:00:00 +0200</pubDate>
+      <pubDate>Fri, 13 Jun 2025 15:48:33 +0200</pubDate>
       <guid>https://chrilves.github.io/posts/index.html</guid>
-      <description>Articles about programming, game design and maths.</description>
+      <description>Articles about programming, gaming and maths.</description>
     </item>
     <item>
       <title>Introduction to Types</title>

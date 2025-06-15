@@ -3,11 +3,18 @@
   <channel>
     <title>Posts :: @chrilves&#39; Archives</title>
     <link>https://chrilves.github.io/posts/index.html</link>
-    <description>Articles about programming, game design and maths.</description>
+    <description>Articles about programming, gaming and maths.</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Jul 2020 19:43:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jun 2025 15:48:33 +0200</lastBuildDate>
     <atom:link href="https://chrilves.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Theory about Dishonored and Prey</title>
+      <link>https://chrilves.github.io/posts/prey_typhons_theory/index.html</link>
+      <pubDate>Fri, 13 Jun 2025 15:48:33 +0200</pubDate>
+      <guid>https://chrilves.github.io/posts/prey_typhons_theory/index.html</guid>
+      <description>Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.</description>
+    </item>
     <item>
       <title>Playing with Probability in Scala 3</title>
       <link>https://chrilves.github.io/posts/probability_in_scala_3_all_sides/index.html</link>

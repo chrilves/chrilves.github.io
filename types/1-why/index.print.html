@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
     <meta name="description" content="Types are more complex and nuanced than you may think. Let me show you.">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Episode 1 - Why Types? :: @chrilves&#39; Archives">
     <meta name="twitter:description" content="Types are more complex and nuanced than you may think. Let me show you.">
-  <meta name="twitter:site" content="@chrilves"/>
+    <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/types/1-why/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="Episode 1 - Why Types? :: @chrilves&#39; Archives">
@@ -28,26 +28,62 @@
     <title>Episode 1 - Why Types? :: @chrilves&#39; Archives</title>
     <link href="https://chrilves.github.io/types/1-why/index.html" rel="canonical" type="text/html" title="Episode 1 - Why Types? :: @chrilves&#39; Archives">
     <link href="../../types/1-why/index.xml" rel="alternate" type="application/rss+xml" title="Episode 1 - Why Types? :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1731047931" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1731047931" rel="stylesheet">
-    <link href="../../css/fonts.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1731047931" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1731047931" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1731047931" rel="stylesheet">
-    <script src="../../js/variant.js?1731047931"></script>
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../../js/search.min.js?1749952413" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/types\/1-why\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1749952413";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -59,7 +95,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../types/1-why/index.html">
+  <body class="mobile-support print" data-url="../../types/1-why/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -75,21 +111,22 @@
   <ul>
     <li><a href="#a-real-life-example">A real life example</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
-    <li><a href="#next-episodehttpschrilvesgithubiotypes2-enums"><a href="https://chrilves.github.io/types/2-enums/">Next Episode</a></a></li>
+    <li><a href="#next-episode"><a href="https://chrilves.github.io/types/2-enums/">Next Episode</a></a></li>
   </ul>
 </nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Episode 1 - Why Types?</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="../../index.html"><span itemprop="name">@chrilves&#39; Archives</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Episode 1 - Why Types?</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/1-why.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/1-why.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a>
             </div>
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/1-why/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/1-why/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/index.html" title="Introduction to Types (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
@@ -114,36 +151,36 @@
   </header>
 
 <h1 id="episode-1---why-types">Episode 1 - Why Types?</h1>
-    <p class="article-meta default"><em>16 Dec 2018 - 1100 Words</em></p>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>16 Dec 2018 - 1100 Words</em></p>
 
 <p><strong>Why using</strong> types? <strong>When</strong> are they useful? <strong>Why</strong> we should <strong>care</strong> about types? <strong>What</strong> are types? These are the questions <a href="https://chrilves.github.io/types/" rel="external" target="_self">this series of posts</a> give some answers to. Let&rsquo;s start by realizing a fundamental fact: <strong>types are everywhere</strong>! Business models are all about types: users, shipments, orders, etc. Placing a user in the cart or shipping a client just makes no sense. <strong>Types are specification</strong>, discriminating what makes sense from what makes not.</p>
 <h2 id="a-real-life-example">A real life example</h2>
 <p>They can be simple like the well known <em>strings</em>, <em>integers</em>, <em>booleans</em>, <em>lists</em>, <em>chars</em> and <em>floating-point numbers</em>. But these six are far from covering the whole picture. Take as an example, a business application about finding the best deal amount a list of prices expressed in various currencies. To do so it would need currency conversion rates. Which data structure would you use to store these rates? One euro (<code>EUR</code>) worths when i write these lines <em>1.13</em> dollars (<code>USD</code>) which i could represent as the triple <code>(&quot;EUR&quot;, 1.13 ,&quot;USD&quot;)</code>. To store many rates, using a list is straightforward:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">rates</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span> <span class="o">(</span><span class="s">&#34;EUR&#34;</span><span class="o">,</span> <span class="mf">1.13</span><span class="o">,</span> <span class="s">&#34;USD&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;GBP&#34;</span><span class="o">,</span>  <span class="mf">142.79</span><span class="o">,</span> <span class="s">&#34;JPY&#34;</span><span class="o">)</span> <span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">rates</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span> <span class="o">(</span><span class="s">&#34;EUR&#34;</span><span class="o">,</span> <span class="mf">1.13</span><span class="o">,</span> <span class="s">&#34;USD&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;GBP&#34;</span><span class="o">,</span>  <span class="mf">142.79</span><span class="o">,</span> <span class="s">&#34;JPY&#34;</span><span class="o">)</span> <span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">rates</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Double</span>, <span class="kt">String</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">((</span><span class="nc">EUR</span><span class="o">,</span><span class="mf">1.13</span><span class="o">,</span><span class="nc">USD</span><span class="o">),</span> <span class="o">(</span><span class="nc">GBP</span><span class="o">,</span><span class="mf">142.79</span><span class="o">,</span><span class="nc">JPY</span><span class="o">))</span></span></span></code></pre></div>
 <p>Are you sure the type <code>(String, Double, String)</code> is a faithful representation for rates? Among all the possible values of this type is <code>(&quot;EUR&quot;, -3.0, &quot;USD&quot;)</code> meaning when you give one euro, you have to <em>pay</em> three dollars more to get nothing. This is silly, currency trading don&rsquo;t work that way. Another problematic value is <code>(&quot;EUR&quot;, 0, &quot;USD&quot;)</code>. What is the point in exchanging one euro for nothing? Using <code>Double</code> to encode rates is wrong as not all <em>floating point number</em> makes a valid rate, only those <em>strictly positive</em>! A faithful representation of rates is the type <code>r:Double{r &gt; 0}</code> which is the types of value <code>r:Double</code> such that <code>r &gt; 0</code>. Such types are called <a href="https://en.wikipedia.org/wiki/Refinement_type" rel="external" target="_self">refinement types</a> and used heavily in <a href="https://www.fstar-lang.org/" rel="external" target="_self">F*</a>.</p>
 <p>We&rsquo;re not done yet! Are you sure <code>String</code> is faithful representation of currencies? The empty string <code>&quot;&quot;</code> is not a currency, neither are <code>&quot;⛱&quot;</code>, <code>&quot;⛏&quot;</code>, etc but they are all valid strings. Assuming <code>currencies:Set[String]</code> is the set of all valid currency names, the type of currencies would be <code>cur:String{currencies.contains(cur)}</code> if it was expressible in <em>Scala</em>. But it is in <a href="https://www.fstar-lang.org/" rel="external" target="_self">F*</a>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">FStar</span><span class="p">.</span><span class="nc">Set</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">FStar</span><span class="p">.</span><span class="nc">Set</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">currencies</span><span class="o">:</span> <span class="n">set</span> <span class="kt">string</span>
 </span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="n">currencies</span> <span class="o">=</span> <span class="nn">Set</span><span class="p">.</span><span class="n">as_set</span> <span class="o">[</span><span class="s2">&#34;EUR&#34;</span><span class="o">;</span> <span class="s2">&#34;USD&#34;</span><span class="o">;</span> <span class="s2">&#34;JPY&#34;</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">type</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">cur</span><span class="o">:</span><span class="kt">string</span><span class="o">{</span><span class="nn">Set</span><span class="p">.</span><span class="n">mem</span> <span class="n">cur</span> <span class="n">currencies</span><span class="o">}</span></span></span></code></pre></div>
 <p>For the rest of this section, we will assume <em>Scala</em> has refinement types so that we can write:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">Rate</span> <span class="o">=</span> <span class="n">r</span><span class="k">:</span><span class="kt">Double</span><span class="o">{</span><span class="kt">r</span> <span class="kt">&gt;</span> <span class="err">0</span><span class="o">}</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">Rate</span> <span class="o">=</span> <span class="n">r</span><span class="k">:</span><span class="kt">Double</span><span class="o">{</span><span class="kt">r</span> <span class="kt">&gt;</span> <span class="err">0</span><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">val</span> <span class="kt">currencies:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;EUR&#34;</span><span class="o">,</span> <span class="s">&#34;USD&#34;</span><span class="o">,</span> <span class="s">&#34;JPY&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">Currency</span> <span class="o">=</span> <span class="n">cur</span><span class="k">:</span><span class="kt">String</span><span class="o">{</span><span class="kt">currencies.contains</span><span class="o">(</span><span class="kt">cur</span><span class="o">)}</span></span></span></code></pre></div>
 <p>We&rsquo;re still not done yet as the type <code>(Currency, Rate, Currency)</code> still does not faithfully encode a conversion rate: <code>(&quot;EUR&quot;, 2.0, &quot;EUR&quot;)</code> is a value of this type but one euro can not worth two euros, this would not make sense! We could define the type <code>Rate</code> such that the only possible value is <code>1.0</code> when there is the same currency on both sides, but for simplicity&rsquo;s sake and without loss of generality, we will just forbid converting into the same currency. Once again, in a version of <em>Scala</em> with <em>refinement and dependent types</em>, conversion rates would be:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">ConvRate</span><span class="o">(</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">ConvRate</span><span class="o">(</span>
 </span></span><span class="line"><span class="cl">  <span class="n">from</span><span class="k">:</span> <span class="kt">Currency</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">  <span class="n">rate</span><span class="k">:</span> <span class="kt">Rate</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">  <span class="n">to</span><span class="k">:</span><span class="kt">Currency</span><span class="o">{</span><span class="kt">from</span> <span class="kt">!=</span> <span class="kt">to</span><span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">)</span></span></span></code></pre></div>
 <p>We&rsquo;re almost there! Now every value of <code>ConvRate</code> makes sense from a business perspective: currencies <code>from</code> and <code>to</code> are valid distinct currencies and <code>rate</code> is a strictly positive exchange rate. Does the type <code>List[ConvRate]</code> faithfully represents a valid set of conversion rates? Values like <code>List(ConvRate(&quot;EUR&quot;, 2.0, &quot;USD&quot;), ConvRate(&quot;EUR&quot;, 1.13, &quot;USB&quot;))</code>, where there are several distinct rates for the same conversion, do not make sense. Likewise, there is a relation between a conversion rate and its opposite direction. If one euros worth <code>1.13</code> dollars, then one dollar worths <code>0.88</code> euros. Values like <code>List(ConvRate(&quot;EUR&quot;, 1.13, &quot;USD&quot;), ConvRate(&quot;USD&quot;, 2.0, &quot;EUR&quot;))</code> do not respect this rule, so are invalid business values. To be sure values do respect these <strong>business rules</strong> we can use the data structure <a href="https://www.scala-lang.org/api/2.12.4/scala/collection/immutable/Map.html" rel="external" target="_self">Map</a> and only allow one side of the conversion (<code>from &lt; to</code>) in the type <code>ConversionRates</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">currencies</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">currencies</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;EUR&#34;</span><span class="o">,</span> <span class="s">&#34;USD&#34;</span><span class="o">,</span> <span class="s">&#34;JPY&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Conversion</span><span class="o">(</span>
@@ -170,32 +207,30 @@
 <p>If we were as good as we think we are, there would not be null pointer exceptions, segfaults, exploits, undefined-is-not-a-function, <code>java.util.NoSuchElementException: None.get</code> and all the other so common bugs and vulnerabilities we see far too often! Software are complex beasts, made usually by many people, some who leave, some who join. Relying of people being perfect (perfect knowledge, perfect understanding, perfect execution) is not realistic.</p>
 <p>You can see type systems as powerful linters whose job is to check your code. Types get more and more complex as business rules do from simple properties to <a href="https://homotopytypetheory.org/book/" rel="external" target="_self">heavy mathematical theorems</a>.</p>
 <p><strong>Types are specification</strong>, so in an ideal world a program well-typed would be, by definition, a program without bugs. If you still find bugs in your application, it either means you need to tighten your types to fit the specification or your language&rsquo;s type-system is not expressive enough to encode the specification.</p>
-<h2 id="next-episodehttpschrilvesgithubiotypes2-enums"><a href="https://chrilves.github.io/types/2-enums/" rel="external" target="_self">Next Episode</a></h2>
+<h2 id="next-episode"><a href="https://chrilves.github.io/types/2-enums/" rel="external" target="_self">Next Episode</a></h2>
 <p>In the <a href="https://chrilves.github.io/types/2-enums/" rel="external" target="_self">next episode</a>, we will see enumerations like you probably have never seen them before.</p>
 
   <footer class="footline">
+    
   </footer>
 </article>
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1731047931" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1731047931" defer></script>
+    <script src="../../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1731047931"></script>
-    <script src="../../js/theme.js?1731047931" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../../js/theme.min.js?1749952413" defer></script>
   </body>
 </html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
+    <meta name="description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+    <meta name="author" content="chrilves">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="A Theory about Dishonored and Prey :: @chrilves&#39; Archives">
+    <meta name="twitter:description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+    <meta name="twitter:site" content="@chrilves"/>
+    <meta property="og:url" content="https://chrilves.github.io/posts/prey_typhons_theory/index.html">
+    <meta property="og:site_name" content="@chrilves&#39; Archives">
+    <meta property="og:title" content="A Theory about Dishonored and Prey :: @chrilves&#39; Archives">
+    <meta property="og:description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Posts">
+    <meta property="article:published_time" content="2025-06-13T15:48:33+02:00">
+    <meta property="article:modified_time" content="2025-06-13T15:48:33+02:00">
+    <meta itemprop="name" content="A Theory about Dishonored and Prey :: @chrilves&#39; Archives">
+    <meta itemprop="description" content="Given a fair dice, how many rolls are needed, on average, to observe all the sides? From this simple question, this article explores basic probability theory and statistics in Scala 3, the upcoming major release of the Scala programming language. It shows the new features, their use and benefits.">
+    <meta itemprop="datePublished" content="2025-06-13T15:48:33+02:00">
+    <meta itemprop="dateModified" content="2025-06-13T15:48:33+02:00">
+    <meta itemprop="wordCount" content="2596">
+    <meta itemprop="keywords" content="Prey,Dishonored,Arkane,Immersive Sims,Immersive Simulations,RPG,Role Playing Games">
+    <title>A Theory about Dishonored and Prey :: @chrilves&#39; Archives</title>
+    <link href="../../posts/prey_typhons_theory/index.xml" rel="alternate" type="application/rss+xml" title="A Theory about Dishonored and Prey :: @chrilves&#39; Archives">
+    <link href="../../posts/prey_typhons_theory/index.print.html" rel="alternate" type="text/html" title="A Theory about Dishonored and Prey :: @chrilves&#39; Archives">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../../js/search.min.js?1749952413" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/posts\/prey_typhons_theory\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1749952413";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../posts/prey_typhons_theory/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-role-playing-game">What is a Role Playing Game?</a></li>
+    <li><a href="#teaching-role-playing">Teaching Role-Playing</a></li>
+    <li><a href="#the-bridge-between-players-and-game-characters">The bridge between players and game characters</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="../../index.html"><span itemprop="name">@chrilves&#39; Archives</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">A Theory about Dishonored and Prey</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/prey_typhons_theory.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/prey_typhons_theory/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/index.html" title="Posts (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/probability_in_scala_3_all_sides/index.html" title="Playing with Probability in Scala 3 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable posts" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="a-theory-about-dishonored-and-prey">A Theory about Dishonored and Prey</h1>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>13 Jun 2025 - 2600 Words</em></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Dishonored" rel="external" target="_self">Dishonored</a> is the third game
+released by <a href="https://www.arkane-studios.com/fr" rel="external" target="_self">Arkane Studios</a> after
+<a href="https://en.wikipedia.org/wiki/Arx_Fatalis" rel="external" target="_self">Arx Fatalis</a> and
+<a href="https://en.wikipedia.org/wiki/Dark_Messiah_of_Might_and_Magic" rel="external" target="_self">Dark Messiah of Might and Magic</a>.
+It is often described as a stealth game with combat options. You can complete it
+without ever engaging in any fight, or by slashing your way through. Its combat
+mechanics are praised for being fun and for letting players express their
+creativity in unseen ways. It gives you a lot of tools such as stopping time,
+possessing non playable characters (NPC), including animals, summoning rats, mines,
+grenades, guns, etc. Combining these tools in combat is a never ending source of
+delight.</p>
+<p><em>Dishonored</em> also implements a brilliant mechanics called the chaos system.
+The idea is simple: the more you resort to violence, the more violent the world becomes.
+There will be more dead bodies in the streets, more rats, more and stronger guards, etc.
+The interactions with other characters, and the end, will be darker and more violent.</p>
+<p>Some players voiced their frustration with this design. <em>Dishonored</em> allowed
+them to choose between stealth and combat, but they felt judged and punished
+by the chaos system for choosing the later.
+They found it contradictory that the game offered such a large and fun set of
+lethal options while punishing them for using it. At first, we can
+understand why they felt that way: by choosing combat, other characters
+reproached them, and they got what is generally considered the bad ending.
+It does sound like a punishment. But is it?</p>
+<h2 id="what-is-a-role-playing-game">What is a Role Playing Game?</h2>
+<p>These days, we call any game with unlockable skills a <em>Role Playing Game</em>.
+Some even argue that any game in which we control a character is, technically,
+a role-playing game. By that logic, even the original Sonic would qualify as
+an RPG.</p>
+<p><em>Dishonored</em> puts us in the role of <em>Corvo</em>, the royal protector of Empress
+<em>Jessamine Kaldwin</em>. Unlike most games, <em>Dishonored</em> allows players to decide
+how to interpret <em>Corvo</em>. You can play him as a loyal protector, sparing the
+lives of innocents. But you can also play him as a rage-consumed assassin, killing
+any one who dares cross his path. Or you can also play him as a psychopath,
+testing his new powers on innocents. The choice is yours.</p>
+<p>While sandbox games are about giving players total freedom in a fake world without
+consequences, role-playing is about pretending it is real.
+A role player acts as if they were really there, as <em>Corvo</em>, in this very real
+world of Dunwall.
+What would you feel if you were actually there? How would you behave?
+How would you treat others? What would motivate you?
+Role-playing means letting go of the idea that you&rsquo;re just playing a game,
+and responding to the world as if it was real.</p>
+<p>The chaos system neither judges nor punishes; it honors your interpretation of
+Corvo, shaping the world around your choices.
+It is one of the ingredients that make the role-playing experience so intense.
+If you decided to play Corvo as wrath-driven avenger, it offers you the delight
+of watching the world be consumed by your rage. This is not a punishment, it&rsquo;s
+a reward.
+If you decided to spare as many innocent lives at possible, don&rsquo;t reload when
+you&rsquo;re spotted but accept the consequences of this failure.
+If it forces you to kill someone, feel the guilt;
+it will make your next infiltration even more intense.
+The more you act as if it was real, the more powerful the role-playing
+experience is.</p>
+<p>Unfortunately, the role-playing side of <em>Dishonored</em> seems to have been
+mostly unnoticed. To be fair, what we call RPG currently is more about
+customizable builds, skill trees, experience points and unlockable perks than
+role-playing. How many games, even acclaimed RPGs, make the efforts of
+reflecting player choices in the world? Only a tiny bit. How would you design a
+game to teach players how to role-play?</p>
+<h2 id="teaching-role-playing">Teaching Role-Playing</h2>
+<p><em>Dishonored</em> was developed by the teams at <em>Arkane Lyon</em> and <em>Akarne Austin</em>,
+the American branch.
+The french team went to develop <a href="https://en.wikipedia.org/wiki/Dishonored_2" rel="external" target="_self">Dishonored 2</a>,
+which is even better than the first one. If you have never played it, stop
+reading and install it 😉 It contains, among other things,  what is very
+probably the best level ever made in a video game: the clockwork mansion.
+The whole game is excellent, but this level is just unbelievably good.</p>
+<p>In the meantime, the Austin team was developing the best and most role-playing
+game ever made: <a href="https://en.wikipedia.org/wiki/Prey_(2017_video_game)" rel="external" target="_self">Prey (2017)</a>.
+<em>Prey</em>&rsquo;s introduction is probably the best in the whole gaming history.
+I know, I&rsquo;m using a lot of superlatives, but they totally deserve it.
+If you have never played <em>Prey</em>, go play it! Let me give you an advice:
+don&rsquo;t take it as an usual <em>First-Person Shooter</em> but immerse yourself in its world.
+Put yourself completely in <em>Morgan</em>&rsquo;s shoes. <em>Prey</em>&rsquo;s experience is all about how much you can role-play.
+So, the more you do, the better the experience is. And watch the credits,
+developers need love!</p>
+<p><strong>I am going to spoil every bit of Prey, so don&rsquo;t continue reading if you have
+not completed the game yet.</strong></p>
+<p><em>Prey</em> puts you in the role of <em>Morgan You</em>. You wake up in your appartement.
+The clock tells you its Monday, March 15th, 2032. Outside your patio doors:
+a bright, sunny San Francisco. You&rsquo;re about to begin to work with your brother
+abroad the family-owned space station, Talos I.
+But first, you have to take some tests, just standard procedure.
+One of these tests asks you to answer the question: &ldquo;You&rsquo;ve
+been sentenced to death for your actions. How does this make you feel?&rdquo;. The
+next one is <a href="https://en.wikipedia.org/wiki/Trolley_problem" rel="external" target="_self">the famous ethical dilemma known as the trolley problem</a>:
+&ldquo;A runaway train is bearing down on five people who are tied to the track.
+You can cause the train to switch tracks, but there is one person tied to the
+second track.&rdquo; Switching means saving four lives, but also causing the death
+of one person who would have otherwise lived.
+If you chose to switch tracks, could you face that person&rsquo;s family?
+If you didn&rsquo;t, could you face the families of the five who died?
+There is no objectively-better choice. There are good arguments on both sides.
+You need to go with what <strong>you</strong> believe is the right outcome, based to <strong>your own values</strong>.</p>
+<p>Then comes an even more interesting question: what if the person to sacrifice was
+you? Would you kill yourself to save five others? It&rsquo;s easy to answer &ldquo;yes&rdquo; in a
+thought experiment, but remember that role-playing means acting as it it was real.
+Would you truly have the courage to do it if you were actually in that
+situation? And if you chose to switch tracks because saving more lives felt right,
+would you still feel that way if the life at stake was your own?</p>
+<p>Don&rsquo;t worry, this is the last time the game will ask you to fill out a form.
+From here on, <em>Prey</em> will put you into many such situations, often without even
+announcing a decision point. You will probably never realize you could have acted
+differently. The most unbiased test is the one you&rsquo;re not aware taking.
+<em>Prey</em> never forces you to do anything. It sets the stage, and let you act freely.
+It follows a simple but rarely applied rule: player freedom is when everything
+that should be possible, given the rules of the universe, truly is.
+Try it! You&rsquo;ll be surprised how permissive and cohesive it is.
+How could you role-play if your were not free to interpret the role as you want?</p>
+<p>The next day, you realize all of this was a simulation. You&rsquo;re not on earth in
+2032, but aboard the Talos I space station in 2035.
+Many decades ago, aliens with extraordinary powers were discovered in space.
+The station was built to experiment on aliens, and non-voluntary humans, to
+find out how to transfer these abilities to humans.
+You actually volunteered many months ago to have your memory reset times
+and times again for these tests.
+Those aliens, called typhons, are extremely dangerous, completely lack empathy
+and just broke free. If they ever reach Earth, humankind is very likely to go
+extinct.
+Typhons don&rsquo;t see humans as individuals but just as resources.
+When they arrive somewhere, they consume all the sentient life forms and
+move to the next place.
+The rest of the game is about finding a way to prevent typhons from reaching Earth.
+You are humanity&rsquo;s last hope.</p>
+<h2 id="the-bridge-between-players-and-game-characters">The bridge between players and game characters</h2>
+<p>At the end, <em>Prey</em> let you choose how to neutralize the typhon threat, then
+launch a different ending based on your choices, and finally shows the credits.
+Congratulations, you&rsquo;ve just finished the game! You can now stop it and return
+to your real life. Keep these two sentences in mind for later.</p>
+<p>There is one more detail though: it does not stop there.
+The credits are abruptly interrupted, just like when a game stops and returns
+to the operating system.
+Then what looks like a VR headset is removed from your head and you see Alex,
+with four operators.
+You are not Morgan Yu; you were a typhon all along.
+One who played the role of Morgan Yu in an immersive game simulating Talos I.
+By immersive I mean both you, the player, and the typhon thought it was real.
+You saw the experience as the real game, while it was actually a game within the game
+and the typhon experienced this game as if all of it was real.</p>
+<p>It&rsquo;s time to share my theory: the typhons are an allegory of us, players.
+More specifically, I think they symbolize players who didn&rsquo;t understand yet that
+Dishonored was a role-playing game, that they could engage emotionally, that the
+experience was even greater when you empathize with characters,
+that its whole design was made to offer them the rare opportunity to live the
+experience as if it was real.
+Don&rsquo;t get me wrong! Arkane don&rsquo;t blame these players.
+I think Arkane developers loves role-playing and wanted to share their passion.
+<em>Prey</em> is like a role-playing tutorial to introduce you to this wonderful world.
+It&rsquo;s not a critic, it&rsquo;s an invitation.</p>
+<p>Some think it is the usual &ldquo;it was just a dream&rdquo; trope, but it&rsquo;s not.
+<em>Prey</em> is a video game essay about what role-playing really means.
+The game keeps asking the same questions again and again: can you empathize with simulated characters?
+Can you act as if it was real? Remember the trolley problem in the tutorial.
+The only reason that makes this choice so hard is lives are at stakes.
+If you don&rsquo;t engage emotionally, if you don&rsquo;t consider this thought experiment as real,
+then nothing matters. Likewise, the choices you made in the game only matter if
+you engaged emotionally, if you acted as it it was real, if you role-played.</p>
+<p>Think for a moment about the experience the typhon had. It played a game thinking it
+was real. While playing it pretended to be Morgan Yu. At the end it saw the
+ending and the credits. After that the game stopped and returned to the operating
+system of its gaming platform. It removed its gaming device and returned to its
+real life. How is it different from what we experienced? We did launch the game.
+We did pretend to be Morgan Yu. We did see the endings and the credits. After
+that we did stop the game, returning to the main interface of our gaming platform.
+We put out gaming device down and returned to our real life.
+The only difference is: the typhon thought it was real while you knew it was a
+game. But role-playing mean acting as it was real, so if you did role-play,
+then you had the exact same experience as the typhon.</p>
+<p>In the last scene, Alex says: &ldquo;It probably thinks it was dreaming. That nothing
+mattered.&rdquo; Indeed, some argue that the fact it was simulation all along means
+nothing mattered because nothing was real. But aren&rsquo;t all games like that?
+Game worlds aren&rsquo;t real! The choices you make in your games don&rsquo;t alter the real
+world, don&rsquo;t they? Does it mean none of your gaming experience matter?
+Why are you playing games if nothing matters?
+It matters to you! Firstly, when you are playing, it feels very real.
+And secondly, the experiences you lived in games left a mark on you.</p>
+<p>Alex continues by: &ldquo;You&rsquo;re the bridge between our species. I need to know if
+you see us. I mean really see us.&rdquo; I think it has a deeper meaning. The whole
+game is an experiment conducted by Alex to make typhons empathize with the humans
+of this world. If the typhons symbolize players, then the two species are players
+and game characters. I think Alex asking the typhon if it &ldquo;really sees&rdquo; humans
+is <em>Prey</em>&rsquo;s developers asking us if we &ldquo;really see&rdquo; characters. The bridge
+between players and game character is the role-player, because when you do,
+you see two worlds as real: our own and the game&rsquo;s world. When you role-play,
+you &ldquo;really see&rdquo; characters as real humans in this imaginary universe.</p>
+<p>As a side node, I&rsquo;ve heard some say <em>Prey</em> is very good representation of
+eldritch horror. Sure it is! Imagine for a second that a game&rsquo;s world is real.
+How we, gamers, would be seen by its inhabitants?
+Aren&rsquo;t we very close to Lovecraftian deities for them?</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Games aren&rsquo;t just games. They are also pieces of art, imaginary worlds, stories,
+opportunities to live amazing experiences, etc. Engaging emotionally with a game
+can be very rewarding. We are so used to game-design formulas that we forget
+why they were created in the first place. Role-playing is not only about
+classes, skill points and dices; it&rsquo;s about how you decide to interpret the role
+and act as if it was real.</p>
+<p>In an <a href="https://wccftech.com/interview-warren-spector-system-shock-3-deus-ex-trilogy/" rel="external" target="_self">interview</a>
+Warren Spector was asked
+&ldquo;<em>What would you say makes an immersive sim distinct from so many other RPGs?</em>&rdquo;.
+He replied &ldquo;<em>I think it&rsquo;s a variety of things. One is it doesn&rsquo;t count on
+character stats to define the character. It&rsquo;s not about roll playing, it&rsquo;s about
+the role-playing. It&rsquo;s about how you interact with the world which is different
+from most RPGs. It has nothing to do with arbitrary character classes. It&rsquo;s
+about how you behave and interact with the world.</em>&rdquo;</p>
+<p><em>Dishonored</em> and <em>Prey</em> clearly do not look like usual Role-Playing Games.
+There is no classes, no skill points, to dice rolls, no armor to equip, no elves, etc.
+But if you make the effort to emotionally engage with their worlds, acting as if
+they were real, they will very likely offer you the best role-playing experiences of
+your whole game life.</p>
+<p>One of my favorite gaming moment was playing <em>Prey</em>.
+I had been asked to do something, but it felt off.
+There was no dialog option, no explicit choices stated in the the quest,
+nothing that would have told me there were choices to make.
+But <em>Prey</em> is a simulation, which means it lets me do everything that would be
+possible if it was real, and makes its best to reflect my actions on the world.
+Unlike many games that would have forced me to follow a scripted path, it let me
+disobey. That&rsquo;s the beauty of simulations: at every instant, you&rsquo;re free to do
+whatever you want. Every second is an opportunity to make a choice.
+This feeling of freedom is so delightful.</p>
+<p>I would like to conclude by warmly thanking everyone who poured so much passion
+into crafting these wonderful experiences.</p>
+
+  <footer class="footline">
+    
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a id="logo" href="../../">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="65mm"
+   height="7mm"
+   viewBox="0 0 96.990127 7.7258329"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="193.2115"
+     inkscape:cy="-34.320002"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1026"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.9716412,-5.0276302)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="8.3895578"
+       y="12.61588"
+       id="text4543"><tspan
+         sodipodi:role="line"
+         id="tspan4541"
+         x="8.3895578"
+         y="12.61588"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Bonum';-inkscape-font-specification:'TeX Gyre Bonum';stroke-width:0.26458332;fill:#ffffff">@chrilves' Archives</tspan></text>
+  </g>
+</svg>
+</a>
+        </div>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090" checked><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
+            <li class="active " data-nav-id="/posts/prey_typhons_theory/index.html"><a class="padding" href="../../posts/prey_typhons_theory/index.html">A Theory about Dishonored and Prey<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/probability_in_scala_3_all_sides/index.html"><a class="padding" href="../../posts/probability_in_scala_3_all_sides/index.html">Playing with Probability in Scala 3<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/les_gadts_par_l_exemple/index.html"><a class="padding" href="../../posts/les_gadts_par_l_exemple/index.html">Les GADTs Par l&#39;Exemple<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/gadts_by_use_cases/index.html"><a class="padding" href="../../posts/gadts_by_use_cases/index.html">GADTs By Use Cases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/prime/index.html"><a class="padding" href="../../posts/prime/index.html">Proving Primality with GADTs<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/recursion_schemes_intro/index.html"><a class="padding" href="../../posts/recursion_schemes_intro/index.html">Recursion Schemes: the high-school introduction<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/gadts_intro/index.html"><a class="padding" href="../../posts/gadts_intro/index.html">Demystifying GADTs<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/folds/index.html"><a class="padding" href="../../posts/folds/index.html">Let&#39;s meet the charming fold family<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/slimetrail/index.html"><a class="padding" href="../../posts/slimetrail/index.html">How to make game in the browser thanks to ScalaJS<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/json2xml/index.html"><a class="padding" href="../../posts/json2xml/index.html">JSON to XML: the probably a tiny bit over engineered way<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/posts/falgebra_scalaio_2017/index.html"><a class="padding" href="../../posts/falgebra_scalaio_2017/index.html">F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49"><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
+            <li class="" data-nav-id="/types/1-why/index.html"><a class="padding" href="../../types/1-why/index.html">Episode 1 - Why Types?<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/2-enums/index.html"><a class="padding" href="../../types/2-enums/index.html">Episode 2 - Enumerations<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/3-products/index.html"><a class="padding" href="../../types/3-products/index.html">Episode 3 - Products<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/4-coproducts/index.html"><a class="padding" href="../../types/4-coproducts/index.html">Episode 4 - CoProducts<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/types/5-rectypes/index.html"><a class="padding" href="../../types/5-rectypes/index.html">Episode 5 - Recursive Data Types<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" rel="external" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" rel="external" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+			<li class="R-languageswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-language"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-language">Language</label>
+                  <select id="R-select-language">
+                    <option id="R-select-language-en" value="en" data-url="../../posts/prey_typhons_theory/index.html" lang="en" selected data-selected>English</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Theme</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
+                    <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
+                    <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
+                    <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
+                    <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-blue" value="blue">Blue</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../../js/theme.min.js?1749952413" defer></script>
+  </body>
+</html>

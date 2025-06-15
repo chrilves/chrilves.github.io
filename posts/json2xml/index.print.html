@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
     <meta name="description" content="Conversion from/to JSON and XML using advanced concepts">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="JSON to XML: the probably a tiny bit over engineered way :: @chrilves&#39; Archives">
     <meta name="twitter:description" content="Conversion from/to JSON and XML using advanced concepts">
-  <meta name="twitter:site" content="@chrilves"/>
+    <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/posts/json2xml/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="JSON to XML: the probably a tiny bit over engineered way :: @chrilves&#39; Archives">
@@ -29,26 +29,62 @@
     <title>JSON to XML: the probably a tiny bit over engineered way :: @chrilves&#39; Archives</title>
     <link href="https://chrilves.github.io/posts/json2xml/index.html" rel="canonical" type="text/html" title="JSON to XML: the probably a tiny bit over engineered way :: @chrilves&#39; Archives">
     <link href="../../posts/json2xml/index.xml" rel="alternate" type="application/rss+xml" title="JSON to XML: the probably a tiny bit over engineered way :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1731047931" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1731047931" rel="stylesheet">
-    <link href="../../css/fonts.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1731047931" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1731047931" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1731047931" rel="stylesheet">
-    <script src="../../js/variant.js?1731047931"></script>
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../../js/search.min.js?1749952413" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/posts\/json2xml\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1749952413";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -60,7 +96,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../posts/json2xml/index.html">
+  <body class="mobile-support print" data-url="../../posts/json2xml/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -88,14 +124,15 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">JSON to XML: the probably a tiny bit over engineered way</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="../../index.html"><span itemprop="name">@chrilves&#39; Archives</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">JSON to XML: the probably a tiny bit over engineered way</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/json2xml.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/json2xml.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a>
             </div>
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/json2xml/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/json2xml/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/slimetrail/index.html" title="How to make game in the browser thanks to ScalaJS (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
@@ -120,14 +157,14 @@
   </header>
 
 <h1 id="json-to-xml-the-probably-a-tiny-bit-over-engineered-way">JSON to XML: the probably a tiny bit over engineered way</h1>
-    <p class="article-meta default"><em>18 Sep 2018 - 2200 Words</em></p>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>18 Sep 2018 - 2200 Words</em></p>
 
 <p><strong><a href="../../slides/json2xml/json2xml.scala">The complete code of the article</a>. You need  <a href="https://typelevel.org/cats/" rel="external" target="_self">Cats</a> and <a href="https://github.com/playframework/play-json" rel="external" target="_self">Play-Json</a> in order to run it.</strong></p>
 <p><strong><a href="../../slides/json2xml/index.html">The Slides are here</a></strong></p>
 <p>It happens regularly in software development that we have to connect systems speaking different languages. JSON is nowadays ubiquitous in service communication, especially in web development but XML still has its fair amount of bastions. Imagine you need to pass information provided by a JSON API through an XML layer, you need a converter.</p>
 <h2 id="the-easy-way">The easy way</h2>
 <p>This translation is actually pretty trivial, it takes essentially 6 lines of simple pattern-matching code in <a href="https://www.scala-lang.org/" rel="external" target="_self">Scala</a>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">play.api.libs.json._</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">play.api.libs.json._</span>
 </span></span><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">scala.xml._</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">json2xml</span><span class="o">(</span><span class="n">json</span><span class="k">:</span> <span class="kt">JsValue</span><span class="o">,</span> <span class="n">rootLabel</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Elem</span> <span class="o">=</span> <span class="o">{</span>
@@ -160,7 +197,7 @@
 </span></span><span class="line"><span class="cl">  <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>The trickiest part of this example is figuring out how to build XML nodes in <em>Scala</em>. It translates the following JSON:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;2001 : A Space Odyssey&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;release&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="nt">&#34;day&#34;</span><span class="p">:</span> <span class="mi">27</span><span class="p">,</span>
@@ -182,7 +219,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">]</span></span></span></code></pre></div>
 <p>into</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;films</span> <span class="na">type=</span><span class="s">&#34;array&#34;</span><span class="nt">&gt;</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;films</span> <span class="na">type=</span><span class="s">&#34;array&#34;</span><span class="nt">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&lt;filmsItem</span> <span class="na">type=</span><span class="s">&#34;object&#34;</span><span class="nt">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;title</span> <span class="na">type=</span><span class="s">&#34;string&#34;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[2001 : A Space Odyssey]]&gt;</span><span class="nt">&lt;/title&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;release</span> <span class="na">type=</span><span class="s">&#34;object&#34;</span><span class="nt">&gt;</span>
@@ -214,7 +251,7 @@
 <p>There much more thing to say about this example, first let&rsquo;s expose some properties of JSON values.</p>
 <h3 id="inviting-coalgebras-to-the-party">Inviting (Co)Algebras to the Party</h3>
 <p>JSON values can be modelled with an <a href="https://en.wikipedia.org/wiki/Algebraic_data_type" rel="external" target="_self">Algebraic Data Type</a> or <em>ADT</em> for short. <a href="https://github.com/playframework/play-json" rel="external" target="_self">Play-Json</a> represents them by the type <code>JsValue</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">JsValue</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">JsValue</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">JsNull</span> <span class="k">extends</span> <span class="nc">JsValue</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">JsNumber</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">BigDecimal</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">JsValue</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">JsBoolean</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">JsValue</span>
@@ -222,7 +259,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">JsArray</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">JsValue</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">JsObject</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">JsValue</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">JsValue</span></span></span></code></pre></div>
 <p>But in order to simplify the presentation, we will use slightly different, but <strong>equivalent</strong>, definition of JSON values:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Atomic</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Atomic</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Null</span> <span class="k">extends</span> <span class="nc">Atomic</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Bool</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Atomic</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Number</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">BigDecimal</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Atomic</span>
@@ -233,12 +270,12 @@
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">JsArray</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">JsValue</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">JsObject</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">JsValue</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">JsValue</span></span></span></code></pre></div>
 <p>Like in any Algebraic Data Type, the <strong>constructors</strong> of <code>JsValues</code> can be seen as operations on it. <code>JsAtom</code> informs us that every number, boolean, string and <code>null</code> give rise to a distinct JSON value. <code>JsArray</code> and <code>JsObject</code> tells us that each (qualified) list of JSON values forms a distinct JSON value itself. Considering that JSON values are defined in terms of these operations, and that we want to translate JSON into XML, it would make sense to define them on XML as well. First, let&rsquo;s explicit these operations:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">+R</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">+R</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Atom</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">Atomic</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Arr</span><span class="o">[</span><span class="kt">+R</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">R</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">R</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Obj</span><span class="o">[</span><span class="kt">+R</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">R</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">R</span><span class="o">]</span></span></span></code></pre></div>
 <p>The interesting point here is we can translate back and forth between <code>JsValue</code> and <code>JsLike[JsValue]</code>. These translations are even the inverse of each other, meaning both types are totally equivalent!</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2JsValue</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">JsValue</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2JsValue</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">JsValue</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Atom</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>         <span class="k">=&gt;</span> <span class="nc">JsAtom</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Arr</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>          <span class="k">=&gt;</span> <span class="nc">JsArray</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Obj</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>          <span class="k">=&gt;</span> <span class="nc">JsObject</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>
@@ -251,18 +288,18 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p><code>jsLike2JsValue</code> is called a <code>JsLike</code>-Algebra because it has the form <code>JsLike[X] =&gt; X</code>. It means <code>jsLike2JsValue</code> is a way &ldquo;compute&rdquo; <code>JsLike</code> operation, i.e. it composes values to form new ones. On the opposite, <code>jsValue2JsLike</code> is called a <code>JsLike</code>-CoAlgebra because it has the form <code>X =&gt; JsLike[X]</code>. It is a way to expose how a value is built, i.e. it deconstructs values to expose their structure.</p>
 <p>Can we find such functions for XML values? We are looking for two functions:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2Elem</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">Elem</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span> <span class="o">???</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2Elem</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">Elem</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span> <span class="o">???</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">elem2JsLike</span><span class="k">:</span> <span class="kt">Elem</span> <span class="o">=&gt;</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">Elem</span><span class="o">]</span> <span class="k">=</span> <span class="o">???</span></span></span></code></pre></div>
 <p>It would certainly be nice, but unfortunately this is not that simple! <code>5</code>, <code>true</code> and <code>null</code> are valid JSON values, So <code>jsLike2Elem(Atom(Number(5)))</code>, <code>jsLike2Elem(Atom(Bool(true)))</code> and <code>jsLike2Elem(Atom(Null)))</code> should be valid XML value! But what should be the root tag of the resulting elements? How to translate <code>5</code> into a valid XML? We know that it would have the form:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;someRootTag</span> <span class="na">type=</span><span class="s">&#34;number&#34;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/someRootTag&gt;</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;someRootTag</span> <span class="na">type=</span><span class="s">&#34;number&#34;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/someRootTag&gt;</span></span></span></code></pre></div>
 <p>But what <code>someRootTag</code> should be? We could pick an arbitrary one, but it would break composability (try it, you&rsquo;ll see!). There&rsquo;s no escape, all XML values need tags but not every JSON value have some! The situation suggest JSON values are closer to &ldquo;XML values with unknown root tags&rdquo; <code>&lt;X type=&quot;number&quot;&gt;5&lt;/X&gt;</code> where <code>X</code> as the unknown, i.e. the functional space <code>String =&gt; Elem</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">_5</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">_5</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">someRootTag</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">&lt;</span><span class="n">someRootTag</span> <span class="n">type</span><span class="o">=</span><span class="s">&#34;number&#34;</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">someRootTag</span><span class="o">&gt;</span></span></span></code></pre></div>
 <p>Do you think we can define meaningful functions?</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2xml</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="nc">String</span> <span class="k">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span> <span class="k">=</span> <span class="o">???</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2xml</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="nc">String</span> <span class="k">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span> <span class="k">=</span> <span class="o">???</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">xml2JsLike</span><span class="k">:</span> <span class="o">(</span><span class="kt">String</span> <span class="o">=&gt;</span> <span class="kt">Elem</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]</span> <span class="k">=</span> <span class="o">???</span></span></span></code></pre></div>
 <p>Yes we can &hellip; partially. We can define <code>jsLike2xml</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2xml</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="nc">String</span> <span class="k">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2xml</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="nc">String</span> <span class="k">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">mkRoot</span><span class="o">(</span><span class="n">jsType</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">children</span><span class="k">:</span> <span class="kt">Node*</span><span class="o">)</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="o">(</span><span class="n">someRootTag</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">      <span class="nc">Elem</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span>
@@ -300,7 +337,7 @@
 <ul>
 <li>
 <p>First, unlike<code>jsValue2JsLike</code>, we can not pattern-match on functions. We have no sane way to know that</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">(someRootTag: String) =&gt; <span class="nt">&lt;someRootTag</span> <span class="na">type=</span><span class="s">&#34;number&#34;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/someRootTag&gt;</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">(someRootTag: String) =&gt; <span class="nt">&lt;someRootTag</span> <span class="na">type=</span><span class="s">&#34;number&#34;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/someRootTag&gt;</span></span></span></code></pre></div>
 <p>is built from <code>Atom(Number(5))</code>.</p>
 </li>
 <li>
@@ -308,16 +345,16 @@
 </li>
 </ul>
 <p>Let&rsquo;s once again take a step back. We want to decompose a function <code>(f: String =&gt; Elem)</code> into an <code>Option[JsLike[String =&gt; Elem]]</code> without pattern-matching it. The only reasonable thing we can do with functions is pass them some arguments:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">xml2JsLike</span><span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">String</span> <span class="o">=&gt;</span> <span class="kt">Elem</span><span class="o">))</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">JsLike</span><span class="o">[</span><span class="kt">Elem</span> <span class="k">=&gt;</span> <span class="kt">String</span><span class="o">]]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">xml2JsLike</span><span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">String</span> <span class="o">=&gt;</span> <span class="kt">Elem</span><span class="o">))</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">JsLike</span><span class="o">[</span><span class="kt">Elem</span> <span class="k">=&gt;</span> <span class="kt">String</span><span class="o">]]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">someRootTag</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">...</span> <span class="n">f</span><span class="o">(</span><span class="n">someRootTag</span><span class="o">)</span> <span class="o">...</span></span></span></code></pre></div>
 <p>The type <code>String =&gt; Option[A]</code> is actually a monad, known as a <code>ReaderT[Option, String, A]</code>. Which makes <code>xml2JsLike</code> a monadic coalgebra. Let&rsquo;s give it a name:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">cats.data.ReaderT</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">cats.data.ReaderT</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">TagOpt</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="nc">ReaderT</span><span class="o">[</span><span class="kt">Option</span>, <span class="kt">String</span>, <span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
 <p>As an exercise try to implement <code>xml2JsLike</code>. *To that end, it may be useful to notice that <code>JsLike</code> is a <code>Traverse</code>, i.e. that an instance of <code>Traverse[JsLike]</code> can be defined. Such an instance defines a function:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">`traverse[G[_]: Applicative, A, B](ja: JsLike[A])(f: A =&gt; G[B]): G[JsLike[B]]`</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">`traverse[G[_]: Applicative, A, B](ja: JsLike[A])(f: A =&gt; G[B]): G[JsLike[B]]`</span></span></span></code></pre></div>
 <p>To summarize this part, we have these four functions:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2JsValue</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">]</span>    <span class="k">=&gt;</span> <span class="nc">JsValue</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2JsValue</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">]</span>    <span class="k">=&gt;</span> <span class="nc">JsValue</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsValue2JsLike</span><span class="k">:</span> <span class="kt">JsValue</span>            <span class="o">=&gt;</span> <span class="nc">JsLike</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">jsLike2xml</span><span class="k">:</span> <span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="nc">String</span> <span class="k">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span>
@@ -325,7 +362,7 @@
 <p>Now we want to convert <code>JsValue</code> from/into <code>String =&gt; Elem</code>.</p>
 <h4 id="converting-back-and-forth">Converting back and forth</h4>
 <p>Now that we know how to compose and decompose both JSON and XML values. How do we write converters? For simplify&rsquo;s sake, let&rsquo;s be a bit more abstract. Let <code>A</code> and <code>B</code> be to types (like <code>JsValue</code> and <code>String =&gt; Elem</code>) and <code>F[_]</code> a type constructor (like <code>JsLike</code>) that have the nice property of being a functor (i.e. it has function <code>map: F[A] =&gt; (A =&gt; B) =&gt; F[B]</code>). In addition, let <code>decomposeA: A =&gt; F[A]</code> and <code>recomposeB: F[B] =&gt; B</code> (like <code>jsValue2JsLike</code> and <code>jsLike2xml</code>). We want a function <code>convert: A =&gt; B</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Direct</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Direct</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">import</span> <span class="nn">cats.Functor</span>
 </span></span><span class="line"><span class="cl">  <span class="k">import</span> <span class="nn">cats.syntax.functor._</span>
 </span></span><span class="line"><span class="cl">
@@ -345,17 +382,17 @@
 </span></span><span class="line"><span class="cl">  <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Or in a more compact way:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">hylo</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>, <span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span><span class="kt">:</span> <span class="kt">Functor</span><span class="o">](</span><span class="n">decompose</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">F</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">recompose</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">hylo</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>, <span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span><span class="kt">:</span> <span class="kt">Functor</span><span class="o">](</span><span class="n">decompose</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">F</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">recompose</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">convert</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">recompose</span><span class="o">(</span><span class="n">decompose</span><span class="o">(</span><span class="n">a</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="n">convert</span><span class="o">))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="n">convert</span> <span class="k">_</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>And voila, a converter in just 1 lines of code:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">json2xml</span><span class="o">(</span><span class="n">json</span><span class="k">:</span> <span class="kt">JsValue</span><span class="o">)</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">json2xml</span><span class="o">(</span><span class="n">json</span><span class="k">:</span> <span class="kt">JsValue</span><span class="o">)</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">hylo</span><span class="o">(</span><span class="n">jsValue2JsLike</span><span class="o">,</span> <span class="n">jsLike2xml</span><span class="o">).</span><span class="n">apply</span><span class="o">(</span><span class="n">json</span><span class="o">)</span></span></span></code></pre></div>
 <p>The way back is only a bit more involving. This time we require <code>F</code> to be <code>Traverse</code> and the function <code>decomposeA</code> to be of type <code>A =&gt; M[F[A]]</code> for some monad <code>M</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">WayBack</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">WayBack</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">type</span> <span class="kt">A</span>
 </span></span><span class="line"><span class="cl">  <span class="k">type</span> <span class="kt">B</span>
 </span></span><span class="line"><span class="cl">
@@ -375,7 +412,7 @@
 </span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">yield</span> <span class="n">recomposeB</span><span class="o">(</span><span class="n">fb</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Again, in a more compact way:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">hyloish</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>, <span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span><span class="kt">:</span> <span class="kt">Traverse</span>, <span class="kt">M</span><span class="o">[</span><span class="k">_</span><span class="o">]</span><span class="kt">:</span> <span class="kt">Monad</span><span class="o">](</span><span class="n">decompose</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">M</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">]],</span> <span class="n">recompose</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">M</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">hyloish</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>, <span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span><span class="kt">:</span> <span class="kt">Traverse</span>, <span class="kt">M</span><span class="o">[</span><span class="k">_</span><span class="o">]</span><span class="kt">:</span> <span class="kt">Monad</span><span class="o">](</span><span class="n">decompose</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">M</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">]],</span> <span class="n">recompose</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">M</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">convert</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">M</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">fa</span> <span class="k">&lt;-</span> <span class="n">decompose</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
@@ -385,10 +422,10 @@
 </span></span><span class="line"><span class="cl">  <span class="n">convert</span> <span class="k">_</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>which gives the way back as the oneliner:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">xml2json</span><span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span><span class="k">:</span> <span class="kt">TagOpt</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">xml2json</span><span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span><span class="k">:</span> <span class="kt">TagOpt</span><span class="o">[</span><span class="kt">JsValue</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">hyloish</span><span class="o">(</span><span class="n">xml2JsLike</span><span class="o">,</span> <span class="n">jsLike2JsValue</span><span class="o">).</span><span class="n">apply</span><span class="o">(</span><span class="n">f</span><span class="o">)</span></span></span></code></pre></div>
 <p>Reorganizing a bit, it leads to the two conversion functions between <code>(String, JsValue)</code> and <code>Elem</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">json2xmlBetter</span><span class="k">:</span> <span class="o">((</span><span class="kt">String</span><span class="o">,</span> <span class="kt">JsValue</span><span class="o">))</span> <span class="k">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">json2xmlBetter</span><span class="k">:</span> <span class="o">((</span><span class="kt">String</span><span class="o">,</span> <span class="kt">JsValue</span><span class="o">))</span> <span class="k">=&gt;</span> <span class="nc">Elem</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">jsonPlusTag</span><span class="k">:</span> <span class="o">(</span><span class="kt">String</span><span class="o">,</span> <span class="kt">JsValue</span><span class="o">))</span> <span class="k">=&gt;</span> <span class="n">json2xml</span><span class="o">(</span><span class="n">jsonPlusTag</span><span class="o">.</span><span class="n">_2</span><span class="o">)(</span><span class="n">jsonPlusTag</span><span class="o">.</span><span class="n">_1</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">xml2jsonBetter</span><span class="k">:</span> <span class="kt">Elem</span> <span class="o">=&gt;</span> <span class="nc">TagOpt</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">JsValue</span><span class="o">)]</span> <span class="k">=</span>
@@ -403,7 +440,7 @@
 <p>If want to dive deeper in this subject, you can look at <a href="https://github.com/slamdata/matryoshka" rel="external" target="_self">Matryoshka</a>, read <a href="https://maartenfokkinga.github.io/utwente/mmf91m.pdf" rel="external" target="_self">Functional programming with bananas, lenses, envelopes and barbed wire</a> or any resource on <a href="https://en.wikipedia.org/wiki/F-algebra" rel="external" target="_self">F-Algebras</a> and <em>recursion schemes</em>.</p>
 <h3 id="solution-to-exercises">Solution to exercises</h3>
 <h4 id="jslike-instance-for-traverse"><code>JsLike</code> instance for <code>Traverse</code></h4>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">implicit</span> <span class="k">val</span> <span class="n">jsLikeInstances</span><span class="k">:</span> <span class="kt">Traverse</span><span class="o">[</span><span class="kt">JsLike</span><span class="o">]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">implicit</span> <span class="k">val</span> <span class="n">jsLikeInstances</span><span class="k">:</span> <span class="kt">Traverse</span><span class="o">[</span><span class="kt">JsLike</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">Traverse</span><span class="o">[</span><span class="kt">JsLike</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">import</span> <span class="nn">cats.Eval</span>
 </span></span><span class="line"><span class="cl">
@@ -434,7 +471,7 @@
 </span></span><span class="line"><span class="cl">      <span class="o">}</span>
 </span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
 <h4 id="xml2jslike"><code>xml2JsLike</code></h4>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">xml2JsLike</span><span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span><span class="k">:</span> <span class="kt">TagOpt</span><span class="o">[</span><span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">xml2JsLike</span><span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">Elem</span><span class="o">)</span><span class="k">:</span> <span class="kt">TagOpt</span><span class="o">[</span><span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="nc">ReaderT</span><span class="o">[</span><span class="kt">Option</span>, <span class="kt">String</span>, <span class="kt">JsLike</span><span class="o">[</span><span class="kt">String</span> <span class="k">=&gt;</span> <span class="kt">Elem</span><span class="o">]]</span> <span class="o">{</span> <span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="n">elem</span><span class="k">:</span> <span class="kt">Elem</span> <span class="o">=</span> <span class="n">f</span><span class="o">(</span><span class="n">s</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
@@ -491,28 +528,26 @@
 </span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
 
   <footer class="footline">
+    
   </footer>
 </article>
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1731047931" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1731047931" defer></script>
+    <script src="../../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1731047931"></script>
-    <script src="../../js/theme.js?1731047931" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../../js/theme.min.js?1749952413" defer></script>
   </body>
 </html>

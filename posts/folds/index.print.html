@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
     <meta name="description" content="Introduction to catamorphisms on Algebraic Data Types">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Let&#39;s meet the charming fold family :: @chrilves&#39; Archives">
     <meta name="twitter:description" content="Introduction to catamorphisms on Algebraic Data Types">
-  <meta name="twitter:site" content="@chrilves"/>
+    <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/posts/folds/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="Let&#39;s meet the charming fold family :: @chrilves&#39; Archives">
@@ -29,26 +29,62 @@
     <title>Let&#39;s meet the charming fold family :: @chrilves&#39; Archives</title>
     <link href="https://chrilves.github.io/posts/folds/index.html" rel="canonical" type="text/html" title="Let&#39;s meet the charming fold family :: @chrilves&#39; Archives">
     <link href="../../posts/folds/index.xml" rel="alternate" type="application/rss+xml" title="Let&#39;s meet the charming fold family :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1731047931" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1731047931" rel="stylesheet">
-    <link href="../../css/fonts.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1731047931" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1731047931" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1731047931" rel="stylesheet">
-    <script src="../../js/variant.js?1731047931"></script>
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../../js/search.min.js?1749952413" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/posts\/folds\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1749952413";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -60,7 +96,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../posts/folds/index.html">
+  <body class="mobile-support print" data-url="../../posts/folds/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -92,14 +128,15 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Let&#39;s meet the charming fold family</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="../../index.html"><span itemprop="name">@chrilves&#39; Archives</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Let&#39;s meet the charming fold family</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/folds.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/folds.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a>
             </div>
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/folds/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/folds/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/gadts_intro/index.html" title="Demystifying GADTs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
@@ -124,13 +161,13 @@
   </header>
 
 <h1 id="lets-meet-the-charming-fold-family">Let&#39;s meet the charming fold family</h1>
-    <p class="article-meta default"><em>30 Nov 2018 - 1800 Words</em></p>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>30 Nov 2018 - 1800 Words</em></p>
 
 <p>Today we will meet an amazing family: the <code>fold</code> functions!</p>
 <h2 id="the-well-known-foldright">The well known <code>foldRight</code></h2>
 <p><a href="https://en.wikipedia.org/wiki/List_(abstract_data_type)" rel="external" target="_self">Lists</a> is one of the first
 data structure every developer/computer scientist meet in her/his journey into programming:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">List</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">List</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Nil</span>                              <span class="k">extends</span> <span class="nc">List</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Cons</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
 <p>It means means values of type <code>List[A]</code> can be of (only) two forms:</p>
@@ -139,27 +176,26 @@ data structure every developer/computer scientist meet in her/his journey into p
 <li>or <code>Cons(head, tail)</code> for some values <code>head</code> of type <code>A</code> and <code>tail</code> of type <code>List[A]</code></li>
 </ul>
 <p>For example we can define the following lists:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">empty</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Nil</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">empty</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Nil</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">l1</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Cons</span><span class="o">(</span><span class="mi">61</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">l2</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Cons</span><span class="o">(</span><span class="mi">34</span><span class="o">,</span> <span class="nc">Cons</span><span class="o">(</span><span class="mi">61</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">))</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">l3</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Cons</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="nc">Cons</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="nc">Cons</span><span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)))</span></span></span></code></pre></div>
 <p>In addition, <code>Nil</code> and <code>Cons</code> can be seen as constants and functions returning <code>List[A]</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">nil</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Nil</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">nil</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Nil</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">cons</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Lis</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Cons</span><span class="o">(</span><span class="n">head</span><span class="o">,</span> <span class="n">tail</span><span class="o">)</span></span></span></code></pre></div>
 <p>The <strong>fold</strong> function, often called <code>foldRight</code>, answers the question:</p>
 <blockquote>
 <p><em>What would have happened if, instead of having used <code>Nil</code> and <code>Cons</code> in the construction of a list <code>l:List[A]</code>, we would have used
-another constant <code>z:T</code> and another function <code>f:(A, T) =&gt; T</code> for some type <code>T</code>?</em></p>
-</blockquote>
+another constant <code>z:T</code> and another function <code>f:(A, T) =&gt; T</code> for some type <code>T</code>?</em></p></blockquote>
 <p>Let&rsquo;s illustrate this using the previous examples:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">empty</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">// z = 0
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">empty</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">// z = 0
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="n">v1</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">max</span><span class="o">(</span><span class="mi">61</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span> <span class="c1">// z = 0, f = max
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="n">v2</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">mult</span><span class="o">(</span><span class="mi">34</span><span class="o">,</span> <span class="n">mult</span><span class="o">(</span><span class="mi">61</span><span class="o">,</span> <span class="mi">1</span><span class="o">))</span> <span class="c1">// z = 1, f = mult
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="n">v3</span> <span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">concat</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="n">concat</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="n">concat</span><span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="s">&#34;&#34;</span><span class="o">)))</span>
 </span></span><span class="line"><span class="cl">  <span class="o">--</span> <span class="n">z</span> <span class="k">=</span> <span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">f</span> <span class="k">=</span> <span class="n">concat</span></span></span></code></pre></div>
 <p>The definition of <code>foldRight</code> illustrates well the transformation process. It deconstructs the list <code>l:List[A]</code>
 and replace <code>Nil</code> by <code>z</code> and <code>Cons</code> by <code>f</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldList</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">T</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">T</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldList</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">T</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">T</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">l</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Nil</span> <span class="k">=&gt;</span> <span class="n">z</span>
@@ -172,11 +208,11 @@ and replace <code>Nil</code> by <code>z</code> and <code>Cons</code> by <code>f<
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <h2 id="the-simple-cases-enum-types">The simple cases: Enum Types</h2>
 <p><code>fold</code> functions can be defined for a wide range of data structures. As a first example, let&rsquo;s take this type:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">SingletonType</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">SingletonType</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">SingleValue</span> <span class="k">extends</span> <span class="nc">SingletonType</span></span></span></code></pre></div>
 <p>The type <code>SingletonType</code> admits one and only one value: <code>SingleValue</code>. Folding over <code>SingletonType</code> means,
 replacing <code>SingleValue</code> by a constant <code>z:T</code> for some type <code>T</code> :</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldSingletonType</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="k">:</span><span class="kt">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">SingletonType</span> <span class="o">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldSingletonType</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="k">:</span><span class="kt">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">SingletonType</span> <span class="o">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">v</span><span class="k">:</span> <span class="kt">SingletonType</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">SingleValue</span> <span class="k">=&gt;</span> <span class="n">z</span>
@@ -185,11 +221,11 @@ replacing <code>SingleValue</code> by a constant <code>z:T</code> for some type 
 </span></span><span class="line"><span class="cl">  <span class="n">transform</span> <span class="k">_</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>While <code>SingletonType</code> has only one value, the type <code>Boolean</code> have exactly two values <code>True</code> and <code>False</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Boolean</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Boolean</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">True</span>  <span class="k">extends</span> <span class="nc">Boolean</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">False</span> <span class="k">extends</span> <span class="nc">Boolean</span></span></span></code></pre></div>
 <p>So folding over <code>Boolean</code>s mean, given a type <code>T</code> and two constants <code>tt:T</code> and <code>ff:T</code>, replacing <code>True</code> by <code>tt</code> and <code>False</code> by <code>ff</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldBoolean</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">tt</span><span class="k">:</span><span class="kt">T</span><span class="o">,</span> <span class="n">ff</span><span class="k">:</span><span class="kt">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldBoolean</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">tt</span><span class="k">:</span><span class="kt">T</span><span class="o">,</span> <span class="n">ff</span><span class="k">:</span><span class="kt">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">v</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">True</span>  <span class="k">=&gt;</span> <span class="n">tt</span>
@@ -204,7 +240,7 @@ replacing <code>SingleValue</code> by a constant <code>z:T</code> for some type 
 <code>SingleValue</code> for <code>SingletonType</code>, <code>True</code> and <code>False</code> for <code>Boolean</code>), then <strong>folding is all about transforming values of type <code>C</code>
 into another type <code>T</code> by replacing each constructor of <code>C</code> by a constant or function on <code>T</code> of the same shape</strong>. Let&rsquo;s consider
 the type <code>Either[A,B]</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Left</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span>  <span class="k">extends</span> <span class="nc">Either</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Right</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Either</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span></span></span></code></pre></div>
 <p>To transform values of type <code>Either[A,B]</code> into <code>T</code> we need two functions on <code>T</code>:</p>
@@ -213,7 +249,7 @@ the type <code>Either[A,B]</code>:</p>
 <li><code>Right</code> being of type <code>B =&gt; Either[A,B]</code> we need a function <code>g: B =&gt; T</code>.</li>
 </ul>
 <p>Then we can operate the transformation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldEither</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>,<span class="kt">T</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">T</span><span class="o">,</span> <span class="n">g</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="n">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">Either</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldEither</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>,<span class="kt">T</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">T</span><span class="o">,</span> <span class="n">g</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="n">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">Either</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">v</span><span class="k">:</span> <span class="kt">Either</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Left</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>  <span class="k">=&gt;</span> <span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
@@ -225,7 +261,7 @@ the type <code>Either[A,B]</code>:</p>
 <h2 id="recursive-types">Recursive Types</h2>
 <p>Folding over recursive types obey the previous rules. Recursion is handled by transforming sub-terms first. Let&rsquo;s consider
 the type of binary trees:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Empty</span> <span class="k">extends</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Node</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span><span class="kt">A</span><span class="o">,</span> <span class="n">left</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">right</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
 <p>To transform values of type <code>Tree[A]</code> into <code>T</code> we need:</p>
@@ -235,7 +271,7 @@ the type of binary trees:</p>
 Note how all occurrences of <code>Tree[A]</code> have been replaced by <code>T</code> in the type.</li>
 </ul>
 <p>Then we can operate the transformation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldTree</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">T</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">T</span><span class="o">,</span> <span class="n">T</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldTree</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">T</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">T</span><span class="o">,</span> <span class="n">T</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">v</span><span class="k">:</span> <span class="kt">Tree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Empty</span> <span class="k">=&gt;</span> <span class="n">z</span>
@@ -252,7 +288,7 @@ Note how all occurrences of <code>Tree[A]</code> have been replaced by <code>T</
 i will show you some examples.</p>
 <h3 id="type-equalities">Type Equalities</h3>
 <p>Consider the type:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">EmptyOrSingleton</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">EmptyOrSingleton</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">SingleValueIfAisInt</span> <span class="k">extends</span> <span class="nc">EmptyOrSingleton</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span></span></span></code></pre></div>
 <p>This type looks very similar to <code>SingletonType</code> but, while <code>SingleValue</code> was <strong>always</strong> a value of <code>SingletonType</code>,
 <code>SingleValueIfAisInt</code> is <strong>only</strong> a value of <code>EmptyOrSingleton[Int]</code>, i.e. when <code>A</code> is <code>Int</code>. So what happens to
@@ -271,7 +307,7 @@ so let <code>T</code> depend on <code>A</code>: we want to transform values of t
 <li><code>SingleValueIfAisInt</code> being of type <code>EmptyOrSingleton[Int]</code> we need a constant <code>z:T[Int]</code></li>
 </ul>
 <p>Then we can operate the transformation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldEmptyOrSingleton</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">T</span><span class="o">[</span><span class="k">_</span><span class="o">]](</span><span class="n">z</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">EmptyOrSingleton</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldEmptyOrSingleton</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">T</span><span class="o">[</span><span class="k">_</span><span class="o">]](</span><span class="n">z</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">EmptyOrSingleton</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">v</span><span class="k">:</span> <span class="kt">EmptyOrSingleton</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">SingleValueIfAisInt</span> <span class="k">=&gt;</span> <span class="n">z</span> <span class="c1">// Because we know A = Int
@@ -281,11 +317,11 @@ so let <code>T</code> depend on <code>A</code>: we want to transform values of t
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p><code>foldEmptyOrSingleton</code> means that, for some <code>T[_]</code>, if you have a value <code>z:T[Int]</code> then you can transform any value
 <code>EmptyOrSingleton[A]</code> into <code>T[A]</code>. For example, let&rsquo;s take</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">T</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span> <span class="k">=</span> <span class="n">X</span> <span class="o">=:=</span> <span class="nc">Int</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">T</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span> <span class="k">=</span> <span class="n">X</span> <span class="o">=:=</span> <span class="nc">Int</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">z</span><span class="k">:</span><span class="kt">T</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">implicitly</span><span class="o">[</span><span class="kt">Int</span> <span class="kt">=:=</span> <span class="kt">Int</span><span class="o">]</span></span></span></code></pre></div>
 <p>Then <code>foldEmptyOrSingleton[A,T](z)</code> gives us, for any value <code>v:EmptyOrSingleton[A]</code> a proof that <code>A =:= Int</code>. Another
 important use case is asserting type equality:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Eq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Eq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Refl</span><span class="o">[</span><span class="kt">X</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">Eq</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">X</span><span class="o">]</span></span></span></code></pre></div>
 <p>Any <strong>non-null value</strong> <code>v:Eq[A,B]</code> must be a <code>Refl[X]() : Eq[X,X]</code> for some <code>X</code>, then <code>Eq[A,B] = Eq[X,X]</code> proving that
 <code>A = X = B</code>. To transform a value of type <code>Eq[A,B]</code> into <code>T[A,B]</code> we need:</p>
@@ -294,12 +330,12 @@ important use case is asserting type equality:</p>
 We need a constant <code>z:T[X,X]</code> for all type <code>X</code> (so the type <code>[X]T[X,X]</code>). <em>Scala</em> does not support transparent higher-ranked
 types, we need to emulate them with a <code>trait</code>:</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">ElimRefl</span><span class="o">[</span><span class="kt">T</span><span class="o">[</span><span class="k">_</span>,<span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">ElimRefl</span><span class="o">[</span><span class="kt">T</span><span class="o">[</span><span class="k">_</span>,<span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">apply</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">X</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Then we could have hoped to be able to operate the transformation like previous section. But given a value <code>v:Eq[A,B]</code>,
 convincing <em>Scala</em> that <code>A = B</code> is a bit tough. Instead we can write the <code>fold</code> as a method:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Eq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Eq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">T</span><span class="o">[</span><span class="k">_</span>,<span class="k">_</span><span class="o">]](</span><span class="n">z</span><span class="k">:</span> <span class="kt">ElimRefl</span><span class="o">[</span><span class="kt">T</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Refl</span><span class="o">[</span><span class="kt">X</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">Eq</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">X</span><span class="o">]</span> <span class="o">{</span>
@@ -309,7 +345,7 @@ convincing <em>Scala</em> that <code>A = B</code> is a bit tough. Instead we can
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldEq</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">B</span>, <span class="kt">T</span><span class="o">[</span><span class="k">_</span>,<span class="k">_</span><span class="o">]](</span><span class="n">z</span><span class="k">:</span> <span class="kt">ElimRefl</span><span class="o">[</span><span class="kt">T</span><span class="o">])</span><span class="k">:</span> <span class="kt">Eq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">v</span><span class="k">:</span><span class="kt">Eq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span> <span class="k">=&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="o">)</span></span></span></code></pre></div>
 <p>Ingenious definition of <code>T[_,_]</code> leads to interesting results:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">C</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">C</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nc">type</span> <span class="n">T1</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="n">C</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">=:=</span> <span class="n">C</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -322,7 +358,7 @@ convincing <em>Scala</em> that <code>A = B</code> is a bit tough. Instead we can
 </span></span><span class="line"><span class="cl">  <span class="n">foldEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span>,<span class="kt">T1</span><span class="o">](</span><span class="n">z1</span><span class="o">)</span></span></span></code></pre></div>
 <h3 id="existential-quantification">Existential Quantification</h3>
 <p>GADTs not only provide useful type equalities, they also offer existential quantification!</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Ex</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Ex</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">type</span> <span class="kt">hidden</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">value</span><span class="k">:</span> <span class="kt">hidden</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">evidence</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">hidden</span><span class="o">]</span>
@@ -339,11 +375,11 @@ with <code>F[X] = Monoid[X]</code>).</p>
 need a function <code>f</code> of type <code>[A](A, F[A]) =&gt; T</code>. <em>Scala</em> still does not support transparent higher ranked
 types, we need to emulate them with another <code>trait</code>:</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">ElimMakeEx</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">ElimMakeEx</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">apply</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">evidence</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Then we can operate the transformation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldEx</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>, <span class="kt">T</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">ElimMakeEx</span><span class="o">[</span><span class="kt">F</span>, <span class="kt">T</span><span class="o">])</span><span class="k">:</span> <span class="kt">Ex</span><span class="o">[</span><span class="kt">F</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">foldEx</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>, <span class="kt">T</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">ElimMakeEx</span><span class="o">[</span><span class="kt">F</span>, <span class="kt">T</span><span class="o">])</span><span class="k">:</span> <span class="kt">Ex</span><span class="o">[</span><span class="kt">F</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">T</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">v</span><span class="k">:</span> <span class="kt">Ex</span><span class="o">[</span><span class="kt">F</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">w</span><span class="nd">@MakeEx</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">evidence</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">[</span><span class="kt">w.hidden</span><span class="o">](</span><span class="n">value</span><span class="o">,</span> <span class="n">evidence</span><span class="o">)</span>
@@ -354,7 +390,7 @@ types, we need to emulate them with another <code>trait</code>:</li>
 <h2 id="duality">Duality</h2>
 <p>In this post we have deduced the <code>fold</code> functions from the definition of each type. It is possible to
 do the opposite: each constructor can be derived from the <code>fold</code> function of its type. For example:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">List</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">List</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">z</span><span class="k">:</span><span class="kt">T</span><span class="o">,</span> <span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">T</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">T</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -379,28 +415,26 @@ It can also happen that type-inference is not smart enough, <code>fold</code> fu
 often easier for the <code>Scala</code> type-checker.</p>
 
   <footer class="footline">
+    
   </footer>
 </article>
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1731047931" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1731047931" defer></script>
+    <script src="../../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1731047931"></script>
-    <script src="../../js/theme.js?1731047931" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../../js/theme.min.js?1749952413" defer></script>
   </body>
 </html>

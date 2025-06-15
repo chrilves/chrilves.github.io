@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
     <meta name="description" content="Découvrez les ADT généralisés en vous amusant.">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Les GADTs Par l&#39;Exemple :: @chrilves&#39; Archives">
     <meta name="twitter:description" content="Découvrez les ADT généralisés en vous amusant.">
-  <meta name="twitter:site" content="@chrilves"/>
+    <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/posts/les_gadts_par_l_exemple/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="Les GADTs Par l&#39;Exemple :: @chrilves&#39; Archives">
@@ -29,26 +29,62 @@
     <title>Les GADTs Par l&#39;Exemple :: @chrilves&#39; Archives</title>
     <link href="https://chrilves.github.io/posts/les_gadts_par_l_exemple/index.html" rel="canonical" type="text/html" title="Les GADTs Par l&#39;Exemple :: @chrilves&#39; Archives">
     <link href="../../posts/les_gadts_par_l_exemple/index.xml" rel="alternate" type="application/rss+xml" title="Les GADTs Par l&#39;Exemple :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1731047931" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1731047931" rel="stylesheet">
-    <link href="../../css/fonts.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1731047931" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1731047931" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1731047931" rel="stylesheet">
-    <script src="../../js/variant.js?1731047931"></script>
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/format-print.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../../js/search.min.js?1749952413" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/posts\/les_gadts_par_l_exemple\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1749952413";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -60,7 +96,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../posts/les_gadts_par_l_exemple/index.html">
+  <body class="mobile-support print" data-url="../../posts/les_gadts_par_l_exemple/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -112,14 +148,15 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Les GADTs Par l&#39;Exemple</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="../../index.html"><span itemprop="name">@chrilves&#39; Archives</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../posts/index.html"><span itemprop="name">Posts</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Les GADTs Par l&#39;Exemple</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/les_gadts_par_l_exemple.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/posts/les_gadts_par_l_exemple.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a>
             </div>
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/les_gadts_par_l_exemple/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/les_gadts_par_l_exemple/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../posts/probability_in_scala_3_all_sides/index.html" title="Playing with Probability in Scala 3 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
@@ -144,7 +181,7 @@
   </header>
 
 <h1 id="les-gadts-par-lexemple">Les GADTs Par l&#39;Exemple</h1>
-    <p class="article-meta default"><em>27 Oct 2019 - 7900 Words</em></p>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>27 Oct 2019 - 7900 Words</em></p>
 
 <p>Soyez les bienvenu·e·s! Cette session a le dessein de vous présenter
 un outil de programmation très puissant. Alors que la plupart des
@@ -184,7 +221,7 @@ exécuter rapidement du code <em>Scala</em>. Le meilleur moyen est d&rsquo;ouvri
 interactive (<em>R.E.P.L.</em>). Si vous avez <em>Scala</em> d&rsquo;installé sur votre système, vous
 pouvez facilement en démarrer une via la ligne de commande en exécutant le programme
 <code>scala</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">system</span><span class="o">-</span><span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="k">#</span> <span class="n">scala</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">system</span><span class="o">-</span><span class="n">command</span><span class="o">-</span><span class="n">line</span><span class="k">#</span> <span class="n">scala</span>
 </span></span><span class="line"><span class="cl"><span class="nc">Welcome</span> <span class="n">to</span> <span class="nc">Scala</span> <span class="mf">2.13</span><span class="o">.</span><span class="mi">1</span> <span class="o">(</span><span class="nc">OpenJDK</span> <span class="mi">64</span><span class="o">-</span><span class="nc">Bit</span> <span class="nc">Server</span> <span class="nc">VM</span><span class="o">,</span> <span class="nc">Java</span> <span class="mf">1.8</span><span class="o">.</span><span class="mi">0</span><span class="n">_222</span><span class="o">).</span>
 </span></span><span class="line"><span class="cl"><span class="nc">Type</span> <span class="n">in</span> <span class="n">expressions</span> <span class="k">for</span> <span class="n">evaluation</span><span class="o">.</span> <span class="nc">Or</span> <span class="k">try</span> <span class="k">:</span><span class="kt">help.</span>
 </span></span><span class="line"><span class="cl">
@@ -214,18 +251,18 @@ n&rsquo;importe quel <code>Double</code> et renvoyant également un double <code
 <p>Pour indiquer que la valeur <code>v</code> appartient au type (c.-à-d. groupe de valeurs) <code>T</code>,
 la notation est <code>v : T</code>. En <em>Scala</em>, tester si une valeur <code>v</code> appartient au type <code>T</code>
 est très simple: il suffit de taper <code>v : T</code> dans la session interactive (<em>REPL</em>):</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="k">:</span> <span class="kt">Int</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="k">:</span> <span class="kt">Int</span>
 </span></span><span class="line"><span class="cl"><span class="n">res7</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">5</span></span></span></code></pre></div>
 <p>Si <em>Scala</em> l&rsquo;accepte, alors <code>v</code> appartient bien au type <code>T</code>. Si <em>Scala</em> râle,
 ce n&rsquo;est probablement pas le cas:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="k">:</span> <span class="kt">String</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="k">:</span> <span class="kt">String</span>
 </span></span><span class="line"><span class="cl">       <span class="o">^</span>
 </span></span><span class="line"><span class="cl">       <span class="n">error</span><span class="k">:</span> <span class="k">type</span> <span class="kt">mismatch</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">found</span>   <span class="k">:</span> <span class="kt">Int</span><span class="o">(</span><span class="err">5</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">required:</span> <span class="kt">String</span></span></span></code></pre></div>
 <h3 id="combien-de-types">Combien de types?</h3>
 <p>Créons maintenant quelques types et quelques unes de leurs valeurs (quand cela est possible!).</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UnType</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UnType</span></span></span></code></pre></div>
 <ul>
 <li>
 <p><strong>Question 1:</strong> Combien de types la ligne <code>class UnType</code> définit-elle?</p>
@@ -236,7 +273,7 @@ ce n&rsquo;est probablement pas le cas:</p>
 </li>
 </ul>
 <p>Passons maintenant à:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UnTypePourChaque</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UnTypePourChaque</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
 <ul>
 <li>
 <p><strong>Question 2:</strong> Combien de types la ligne <code>class UnTypePourChaque[A]</code> définit-elle?</p>
@@ -268,7 +305,7 @@ avec les autres types de la forme <code>UnTypePourChaque[B]</code> avec <code>B 
 </ul>
 <h3 id="combien-de-valeurs">Combien de valeurs?</h3>
 <p>En considérant le type suivant:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">PasDeValeurPourCeType</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">PasDeValeurPourCeType</span></span></span></code></pre></div>
 <ul>
 <li>
 <p><strong>Question 1:</strong> Donnez une valeur appartenant au type <code>PasDeValeurPourCeType</code>?
@@ -284,13 +321,13 @@ Combien de valeurs appartiennent au type <code>PasDeValeurPourCeType</code>?</p>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
 <p>La classe <code>PasDeValeurPourCeType</code> est déclarée comme <code>abstract</code>.
 Cela signifie qu&rsquo;il est interdit de créer des instances directes de cette classe:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">new</span> <span class="nc">PasDeValeurPourCeType</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">new</span> <span class="nc">PasDeValeurPourCeType</span>
 </span></span><span class="line"><span class="cl">       <span class="o">^</span>
 </span></span><span class="line"><span class="cl">       <span class="n">error</span><span class="k">:</span> <span class="kt">class</span> <span class="kt">PasDeValeurPourCeType</span> <span class="kt">is</span> <span class="kt">abstract</span><span class="o">;</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">instantiated</span></span></span></code></pre></div>
 <p>La seule manière de créer une instance d&rsquo;une classe abstraite est de créer une
 une sous-classe concrète. Mais le mot clef <code>final</code> interdit la création de
 telles sous-classes:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">SousClasseConcrete</span> <span class="k">extends</span> <span class="nc">PasDeValeurPourCeType</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">SousClasseConcrete</span> <span class="k">extends</span> <span class="nc">PasDeValeurPourCeType</span>
 </span></span><span class="line"><span class="cl">                                        <span class="o">^</span>
 </span></span><span class="line"><span class="cl">        <span class="n">error</span><span class="k">:</span> <span class="kt">illegal</span> <span class="kt">inheritance</span> <span class="kt">from</span> <span class="kt">final</span> <span class="kt">class</span> <span class="kt">PasDeValeurPourCeType</span></span></span></code></pre></div>
 <p>Il n&rsquo;existe aucun moyen de créer une instance pour <code>PasDeValeurPourCeType</code>.</p>
@@ -298,7 +335,7 @@ telles sous-classes:</p>
 </li>
 </ul>
 <p>Prenons un autre exemple:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ExactementUneValeur</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ExactementUneValeur</span>
 </span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="k">object</span> <span class="nc">LaSeuleValeur</span> <span class="k">extends</span> <span class="nc">ExactementUneValeur</span></span></span></code></pre></div>
 <ul>
 <li>
@@ -324,7 +361,7 @@ deux idées! Vous trouverez ici des exemples épurés illustrant chacune
 de ces deux idées.</p>
 <h3 id="cas-dutilisation-preuve-dune-propriété">Cas d&rsquo;Utilisation: Preuve d&rsquo;une propriété</h3>
 <p>Définissons un simple <em>sealed trait</em>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ATrait</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ATrait</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">case</span> <span class="k">object</span> <span class="nc">AValue</span> <span class="k">extends</span> <span class="nc">ATrait</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span></span></span></code></pre></div>
 <ul>
 <li>
@@ -354,13 +391,13 @@ De plus <code>AValue</code> est de type <code>ATrait[Char]</code> donc <code>A =
 </li>
 <li>
 <p><strong>Question 4:</strong> Dans la session interactive (<em>REPL</em>), entrez le code suivant:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">f</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ev</span><span class="k">:</span> <span class="kt">ATrait</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Char</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">f</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ev</span><span class="k">:</span> <span class="kt">ATrait</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Char</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">x</span></span></span></code></pre></div>
 </li>
 <li>
 <p><strong>Question 5:</strong> Essayez maintenant en utilisant un filtrage par motif
 (pattern matching) sur <code>ev: ATrait[A]</code></p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">f</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ev</span><span class="k">:</span> <span class="kt">ATrait</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Char</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">f</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">ev</span><span class="k">:</span> <span class="kt">ATrait</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Char</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">ev</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">AValue</span> <span class="k">=&gt;</span> <span class="n">x</span>
 </span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
@@ -376,7 +413,7 @@ que <code>ev : ATrait[Char]</code> parce que <code>ev == AValue</code>. Donc <co
 <p><strong>Question 6:</strong> Appelez <code>f</code> avec <code>x = 'w' : Char</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">[</span><span class="kt">Char</span><span class="o">](</span><span class="sc">&#39;w&#39;</span><span class="o">,</span> <span class="nc">AValue</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">[</span><span class="kt">Char</span><span class="o">](</span><span class="sc">&#39;w&#39;</span><span class="o">,</span> <span class="nc">AValue</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">res0</span><span class="k">:</span> <span class="kt">Char</span> <span class="o">=</span> <span class="n">w</span></span></span></code></pre></div>
   </details>
 </li>
@@ -386,7 +423,7 @@ que <code>ev : ATrait[Char]</code> parce que <code>ev == AValue</code>. Donc <co
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
 <p>C&rsquo;est impossible parce que cela demenderait de fournir une valeur
 <code>ev : ATrait[Double]</code>, ce qui n&rsquo;existe pas!</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">[</span><span class="kt">Double</span><span class="o">](</span><span class="mi">5</span><span class="o">,</span> <span class="nc">AValue</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">[</span><span class="kt">Double</span><span class="o">](</span><span class="mi">5</span><span class="o">,</span> <span class="nc">AValue</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">                    <span class="o">^</span>
 </span></span><span class="line"><span class="cl">          <span class="n">error</span><span class="k">:</span> <span class="k">type</span> <span class="kt">mismatch</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">found</span>   <span class="k">:</span> <span class="kt">AValue.type</span>
@@ -398,7 +435,7 @@ que <code>ev : ATrait[Char]</code> parce que <code>ev == AValue</code>. Donc <co
   <summary><strong>Remarque pour les personnes à l'aise en <em>Scala</em></strong> <em>(cliquer pour dévoiler)</em></summary>
 <p>En utilisant toutes les chouettes fonctionnalités syntaxiques de <em>Scala</em>,
 la version satisfaisante en production du code ci-dessus est:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">IsChar</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">IsChar</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">object</span> <span class="nc">IsChar</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">implicit</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Evidence</span> <span class="k">extends</span> <span class="nc">IsChar</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -417,16 +454,16 @@ mais que vous vouliez être sur qu&rsquo;elle ne dépende d&rsquo;aucun détail 
 de journalisation (c.-à-d. du <em>logger</em>), de telle manière que vous puissiez changer son implémentation
 sans risquer de casser votre application?</p>
 <p>En considérant le type suivant, <code>UnknownLogger</code>, des méthodes de journalisation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">UnknownLogger</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">UnknownLogger</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">LogWith</span><span class="o">[</span><span class="kt">X</span><span class="o">](</span><span class="n">logs</span> <span class="k">:</span> <span class="kt">X</span><span class="o">,</span> <span class="n">appendMessage</span><span class="k">:</span> <span class="o">(</span><span class="kt">X</span><span class="o">,</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">X</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">UnknownLogger</span></span></span></code></pre></div>
 <p>La première méthode (c.-à-d. *<em>logger</em>) que nous créons stocke les messages dans une <code>String</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">loggerStr</span> <span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">loggerStr</span> <span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="nc">LogWith</span><span class="o">[</span><span class="kt">String</span><span class="o">](</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="o">(</span><span class="n">logs</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">message</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">logs</span> <span class="o">++</span> <span class="n">message</span><span class="o">)</span></span></span></code></pre></div>
 <p>La seconde méthode les stocke dans une <code>List[String]</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">loggerList</span> <span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">loggerList</span> <span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="nc">LogWith</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]](</span><span class="nc">Nil</span><span class="o">,</span> <span class="o">(</span><span class="n">logs</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">],</span> <span class="n">message</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">message</span> <span class="k">:</span><span class="kt">:</span> <span class="kt">logs</span><span class="o">)</span></span></span></code></pre></div>
 <p>La troisième méthode de journalisation imprime directement les messages sur la sortie standard:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">loggerStdout</span> <span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">loggerStdout</span> <span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="nc">LogWith</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]((),</span> <span class="o">(</span><span class="n">logs</span><span class="k">:</span> <span class="kt">Unit</span><span class="o">,</span> <span class="n">message</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">println</span><span class="o">(</span><span class="n">message</span><span class="o">))</span></span></span></code></pre></div>
 <p>Notez que ces trois méthodes de journalisation ont toutes le même type
 (c.-à-d. <code>UnknownLogger</code>) mais qu&rsquo;elles stockent les messages en utilisant
@@ -457,7 +494,7 @@ et retourne un nouvel <code>UnknownLogger</code> contenant le nouveau journal (c
 <p>Pour rappel, en <em>Scala</em>, le motif (c.-à-d. pattern) <code>case ac : AClass[t] =&gt;</code>
 est possible dans les expressions de type <code>match/case</code> comme alternative au motif
 <code>case AClass(v) =&gt; </code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">AClass</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">AClass</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">f</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">v</span><span class="k">:</span> <span class="kt">AClass</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
@@ -475,7 +512,7 @@ Avoir <code>t</code> sous la main nous permet d&rsquo;aider le compilateur en do
 explicitement certains types (comme ci-dessus, expliciter que <code>r</code> est de type <code>t</code>).</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">log</span><span class="o">(</span><span class="n">message</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">v</span><span class="k">:</span> <span class="kt">UnknownLogger</span><span class="o">)</span><span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">log</span><span class="o">(</span><span class="n">message</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">v</span><span class="k">:</span> <span class="kt">UnknownLogger</span><span class="o">)</span><span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">vx</span> <span class="k">:</span> <span class="kt">LogWith</span><span class="o">[</span><span class="kt">x</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">LogWith</span><span class="o">[</span><span class="kt">x</span><span class="o">](</span><span class="n">vx</span><span class="o">.</span><span class="n">appendMessage</span><span class="o">(</span><span class="n">vx</span><span class="o">.</span><span class="n">logs</span><span class="o">,</span> <span class="n">message</span><span class="o">),</span> <span class="n">vx</span><span class="o">.</span><span class="n">appendMessage</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
@@ -486,7 +523,7 @@ explicitement certains types (comme ci-dessus, expliciter que <code>r</code> est
 et <code>log(&quot;Hello World&quot;, loggerStdout)</code></p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">log</span><span class="o">(</span><span class="s">&#34;Hello World&#34;</span><span class="o">,</span> <span class="n">loggerStr</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">log</span><span class="o">(</span><span class="s">&#34;Hello World&#34;</span><span class="o">,</span> <span class="n">loggerStr</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">res0</span><span class="k">:</span> <span class="kt">UnknownLogger</span> <span class="o">=</span> <span class="nc">LogWith</span><span class="o">(</span><span class="nc">Hello</span> <span class="nc">World</span><span class="o">,</span><span class="nc">$$Lambda$988</span><span class="o">/</span><span class="mi">1455466014</span><span class="k">@</span><span class="mi">421</span><span class="n">ead7e</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">log</span><span class="o">(</span><span class="s">&#34;Hello World&#34;</span><span class="o">,</span> <span class="n">loggerList</span><span class="o">)</span>
@@ -502,7 +539,7 @@ et <code>log(&quot;Hello World&quot;, loggerStdout)</code></p>
   <summary><strong>Remarque pour les personnes à l'aise en <em>Scala</em></strong> <em>(cliquer pour dévoiler)</em></summary>
 <p>Une fois encore, en utilisant toutes les chouettes fonctionnalités syntaxiques de <em>Scala</em>,
 la version satisfaisante en production du code ci-dessus est:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">UnknownLogger</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">UnknownLogger</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">type</span> <span class="kt">LogsType</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">logs</span> <span class="k">:</span> <span class="kt">LogsType</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">appendMessage</span><span class="o">(</span><span class="n">presentLogs</span><span class="k">:</span> <span class="kt">LogsType</span><span class="o">,</span> <span class="n">message</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">LogsType</span>
@@ -534,14 +571,14 @@ majeurs des <em>GADTs</em>.</p>
 <p>Notez bien que, par définition, tout type <code>A</code> est sous-type de lui-même (c.-à-d. <code>A &lt;: A</code>),
 tout comme tout entier <code>x</code> est également inférieur ou égal à lui-même <code>x ≤ x</code>.</p>
 <h3 id="cas-dutilisation-témoin-dégalité-entre-types">Cas d&rsquo;Utilisation: Témoin d&rsquo;Égalité entre Types</h3>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Evidence</span><span class="o">[</span><span class="kt">X</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">EqT</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">X</span><span class="o">]</span></span></span></code></pre></div>
 <ul>
 <li>
 <p><strong>Question 1:</strong> Donnez une valeur de type <code>EqT[Int, Int]</code></p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="nc">Evidence</span><span class="o">[</span><span class="kt">Int</span><span class="o">]()</span> <span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Int</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="nc">Evidence</span><span class="o">[</span><span class="kt">Int</span><span class="o">]()</span> <span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Int</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="n">res0</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">Int</span>,<span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Evidence</span><span class="o">()</span></span></span></code></pre></div>
   </details>
 </li>
@@ -572,7 +609,7 @@ si <code>A ≠ X</code> ou <code>B ≠ X</code>, donc <code>A = X</code> et <cod
 <details>
   <summary><strong>Remarque pour les personnes à l'aise en <em>Scala</em></strong> <em>(cliquer pour dévoiler)</em></summary>
 <p>En production, il est pratique de définir <code>EqT</code> de la manière suivante, qui est bien entendu équivalente:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">object</span> <span class="nc">EqT</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Evidence</span><span class="o">[</span><span class="kt">X</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">EqT</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">X</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -591,7 +628,7 @@ que <code>F[B]</code>.</p>
 <p><strong>Question 4:</strong> Écrivez la fonction <code>def coerce[F[_],A,B](eqT: EqT[A,B])(fa: F[A]): F[B]</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">coerce</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">eqT</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])(</span><span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">coerce</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">eqT</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])(</span><span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">eqT</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="k">_</span> <span class="k">:</span> <span class="kt">Evidence</span><span class="o">[</span><span class="kt">x</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="n">fa</span>
 </span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
@@ -617,7 +654,7 @@ Le &ldquo;symbole&rdquo; <code>&lt;:&lt;</code> est en effet un nom d&rsquo;obje
 écrivez la fonction <code>def toScalaEq[A,B](eqT: EqT[A,B]): A =:= B</code>.</p>
   <details>
     <summary><em>Astuce (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">toScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">eqT</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">toScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">eqT</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="cm">/* Trouver une définition pour:
 </span></span></span><span class="line"><span class="cl"><span class="cm">        - le constructeur de type `F`
 </span></span></span><span class="line"><span class="cl"><span class="cm">        - la valeur `fa : F[A]`
@@ -631,7 +668,7 @@ Le &ldquo;symbole&rdquo; <code>&lt;:&lt;</code> est en effet un nom d&rsquo;obje
   </details>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">toScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">eqT</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">toScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">eqT</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">type</span> <span class="kt">F</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span> <span class="k">=</span> <span class="n">A</span> <span class="o">=:=</span> <span class="n">X</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="o">(&lt;:&lt;).</span><span class="n">refl</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">  <span class="n">coerce</span><span class="o">[</span><span class="kt">F</span>,<span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">eqT</span><span class="o">)(</span><span class="n">fa</span><span class="o">)</span>
@@ -645,7 +682,7 @@ objets de la classe <code>A =:= B</code>, dont la
 écrivez la fonction <code>def fromScalaEq[A,B](scala: A =:= B): EqT[A,B]</code>.</p>
   <details>
     <summary><em>Astuce (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fromScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">scala</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fromScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">scala</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="cm">/* Trouver une définition pour:
 </span></span></span><span class="line"><span class="cl"><span class="cm">        - le constructeur de type `F`
 </span></span></span><span class="line"><span class="cl"><span class="cm">        - la valeur `fa : F[A]`
@@ -659,7 +696,7 @@ objets de la classe <code>A =:= B</code>, dont la
   </details>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fromScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">scala</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fromScalaEq</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">scala</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span><span class="k">:</span><span class="o">=</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">type</span> <span class="kt">F</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span> <span class="k">=</span> <span class="nc">EqT</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">X</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Evidence</span><span class="o">[</span><span class="kt">A</span><span class="o">]()</span>
 </span></span><span class="line"><span class="cl">  <span class="n">scala</span><span class="o">.</span><span class="n">substituteCo</span><span class="o">[</span><span class="kt">F</span><span class="o">](</span><span class="n">fa</span><span class="o">)</span>
@@ -684,18 +721,17 @@ ou <em>bornes inférieures</em> (c.-à-d. <code>A &gt;: B</code>) et <strong>auc
 créez le trait <code>SubTypeOf[A,B]</code> (et tout ce qui est nécessaire) tel que:</p>
 <blockquote>
 <p>Il existe une valeur de type <code>SubType[A,B]</code> <strong>si et seulement si</strong>
-<code>A</code> est un sous-type de <code>B</code> (c.-à-d. <code>A &lt;: B</code>).</p>
-</blockquote>
+<code>A</code> est un sous-type de <code>B</code> (c.-à-d. <code>A &lt;: B</code>).</p></blockquote>
 <p>Pour rappel, par définition, un type <code>A</code> est un sous-type de lui-même (c.-à-d. <code>A &lt;: A</code>).</p>
 <p>Pour rappel, n&rsquo;utilisez pas la classe <code>&lt;:&lt;[A,B]</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">SubTypeEvidence</span><span class="o">[</span><span class="kt">A</span> <span class="k">&lt;:</span> <span class="kt">B</span>, <span class="kt">B</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span></span></span></code></pre></div>
   <details>
     <summary><strong>Remarque pour les personnes à l'aise en <em>Scala</em></strong> <em>(cliquer pour dévoiler)</em></summary>
 <p>En production, il est pratique de définir <code>SubTypeOf</code> de la manière équivalente suivante:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">object</span> <span class="nc">SubTypeOf</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Evidence</span><span class="o">[</span><span class="kt">A</span> <span class="k">&lt;:</span> <span class="kt">B</span>, <span class="kt">B</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -710,19 +746,19 @@ créez le trait <code>SubTypeOf[A,B]</code> (et tout ce qui est nécessaire) tel
 <h3 id="cas-dutilisation-éviter-les-messages-derreur-de-scalac-à-propos-des-bornes-non-respectées">Cas d&rsquo;Utilisation: Éviter les messages d&rsquo;erreur de <em>scalac</em> à propos des bornes non respectées</h3>
 <p>Dans cet exemple, nous voulons modéliser le régime alimentaire de certains animaux.
 Commençons par définir le type <code>Food</code> (c.-à-d. nourriture) et quelques-uns de ces sous-types:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Food</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Food</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Vegetable</span> <span class="k">extends</span> <span class="nc">Food</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Fruit</span> <span class="k">extends</span> <span class="nc">Food</span></span></span></code></pre></div>
 <p>et maintenant la classe représentant les animaux mangeant de la nourriture de type <code>A</code>
 (c.-à-d. <code>Vegetable</code>, <code>Fruit</code>, etc):</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">A</span> <span class="k">&lt;:</span> <span class="kt">Food</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">A</span> <span class="k">&lt;:</span> <span class="kt">Food</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nc">val</span> <span class="n">elephant</span> <span class="k">:</span> <span class="kt">AnimalEating</span><span class="o">[</span><span class="kt">Vegetable</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">Vegetable</span><span class="o">]</span></span></span></code></pre></div>
 <p>Définissons une fonction comme il en existe tant en <em>Programmation Fonctionnelle</em>
 et passons lui <code>elephant</code> comme argument:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">A</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&#34;Ok!&#34;</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">List</span>, <span class="kt">Int</span><span class="o">](</span><span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">))</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">A</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&#34;Ok!&#34;</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">List</span>, <span class="kt">Int</span><span class="o">](</span><span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">))</span>
 </span></span><span class="line"><span class="cl"><span class="n">res0</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nc">Ok</span><span class="o">!</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">Option</span>, <span class="kt">Boolean</span><span class="o">](</span><span class="nc">Some</span><span class="o">(</span><span class="kc">true</span><span class="o">))</span>
@@ -753,7 +789,7 @@ Donc <code>AnimalEating</code> ne peut être utilisé comme argument <code>F</co
 nous avons imposé à <code>A</code> d&rsquo;être un sous-type de <code>Food</code>. Donc <em>Scala</em>, tout comme <em>Java</em>,
 nous interdit de donner à <code>AnimalEating</code>, en tant qu&rsquo;argument <code>A</code>, autre chose
 qu&rsquo;un sous-type de <code>Food</code> (en incluant <code>Food</code> lui-même):</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">type</span> <span class="kt">T1</span> <span class="o">=</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">type</span> <span class="kt">T1</span> <span class="o">=</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">                 <span class="o">^</span>
 </span></span><span class="line"><span class="cl">       <span class="n">error</span><span class="k">:</span> <span class="k">type</span> <span class="kt">arguments</span> <span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">do</span> <span class="n">not</span> <span class="n">conform</span>
 </span></span><span class="line"><span class="cl">       <span class="n">to</span> <span class="k">class</span> <span class="nc">AnimalEating</span>&#39;s <span class="k">type</span> <span class="kt">parameter</span> <span class="kt">bounds</span> <span class="o">[</span><span class="kt">A</span> <span class="k">&lt;:</span> <span class="kt">Food</span><span class="o">]</span>
@@ -771,7 +807,7 @@ et pas des entiers, ni des booléens et encore moins des chaînes de caractères
 <ul>
 <li>
 <p>Il soit possible d&rsquo;appeler <code>dummy</code> avec comme argument <code>elephant</code>! Nous voulons:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">AnimalEating</span>, <span class="kt">Vegetable</span><span class="o">](</span><span class="n">elephant</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">AnimalEating</span>, <span class="kt">Vegetable</span><span class="o">](</span><span class="n">elephant</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">res0</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nc">Ok</span><span class="o">!</span></span></span></code></pre></div>
 </li>
 <li>
@@ -795,7 +831,7 @@ Pouvez vous créer une valeur de type <code>(Nothing, Int)</code>? Pourquoi?</p>
 méthode créant des valeurs à prendre un paramètre supplémentaire de type <code>SubTypeOf[A, Food]</code>,
 alors il sera uniquement possible de créer une instance de <code>AnimalEating[A]</code>
 quand <code>A</code> sera un sous-type de <code>Food</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">ev</span> <span class="k">:</span> <span class="kt">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">Food</span><span class="o">])</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">ev</span> <span class="k">:</span> <span class="kt">SubTypeOf</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">Food</span><span class="o">])</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">elephant</span> <span class="k">:</span> <span class="kt">AnimalEating</span><span class="o">[</span><span class="kt">Vegetable</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nc">AnimalEating</span><span class="o">[</span><span class="kt">Vegetable</span><span class="o">](</span><span class="nc">SubTypeEvidence</span><span class="o">[</span><span class="kt">Vegetable</span>, <span class="kt">Food</span><span class="o">])</span></span></span></code></pre></div>
@@ -803,7 +839,7 @@ quand <code>A</code> sera un sous-type de <code>Food</code>:</p>
 le constructeur d&rsquo;<code>AnimalEating</code>. Pour appeler ce constructeur,
 il nous faut fournir <code>ev : SubTypeOf[A, Food]</code>.</p>
 <p>Il nous est désormais possible d&rsquo;appeler la fonction <code>dummy</code> sur <code>elephant</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">AnimalEating</span>, <span class="kt">Vegetable</span><span class="o">](</span><span class="n">elephant</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">dummy</span><span class="o">[</span><span class="kt">AnimalEating</span>, <span class="kt">Vegetable</span><span class="o">](</span><span class="n">elephant</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">res0</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nc">Ok</span><span class="o">!</span></span></span></code></pre></div>
 <p>En pratique, en utilisant des implicites, le compilateur peut
 fournir de lui-même le paramètre <code>ev : SubTypeOf[A, Food]</code>.</p>
@@ -823,18 +859,18 @@ que deux types de graphique:
 des <a href="https://www.google.com/search?q=pie+chart&tbm=isch" rel="external" target="_self">camemberts (c.-à-d. pie charts)</a>
 et des <a href="https://www.google.com/search?q=xy+charts&tbm=isch" rel="external" target="_self">graphiques dit XY (c.-à-d. XY charts)</a>.
 Cela s&rsquo;écrit en <em>Scala</em> via l&rsquo;énumération:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ChartType</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ChartType</span>
 </span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="k">object</span> <span class="nc">PieChart</span> <span class="k">extends</span> <span class="nc">ChartType</span>
 </span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="k">object</span> <span class="nc">XYChart</span> <span class="k">extends</span> <span class="nc">ChartType</span></span></span></code></pre></div>
 <p>Bien évidemment les camemberts (<em>Pie</em>) et graphiques <em>XY</em> s&rsquo;appuient sur des jeux de données de
 nature différente. Encore une fois, pour simplifier, nous considèrerons que les deux types
 de données sont <code>PieData</code> pour les camemberts et <code>XYData</code> pour les graphiques <em>XY</em>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PieData</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PieData</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">XYData</span></span></span></code></pre></div>
 <p>Un camembert (<code>PieChart</code>) n&rsquo;affiche <strong>que</strong> des données <code>PieData</code>,
 alors qu&rsquo;un graphique <em>XY</em> (<code>XYChart</code>) n&rsquo;affiche <strong>que</strong> des données <code>XYData</code>.
 Voici, grandement simplifiée, la fonction d&rsquo;affichage <code>draw</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">draw</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">chartType</span><span class="k">:</span> <span class="kt">ChartType</span><span class="o">)(</span><span class="n">data</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">draw</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">chartType</span><span class="k">:</span> <span class="kt">ChartType</span><span class="o">)(</span><span class="n">data</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">chartType</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">PieChart</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">      <span class="k">val</span> <span class="n">pieData</span> <span class="k">=</span> <span class="n">data</span><span class="o">.</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">PieData</span><span class="o">]</span>
@@ -856,7 +892,7 @@ développeurs·euses s&rsquo;assureront toujours que ces hypothèses soient bien
 Mais <strong>rien</strong> n&rsquo;empêche quelqu&rsquo;un·e d&rsquo;appeler <code>draw</code> sur un camembert (<code>PieChart</code>)
 avec des données de type <code>XYData</code> (ou le contraire),
 faisant planter le système misérablement en production!</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">draw</span><span class="o">(</span><span class="nc">PieChart</span><span class="o">)(</span><span class="k">new</span> <span class="nc">XYData</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">draw</span><span class="o">(</span><span class="nc">PieChart</span><span class="o">)(</span><span class="k">new</span> <span class="nc">XYData</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="nc">ClassCastException</span><span class="k">:</span> <span class="kt">XYData</span> <span class="kt">cannot</span> <span class="kt">be</span> <span class="kt">cast</span> <span class="kt">to</span> <span class="kt">PieData</span>
 </span></span><span class="line"><span class="cl">  <span class="n">at</span> <span class="o">.</span><span class="n">draw</span><span class="o">(&lt;</span><span class="n">pastie</span><span class="k">&gt;:</span><span class="mi">11</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="o">...</span> <span class="mi">28</span> <span class="n">elided</span></span></span></code></pre></div>
@@ -893,7 +929,7 @@ ne doivent <strong>pas</strong> avoir <strong>de corps</strong> du tout
   <details>
     <summary><em>Astuce (cliquer pour dévoiler)</em></summary>
 <p>Le code ressemble à ceci:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">/*METTRE</span> <span class="kt">LES</span> <span class="kt">GENERICS</span> <span class="kt">ICI*/</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">/*METTRE</span> <span class="kt">LES</span> <span class="kt">GENERICS</span> <span class="kt">ICI*/</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">case</span> <span class="k">object</span> <span class="nc">PieChart</span> <span class="k">extends</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">/*Il</span> <span class="kt">y</span> <span class="kt">a</span> <span class="kt">quelque</span> <span class="kt">chose</span> <span class="kt">à</span> <span class="kt">écrire</span> <span class="kt">ici*/</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="k">object</span> <span class="nc">XYChart</span> <span class="k">extends</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">/*Il</span> <span class="kt">y</span> <span class="kt">a</span> <span class="kt">quelque</span> <span class="kt">chose</span> <span class="kt">à</span> <span class="kt">écrire</span> <span class="kt">ici</span> <span class="kt">aussi*/</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -909,7 +945,7 @@ ne doivent <strong>pas</strong> avoir <strong>de corps</strong> du tout
   </details>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">case</span> <span class="k">object</span> <span class="nc">PieChart</span> <span class="k">extends</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">PieData</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="k">object</span> <span class="nc">XYChart</span> <span class="k">extends</span> <span class="nc">ChartType</span><span class="o">[</span><span class="kt">XYData</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -946,34 +982,34 @@ de travailler avec des implicites.</p>
 <p>Ce qui est appelé un effet est parfois juste une interface déclarant quelques
 fonctions dépourvues d&rsquo;implémentation. Par exemple nous pouvons définir le
 <code>trait</code> ci-dessous. Notez qu&rsquo;<em>aucune</em> de ces fonctions n&rsquo;a d&rsquo;implémentation.</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">ExampleEffectSig</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">ExampleEffectSig</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">echo</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">randomInt</span> <span class="k">:</span> <span class="kt">Int</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">ignore</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Les implémentations de ces interfaces (traits) sont données ailleurs, et il peut en avoir beaucoup!
 Cela est utile quand il est désirable de changer facilement d&rsquo;implémentation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">ExampleEffectImpl</span> <span class="k">extends</span> <span class="nc">ExampleEffectSig</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">ExampleEffectImpl</span> <span class="k">extends</span> <span class="nc">ExampleEffectSig</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">echo</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="n">value</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">randomInt</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">scala</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="nc">Random</span><span class="o">.</span><span class="n">nextInt</span><span class="o">()</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">ignore</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">()</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Une manière équivalente de définir <code>ExampleEffectSig</code> est via un <code>sealed trait</code>
 muni de quelques <code>final case class</code> (peut-être aucune!) et/ou quelques <code>case object</code> (peut-être aucun!):</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ExampleEffect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ExampleEffect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Echo</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ExampleEffect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">RandomInt</span> <span class="k">extends</span> <span class="nc">ExampleEffect</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Ignore</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ExampleEffect</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]</span></span></span></code></pre></div>
 <p>De nouveau, nous avons des déclarations ne fournissant aucune implémentation!
 De nouveau, leurs implémentations peuvent être fournies ailleurs et il peut en avoir beaucoup:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">runExampleEffect</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">effect</span><span class="k">:</span> <span class="kt">ExampleEffect</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">runExampleEffect</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">effect</span><span class="k">:</span> <span class="kt">ExampleEffect</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">effect</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">Echo</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">value</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">RandomInt</span>   <span class="k">=&gt;</span> <span class="n">scala</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="nc">Random</span><span class="o">.</span><span class="n">nextInt</span><span class="o">()</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">Ignore</span><span class="o">(</span><span class="k">_</span><span class="o">)</span>   <span class="k">=&gt;</span> <span class="o">()</span>
 </span></span><span class="line"><span class="cl">  <span class="o">}</span></span></span></code></pre></div>
 <p>Prenons un effet plus réaliste ainsi qu&rsquo;une de ses implémentations possibles:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">EffectSig</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">EffectSig</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">currentTimeMillis</span><span class="k">:</span> <span class="kt">Long</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">printLn</span><span class="o">(</span><span class="n">msg</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">mesure</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">A</span><span class="o">](</span><span class="n">fun</span><span class="k">:</span> <span class="kt">X</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">,</span> <span class="n">arg</span><span class="k">:</span> <span class="kt">X</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span>
@@ -1002,7 +1038,7 @@ via la définition d&rsquo;un <code>sealed trait</code> muni de quelques <code>f
 Appelez ce trait <code>Effect</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">CurrentTimeMillis</span> <span class="k">extends</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">Long</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">PrintLn</span><span class="o">(</span><span class="n">msg</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Mesure</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">A</span><span class="o">](</span><span class="n">fun</span><span class="k">:</span> <span class="kt">X</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">,</span> <span class="n">arg</span><span class="k">:</span> <span class="kt">X</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
@@ -1013,7 +1049,7 @@ Appelez ce trait <code>Effect</code>.</p>
 <code>EffectImpl</code> tout comme <code>runExampleEffect</code> reproduit celle de <code>ExampleEffectImpl</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">run</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">effect</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">run</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">effect</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">effect</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">CurrentTimeMillis</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">      <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span><span class="o">()</span>
@@ -1047,7 +1083,7 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 à <code>Effect[A]</code> déclarant ces deux opérations.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">CurrentTimeMillis</span> <span class="k">extends</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">Long</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">PrintLn</span><span class="o">(</span><span class="n">msg</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Mesure</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">A</span><span class="o">](</span><span class="n">fun</span><span class="k">:</span> <span class="kt">X</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">,</span> <span class="n">arg</span><span class="k">:</span> <span class="kt">X</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
@@ -1059,7 +1095,7 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 <p><strong>Question 4:</strong> Adaptez la fonction <code>run</code> pour gérer ces deux nouveaux cas.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">run</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">effect</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">run</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">effect</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">effect</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">CurrentTimeMillis</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">      <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span><span class="o">()</span>
@@ -1086,12 +1122,12 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 </li>
 <li>
 <p><strong>Question 5:</strong> Ajoutez les deux méthodes suivantes au trait <code>Effect[A]</code> pour obtenir:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">def</span> <span class="n">flatMap</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="nc">FlatMap</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">f</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="n">flatMap</span><span class="o">[</span><span class="kt">B</span><span class="o">]((</span><span class="n">a</span><span class="k">:</span><span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Pure</span><span class="o">(</span><span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">)))</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Et exécutez le code suivant pour voir s&rsquo;il fonctionne:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">effect1</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">effect1</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">t0</span> <span class="k">&lt;-</span> <span class="nc">CurrentTimeMillis</span>
 </span></span><span class="line"><span class="cl">    <span class="k">_</span>  <span class="k">&lt;-</span> <span class="nc">PrintLn</span><span class="o">(</span><span class="s">s&#34;The current time is </span><span class="si">$t0</span><span class="s">&#34;</span><span class="o">)</span>
@@ -1100,7 +1136,7 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 </span></span><span class="line"><span class="cl"><span class="n">run</span><span class="o">(</span><span class="n">effect1</span><span class="o">)</span></span></span></code></pre></div>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">def</span> <span class="n">flatMap</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="nc">Effect</span><span class="o">[</span><span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="nc">FlatMap</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">f</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">Effect</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="n">flatMap</span><span class="o">[</span><span class="kt">B</span><span class="o">]((</span><span class="n">a</span><span class="k">:</span><span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Pure</span><span class="o">(</span><span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">)))</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -1140,7 +1176,7 @@ nous avons déclaré <code>CurrentTimeMillis</code>, <code>PrintLn</code> et <co
 </span></span><span class="line"><span class="cl">    <span class="k">_</span>  <span class="k">&lt;-</span> <span class="nc">PrintLn</span><span class="o">(</span><span class="s">s&#34;The current time is </span><span class="si">$t0</span><span class="s">&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="o">}</span> <span class="k">yield</span> <span class="o">()</span></span></span></code></pre></div>
 <p>En exécutant <code>run(effect1)</code> on obtient:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">run</span><span class="o">(</span><span class="n">effect1</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="n">scala</span><span class="o">&gt;</span> <span class="n">run</span><span class="o">(</span><span class="n">effect1</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="nc">The</span> <span class="n">current</span> <span class="n">time</span> <span class="n">is</span> <span class="mi">1569773175010</span></span></span></code></pre></div>
   </details>
 </li>
@@ -1186,12 +1222,11 @@ Elle peut stocker <code>(&quot;Hello World&quot;, 5.2)</code> grâce à la règl
 <p><strong>Question 1:</strong> Définissez le type <code>DBType[A]</code> tel que:</p>
 <blockquote>
 <p>Il existe une valeur de type <code>DBType[A]</code> <strong>si et seulement si</strong> <code>A</code>
-est un type pris en charge par la base de données.</p>
-</blockquote>
+est un type pris en charge par la base de données.</p></blockquote>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
 <p>La version simple est:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">DBString</span> <span class="k">extends</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">DBDouble</span> <span class="k">extends</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">Double</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">DBPair</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">first</span><span class="k">:</span> <span class="kt">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">second</span><span class="k">:</span> <span class="kt">DBType</span><span class="o">[</span><span class="kt">B</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">DBType</span><span class="o">[(</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">)]</span></span></span></code></pre></div>
@@ -1199,7 +1234,7 @@ est un type pris en charge par la base de données.</p>
   <summary><strong>Remarque pour les personnes à l'aise en <em>Scala</em></strong> <em>(cliquer pour dévoiler)</em></summary>
 <p>En utilisant toutes les chouettes fonctionnalités syntaxiques de <em>Scala</em>,
 la version satisfaisante en production du code ci-dessus est:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">object</span> <span class="nc">DBType</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">DBString</span> <span class="k">extends</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">DBDouble</span> <span class="k">extends</span> <span class="nc">DBType</span><span class="o">[</span><span class="kt">Double</span><span class="o">]</span>
@@ -1223,7 +1258,7 @@ la version satisfaisante en production du code ci-dessus est:</p>
 <p>En utilisant <code>DBType</code>, nous pouvons coupler une valeur de type <code>A</code>
 avec une valeur de type <code>DBType[A]</code>, fournissant ainsi la preuve que
 le type <code>A</code> est pris en charge par la base de données:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">DBValue</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)(</span><span class="k">implicit</span> <span class="k">val</span> <span class="n">dbType</span><span class="k">:</span> <span class="kt">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">DBValue</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)(</span><span class="k">implicit</span> <span class="k">val</span> <span class="n">dbType</span><span class="k">:</span> <span class="kt">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span></span></span></code></pre></div>
 <p>Notez que le paramètre <code>dbType</code> n&rsquo;a nullement besoin d&rsquo;être implicite!
 Ce qui compte est que pour créer une valeur de type <code>DBValue[A]</code>,
 nous devons fournir une valeur de type <code>DBType[A]</code>
@@ -1231,11 +1266,11 @@ ce qui force <code>A</code> à être un type pris en charge par la base de donn�
 <p>Un <em>foncteur</em> est, de manière informelle et approximative, un constructeur de type<code>F</code>,
 comme <code>List</code>, <code>Option</code>, <code>DBValue</code>, etc,
 pour lequel il est possible de fournir une instance du trait:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])(</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>où <code>map(fa)(f)</code> applique la fonction <code>f</code> à chaque valeur de type <code>A</code> contenue dans <code>fa</code>. Par exemple:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">implicit</span> <span class="k">object</span> <span class="nc">OptionFunctor</span> <span class="k">extends</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">Option</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">implicit</span> <span class="k">object</span> <span class="nc">OptionFunctor</span> <span class="k">extends</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">Option</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">A</span><span class="o">])(</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="n">fa</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Some</span><span class="o">(</span><span class="n">f</span><span class="o">(</span><span class="n">a</span><span class="o">))</span>
@@ -1248,7 +1283,7 @@ pour lequel il est possible de fournir une instance du trait:</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
 <p>C&rsquo;est en fait impossible! Si nous tentions de compiler le code suivant:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">DBValueFunctor</span> <span class="k">extends</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">DBValue</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">DBValueFunctor</span> <span class="k">extends</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">DBValue</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">DBValue</span><span class="o">[</span><span class="kt">A</span><span class="o">])(</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">DBValue</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="nc">DBValue</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="o">(</span><span class="n">fa</span><span class="o">.</span><span class="n">value</span><span class="o">))</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
@@ -1257,7 +1292,7 @@ ne sont pas un type pris en charge par la base de données:
 ils ne sont ni des chaînes de caractères, ni des nombres flottants, ni des paires de types pris en charge.</p>
 <p>Supposons que nous puissions définir une instance de <code>Funcor</code> pour <code>DBValue</code>
 (c.-à-d. que nous puissions définir une fonction <code>map</code> pour <code>DBValue</code>), alors nous pourrions écrire:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">dbValueString</span>  <span class="k">:</span> <span class="kt">DBValue</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>  <span class="k">=</span> <span class="nc">DBValue</span><span class="o">(</span><span class="s">&#34;A&#34;</span><span class="o">)(</span><span class="nc">DBString</span><span class="o">)</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">val</span> <span class="n">dbValueString</span>  <span class="k">:</span> <span class="kt">DBValue</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>  <span class="k">=</span> <span class="nc">DBValue</span><span class="o">(</span><span class="s">&#34;A&#34;</span><span class="o">)(</span><span class="nc">DBString</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">dbValueBoolean</span> <span class="k">:</span> <span class="kt">DBValue</span><span class="o">[</span><span class="kt">Boolean</span><span class="o">]</span> <span class="k">=</span> <span class="n">dbValueString</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="k">=&gt;</span> <span class="kc">true</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">dbTypeBoooean</span>  <span class="k">:</span> <span class="kt">DBType</span><span class="o">[</span><span class="kt">Boolean</span><span class="o">]</span>  <span class="k">=</span> <span class="n">dbValueBoolean</span><span class="o">.</span><span class="n">dbType</span></span></span></code></pre></div>
 <p>Nous obtiendrions une valeur (<code>dbTypeBoooean</code>) de type <code>DBType[Boolean]</code>
@@ -1265,8 +1300,7 @@ ce qui signifirait que le type <code>Boolean</code> est pris en charge par la ba
 Mais il ne l&rsquo;est pas! Hors par définition:</p>
 <blockquote>
 <p>Il existe une valeur de type <code>DBType[A]</code> <strong>si et seulement si</strong> <code>A</code>
-est un type pris en charge par la base de donnée.</p>
-</blockquote>
+est un type pris en charge par la base de donnée.</p></blockquote>
 <p>Donc il est impossible d&rsquo;obtenir une valeur de type <code>DBType[Boolean]</code>
 et donc il est impossible d&rsquo;écrire une fonction <code>map</code> pout <code>DBValue</code>.
 Ainsi il n&rsquo;y a aucun moyen de définir une instance de <code>Functor</code> pour <code>DBValue</code>. CQDF.</p>
@@ -1276,7 +1310,7 @@ Ainsi il n&rsquo;y a aucun moyen de définir une instance de <code>Functor</code
 <p>Un <em>Foncteur Généralisé</em> est très similaire à un <code>Functor</code> classique, à la différence près
 que la fonction <code>map</code> ne doit pas obligatoirement être applicable à n&rsquo;importe quels
 types <code>A</code> et <code>B</code> mais peut n&rsquo;être applicable qu&rsquo;à certains types <code>A</code> et <code>B</code> particuliers:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">GenFunctor</span><span class="o">[</span><span class="kt">P</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">GenFunctor</span><span class="o">[</span><span class="kt">P</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])(</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">evA</span><span class="k">:</span> <span class="kt">P</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">evB</span><span class="k">:</span> <span class="kt">P</span><span class="o">[</span><span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
 <p>Par exemple, <code>Set</code> (plus précisément <code>TreeSet</code>) n&rsquo;est pas un foncteur!
@@ -1284,7 +1318,7 @@ En effet il n&rsquo;y a aucun moyen d&rsquo;écrire une fonction <code>map</code
 pour n&rsquo;importe quel type <code>B</code> (parce qu&rsquo;il est nécessaire d&rsquo;avoir une relation d&rsquo;ordre sur <code>B</code>).
 Mais si l&rsquo;on restreint <code>map</code> aux seuls types <code>B</code> disposant d&rsquo;une relation d&rsquo;ordre, alors il devient
 possible d&rsquo;écrire:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">scala.collection.immutable._</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">scala.collection.immutable._</span>
 </span></span><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">TreeSetFunctor</span> <span class="k">extends</span> <span class="nc">GenFunctor</span><span class="o">[</span><span class="kt">Ordering</span>, <span class="kt">TreeSet</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">TreeSet</span><span class="o">[</span><span class="kt">A</span><span class="o">])(</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">evA</span><span class="k">:</span> <span class="kt">Ordering</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">evB</span><span class="k">:</span> <span class="kt">Ordering</span><span class="o">[</span><span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">TreeSet</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="nc">TreeSet</span><span class="o">.</span><span class="n">empty</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">evB</span><span class="o">)</span> <span class="o">++</span> <span class="n">fa</span><span class="o">.</span><span class="n">toSeq</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
@@ -1294,7 +1328,7 @@ possible d&rsquo;écrire:</p>
 <p><strong>Question 3:</strong> Écrivez une instance de <code>GenFunctor[DBType, DBValue]</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">DBValueGenFunctor</span> <span class="k">extends</span> <span class="nc">GenFunctor</span><span class="o">[</span><span class="kt">DBType</span>, <span class="kt">DBValue</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">object</span> <span class="nc">DBValueGenFunctor</span> <span class="k">extends</span> <span class="nc">GenFunctor</span><span class="o">[</span><span class="kt">DBType</span>, <span class="kt">DBValue</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">fa</span><span class="k">:</span> <span class="kt">DBValue</span><span class="o">[</span><span class="kt">A</span><span class="o">])(</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">evA</span><span class="k">:</span> <span class="kt">DBType</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">evB</span><span class="k">:</span> <span class="kt">DBType</span><span class="o">[</span><span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">DBValue</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">    <span class="nc">DBValue</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="o">(</span><span class="n">fa</span><span class="o">.</span><span class="n">value</span><span class="o">))(</span><span class="n">evB</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
@@ -1311,7 +1345,7 @@ Il montre comment il est possible d&rsquo;utiliser les <em>GADTs</em> pour simpl
 <p>Des listes de valeurs dont les éléments peuvent être de types différents sont appelées
 <em>listes hétérogènes</em>. Elles sont généralement définies en <em>Scala</em> presque comme
 les listes classiques:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">HNil</span><span class="o">()</span> <span class="c1">// La liste vide
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">HNil</span><span class="o">()</span> <span class="c1">// La liste vide
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">HCons</span><span class="o">[</span><span class="kt">Head</span>,<span class="kt">Tail</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">Head</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">Tail</span><span class="o">)</span> <span class="c1">// L&#39;operation: `head :: tail`
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="n">empty</span> <span class="k">:</span> <span class="kt">HNil</span> <span class="o">=</span>
@@ -1328,7 +1362,7 @@ Une relation d&rsquo;ordre est une façon de comparer deux valeurs (<strong>du m
 elles peuvent êtres égales ou l&rsquo;une peut être strictement plus petite que l&rsquo;autre.
 Une relation d&rsquo;ordre sur le type <code>A</code> peut se définir en <em>Scala</em> comme une instance
 de <code>Order[A]</code> défini comme suit:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// vrai si et seulement si a1 &lt; a2
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">def</span> <span class="n">lesserThan</span><span class="o">(</span><span class="n">a1</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">a2</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span>
 </span></span><span class="line"><span class="cl">
@@ -1370,9 +1404,8 @@ Voici deux relations d&rsquo;ordre possibles (il en existe de nombreuses autres!
 <p>L&rsquo;<em>ordre lexicographique</em> (c.-à-d. l&rsquo;ordre du dictionnaire: de la gauche vers la droite)</p>
 <blockquote>
 <p><code>HCons(h1,t1) &lt; HCons(h2,t2)</code> <strong>si et seulement si</strong>
-<code>h1 &lt; h2</code> <em>ou</em> (<code>h1 == h2</code> <em>et</em> <code>t1 &lt; t2</code> <em>par l&rsquo;ordre lexicographique</em>).</p>
-</blockquote>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Lex</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+<code>h1 &lt; h2</code> <em>ou</em> (<code>h1 == h2</code> <em>et</em> <code>t1 &lt; t2</code> <em>par l&rsquo;ordre lexicographique</em>).</p></blockquote>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Lex</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">order</span> <span class="k">:</span> <span class="kt">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -1403,9 +1436,8 @@ Voici deux relations d&rsquo;ordre possibles (il en existe de nombreuses autres!
 (c.-à-d. de droite à gauche)</p>
 <blockquote>
 <p><code>HCons(h1,t1) &lt; HCons(h2,t2)</code> <strong>si et seulement si</strong>
-(<code>t1 &lt; t2</code> <em>par ordre lexicographique inversé</em>) <em>ou</em> (<code>t1 == t2</code> <em>et</em> <code>h1 &lt; h2</code>).</p>
-</blockquote>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">RevLex</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+(<code>t1 &lt; t2</code> <em>par ordre lexicographique inversé</em>) <em>ou</em> (<code>t1 == t2</code> <em>et</em> <code>h1 &lt; h2</code>).</p></blockquote>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">RevLex</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">order</span> <span class="k">:</span> <span class="kt">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -1438,13 +1470,12 @@ Voici deux relations d&rsquo;ordre possibles (il en existe de nombreuses autres!
 <p><strong>Question 1:</strong> L&rsquo;ordre <code>Alternate</code> est défini par:</p>
 <blockquote>
 <p><code>HCons(h1,t1) &lt; HCons(h2,t2)</code> <strong>si et seulement si</strong>
-<code>h1 &lt; h2</code> <em>ou</em> (<code>h1 == h2</code> <em>et</em> <code>t1 &gt; t2</code> <em>par ordre</em> <code>Alternate</code>).</p>
-</blockquote>
+<code>h1 &lt; h2</code> <em>ou</em> (<code>h1 == h2</code> <em>et</em> <code>t1 &gt; t2</code> <em>par ordre</em> <code>Alternate</code>).</p></blockquote>
 <p>En suivant la méthoe employée pour <code>Lex</code> and <code>RevLex</code>,
 implémentez l&rsquo;ordre <code>Alternate</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Alternate</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">Alternate</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">val</span> <span class="n">order</span> <span class="k">:</span> <span class="kt">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -1476,7 +1507,7 @@ implémentez l&rsquo;ordre <code>Alternate</code>.</p>
 Créer une classe de type (<em>type class</em>) comme <code>Lex</code>, <code>RevLex</code> et <code>Alternate</code> pour chaque relation
 d&rsquo;ordre voulue est fatigant et propice aux erreurs. Nous pouvons faire bien mieux &hellip;
 avec un <em>GADT</em> 😉</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">HListOrder</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">HListOrder</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">object</span> <span class="nc">HListOrder</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">HNilOrder</span> <span class="k">extends</span> <span class="nc">HListOrder</span><span class="o">[</span><span class="kt">HNil</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -1508,7 +1539,7 @@ raison d&rsquo;être est de passer leurs arguments au constructeur correspondant
 qui retourne l&rsquo;ordre lexicographique à partir d&rsquo;une valeur de type <code>HListOrder[A]</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">lex</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="k">implicit</span> <span class="n">v</span> <span class="k">:</span> <span class="kt">HListOrder</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">lex</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="k">implicit</span> <span class="n">v</span> <span class="k">:</span> <span class="kt">HListOrder</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">HListOrder</span><span class="o">.</span><span class="nc">HNilOrder</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">      <span class="nc">Order</span><span class="o">.</span><span class="n">make</span><span class="o">[</span><span class="kt">HNil</span><span class="o">]((</span><span class="k">_</span><span class="o">,</span><span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="kc">false</span><span class="o">)</span>
@@ -1529,7 +1560,7 @@ qui retourne l&rsquo;ordre lexicographique à partir d&rsquo;une valeur de type 
 qui retourne l&rsquo;ordre lexicographique inversé à partir d&rsquo;une valeur de type <code>HListOrder[A]</code>.</p>
   <details>
     <summary><em>Solution (cliquer pour dévoiler)</em></summary>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">revLex</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="k">implicit</span> <span class="n">v</span> <span class="k">:</span> <span class="kt">HListOrder</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">revLex</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="k">implicit</span> <span class="n">v</span> <span class="k">:</span> <span class="kt">HListOrder</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span><span class="k">:</span> <span class="kt">Order</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="n">v</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nc">HListOrder</span><span class="o">.</span><span class="nc">HNilOrder</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">      <span class="nc">Order</span><span class="o">.</span><span class="n">make</span><span class="o">[</span><span class="kt">HNil</span><span class="o">]((</span><span class="k">_</span><span class="o">,</span><span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="kc">false</span><span class="o">)</span>
@@ -1572,28 +1603,26 @@ de comprendre les techniques.</p>
 <p>Amusez vous bien et prenez bien soin de vous ❤️</p>
 
   <footer class="footline">
+    
   </footer>
 </article>
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1731047931" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1731047931" defer></script>
+    <script src="../../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1731047931"></script>
-    <script src="../../js/theme.js?1731047931" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../../js/theme.min.js?1749952413" defer></script>
   </body>
 </html>

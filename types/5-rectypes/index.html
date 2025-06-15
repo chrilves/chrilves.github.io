@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
     <meta name="description" content="In today&#39;s episodes, let&#39;s see how to type recursive data such as lists and trees.">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
     <meta name="twitter:description" content="In today&#39;s episodes, let&#39;s see how to type recursive data such as lists and trees.">
-  <meta name="twitter:site" content="@chrilves"/>
+    <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/types/5-rectypes/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
@@ -28,25 +28,62 @@
     <title>Episode 5 - Recursive Data Types :: @chrilves&#39; Archives</title>
     <link href="../../types/5-rectypes/index.xml" rel="alternate" type="application/rss+xml" title="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
     <link href="../../types/5-rectypes/index.print.html" rel="alternate" type="text/html" title="Episode 5 - Recursive Data Types :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1731047931" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1731047931" rel="stylesheet">
-    <link href="../../css/fonts.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1731047931" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1731047931" rel="stylesheet" media="print">
-    <script src="../../js/variant.js?1731047931"></script>
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../../js/search.min.js?1749952413" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/types\/5-rectypes\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1749952413";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -58,7 +95,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../types/5-rectypes/index.html">
+  <body class="mobile-support html" data-url="../../types/5-rectypes/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -89,14 +126,15 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Episode 5 - Recursive Data Types</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="../../index.html"><span itemprop="name">@chrilves&#39; Archives</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Episode 5 - Recursive Data Types</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/5-rectypes.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/5-rectypes.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a>
             </div>
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/5-rectypes/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/5-rectypes/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/4-coproducts/index.html" title="Episode 4 - CoProducts (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
@@ -121,13 +159,13 @@
   </header>
 
 <h1 id="episode-5---recursive-data-types">Episode 5 - Recursive Data Types</h1>
-    <p class="article-meta default"><em>16 Dec 2018 - 2000 Words</em></p>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>16 Dec 2018 - 2000 Words</em></p>
 
 <p>We have seen many types but we still don&rsquo;t know how to represent numbers, lists, trees, free monads, or any type with an infinite number of values. One again we will start by simple examples. Like always, <strong>do no skim through</strong> them but take the time to <strong>develop a deep understanding</strong>. If you feel uncomfortable with complex examples, it means you missed something important in the simple ones.</p>
 <h2 id="a-simple-example">A simple example</h2>
 <p>We will take as example an encoding of <em>non-negative</em> integers, also called <strong>natural numbers</strong>, i.e. numbers <em>0</em>, <em>1</em>, <em>2</em>, <em>3</em> and so on. There are actually many encodings possible, but we will take a simple encoding known as <a href="https://wiki.haskell.org/Peano_numbers" rel="external" target="_self">Peano numbers</a>. Did you ever wonder how <em>natural numbers</em> are built? There can actually be built starting from <code>0</code> then adding <code>1</code> to <code>0</code> to make <code>1</code>, then adding <code>1</code> to <code>1</code> to make <code>2</code>, then adding <code>1</code> to <code>2</code> to make <code>3</code>, then adding <code>1</code> to <code>3</code> to make <code>4</code>, and so on. Our encoding will mimic this construction. We need <strong>two constructors</strong>: one of represent <code>0</code> and the other to represent the operation of adding <code>1</code> to the previous number to make a new one.</p>
 <p>Let&rsquo;s call <code>Nat</code> the type of natural numbers. The first constructor, representing <code>0</code> should be a constant of type <code>Nat</code> while the second one, representing the operation of adding <code>1</code> should be a function of type <code>Nat =&gt; Nat</code>. Remember that <em>constructors need to be injective</em>, but we are lucky, this operation is actually injective. Let call the first constructor <code>Zero:Nat</code> and the second one <code>Succ:Nat =&gt; Nat</code> (for successor). This is easy to translate into <em>Scala</em> and <em>Haskell</em>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Nat</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Nat</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">zero</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">succ</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Zero</span> <span class="k">=&gt;</span> <span class="n">zero</span>
@@ -138,7 +176,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Zero</span>         <span class="k">extends</span> <span class="nc">Nat</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Succ</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Nat</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Nat</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Nat</span> <span class="kr">where</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Nat</span> <span class="kr">where</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">Zero</span> <span class="ow">::</span> <span class="kt">Nat</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">Succ</span> <span class="ow">::</span> <span class="kt">Nat</span> <span class="ow">-&gt;</span> <span class="kt">Nat</span></span></span></code></pre></div>
 <p>Note that all the constructors we have seen in the previous episodes took as argument <em>already defined types</em>, but the first argument of <code>Succ</code> is of type <code>Nat</code>, the very <em>same type we are defining</em>. This is the reason why <code>Nat</code> is called a <strong>recursive data type</strong>: some of its constructors take as arguments values of type <code>Nat</code> itself. As usual:</p>
@@ -149,7 +187,7 @@
 </ul>
 <p>The problem is, unlike <em>enumerations</em>, <em>products</em> and <em>coproducts</em> where these properties are enough to define their respective type (<em>up to equivalence</em>) without ambiguity. With <em>recursive data types</em> there can be several <strong>non-equivalent</strong> types for which these three properties hold. For example, the type <code>{0, 1, 2, ...}</code> of natural numbers and <code>{O, 1, 2,  ..., ∞}</code> in which we added one special number called infinity such that <code>Succ(∞) = ∞</code> both have the three properties above. So wee need to add a new <em>constraint</em>, which is that: <strong>among all the types for which these properties hold, <code>Nat</code> is taken as the smallest one</strong>.</p>
 <p><em>Recursive types</em> have amazing properties. For example the types <code>Nat</code> and <code>Option[Nat]</code> are equivalent! Indeed <code>nat2opt</code> and <code>opt2nat</code> are <em>inverse bijections</em>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">opt2nat</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Nat</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Nat</span> <span class="k">=</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">def</span> <span class="n">opt2nat</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Nat</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Nat</span> <span class="k">=</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Succ</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span> <span class="nc">Zero</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -158,7 +196,7 @@
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Succ</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nc">Zero</span> <span class="k">=&gt;</span> <span class="nc">None</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">opt2nat</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Nat</span> <span class="ow">-&gt;</span> <span class="kt">Nat</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">opt2nat</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Nat</span> <span class="ow">-&gt;</span> <span class="kt">Nat</span>
 </span></span><span class="line"><span class="cl"><span class="nf">opt2nat</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">n</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">Succ</span> <span class="n">n</span>
 </span></span><span class="line"><span class="cl"><span class="nf">opt2nat</span> <span class="kt">Nothing</span>  <span class="ow">=</span> <span class="kt">Zero</span>
 </span></span><span class="line"><span class="cl">
@@ -167,11 +205,10 @@
 </span></span><span class="line"><span class="cl"><span class="nf">nat2opt</span> <span class="kt">Zero</span>     <span class="ow">=</span> <span class="kt">Nothing</span></span></span></code></pre></div>
 <p>It means that <code>Nat ≅ Option[Nat]</code>. Note that <code>Option[T] ≅ Either[Unit, T] ≅ 1 + T</code> in <em>Type Theory</em> notation, so <code>Nat</code> is actually one of the solution of the <strong>type equation</strong> <code>T ≅ 1 + T</code>. Such an equation means we are looking for types <code>T</code> such that <code>T</code> and <code>Option[T]</code> are equivalent. Regarding <code>Option</code> as a function from types to type, where the type <code>Option[T]</code> is the one obtained by applying the argument <code>T</code> to the function <code>Option</code>, <code>Nat</code> is one of the <a href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)" rel="external" target="_self">fixed-point</a> of this function. More precisely, <code>Nat</code> is the least fixed-point of <code>Option</code>.</p>
 <blockquote>
-<p>Let <code>μ: (Type -&gt; Type) -&gt; Type</code> be the operator taking a type function <code>F</code> as argument (written <code>F[_]</code> in <em>Scala</em> and <code>f :: * -&gt; *</code> in <em>haskell</em>) and returning the <strong>least fixed-point</strong> of <code>F</code>, which is defined as the smallest type <code>T</code> (up to equivalence) which is solution of the equation <code>T ≅ F[T]</code>. To simplify the notations, we may also write <code>μT.F[T]</code> instead of <code>μ(F)</code>.</p>
-</blockquote>
+<p>Let <code>μ: (Type -&gt; Type) -&gt; Type</code> be the operator taking a type function <code>F</code> as argument (written <code>F[_]</code> in <em>Scala</em> and <code>f :: * -&gt; *</code> in <em>haskell</em>) and returning the <strong>least fixed-point</strong> of <code>F</code>, which is defined as the smallest type <code>T</code> (up to equivalence) which is solution of the equation <code>T ≅ F[T]</code>. To simplify the notations, we may also write <code>μT.F[T]</code> instead of <code>μ(F)</code>.</p></blockquote>
 <p>As an example <code>Nat = μ(Option)</code> which we also write <code>Nat = μT.Either[Unit, T]</code> and also  <code>Nat = μT.(1 + T)</code>.</p>
 <p>Another solution to the equation, which is, this time the <em>greatest fixed-point</em> of <code>Option</code> is the type <code>NatInf</code>, representing <code>{0, 1, 2, ..., ∞}</code>, defined as below. It is the <em>biggest type</em> which is solution (up to equivalence) of the equation <code>T ≅ 1 + T</code>. The two <em>inverse functions</em> <code>opt2natInf</code> and <code>natInf2opt</code> proves the equivalence:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">NatInf</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">trait</span> <span class="nc">NatInf</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">unfold</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -197,7 +234,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">natInf2opt</span><span class="k">:</span> <span class="kt">NatInf</span> <span class="o">=&gt;</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">NatInf</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatInf</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span><span class="o">.</span><span class="n">unfold</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">newtype</span> <span class="kt">NatInf</span> <span class="ow">=</span> <span class="kt">NatInf</span> <span class="p">{</span> <span class="n">unfold</span> <span class="ow">::</span>  <span class="kt">Maybe</span> <span class="kt">NatInf</span> <span class="p">}</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">newtype</span> <span class="kt">NatInf</span> <span class="ow">=</span> <span class="kt">NatInf</span> <span class="p">{</span> <span class="n">unfold</span> <span class="ow">::</span>  <span class="kt">Maybe</span> <span class="kt">NatInf</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nf">zero</span> <span class="ow">::</span> <span class="kt">NatInf</span>
 </span></span><span class="line"><span class="cl"><span class="nf">zero</span> <span class="ow">=</span> <span class="kt">NatInf</span> <span class="kt">Nothing</span>
@@ -216,7 +253,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">natInf2opt</span> <span class="ow">=</span> <span class="n">unfold</span></span></span></code></pre></div>
 <h3 id="equivalence-of-inductive-and-functional-definitions">Equivalence of inductive and functional definitions</h3>
 <p><code>Nat</code> can be <em>equivalently defined</em> as a <em>data type</em> <code>NatInd</code> as well as a <em>function type</em> <code>NatFun</code>. Inverse bijections <code>ind2fun</code> and <code>fun2ind</code> prove <code>NatInf</code> and <code>NarInd</code> are equivalent:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">NatInd</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">NatInd</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">ZeroInd</span> <span class="k">extends</span> <span class="nc">NatInd</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">SuccInd</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatInd</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">NatInd</span>
 </span></span><span class="line"><span class="cl">
@@ -249,7 +286,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="k">:</span> <span class="kt">NatFun</span> <span class="o">=&gt;</span> <span class="nc">NatInd</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">NatFun</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">NatInd</span><span class="o">](</span><span class="nc">ZeroInd</span><span class="o">,</span> <span class="nc">SuccInd</span><span class="o">(</span><span class="k">_</span><span class="o">))</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">NatInd</span> <span class="kr">where</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">NatInd</span> <span class="kr">where</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">ZeroInd</span> <span class="ow">::</span> <span class="kt">NatInd</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">SuccInd</span> <span class="ow">::</span> <span class="kt">NatInd</span> <span class="ow">-&gt;</span> <span class="kt">NatInd</span>
 </span></span><span class="line"><span class="cl">
@@ -276,7 +313,7 @@
 <li>every value of type <code>List[A]</code> is either a <code>Nil</code> or a <code>Cons(head, tail)</code> for some <code>head:A</code> and some <code>tail:List[A]</code></li>
 </ul>
 <p>Furthermore <code>List[A]</code> is the smallest type satisfying these properties. It can easily be defined in <em>Scala</em> as</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">List</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">List</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">nil</span><span class="k">:</span> <span class="kt">R</span><span class="o">,</span> <span class="n">cons</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span><span class="kt">R</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Nil</span> <span class="k">=&gt;</span> <span class="n">nil</span>
@@ -288,16 +325,16 @@
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">Nil</span> <span class="k">extends</span> <span class="nc">List</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">Cons</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span></span></span></code></pre></div>
 <p>Like any recursive data type, <code>List[A]</code> is the smallest solution of a <em>type equation</em>. This time the equation is <code>T ≅ 1 + (A, T)</code> which in a more <em>Scalaish</em> syntax is <code>T ≅ Option[(A, T)]</code>. Equivalently, <code>List[A]</code> is also the <em>least fixed-point</em> of the type-function:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">F</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Option</span><span class="o">[(</span><span class="kt">A</span>, <span class="kt">T</span><span class="o">)]</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">type</span> <span class="kt">F</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Option</span><span class="o">[(</span><span class="kt">A</span>, <span class="kt">T</span><span class="o">)]</span></span></span></code></pre></div>
 <p>Which means <code>List[A] = μT.(1 + A × T)</code>. The biggest type which is solution (up to equivalence) of the equation, which is the <em>greatest fixed-point</em> of <code>F</code> is the type of streams whose elements are of type <code>A</code>, written <code>Stream[A]</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">trait</span> <span class="kt">Steam</span><span class="p">[</span><span class="kt">A</span><span class="p">]</span> <span class="p">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">trait</span> <span class="kt">Steam</span><span class="p">[</span><span class="kt">A</span><span class="p">]</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">def</span> <span class="n">unfold</span><span class="kt">:</span> <span class="kt">Option</span><span class="p">[(</span><span class="kt">A</span><span class="p">,</span> <span class="kt">Stream</span><span class="p">[</span><span class="kt">A</span><span class="p">])]</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">newtype</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Stream</span> <span class="p">{</span> <span class="n">runStream</span> <span class="ow">::</span> <span class="n">forall</span> <span class="n">c</span><span class="o">.</span> <span class="p">(</span><span class="kt">Maybe</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kt">Stream</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span> <span class="p">}</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">newtype</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Stream</span> <span class="p">{</span> <span class="n">runStream</span> <span class="ow">::</span> <span class="n">forall</span> <span class="n">c</span><span class="o">.</span> <span class="p">(</span><span class="kt">Maybe</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kt">Stream</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">c</span> <span class="p">}</span></span></span></code></pre></div>
 <p><em>Exercise: write the bijections proving <code>Stream[A] ≅ Option[(A, Stream[A])]</code></em></p>
 <h3 id="equivalence-of-inductive-and-functional-definitions-1">Equivalence of inductive and functional definitions</h3>
 <p><code>List[A]</code> can equivalently be defined as the <em>data type</em> <code>ListInd[A]</code> as well as the <em>type function</em> <code>ListFun[A]</code>. The two inverse functions <code>ind2fun</code> and <code>fun2ind</code> prove <code>ListInd[A]</code> and <code>ListFun[A]</code> are equivalent:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">object</span> <span class="nc">NilInd</span> <span class="k">extends</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">Nothing</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span>  <span class="nc">ConsInd</span><span class="o">[</span><span class="kt">+A</span><span class="o">](</span><span class="n">head</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">tail</span><span class="k">:</span> <span class="kt">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -330,7 +367,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span><span class="k">:</span> <span class="kt">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">ListFun</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">=&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">ListInd</span><span class="o">[</span><span class="kt">A</span><span class="o">]](</span><span class="nc">NilInd</span><span class="o">,</span> <span class="nc">ConsInd</span><span class="o">(</span><span class="k">_</span><span class="o">,</span><span class="k">_</span><span class="o">))</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">ListInd</span> <span class="n">a</span> <span class="kr">where</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">ListInd</span> <span class="n">a</span> <span class="kr">where</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">NilInd</span>  <span class="ow">::</span> <span class="kt">ListInd</span> <span class="n">a</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">ConsInd</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListInd</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">ListInd</span> <span class="n">a</span>
 </span></span><span class="line"><span class="cl">
@@ -350,7 +387,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">fun2ind</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">f</span> <span class="kt">NilInd</span> <span class="kt">ConsInd</span></span></span></code></pre></div>
 <h2 id="algebraic-data-types">Algebraic Data Types</h2>
 <p><a href="https://en.wikipedia.org/wiki/Algebraic_data_type" rel="external" target="_self">Algebraic Data Types</a> are types that can be expressed using only <code>False</code>, <code>Unit</code>, <em>products</em>, <em>coproducts</em> and the <em>least fixed-point</em> operator <code>μ</code>. For example, binary trees whose elements are of type <code>A</code>, defined in <em>Scala</em> by</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Tree</span><span class="o">[</span><span class="kt">+A</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">empty</span><span class="k">:</span> <span class="kt">R</span><span class="o">,</span> <span class="n">leaf</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">,</span> <span class="n">node</span><span class="k">:</span> <span class="o">(</span><span class="kt">R</span><span class="o">,</span> <span class="kt">R</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Empty</span>   <span class="k">=&gt;</span> <span class="n">empty</span>
@@ -368,12 +405,13 @@
 <p><em>Exercise: write the bijection proving the equivalence.</em></p>
 
   <footer class="footline">
+    
   </footer>
 </article>
         </div>
       </main>
     </div>
-    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+    <aside id="R-sidebar" class="default-animation">
       <div id="R-header-topbar" class="default-animation"></div>
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
@@ -449,9 +487,6 @@
 </svg>
 </a>
         </div>
-        <script>
-          window.index_js_url="../../searchindex.en.js?1731047931";
-        </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
             <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
@@ -460,23 +495,31 @@
             <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
           </div>
         </form></search>
-        <script>
-          var contentLangs=['en'];
-        </script>
-        <script src="../../js/auto-complete.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1731047931" defer></script>
-        <script src="../../js/search.js?1731047931" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
-        <hr class="padding">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
       </div>
       <div id="R-content-wrapper" class="highlightable">
-        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090"><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
+            <li class="" data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090"><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
+            <li class="" data-nav-id="/posts/prey_typhons_theory/index.html"><a class="padding" href="../../posts/prey_typhons_theory/index.html">A Theory about Dishonored and Prey<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/probability_in_scala_3_all_sides/index.html"><a class="padding" href="../../posts/probability_in_scala_3_all_sides/index.html">Playing with Probability in Scala 3<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/les_gadts_par_l_exemple/index.html"><a class="padding" href="../../posts/les_gadts_par_l_exemple/index.html">Les GADTs Par l&#39;Exemple<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/gadts_by_use_cases/index.html"><a class="padding" href="../../posts/gadts_by_use_cases/index.html">GADTs By Use Cases<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -487,7 +530,7 @@
             <li class="" data-nav-id="/posts/slimetrail/index.html"><a class="padding" href="../../posts/slimetrail/index.html">How to make game in the browser thanks to ScalaJS<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/json2xml/index.html"><a class="padding" href="../../posts/json2xml/index.html">JSON to XML: the probably a tiny bit over engineered way<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/falgebra_scalaio_2017/index.html"><a class="padding" href="../../posts/falgebra_scalaio_2017/index.html">F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
-            <li class="parent " data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" checked><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
+            <li class="parent " data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" checked><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
             <li class="" data-nav-id="/types/1-why/index.html"><a class="padding" href="../../types/1-why/index.html">Episode 1 - Why Types?<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/2-enums/index.html"><a class="padding" href="../../types/2-enums/index.html">Episode 2 - Enumerations<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/3-products/index.html"><a class="padding" href="../../types/3-products/index.html">Episode 3 - Products<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -495,93 +538,88 @@
             <li class="active " data-nav-id="/types/5-rectypes/index.html"><a class="padding" href="../../types/5-rectypes/index.html">Episode 5 - Recursive Data Types<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
           </ul>
         </div>
-        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
           <div class="nav-title padding">More</div>
           <ul class="space collapsible-menu">
-            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" rel="external" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" rel="external" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
           </ul>
         </div>
-        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter"></div>
-        <div id="R-menu-footer">
-          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter">
-          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showLangSwitch showVariantSwitch showVisitedLinks">
-            <ul>
-              <li id="R-select-language-container" class="footerLangSwitch showLangSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-language"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-language">Language</label>
-                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
-                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../types/5-rectypes/index.html" lang="en" selected>English</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-              <li id="R-select-variant-container" class="footerVariantSwitch showVariantSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-variant">Theme</label>
-                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                      <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
-                      <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
-                      <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
-                      <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
-                      <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
-                      <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
-                      <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
-                      <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
-                      <option id="R-select-variant-neon" value="neon">Neon</option>
-                      <option id="R-select-variant-learn" value="learn">Learn</option>
-                      <option id="R-select-variant-blue" value="blue">Blue</option>
-                      <option id="R-select-variant-green" value="green">Green</option>
-                      <option id="R-select-variant-red" value="red">Red</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-                <script>window.variants && variants.markSelectedVariant();</script>
-              </li>
-              <li class="footerVisitedLinks showVisitedLinks">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-history"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <button onclick="clearHistory();">Clear History</button>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div id="R-footer" class="footerFooter showFooter">
-        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
         </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+			<li class="R-languageswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-language"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-language">Language</label>
+                  <select id="R-select-language">
+                    <option id="R-select-language-en" value="en" data-url="../../types/5-rectypes/index.html" lang="en" selected data-selected>English</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Theme</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
+                    <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
+                    <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
+                    <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
+                    <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-blue" value="blue">Blue</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1731047931" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1731047931" defer></script>
+    <script src="../../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1731047931"></script>
-    <script src="../../js/theme.js?1731047931" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../../js/theme.min.js?1749952413" defer></script>
   </body>
 </html>

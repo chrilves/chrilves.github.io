@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
     <meta name="description" content="CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 &#43; ... &#43; A_n in Type Theory.">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Episode 4 - CoProducts :: @chrilves&#39; Archives">
     <meta name="twitter:description" content="CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 &#43; ... &#43; A_n in Type Theory.">
-  <meta name="twitter:site" content="@chrilves"/>
+    <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/types/4-coproducts/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="Episode 4 - CoProducts :: @chrilves&#39; Archives">
@@ -24,29 +24,66 @@
     <meta itemprop="description" content="CoProducts, often called sum types, discriminated unions or disjoint unions, are a convenient way to express an alternative between different types. The coproduct of n types (with n being 0, 1, 2, etc) A_1, A_2, …, A_n is precisely the type whose values are (i, a_i) where i is a number, called the tag, between 1 and n both included (1 ≤ i ≤ n) and a_i is a value of type A_i (the actual type then depends on the value of i). Is is often written Either[A_1, ..., A_n] in programming and A_1 &#43; ... &#43; A_n in Type Theory.">
     <meta itemprop="datePublished" content="2018-12-16T00:04:00+00:00">
     <meta itemprop="dateModified" content="2018-12-16T00:04:00+00:00">
-    <meta itemprop="wordCount" content="1058">
+    <meta itemprop="wordCount" content="1059">
     <title>Episode 4 - CoProducts :: @chrilves&#39; Archives</title>
     <link href="../../types/4-coproducts/index.xml" rel="alternate" type="application/rss+xml" title="Episode 4 - CoProducts :: @chrilves&#39; Archives">
     <link href="../../types/4-coproducts/index.print.html" rel="alternate" type="text/html" title="Episode 4 - CoProducts :: @chrilves&#39; Archives">
-    <link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1731047931" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1731047931" rel="stylesheet">
-    <link href="../../css/fonts.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1731047931" rel="stylesheet">
-    <link href="../../css/theme-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/chroma-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../../css/print.css?1731047931" rel="stylesheet" media="print">
-    <script src="../../js/variant.js?1731047931"></script>
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../../js/search.min.js?1749952413" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/types\/4-coproducts\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../../searchindex.en.js?1749952413";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -58,7 +95,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../types/4-coproducts/index.html">
+  <body class="mobile-support html" data-url="../../types/4-coproducts/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -74,21 +111,22 @@
   <ul>
     <li><a href="#equivalence-of-inductive-and-functional-forms">Equivalence of inductive and functional forms</a></li>
     <li><a href="#generalization-to-a-product-of-any-number-of-types">Generalization to a product of any number of types</a></li>
-    <li><a href="#next-episode-recursive-data-typeshttpschrilvesgithubiotypes5-rectypes"><a href="https://chrilves.github.io/types/5-rectypes/">Next Episode: Recursive Data Types</a></a></li>
+    <li><a href="#next-episode-recursive-data-types"><a href="https://chrilves.github.io/types/5-rectypes/">Next Episode: Recursive Data Types</a></a></li>
   </ul>
 </nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Episode 4 - CoProducts</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="../../index.html"><span itemprop="name">@chrilves&#39; Archives</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../types/index.html"><span itemprop="name">Introduction to Types</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Episode 4 - CoProducts</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/4-coproducts.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/chrilves/chrilves.github.io/edit/master/hugo/content/types/4-coproducts.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a>
             </div>
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/4-coproducts/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/4-coproducts/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../types/3-products/index.html" title="Episode 3 - Products (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
@@ -113,13 +151,15 @@
   </header>
 
 <h1 id="episode-4---coproducts">Episode 4 - CoProducts</h1>
-    <p class="article-meta default"><em>16 Dec 2018 - 1100 Words</em></p>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>16 Dec 2018 - 1100 Words</em></p>
 
 <p>CoProducts, often called <em>sum types</em>, <em>discriminated unions</em> or <em>disjoint unions</em>, are a convenient way to express an alternative between different types. The <strong>coproduct</strong> of <code>n</code> types (with <code>n</code> being <em>0</em>, <em>1</em>, <em>2</em>, etc) <code>A_1</code>, <code>A_2</code>, &hellip;, <code>A_n</code> is precisely the type whose values are <code>(i, a_i)</code> where <code>i</code> is a number, called the <strong>tag</strong>, between <code>1</code> and <code>n</code> both included (<code>1 ≤ i ≤  n</code>) and <code>a_i</code> is a value of type <code>A_i</code> (the actual type then depends on the value of <code>i</code>). Is is often written <code>Either[A_1, ..., A_n]</code> in programming and <code>A_1 + ... + A_n</code> in <em>Type Theory</em>.</p>
 <p>Let&rsquo;s take, as an example, <code>n = 4</code>, <code>A_1 = Char</code>, <code>A_2 = Boolean</code>, <code>A_3 = Char</code> and <code>A_4 = Double</code>. The following values are all <strong>valid and distinct</strong> values of type <code>Either4[Char, Boolean, Char, Double]</code>: <code>(1, 'C')</code>, <code>(2, true)</code>, <code>(3, 'D')</code>, <code>(4, 3.2)</code>, <code>(3, 'C')</code>. Note that <code>(1, 'C')</code> and <code>(3, 'C')</code> are different values because the <em>tag</em> is different.</p>
 <p>Instead of writing the <em>tag</em> explicitly, programming languages often let us write <code>n</code> <strong>constructors</strong>: <code>Inj_i: A_i =&gt; Either_n[A_1, ..., A_n]</code> such that
 </p>
-$$\forall i\in{1,\dots,n},\quad \texttt{Inj}_i : \texttt{A}_i \rightarrow \texttt{Either}_n[\texttt{A}_1,\dots,\texttt{A}_n]$$$$\forall i\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \texttt{Inj}_i(a_i) = (i, a_i)$$<p>Note that:</p>
+$$\forall i\in{1,\dots,n},\quad \texttt{Inj}_i : \texttt{A}_i \rightarrow \texttt{Either}_n[\texttt{A}_1,\dots,\texttt{A}_n]$$<p>
+</p>
+$$\forall i\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \texttt{Inj}_i(a_i) = (i, a_i)$$<p>Note that:</p>
 <ul>
 <li>As usual <strong>constructors are injective</strong> functions
 $$\forall i\in{1,\dots,n},\quad \forall a_i,a'_i:\texttt{A}_i,\quad \texttt{Inj}_i(a_i) = \texttt{Inj}_i(a'_i) \Leftrightarrow a_i = a'_i$$</li>
@@ -129,7 +169,7 @@ $$\forall v:\texttt{Either}_n[\texttt{A}_1,\dots,\texttt{A}_n],\quad \exists! i\
 $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\texttt{A}_j,\quad \texttt{Inj}_i(a_i) = \texttt{Inj}_j(a_j) \Leftrightarrow i = j \textbf{ and } a_i = a_j$$</li>
 </ul>
 <p>For example with <code>n = 2</code>, the <em>coproduct</em> of two types <code>A</code> and <code>B</code> is defined as</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either2</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="n">fold</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">inj1</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">,</span> <span class="n">inj2</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=&gt;</span> <span class="n">R</span><span class="o">)</span><span class="k">:</span> <span class="kt">R</span> <span class="o">=</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span> <span class="k">match</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nc">Inj1</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">inj1</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
@@ -141,7 +181,7 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
 <p>Saying the pattern matching above is exhaustive is exactly equivalent to say a value of type <code>Either2[A,B]</code> has to be either <code>Inj1(a)</code> for some <code>a:A</code> or <code>Inj2(b)</code> for some <code>b:B</code>. Requiring that <code>Inj1</code> and <code>Inj2</code> produce different values is also mandatory as <code>Eirher2[Error, Result]</code> is often used to model computation that may fail. A failed computation would produce a <code>Inj1(e)</code> with <code>e</code> being the error that occurred while a successful computation would produce a <code>Inj2(r)</code> with <code>r</code> the result of the computation. We want to be able to discriminate these two cases, even when the types <code>Error</code> and <code>Result</code> are the same as it is usually the case when the computation need to compute a string or fail with an error message. Likewise, the injectivity of the constructors is mandatory to be able to the result produced <code>r</code> or the error that occurred <code>e</code>.</p>
 <h2 id="equivalence-of-inductive-and-functional-forms">Equivalence of inductive and functional forms</h2>
 <p>Once again any *coproductù can be <em>equivalently expressed</em> as a <em>data type</em> <code>Either_n_Ind[A_1, ..., A_n]</code> and as a <em>function type</em> <code>Either_n_Fun[A_1, ..., A_n]</code> with <em>inverse functions</em> <code>ind2fun</code> and <code>fun2ind</code> converting back and forth types <code>Either_n_Ind[A_1, ..., A_n]</code> and <code>Either_n_Fun[A_1, ..., A_n]</code>. For example with <code>n = 2</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="line"><span class="cl"><span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nc">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Inj1_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">Inj2_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">value</span><span class="k">:</span> <span class="kt">B</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
@@ -171,7 +211,7 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="n">fun2ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span><span class="k">:</span> <span class="kt">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">=</span>
 </span></span><span class="line"><span class="cl">  <span class="o">(</span><span class="n">f</span><span class="k">:</span> <span class="kt">Either2Fun</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span> <span class="k">=&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">fold</span><span class="o">[</span><span class="kt">Either2Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]](</span><span class="nc">Inj1_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">_</span><span class="o">,</span> <span class="nc">Inj2_Ind</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">]</span> <span class="k">_</span><span class="o">)</span></span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span> <span class="kr">where</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span> <span class="kr">where</span>
 </span></span><span class="line"><span class="cl"> <span class="kt">Inj1_Ind</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span>
 </span></span><span class="line"><span class="cl"> <span class="kt">Inj2_Ind</span> <span class="ow">::</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">Either2Ind</span> <span class="n">a</span> <span class="n">b</span>
 </span></span><span class="line"><span class="cl">
@@ -210,16 +250,17 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
 <li><code>0 × A ≅ A × 0 ≅ 0</code></li>
 </ul>
 <p>Is arithmetic familiar to you? If so such equations should be familiar too. But these times there are not between numbers but between equivalent types. If you ever wonder why <a href="https://en.wikipedia.org/wiki/Algebraic_data_type" rel="external" target="_self">Algebraic Data Types</a> are called this way, this should give you some hints.</p>
-<h2 id="next-episode-recursive-data-typeshttpschrilvesgithubiotypes5-rectypes"><a href="https://chrilves.github.io/types/5-rectypes/" rel="external" target="_self">Next Episode: Recursive Data Types</a></h2>
+<h2 id="next-episode-recursive-data-types"><a href="https://chrilves.github.io/types/5-rectypes/" rel="external" target="_self">Next Episode: Recursive Data Types</a></h2>
 <p>In the <a href="https://chrilves.github.io/types/5-rectypes/" rel="external" target="_self">next episode</a>, we will see <strong>Recursive Data Types</strong>.</p>
 
   <footer class="footline">
+    
   </footer>
 </article>
         </div>
       </main>
     </div>
-    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+    <aside id="R-sidebar" class="default-animation">
       <div id="R-header-topbar" class="default-animation"></div>
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
@@ -295,9 +336,6 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
 </svg>
 </a>
         </div>
-        <script>
-          window.index_js_url="../../searchindex.en.js?1731047931";
-        </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
             <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
@@ -306,23 +344,31 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
             <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
           </div>
         </form></search>
-        <script>
-          var contentLangs=['en'];
-        </script>
-        <script src="../../js/auto-complete.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1731047931" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1731047931" defer></script>
-        <script src="../../js/search.js?1731047931" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
-        <hr class="padding">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
       </div>
       <div id="R-content-wrapper" class="highlightable">
-        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090"><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
+            <li class="" data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090"><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
+            <li class="" data-nav-id="/posts/prey_typhons_theory/index.html"><a class="padding" href="../../posts/prey_typhons_theory/index.html">A Theory about Dishonored and Prey<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/probability_in_scala_3_all_sides/index.html"><a class="padding" href="../../posts/probability_in_scala_3_all_sides/index.html">Playing with Probability in Scala 3<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/les_gadts_par_l_exemple/index.html"><a class="padding" href="../../posts/les_gadts_par_l_exemple/index.html">Les GADTs Par l&#39;Exemple<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/gadts_by_use_cases/index.html"><a class="padding" href="../../posts/gadts_by_use_cases/index.html">GADTs By Use Cases<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -333,7 +379,7 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
             <li class="" data-nav-id="/posts/slimetrail/index.html"><a class="padding" href="../../posts/slimetrail/index.html">How to make game in the browser thanks to ScalaJS<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/json2xml/index.html"><a class="padding" href="../../posts/json2xml/index.html">JSON to XML: the probably a tiny bit over engineered way<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/falgebra_scalaio_2017/index.html"><a class="padding" href="../../posts/falgebra_scalaio_2017/index.html">F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
-            <li class="parent " data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" checked><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
+            <li class="parent " data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" checked><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
             <li class="" data-nav-id="/types/1-why/index.html"><a class="padding" href="../../types/1-why/index.html">Episode 1 - Why Types?<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/2-enums/index.html"><a class="padding" href="../../types/2-enums/index.html">Episode 2 - Enumerations<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/3-products/index.html"><a class="padding" href="../../types/3-products/index.html">Episode 3 - Products<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -341,93 +387,88 @@ $$\forall i,j\in{1,\dots,n},\quad \forall a_i:\texttt{A}_i,\quad \forall a_j:\te
             <li class="" data-nav-id="/types/5-rectypes/index.html"><a class="padding" href="../../types/5-rectypes/index.html">Episode 5 - Recursive Data Types<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
           </ul>
         </div>
-        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
           <div class="nav-title padding">More</div>
           <ul class="space collapsible-menu">
-            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" rel="external" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" rel="external" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
           </ul>
         </div>
-        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter"></div>
-        <div id="R-menu-footer">
-          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter">
-          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showLangSwitch showVariantSwitch showVisitedLinks">
-            <ul>
-              <li id="R-select-language-container" class="footerLangSwitch showLangSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-language"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-language">Language</label>
-                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
-                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../types/4-coproducts/index.html" lang="en" selected>English</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-              <li id="R-select-variant-container" class="footerVariantSwitch showVariantSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-variant">Theme</label>
-                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                      <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
-                      <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
-                      <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
-                      <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
-                      <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
-                      <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
-                      <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
-                      <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
-                      <option id="R-select-variant-neon" value="neon">Neon</option>
-                      <option id="R-select-variant-learn" value="learn">Learn</option>
-                      <option id="R-select-variant-blue" value="blue">Blue</option>
-                      <option id="R-select-variant-green" value="green">Green</option>
-                      <option id="R-select-variant-red" value="red">Red</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-                <script>window.variants && variants.markSelectedVariant();</script>
-              </li>
-              <li class="footerVisitedLinks showVisitedLinks">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-history"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <button onclick="clearHistory();">Clear History</button>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div id="R-footer" class="footerFooter showFooter">
-        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
         </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+			<li class="R-languageswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-language"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-language">Language</label>
+                  <select id="R-select-language">
+                    <option id="R-select-language-en" value="en" data-url="../../types/4-coproducts/index.html" lang="en" selected data-selected>English</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Theme</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
+                    <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
+                    <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
+                    <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
+                    <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-blue" value="blue">Blue</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1731047931" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1731047931" defer></script>
+    <script src="../../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1731047931"></script>
-    <script src="../../js/theme.js?1731047931" defer></script>
+    <script id="MathJax-script" async src="../../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../../js/theme.min.js?1749952413" defer></script>
   </body>
 </html>

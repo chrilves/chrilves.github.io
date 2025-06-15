@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.136.3">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.147.7">
+    <meta name="generator" content="Relearn 7.6.1+4407b4364ab6f7477f7671fbd20c0494bade40ee">
     <meta name="description" content="">
     <meta name="author" content="chrilves">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Search :: @chrilves&#39; Archives">
-  <meta name="twitter:site" content="@chrilves"/>
+    <meta name="twitter:site" content="@chrilves"/>
     <meta property="og:url" content="https://chrilves.github.io/search/index.html">
     <meta property="og:site_name" content="@chrilves&#39; Archives">
     <meta property="og:title" content="Search :: @chrilves&#39; Archives">
@@ -20,25 +20,62 @@
     <link href="https://chrilves.github.io/search/index.html" rel="alternate" hreflang="x-default">
     <link href="https://chrilves.github.io/search/index.html" rel="alternate" hreflang="en">
     <link href="https://chrilves.github.io/pir/search/index.html" rel="alternate" hreflang="art-x-pir">
-    <link href="../css/fontawesome-all.min.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../css/nucleus.css?1731047931" rel="stylesheet">
-    <link href="../css/auto-complete.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1731047931" rel="stylesheet">
-    <link href="../css/fonts.css?1731047931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1731047931" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1731047931" rel="stylesheet">
-    <link href="../css/theme-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-style">
-    <link href="../css/chroma-relearn-auto.css?1731047931" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../css/print.css?1731047931" rel="stylesheet" media="print">
-    <script src="../js/variant.js?1731047931"></script>
+    <link href="../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../fonts/fontawesome/css/fontawesome-all.min.css?1749952413" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar/perfect-scrollbar.min.css?1749952413" rel="stylesheet">
+    <link href="../css/theme.min.css?1749952413" rel="stylesheet">
+    <link href="../css/format-html.min.css?1749952413" rel="stylesheet" id="R-format-style">
+    <link href="../css/auto-complete/auto-complete.min.css?1749952413" rel="stylesheet">
+    <script src="../js/auto-complete/auto-complete.min.js?1749952413" defer></script>
+    <script src="../js/lunr/lunr.min.js?1749952413" defer></script>
+    <script src="../js/lunr/lunr.stemmer.support.min.js?1749952413" defer></script>
+    <script src="../js/lunr/lunr.multi.min.js?1749952413" defer></script>
+    <script src="../js/lunr/lunr.en.min.js?1749952413" defer></script>
+    <script src="../js/search.min.js?1749952413" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/search\/index.html';
       window.relearn.relBasePath='..';
       window.relearn.relBaseUri='..';
       window.relearn.absBaseUri='https:\/\/chrilves.github.io';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="../searchindex.en.js?1749952413";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ] );
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-light', 'relearn-dark', 'relearn-bright', 'zen-auto', 'zen-light', 'zen-dark', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -50,7 +87,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support html disableInlineCopyToClipboard" data-url="../search/index.html">
+  <body class="mobile-support html" data-url="../search/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -69,7 +106,7 @@
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../index.html" title="@chrilves&#39; Archives (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../index.html" title="@chrilves' Archives (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
             </div>
@@ -92,13 +129,13 @@
   </header>
 
 <h1 id="search">Search</h1>
-    <p class="article-meta default"><em>1 Jan 0001 - 100 Words</em></p>
+    <p class="article-meta default"><i class='fa-fw fas fa-calendar'></i><em>1 Jan 0001 - 100 Words</em></p>
 
 <search>
   <form action="javascript:triggerSearch()">
     <div class="searchform">
       <label class="a11y-only" for="R-search-by-detail">Search</label>
-      <input data-search-input id="R-search-by-detail" class="search-by" name="search-by" type="search" placeholder="Search..."><span class="btn cstyle interactive secondary"><button onclick="" type="submit"><i class="fa-fw fas fa-search"></i> <span class="title">Search</span></button></span>
+      <input data-search-input id="R-search-by-detail" class="search-by" name="search-by" type="search" placeholder="Search..."><span class="btn interactive  cstyle secondary"><button onclick="" type="submit"><i class="fa-fw fas fa-search"></i> <span class="title">Search</span></button></span>
     </div>
   </form>
 </search>
@@ -113,7 +150,7 @@
         </div>
       </main>
     </div>
-    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+    <aside id="R-sidebar" class="default-animation">
       <div id="R-header-topbar" class="default-animation"></div>
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
@@ -189,9 +226,6 @@
 </svg>
 </a>
         </div>
-        <script>
-          window.index_js_url="../searchindex.en.js?1731047931";
-        </script>
         <search><form action="../search/index.html" method="get">
           <div class="searchbox default-animation">
             <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
@@ -200,23 +234,31 @@
             <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
           </div>
         </form></search>
-        <script>
-          var contentLangs=['en'];
-        </script>
-        <script src="../js/auto-complete.js?1731047931" defer></script>
-        <script src="../js/lunr/lunr.min.js?1731047931" defer></script>
-        <script src="../js/lunr/lunr.stemmer.support.min.js?1731047931" defer></script>
-        <script src="../js/lunr/lunr.multi.min.js?1731047931" defer></script>
-        <script src="../js/lunr/lunr.en.min.js?1731047931" defer></script>
-        <script src="../js/search.js?1731047931" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
-        <hr class="padding">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
       </div>
       <div id="R-content-wrapper" class="highlightable">
-        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090"><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
+            <li class="" data-nav-id="/posts/index.html"><input type="checkbox" id="R-section-b4e55eb7e39db1aee6d02808a2267090" aria-controls="R-subsections-b4e55eb7e39db1aee6d02808a2267090"><label for="R-section-b4e55eb7e39db1aee6d02808a2267090"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Posts</span></label><a class="padding" href="../posts/index.html">Posts<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b4e55eb7e39db1aee6d02808a2267090" class="collapsible-menu">
+            <li class="" data-nav-id="/posts/prey_typhons_theory/index.html"><a class="padding" href="../posts/prey_typhons_theory/index.html">A Theory about Dishonored and Prey<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/probability_in_scala_3_all_sides/index.html"><a class="padding" href="../posts/probability_in_scala_3_all_sides/index.html">Playing with Probability in Scala 3<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/les_gadts_par_l_exemple/index.html"><a class="padding" href="../posts/les_gadts_par_l_exemple/index.html">Les GADTs Par l&#39;Exemple<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/gadts_by_use_cases/index.html"><a class="padding" href="../posts/gadts_by_use_cases/index.html">GADTs By Use Cases<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -227,7 +269,7 @@
             <li class="" data-nav-id="/posts/slimetrail/index.html"><a class="padding" href="../posts/slimetrail/index.html">How to make game in the browser thanks to ScalaJS<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/json2xml/index.html"><a class="padding" href="../posts/json2xml/index.html">JSON to XML: the probably a tiny bit over engineered way<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/posts/falgebra_scalaio_2017/index.html"><a class="padding" href="../posts/falgebra_scalaio_2017/index.html">F-Algebra talk at ScalaIO 2017: Modéliser astucieusement vos données<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
-            <li class="" data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49"><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
+            <li class="" data-nav-id="/types/index.html"><input type="checkbox" id="R-section-2773ee06b9d9f134bb666cfbf1118c49" aria-controls="R-subsections-2773ee06b9d9f134bb666cfbf1118c49"><label for="R-section-2773ee06b9d9f134bb666cfbf1118c49"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction to Types</span></label><a class="padding" href="../types/index.html">Introduction to Types<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2773ee06b9d9f134bb666cfbf1118c49" class="collapsible-menu">
             <li class="" data-nav-id="/types/1-why/index.html"><a class="padding" href="../types/1-why/index.html">Episode 1 - Why Types?<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/2-enums/index.html"><a class="padding" href="../types/2-enums/index.html">Episode 2 - Enumerations<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/types/3-products/index.html"><a class="padding" href="../types/3-products/index.html">Episode 3 - Products<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -235,94 +277,89 @@
             <li class="" data-nav-id="/types/5-rectypes/index.html"><a class="padding" href="../types/5-rectypes/index.html">Episode 5 - Recursive Data Types<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
           </ul>
         </div>
-        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
           <div class="nav-title padding">More</div>
           <ul class="space collapsible-menu">
-            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://github.com/chrilves"><a class="padding" href="https://github.com/chrilves" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/"><a class="padding" href="https://www.linkedin.com/in/christophe-calv%C3%A8s-ab6325b0/" rel="external" target="_self"><i class='fab fa-fw fa-linkedin'></i> LinkedIn<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://twitter.com/chrilves"><a class="padding" href="https://twitter.com/chrilves" rel="external" target="_self"><i class='fab fa-fw fa-twitter'></i> Twitter<i class="fa-fw fas fa-check read-icon"></i></a></li>
           </ul>
         </div>
-        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter"></div>
-        <div id="R-menu-footer">
-          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter">
-          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showLangSwitch showVariantSwitch showVisitedLinks">
-            <ul>
-              <li id="R-select-language-container" class="footerLangSwitch showLangSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-language"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-language">Language</label>
-                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
-                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../search/index.html" lang="en" selected>English</option>
-                      <option id="R-select-language-pir" value="#R-select-language-pir" data-url="../pir/search/index.html" lang="art-x-pir">Arrr! ☠ Pirrratish ☠</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-              <li id="R-select-variant-container" class="footerVariantSwitch showVariantSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-variant">Theme</label>
-                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                      <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
-                      <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
-                      <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
-                      <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
-                      <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
-                      <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
-                      <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
-                      <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
-                      <option id="R-select-variant-neon" value="neon">Neon</option>
-                      <option id="R-select-variant-learn" value="learn">Learn</option>
-                      <option id="R-select-variant-blue" value="blue">Blue</option>
-                      <option id="R-select-variant-green" value="green">Green</option>
-                      <option id="R-select-variant-red" value="red">Red</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-                <script>window.variants && variants.markSelectedVariant();</script>
-              </li>
-              <li class="footerVisitedLinks showVisitedLinks">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-history"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <button onclick="clearHistory();">Clear History</button>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div id="R-footer" class="footerFooter showFooter">
-        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
         </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+			<li class="R-languageswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-language"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-language">Language</label>
+                  <select id="R-select-language">
+                    <option id="R-select-language-en" value="en" data-url="../search/index.html" lang="en" selected data-selected>English</option>
+                    <option id="R-select-language-pir" value="pir" data-url="../pir/search/index.html" lang="art-x-pir">Arrr! ☠ Pirrratish ☠</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Theme</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-relearn-bright" value="relearn-bright">Relearn Bright</option>
+                    <option id="R-select-variant-zen-auto" value="zen-auto">Zen Light/Dark</option>
+                    <option id="R-select-variant-zen-light" value="zen-light">Zen Light</option>
+                    <option id="R-select-variant-zen-dark" value="zen-dark">Zen Dark</option>
+                    <option id="R-select-variant-retro-auto" value="retro-auto">Retro Learn/Neon</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-blue" value="blue">Blue</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="../js/clipboard.min.js?1731047931" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1731047931" defer></script>
+    <script src="../js/clipboard/clipboard.min.js?1749952413" defer></script>
+    <script src="../js/perfect-scrollbar/perfect-scrollbar.min.js?1749952413" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="../js/mathjax/tex-mml-chtml.js?1731047931"></script>
-    <script src="../js/theme.js?1731047931" defer></script>
+    <script id="MathJax-script" async src="../js/mathjax/tex-mml-chtml.js?1749952413"></script>
+    <script src="../js/theme.min.js?1749952413" defer></script>
   </body>
 </html>
